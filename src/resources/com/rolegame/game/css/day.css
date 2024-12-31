@@ -1,0 +1,150 @@
+/* Background Styles */
+.background {
+    -fx-background-color: linear-gradient(to bottom, #d6ecff, #a8d8ff); /* Soft blue gradient */
+}
+
+.background2 {
+    -fx-background-color: #e0f7ff; /* Light aqua */
+}
+
+/* Label Styling */
+.gameLabel {
+    -fx-text-fill: #00274d; /* Deep navy blue */
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* List View Styling */
+.list-view {
+    -fx-background-color: #a8d8ff; /* Light blue */
+    -fx-background-radius: 10;
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+}
+
+/* VBox Styling for Roles */
+.folkRoleVbox {
+    -fx-background-color: #32a852; /* Aqua blue */
+    -fx-background-radius: 10;
+    -fx-border-color: green; /* Dark blue border */
+    -fx-border-width: 2px;
+}
+
+.corrupterRoleVbox {
+    -fx-background-color: #b22222; /* Deeper aqua blue */
+    -fx-background-radius: 10;
+    -fx-border-color: red; /* Deep navy border */
+    -fx-border-width: 2px;
+}
+
+/* Text Field and Text Area Styling */
+.gameTextField {
+    -fx-background-color: #d6ecff; /* Soft blue */
+    -fx-text-fill: #00274d; /* Deep navy */
+    -fx-font-family: "Arial";
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 1px;
+}
+
+.gameTextArea {
+    -fx-background-color: #d6ecff; /* Soft blue */
+    -fx-text-fill: #00274d; /* Deep navy */
+    -fx-font-family: "Arial";
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 1px;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #66c1e4, #3a9ad9); /* Aqua gradient */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 8px 15px;
+    -fx-font-size: 14px;
+    -fx-border-color: #00274d; /* Deep navy */
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+}
+
+.roleShowLabel{
+    -fx-text-fill: white;
+}
+
+.playerCircle{
+    -fx-fill: #00274d; -fx-stroke: black; -fx-stroke-width: 1.5;
+}
+
+/* TableView Styling */
+.table-view {
+    -fx-background-color: #a8d8ff; /* Light blue */
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+    -fx-background-radius: 10;
+    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+/* TableView Header Styling */
+.table-view .column-header {
+    -fx-background-color: #66c1e4; /* Aqua gradient */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-border-color: #004c99;
+    -fx-border-width: 2px;
+    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+/* TableView Cell Styling */
+.table-view .cell {
+    -fx-background-color: #d6ecff; /* Soft blue */
+    -fx-text-fill: #00274d; /* Deep navy */
+    -fx-font-family: "Arial";
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 1px;
+    -fx-transition: background-color 0.3s ease, -fx-border-color 0.3s ease; /* Smooth transition for background and border color */
+}
+
+/* Alternating Row Colors */
+.table-view .row:nth-child(even) {
+    -fx-background-color: #e0f7ff; /* Light aqua for even rows */
+    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.table-view .row:nth-child(odd) {
+    -fx-background-color: #d6ecff; /* Soft blue for odd rows */
+    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+/* TableView Focused Row */
+.table-view .focused {
+    -fx-background-color: #66c1e4; /* Aqua gradient for focused row */
+    -fx-text-fill: white;
+    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+
+.startRoot {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+.startButton {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+}
+.startTextField {
+    -fx-font-size: 14px;
+    -fx-padding: 5 10;
+}
+.startLabel {
+    -fx-font-size: 14px;
+}
+
+
