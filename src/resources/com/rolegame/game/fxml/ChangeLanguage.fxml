@@ -61,7 +61,19 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="medievalLabel" onMouseClicked="#medievalThemeChosen" text="Medieval Theme">
+                  <Label fx:id="medievalLabel" onMouseClicked="#medievalThemeChosen" text="Medieval Theme (eng)">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="medievalTRLabel" onMouseClicked="#medievalTRThemeChosen" text="Medieval Theme (tr)">
                      <font>
                         <Font size="30.0" />
                      </font>

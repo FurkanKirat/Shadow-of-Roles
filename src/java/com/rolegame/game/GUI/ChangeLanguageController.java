@@ -25,6 +25,9 @@ public class ChangeLanguageController implements Initializable {
     private Label upperTextLabel;
 
     @FXML
+    private Label medievalTRLabel;
+
+    @FXML
     void backClicked(MouseEvent event) {
         SceneController.switchScene("/com/rolegame/game/fxml/StartGame.fxml");
     }
@@ -37,13 +40,19 @@ public class ChangeLanguageController implements Initializable {
 
     @FXML
     void medievalThemeChosen(MouseEvent event) {
-
+        LanguageManager.changeLanguage("em");
         changeLabelLang();
     }
 
     @FXML
     void turkishChosen(MouseEvent event) {
         LanguageManager.changeLanguage("tr");
+        changeLabelLang();
+    }
+
+    @FXML
+    void medievalTRThemeChosen(MouseEvent event) {
+        LanguageManager.changeLanguage("tm");
         changeLabelLang();
     }
 
@@ -56,6 +65,8 @@ public class ChangeLanguageController implements Initializable {
         engLabel.setText(LanguageManager.getText("ChangeLangMenu.eng"));
         turLabel.setText(LanguageManager.getText("ChangeLangMenu.tur"));
         medievalLabel.setText(LanguageManager.getText("ChangeLangMenu.med"));
+        medievalTRLabel.setText(LanguageManager.getText("ChangeLangMenu.medtr"));
         upperTextLabel.setText(LanguageManager.getText("ChangeLangMenu.changeLang"));
+
     }
 }
