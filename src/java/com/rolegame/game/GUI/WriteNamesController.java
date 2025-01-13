@@ -36,15 +36,16 @@ public class WriteNamesController extends VBox {
             playerCount = Integer.parseInt(playerCountTextField.getText());
             textFieldsBox.getChildren().clear();
 
+            if(playerCount>10){
+                showAlert(LanguageManager.getText("WriteNames.playerCountExceeded"));
+                return;
+            }
+
         } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(LanguageManager.getText("WriteNames.notNumberAlert"));
-            alert.showAndWait();
+            showAlert(LanguageManager.getText("WriteNames.notNumberAlert"));
             return;
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(LanguageManager.getText("WriteNames.exception"));
-            alert.showAndWait();
+            showAlert(LanguageManager.getText("WriteNames.exception"));
             return;
         }
         //
@@ -77,6 +78,7 @@ public class WriteNamesController extends VBox {
     private void initialize(){
         playerCountTextField = new TextField();
         playerCountTextField.setPromptText(LanguageManager.getText("WriteNames.playerCount"));
+        playerCountTextField.setMaxWidth(100);
         Button numberButton = new Button(LanguageManager.getText("Menu.apply"));
         numberButton.setOnAction((_) ->{
             playerClicked();
@@ -84,12 +86,18 @@ public class WriteNamesController extends VBox {
         this.getChildren().add(playerCountTextField);
         this.getChildren().add(numberButton);
         this.getChildren().add(textFieldsBox);
+
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setContent(textFieldsBox);
         this.getChildren().add(scrollPane);
 
+    }
+    private void showAlert(String message){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
     private void changeVBox(){
         textFieldsBox.getChildren().clear();

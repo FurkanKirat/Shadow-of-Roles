@@ -16,25 +16,37 @@ import java.util.ResourceBundle;
 
 public class GameStartController implements Initializable {
 
-    @FXML
-    private Label changeLangLabel;
-
-    @FXML
-    private Button exitButton;
-
-    @FXML
-    private Label gameGuideLabel;
 
     @FXML
     private Label startGameLabel;
 
     @FXML
-    void changeLanguage(MouseEvent event) {
-        SceneController.switchScene("/com/rolegame/game/fxml/ChangeLanguage.fxml");
+    private Label gameGuideLabel;
+
+    @FXML
+    private Label achievementsLabel;
+
+    @FXML
+    private Label settingsLabel;
+
+    @FXML
+    private Label creditsLabel;
+
+    @FXML
+    private Label exitLabel;
+
+    @FXML
+    void achievementsClicked(MouseEvent event) {
+
     }
 
     @FXML
-    void exitClicked(ActionEvent event) {
+    void creditsClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void exitClicked(MouseEvent event) {
         SceneController.onClose();
     }
 
@@ -44,16 +56,28 @@ public class GameStartController implements Initializable {
     }
 
     @FXML
+    void settingsClicked(MouseEvent event) {
+        SceneController.switchScene("/com/rolegame/game/fxml/ChangeLanguage.fxml");
+    }
+
+    @FXML
     void startGame(MouseEvent event) {
         SceneController.switchScene(new WriteNamesController());
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        exitButton.setText(LanguageManager.getText("StartMenu.exit"));
-        changeLangLabel.setText(LanguageManager.getText("StartMenu.changeLanguage"));
+
+
+
         startGameLabel.setText(LanguageManager.getText("StartMenu.startGame"));
         gameGuideLabel.setText(LanguageManager.getText("StartMenu.gameGuide"));
+        achievementsLabel.setText(LanguageManager.getText("StartMenu.achievements"));
+        settingsLabel.setText(LanguageManager.getText("StartMenu.settings"));
+        creditsLabel.setText(LanguageManager.getText("StartMenu.credits"));
+        exitLabel.setText(LanguageManager.getText("StartMenu.exit"));
+
 
     }
 }
