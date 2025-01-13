@@ -7,6 +7,14 @@
     -fx-background-color: #e0f7ff; /* Light aqua */
 }
 
+.backgroundimage{
+     -fx-background-image: url('../images/background.jpg');
+     -fx-background-repeat: no-repeat;
+     -fx-background-size: cover; /* Resmi tam kaplayacak şekilde ayarla */
+     -fx-background-position: center; /* Ortala */
+     -fx-padding: 10;
+}
+
 /* Label Styling */
 .gameLabel {
     -fx-text-fill: #00274d; /* Deep navy blue */
@@ -145,6 +153,32 @@
 }
 .startLabel {
     -fx-font-size: 14px;
+
 }
+
+.MenuLabel{
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+
+}
+
+.Menuhover-label {
+    -fx-background-color: #66c1e4;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-transition: all 0.3s ease;
+}
+
+.Menuhover-label:hover {
+    -fx-background-color: #3a9ad9;
+    -fx-border-color: orange;
+    -fx-effect: dropshadow(gaussian, rgba(255, 165, 0, 0.8), 10, 0.5, 0, 0);
+    -fx-text-fill: white;
+}
+
 
 

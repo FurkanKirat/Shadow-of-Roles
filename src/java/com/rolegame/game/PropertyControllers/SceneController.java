@@ -4,8 +4,11 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.w3c.dom.events.Event;
 
 import java.io.IOException;
 
@@ -57,5 +60,20 @@ public class SceneController {
         });
 
         fadeOut.play();
+    }
+
+    public static void onClose(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Are You sure to exit?");
+        alert.setTitle("Exitting");
+        alert.setHeaderText("Exit");
+        alert.showAndWait().ifPresent(response -> {
+            if(ButtonType.OK == response){
+                System.exit(0);
+            }
+            else {
+
+            }
+        });
     }
 }

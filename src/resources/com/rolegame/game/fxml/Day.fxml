@@ -24,13 +24,13 @@
                         <VBox alignment="TOP_CENTER" prefHeight="559.0" prefWidth="227.0">
                            <children>
                               <Label fx:id="graveyardLabel" styleClass="gameLabel" text="Graveyard" />
-                              <ListView fx:id="graveListView" prefHeight="358.0" prefWidth="197.0" />
+                              <ListView fx:id="graveListView" prefHeight="358.0" prefWidth="197.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="594.0" prefWidth="228.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label fx:id="allRolesLabel" styleClass="gameLabel" text="All Roles" />
-                              <TreeView fx:id="rolesTreeView" onContextMenuRequested="#selectRole" onMouseClicked="#selectRole" prefHeight="357.0" prefWidth="228.0">
+                              <TreeView fx:id="rolesTreeView" onContextMenuRequested="#selectRole" onMouseClicked="#selectRole" prefHeight="357.0" prefWidth="228.0" VBox.vgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -40,7 +40,7 @@
                      </children>
                   </HBox>
                   <Label fx:id="announcementsLabel" styleClass="gameLabel" text="Announcements" />
-                  <VBox fx:id="announceVBox" prefHeight="363.0" prefWidth="455.0" styleClass="background2" />
+                  <VBox fx:id="announceVBox" prefHeight="363.0" prefWidth="455.0" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="456.0" HBox.hgrow="ALWAYS">

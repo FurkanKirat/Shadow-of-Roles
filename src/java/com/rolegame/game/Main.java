@@ -13,6 +13,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        stage.setOnCloseRequest((event)-> {
+            event.consume();
+            SceneController.onClose();
+        });
         stage.setTitle("Role Game");
         SceneController.changeStage(stage);
         SceneController.switchScene("/com/rolegame/game/fxml/StartGame.fxml");

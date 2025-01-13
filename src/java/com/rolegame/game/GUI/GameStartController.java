@@ -5,7 +5,9 @@ import com.rolegame.game.PropertyControllers.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
@@ -33,7 +35,7 @@ public class GameStartController implements Initializable {
 
     @FXML
     void exitClicked(ActionEvent event) {
-        System.exit(0);
+        SceneController.onClose();
     }
 
     @FXML
