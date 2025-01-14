@@ -1,5 +1,8 @@
-package com.rolegame.game.GUI;
+package com.rolegame.game.GUI.Controllers;
 
+import com.rolegame.game.GUI.Boxes.MessageBox;
+import com.rolegame.game.GUI.Boxes.PlayerSelectionBox;
+import com.rolegame.game.GUI.Boxes.RoleBox;
 import com.rolegame.game.GameManagement.*;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.*;
@@ -19,7 +22,7 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class DayController {
+public class GameScreenController {
 
     @FXML
     private TextField abilitiesTextField;
@@ -102,7 +105,7 @@ public class DayController {
 
     private static GameController gameController;
 
-    private static ArrayList<PlayerSelectionBox> playerSelectionBoxes = new ArrayList<>();
+    private static final ArrayList<PlayerSelectionBox> playerSelectionBoxes = new ArrayList<>();
 
     @FXML
     void useAbilityClicked(ActionEvent event) {

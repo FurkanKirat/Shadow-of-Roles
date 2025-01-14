@@ -1,6 +1,6 @@
 package com.rolegame.game.GameManagement;
 
-import com.rolegame.game.GUI.DayController;
+import com.rolegame.game.GUI.Controllers.GameScreenController;
 
 import java.util.LinkedList;
 
@@ -59,8 +59,8 @@ public class Message {
     }
 
     public static void sendMessage(String message, Player receiver, boolean isPublic){
-        messages.add(new Message(DayController.getGameController().getDayCount(),
-                DayController.getGameController().isDay(),
+        messages.add(new Message(GameScreenController.getGameController().getDayCount(),
+                GameScreenController.getGameController().isDay(),
                 message, receiver, isPublic));
     }
 

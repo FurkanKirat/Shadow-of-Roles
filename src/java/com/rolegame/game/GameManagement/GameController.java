@@ -136,7 +136,7 @@ public class GameController {
             }
         }
 
-        SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml");
+        SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.EndGame);
         Message.resetMessages();
         Voting.clearVotes();
 

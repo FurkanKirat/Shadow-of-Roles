@@ -1,12 +1,7 @@
 package com.rolegame.game;
 
-import com.rolegame.game.GUI.WriteNamesController;
 import com.rolegame.game.PropertyControllers.SceneController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,7 +14,7 @@ public class Main extends Application {
         });
         stage.setTitle("Role Game");
         SceneController.changeStage(stage);
-        SceneController.switchScene("/com/rolegame/game/fxml/StartGame.fxml");
+        SceneController.mainMenuScene();
         stage.show();
     }
 
