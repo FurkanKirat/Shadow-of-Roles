@@ -41,6 +41,22 @@ public abstract class Role {
         this.canPerform = true;
     }
 
+    public Role(Role role) {
+        this.id = role.id;
+        this.rolePriority = role.rolePriority;
+        this.roleCategory = role.roleCategory;
+        this.name = role.name;
+        this.attributes = role.attributes;
+        this.team = role.team;
+        this.abilities = role.abilities;
+        this.goal = role.goal;
+        this.attack = role.getAttack();
+        this.defence = role.getDefence();
+        this.canPerform = true;
+        this.roleOwner = role.roleOwner;
+        this.choosenPlayer = roleOwner.getRole().getChoosenPlayer();
+    }
+
     public abstract boolean performAbility();
 
     @Override

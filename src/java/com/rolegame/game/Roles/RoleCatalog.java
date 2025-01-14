@@ -74,15 +74,125 @@ public class RoleCatalog {
     }
 
     public static ArrayList<Role> initializeRoles(int playerCount){
-        ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new Assassin());
-        roles.add(new Psycho());
-        for(int i=2;i<playerCount;i++){
-            roles.add(getRandomRole());
-        }
+        ArrayList<Role> roles = switch (playerCount) {
+            case 5 -> fivePlayers();
+            case 6 -> sixPlayers();
+            case 7 -> sevenPlayers();
+            case 8 -> eightPlayers();
+            case 9 -> ninePlayers();
+            case 10 -> tenPlayers();
+            default -> throw new IllegalStateException("Unexpected value: " + playerCount);
+        };
+
         Collections.shuffle(roles);
+        return roles;
+    }
+
+    private static ArrayList<Role> fivePlayers(){
+
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(getRandomRoleByCategory(RoleCategory.FolkAnalyst));
+        roles.add(getRandomRoleByCategory(RoleCategory.FolkSupport, RoleCategory.FolkSupport));
+        roles.add(getRandomRoleByTeam(Team.Folk));
+        roles.add(getRandomRoleByCategory(RoleCategory.CorrupterKilling));
+        roles.add(getRandomRoleByTeam(Team.Neutral));
+        return roles;
+    }
+
+    // Same as 5 players but also how an extra random folk
+    private static ArrayList<Role> sixPlayers(){
+        ArrayList<Role> roles = fivePlayers();
+        roles.add(getRandomRoleByTeam(Team.Folk));
+        return roles;
+    }
+
+    private static ArrayList<Role> sevenPlayers(){
+
+        ArrayList<Role> roles = sixPlayers();
+
+        switch (new Random().nextInt(2)){
+            case 0: roles.add(getRandomRoleByTeam(Team.Neutral));
+                break;
+            case 1: roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
+                break;
+        }
 
         return roles;
+    }
+
+    private static ArrayList<Role> eightPlayers(){
+
+        ArrayList<Role> roles = sixPlayers();
+
+        switch (new Random().nextInt(3)){
+            case 0: roles.add(getRandomRoleByTeam(Team.Neutral));
+                    roles.add(getRandomRoleByTeam(Team.Neutral));
+                break;
+            case 1: roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
+                    roles.add(getRandomRoleByTeam(Team.Neutral));
+                break;
+            case 2:
+                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
+                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
+                break;
+        }
+
+        return roles;
+    }
+
+    private static ArrayList<Role> ninePlayers(){
+        ArrayList<Role> roles = eightPlayers();
+        roles.add(getRandomRoleByTeam(Team.Folk));
+        return roles;
+    }
+
+    private static ArrayList<Role> tenPlayers(){
+
+        ArrayList<Role> roles = sixPlayers();
+        roles.add(getRandomRoleByTeam(Team.Folk));
+        roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterAnalyst));
+
+        switch (new Random().nextInt(4)){
+            case 0:
+                roles.add(getRandomRoleByTeam(Team.Neutral));
+                roles.add(getRandomRoleByTeam(Team.Neutral));
+                break;
+            case 1:
+                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
+                roles.add(getRandomRoleByTeam(Team.Neutral));
+                break;
+            case 2:
+                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
+                roles.add(getRandomRoleByTeam(Team.Folk));
+                break;
+            case 3:
+                roles.add(getRandomRoleByTeam(Team.Neutral));
+                roles.add(getRandomRoleByTeam(Team.Folk));
+                break;
+        }
+
+        return roles;
+    }
+
+    private static Role getRandomRoleByCategory(RoleCategory roleCategory){
+        Random random = new Random();
+        List<Role> roles = getRolesByCategory(roleCategory);
+        return roles.get(random.nextInt(roles.size()));
+    }
+
+    private static Role getRandomRoleByCategory(RoleCategory... roleCategories){
+        Random random = new Random();
+        List<Role> roles = new ArrayList<>();
+        for(RoleCategory roleCategory: roleCategories){
+            roles.add(getRandomRoleByCategory(roleCategory));
+        }
+        return roles.get(random.nextInt(roles.size()));
+    }
+
+    private static Role getRandomRoleByTeam(Team team){
+        Random random = new Random();
+        List<Role> roles = getRolesByTeam(team);
+        return roles.get(random.nextInt(roles.size()));
     }
 
 }

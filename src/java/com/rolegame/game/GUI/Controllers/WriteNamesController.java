@@ -40,6 +40,10 @@ public class WriteNamesController extends VBox {
                 showAlert(LanguageManager.getText("WriteNames.playerCountExceeded"));
                 return;
             }
+            else if(playerCount<5){
+                showAlert("Player count is less than 5");
+                return;
+            }
 
         } catch (NumberFormatException e) {
             showAlert(LanguageManager.getText("WriteNames.notNumberAlert"));
