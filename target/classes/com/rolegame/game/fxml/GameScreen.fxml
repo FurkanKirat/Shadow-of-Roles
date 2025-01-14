@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="outerStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../css/day.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.GUI.Controllers.GameScreenController">
+   <children>
+      <HBox prefHeight="768.0" prefWidth="1366.0" styleClass="background">
+         <children>
+            <VBox fx:id="leftVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="455.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="388.0" prefWidth="455.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="559.0" prefWidth="227.0">
+                           <children>
+                              <Label fx:id="graveyardLabel" styleClass="gameLabel" text="Graveyard" />
+                              <ListView fx:id="graveListView" prefHeight="358.0" prefWidth="197.0" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="594.0" prefWidth="228.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label fx:id="allRolesLabel" styleClass="gameLabel" text="All Roles" />
+                              <TreeView fx:id="rolesTreeView" onContextMenuRequested="#selectRole" onMouseClicked="#selectRole" prefHeight="357.0" prefWidth="228.0" VBox.vgrow="ALWAYS">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </TreeView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Label fx:id="announcementsLabel" styleClass="gameLabel" text="Announcements" />
+                  <VBox fx:id="announceVBox" prefHeight="363.0" prefWidth="455.0" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="456.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="dayLabel" text="Day x:" />
+                        <ImageView fx:id="dayNightIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/day.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="midBox" prefHeight="200.0" prefWidth="100.0" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="455.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="roleLabel" alignment="TOP_CENTER" styleClass="gameLabel" text="Role:" />
+                        <VBox prefHeight="14.0" prefWidth="455.0">
+                           <children>
+                              <Label fx:id="goalLabel" styleClass="gameLabel" text="Goal" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="6.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </VBox>
+                        <TextField fx:id="goalTextField" editable="false" styleClass="gameTextField" text="Goal:" />
+                        <VBox prefHeight="14.0" prefWidth="455.0">
+                           <children>
+                              <Label fx:id="attributesLabel" styleClass="gameLabel" text="Attributes" />
+                           </children>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="6.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <TextField fx:id="attributesTextField" editable="false" styleClass="gameTextField" text="Attributes:" />
+                        <VBox prefHeight="14.0" prefWidth="455.0">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                           <children>
+                              <Label fx:id="abilitiesLabel" styleClass="gameLabel" text="Abilities" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="6.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <TextField fx:id="abilitiesTextField" editable="false" styleClass="gameTextField" text="Abilities:" />
+                     </children>
+                  </VBox>
+                  <Label fx:id="alivePlayersLabel" styleClass="gameLabel" text="Alive Players" />
+                  <ListView fx:id="alivePlayersListView" prefHeight="200.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ListView>
+                  <HBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="455.0">
+                     <children>
+                        <Button fx:id="useAbilityButton" mnemonicParsing="false" onAction="#useAbilityClicked" prefHeight="41.0" prefWidth="305.0" styleClass="background2" text="Vote" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="nameLabel" text="Your Name:" />
+                  <Label fx:id="numberLabel" text="Your Number:" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <StackPane fx:id="passTurnPane" prefHeight="768.0" prefWidth="1366.0" styleClass="background" visible="false">
+         <children>
+            <Button mnemonicParsing="false" onAction="#interludeClicked" styleClass="gameButton" text="Pass Turn">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </StackPane>
+      <VBox fx:id="announceBigVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="background" visible="false">
+         <children>
+            <VBox fx:id="announceVBoxStart" prefHeight="339.0" prefWidth="1366.0" />
+            <Button mnemonicParsing="false" onAction="#startDayClicked" text="Start Day" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>

@@ -1,0 +1,15 @@
+.background {
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1b2838, #2a394d);
+    -fx-border-radius: 15;
+    -fx-border-color: #1b2838;
+    -fx-border-width: 3;
+}
+
+.textArea{
+    -fx-border-color: #1b2838;
+    -fx-text-fill: white;
+}
+
+.text-area .content {
+ -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2a394d, #1b2838) ;
+}
