@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -23,12 +22,12 @@ public class SceneController {
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     }
 
-    public static Scene switchScene(String fxmlPath, SceneType sceneType) {
+    public static void switchScene(String fxmlPath, SceneType sceneType) {
 
         try {
             FXMLLoader loader = new FXMLLoader(SceneController.class.getResource(fxmlPath));
             Parent root = loader.load();
-            return changeScene(root, sceneType);
+            changeScene(root, sceneType);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -36,11 +35,11 @@ public class SceneController {
 
 
     }
-    public static Scene switchScene(Parent root, SceneType sceneType){
-        return changeScene(root,sceneType);
+    public static void switchScene(Parent root, SceneType sceneType){
+        changeScene(root, sceneType);
     }
 
-    private static Scene changeScene(Parent root, SceneType sceneType){
+    private static void changeScene(Parent root, SceneType sceneType){
         Scene newScene = new Scene(root);
         if(stage.getScene()==null){
             stage.setScene(newScene);
@@ -49,7 +48,7 @@ public class SceneController {
         FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), stage.getScene().getRoot());
         fadeOut.setFromValue(1);
         fadeOut.setToValue(0);
-        fadeOut.setOnFinished(e -> {
+        fadeOut.setOnFinished(_ -> {
             double currentWidth = stage.getWidth();
             double currentHeight = stage.getHeight();
             boolean isFullScreen = stage.isFullScreen();
@@ -73,25 +72,19 @@ public class SceneController {
         });
 
         fadeOut.play();
-        return newScene;
+        ShortcutManager.attachToScene(newScene, sceneType);
     }
 
     public static void settingsScene(){
-        Scene scene = switchScene("/com/rolegame/game/fxml/Settings.fxml", SceneType.Settings);
-
-        ShortcutManager.attachToScene(scene, SceneType.Settings);
+        switchScene("/com/rolegame/game/fxml/Settings.fxml", SceneType.Settings);
     }
 
     public static void changeLangScene(){
-        Scene scene = switchScene("/com/rolegame/game/fxml/ChangeLanguage.fxml", SceneType.ChangeLang);
-        ShortcutManager.attachToScene(scene, SceneType.ChangeLang);
-
-
+        switchScene("/com/rolegame/game/fxml/ChangeLanguage.fxml", SceneType.ChangeLang);
     }
 
     public static void mainMenuScene(){
-        Scene scene = switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneType.MainMenu);
-        ShortcutManager.attachToScene(scene, SceneType.MainMenu);
+        switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneType.MainMenu);
     }
 
     public static void onClose(){
@@ -121,6 +114,7 @@ public class SceneController {
         ChangeLang,
         Game,
         EndGame,
-        WriteNames
+        WriteNames,
+        Credits
     }
 }

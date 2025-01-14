@@ -5,7 +5,7 @@ import com.rolegame.game.GUI.Controllers.GameScreenController;
 import java.util.LinkedList;
 
 public class Message {
-    private static LinkedList<Message> messages = new LinkedList<>();
+    private static final LinkedList<Message> messages = new LinkedList<>();
 
     private int dayCount;
     private boolean isDay;

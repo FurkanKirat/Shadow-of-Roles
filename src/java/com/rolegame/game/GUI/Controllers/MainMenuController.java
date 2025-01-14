@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +41,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void creditsClicked(MouseEvent event) {
-
+        SceneController.switchScene("/com/rolegame/game/fxml/Credits.fxml", SceneController.SceneType.Credits);
     }
 
     @FXML

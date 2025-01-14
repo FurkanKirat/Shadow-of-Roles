@@ -53,22 +53,6 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="shortcutsLabel" alignment="CENTER" onMouseClicked="#shortcutsClicked" prefHeight="70.0" prefWidth="290.0" text="Shortcuts">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <styleClass>
-                        <String fx:value="MenuLabel" />
-                        <String fx:value="Menuhover-label" />
-                     </styleClass>
-                  </Label>
-               </children>
-            </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label fx:id="resetAchivementsLabel" alignment="CENTER" onMouseClicked="#resetAchievementsClicked" prefHeight="70.0" prefWidth="290.0" text="Reset Achievements">
