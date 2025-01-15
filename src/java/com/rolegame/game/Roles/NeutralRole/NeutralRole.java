@@ -7,7 +7,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 import com.rolegame.game.Roles.RoleProperties.Team;
 
 public abstract class NeutralRole extends Role {
-    public NeutralRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory, String name, String attributes, Team team, String abilities, String goal, double attack, double defence) {
-        super(id, rolePriority, roleCategory, name, attributes, team, abilities, goal, attack, defence);
+    public NeutralRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory, String name, String attributes, String abilities, String goal, double attack, double defence) {
+        super(id, rolePriority, roleCategory, name, attributes, Team.Neutral, abilities, goal, attack, defence);
     }
 }

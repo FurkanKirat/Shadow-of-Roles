@@ -2,10 +2,14 @@ package com.rolegame.game.GameManagement;
 
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.PropertyControllers.SceneController;
+import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
 import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleCatalog;
 import com.rolegame.game.Roles.RoleComparator;
 import com.rolegame.game.Roles.RoleProperties.Team;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 
 
@@ -88,11 +92,12 @@ public class GameController {
         currentPlayerIndex=0;
         currentPlayer = alivePlayers.getFirst();
     }
+
     public ArrayList<Player> getDeadPlayers() {
         deadPlayers = new ArrayList<>();
-        for(int i=0;i<allPlayers.size();i++){
-            if(!allPlayers.get(i).isAlive()){
-                deadPlayers.add(allPlayers.get(i));
+        for (Player allPlayer : allPlayers) {
+            if (!allPlayer.isAlive()) {
+                deadPlayers.add(allPlayer);
             }
         }
         return deadPlayers;
@@ -100,26 +105,38 @@ public class GameController {
 
     public boolean checkGameFinished(){
 
+        // Checks if only 1 player is alive
         if(alivePlayers.size()==1){
             winnerTeam = alivePlayers.getFirst().getRole().getTeam();
             finishGame();
             return true;
         }
+
+        // Checks if nobody is alive
         if(alivePlayers.isEmpty()){
             winnerTeam = Team.None;
             finishGame();
             return true;
         }
+
+        // Checks if all players have the same team
         for(int i=0;i<alivePlayers.size()-1;i++){
             if(!alivePlayers.get(i).getRole().getTeam().equals(alivePlayers.get(i+1).getRole().getTeam())){
                 return false;
             }
         }
-        for(Player alivePlayer : alivePlayers){
-            winnerTeam = alivePlayer.getRole().getTeam();
+
+        // Checks if the living players are neutral if so game continues because they are independent
+        if(alivePlayers.getFirst().getRole().getTeam()!=Team.Neutral){
+            for(Player alivePlayer : alivePlayers){
+                winnerTeam = alivePlayer.getRole().getTeam();
+            }
+            finishGame();
+            return true;
         }
-        finishGame();
-        return true;
+
+        return false;
+
     }
 
     public void finishGame(){
@@ -133,10 +150,24 @@ public class GameController {
         }
 
         if(winnerTeam == Team.Neutral){
-
+            alivePlayers.getFirst().setHasWon(true);
         }
 
-        SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.EndGame);
+        boolean simplePersonExist = false;
+        for(Player player: allPlayers){
+            if(player.getRole() instanceof SimplePerson){
+                simplePersonExist = true;
+                break;
+            }
+        }
+
+        if(simplePersonExist){
+            SceneController.switchScene("/com/rolegame/game/fxml/SimplePersonAlert.fxml", SceneController.SceneType.SimplePersonAlert);
+        }
+        else{
+            SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.EndGame);
+        }
+
         Message.resetMessages();
         Voting.clearVotes();
 

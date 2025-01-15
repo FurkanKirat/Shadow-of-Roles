@@ -6,12 +6,11 @@ import com.rolegame.game.Roles.NeutralRole.NeutralRole;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
 import com.rolegame.game.Roles.RoleProperties.RolePriority;
-import com.rolegame.game.Roles.RoleProperties.Team;
 
 public class Assassin extends NeutralRole {
     public Assassin() {
-        super(RoleID.Assassin, RolePriority.None, RoleCategory.NeutralKilling,LanguageManager.getText("Assassin.name"),
-                LanguageManager.getText("Assassin.attributes"), Team.Neutral,
+        super(RoleID.Assassin, RolePriority.None, RoleCategory.NeutralKilling, LanguageManager.getText("Assassin.name"),
+                LanguageManager.getText("Assassin.attributes"),
                 LanguageManager.getText("Assassin.abilities"), LanguageManager.getText("Assassin.goal"), 1, 1);
     }
 

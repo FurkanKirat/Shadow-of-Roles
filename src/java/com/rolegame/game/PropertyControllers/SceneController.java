@@ -116,6 +116,7 @@ public class SceneController {
         EndGame,
         WriteNames,
         Credits,
-        Achievements
+        Achievements,
+        SimplePersonAlert
     }
 }

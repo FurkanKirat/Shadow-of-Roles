@@ -10,6 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+
         LanguageManager.changeLanguage("en_us");
         AchievementManager.saveAchievements();
         stage.setOnCloseRequest((event)-> {

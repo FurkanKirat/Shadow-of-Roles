@@ -7,6 +7,7 @@ import com.rolegame.game.Roles.FolkRole.Analyst.*;
 import com.rolegame.game.Roles.FolkRole.Analyst.Observer;
 import com.rolegame.game.Roles.FolkRole.Protector.Soulbinder;
 import com.rolegame.game.Roles.FolkRole.Support.SealMaster;
+import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
 import com.rolegame.game.Roles.NeutralRole.Killing.Assassin;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.Team;
@@ -27,6 +28,7 @@ public class RoleCatalog {
         addRole(new Interrupter());
         addRole(new SealMaster());
         addRole(new Assassin());
+        addRole(new SimplePerson());
 
     }
 
@@ -55,6 +57,7 @@ public class RoleCatalog {
         otherRoles.add(new Interrupter());
         otherRoles.add(new SealMaster());
         otherRoles.add(new Assassin());
+        otherRoles.add(new SimplePerson());
         otherRoles.remove(otherRole);
         return otherRoles.get(new Random().nextInt(otherRoles.size()));
     }
@@ -70,6 +73,7 @@ public class RoleCatalog {
         roles.add(new Interrupter());
         roles.add(new SealMaster());
         roles.add(new Assassin());
+        roles.add(new SimplePerson());
         return roles.get(new Random().nextInt(roles.size()));
     }
 
@@ -91,7 +95,8 @@ public class RoleCatalog {
     private static ArrayList<Role> fivePlayers(){
 
         ArrayList<Role> roles = new ArrayList<>();
-        roles.add(getRandomRoleByCategory(RoleCategory.FolkAnalyst));
+//        roles.add(getRandomRoleByCategory(RoleCategory.FolkAnalyst));
+        roles.add(new SimplePerson());
         roles.add(getRandomRoleByCategory(RoleCategory.FolkSupport, RoleCategory.FolkSupport));
         roles.add(getRandomRoleByTeam(Team.Folk));
         roles.add(getRandomRoleByCategory(RoleCategory.CorrupterKilling));
@@ -125,11 +130,13 @@ public class RoleCatalog {
         ArrayList<Role> roles = sixPlayers();
 
         switch (new Random().nextInt(3)){
-            case 0: roles.add(getRandomRoleByTeam(Team.Neutral));
-                    roles.add(getRandomRoleByTeam(Team.Neutral));
+            case 0:
+                roles.add(getRandomRoleByTeam(Team.Neutral));
+                roles.add(getRandomRoleByTeam(Team.Neutral));
                 break;
-            case 1: roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
-                    roles.add(getRandomRoleByTeam(Team.Neutral));
+            case 1:
+                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
+                roles.add(getRandomRoleByTeam(Team.Neutral));
                 break;
             case 2:
                 roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
