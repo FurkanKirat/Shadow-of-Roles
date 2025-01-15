@@ -125,6 +125,13 @@
     "abilities": "Dümdüz insan. Hiçbir şey yapmazsın",
     "goal": "None"
   },
+  "LastJoke": {
+  "name": "Son Hiciv",
+  "attributes": "Yok",
+  "abilities": "Öldüğün zaman geri gelip birini hayattan koparırsın",
+  "slainMessage": "için birisi son şakasını yaptı"
+  },
+
   "CauseOfDeath": {
     "assassin": "Suikastçi",
     "psycho": "Psikopat",

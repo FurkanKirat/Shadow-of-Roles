@@ -15,7 +15,8 @@ public enum RoleID {
     Interrupter(7),
     SealMaster(8),
     Assassin(9),
-    SimplePerson(10);
+    SimplePerson(10),
+    LastJoke(11);
     RoleID(int i) {
     }
 }
