@@ -34,25 +34,25 @@ public class ChangeLanguageController implements Initializable {
 
     @FXML
     void englishChosen(MouseEvent event) {
-        LanguageManager.changeLanguage("en");
+        LanguageManager.changeLanguage("en_us");
         changeLabelLang();
     }
 
     @FXML
     void medievalThemeChosen(MouseEvent event) {
-        LanguageManager.changeLanguage("em");
+        LanguageManager.changeLanguage("en_md");
         changeLabelLang();
     }
 
     @FXML
     void turkishChosen(MouseEvent event) {
-        LanguageManager.changeLanguage("tr");
+        LanguageManager.changeLanguage("tr_tr");
         changeLabelLang();
     }
 
     @FXML
     void medievalTRThemeChosen(MouseEvent event) {
-        LanguageManager.changeLanguage("tm");
+        LanguageManager.changeLanguage("tr_md");
         changeLabelLang();
     }
 

@@ -34,6 +34,7 @@ public class ShortcutManager {
         changeLangShortcuts();
         writeNamesShortcuts();
         creditsShortcuts();
+        achievementsShortcuts();
     }
 
 
@@ -61,6 +62,11 @@ public class ShortcutManager {
 
     private static void creditsShortcuts(){
         ShortcutManager.addShortcut(SceneController.SceneType.Credits,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
+                SceneController::mainMenuScene));
+    }
+
+    private static void achievementsShortcuts(){
+        ShortcutManager.addShortcut(SceneController.SceneType.Achievements,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
                 SceneController::mainMenuScene));
     }
 

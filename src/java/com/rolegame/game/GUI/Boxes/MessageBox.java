@@ -6,14 +6,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 
 
-public class MessageBox extends HBox {
+public class MessageBox extends TextArea {
     public MessageBox(Message message){
-        TextArea textArea = new TextArea();
-        textArea.setEditable(false);
+        this.setEditable(false);
         String time = message.isDay() ? LanguageManager.getText("Menu.day") : LanguageManager.getText("Menu.night");
         time += " " + message.getDayCount()+ ": ";
-        textArea.setText(time+ message.getMessage());
-        this.getChildren().add(textArea);
+        this.setText(time + message.getMessage());
+        this.maxHeight(100);
+        this.maxWidth(300);
+        this.getStyleClass().add("gameTextArea");
 
     }
 }

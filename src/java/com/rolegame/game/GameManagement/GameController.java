@@ -1,17 +1,12 @@
 package com.rolegame.game.GameManagement;
 
-import com.rolegame.game.Main;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.PropertyControllers.SceneController;
 import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleCatalog;
 import com.rolegame.game.Roles.RoleComparator;
 import com.rolegame.game.Roles.RoleProperties.Team;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 
 import java.util.ArrayList;
@@ -103,7 +98,8 @@ public class GameController {
         return deadPlayers;
     }
 
-    public boolean isGameFinished(){
+    public boolean checkGameFinished(){
+
         if(alivePlayers.size()==1){
             winnerTeam = alivePlayers.getFirst().getRole().getTeam();
             finishGame();
@@ -134,6 +130,10 @@ public class GameController {
                     player.setHasWon(true);
                 }
             }
+        }
+
+        if(winnerTeam == Team.Neutral){
+
         }
 
         SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.EndGame);

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../css/day.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.GUI.Controllers.AchievementsController">
+   <children>
+      <VBox prefHeight="768.0" prefWidth="1366.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="achievementsLabel" text="Achievements" textFill="WHITE">
+                     <font>
+                        <Font size="43.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox fx:id="achievementBox" alignment="TOP_CENTER" prefHeight="646.0" prefWidth="1346.0" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="backgroundimage" />
+   </styleClass>
+</StackPane>

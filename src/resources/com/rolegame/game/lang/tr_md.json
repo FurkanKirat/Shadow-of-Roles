@@ -1,0 +1,160 @@
+{
+  "Role": {
+    "role": "Roller",
+    "folkRole": "Halk Rolleri",
+    "corrupterRole": "Bozguncu Rolleri",
+    "neutralRole": "Tarafsız Rolleri",
+    "folkAnalyst": "Halk Bilgini",
+    "folkProtector": "Halk Koruyucusu",
+    "folkKilling": "Halk Katili",
+    "folkSupport": "Halk Destekçisi",
+    "corrupterAnalyst": "Bozguncu Bilgini",
+    "corrupterKilling": "Bozguncu Katili",
+    "corrupterSupport": "Bozguncu Destekçisi",
+    "neutralEvil": "Tarafsız Kötü",
+    "neutralKilling": "Tarafsız Katil",
+    "neutralChaos": "Tarafsız Kaos",
+    "abilities": "Yetenekler",
+    "attributes": "Özellikler",
+    "goal": "Hedef",
+    "attack": "Saldırı",
+    "defence": "Savunma"
+  },
+  "WriteNames": {
+    "blankAlert": "Oyuncu isimleri boş olamaz!",
+    "notNumberAlert": "Oyuncu sayısı bir sayı olmalı!",
+    "exception": "Bir şeyler ters gitti!",
+    "playerCount": "Oyuncu Sayısını Yazın",
+    "playerCountExceeded": "Oyuncu sayısı aşıldı"
+  },
+  "Menu": {
+    "day": "Gündüz",
+    "night": "Gece",
+    "number": "Numaranız",
+    "useAbility": "Yetenek Kullan",
+    "vote": "Oy Ver",
+    "passAlertTitle": "Geçiş Onayı",
+    "passAlertHead": "Hamle Geç",
+    "passAlertMessage": "Kimseyi seçmediniz. Hamle geçmek istediğinize emin misiniz?",
+    "select": "Seç",
+    "unselect": "Seçimi Kaldır",
+    "you": "Sen",
+    "player": "Oyuncu",
+    "apply": "Uygula",
+    "announcement": "Duyurular",
+    "graveyard": "Mezarlık",
+    "allRoles": "Tüm Roller",
+    "goal": "Hedef",
+    "attributes": "Özellikler",
+    "abilities": "Yetenekler",
+    "alivePlayers": "Hayatta Olan Oyuncular"
+  },
+  "FolkRole": {
+    "goal": "Tüm bozguncuları bulun"
+  },
+  "CorrupterRole": {
+    "goal": "Halkı öldürün"
+  },
+  "RoleBlock": {
+    "roleBlockedMessage": "Bu gece rolünüz engellendi",
+    "immuneMessage": "Biri sizi engellemeye çalıştı ama bağışıklığınız var",
+    "roleBlockMessage": "Hedefinizin rolünü engellediniz"
+  },
+  "SealMaster": {
+    "name": "Mühür Ustası",
+    "attributes": "Yok",
+    "abilities": "Gece birini engelleyebilirsiniz"
+  },
+  "Interrupter": {
+    "name": "Kesici",
+    "attributes": "Yok",
+    "abilities": "Gece birini engelleyebilirsiniz"
+  },
+  "DarkRevealer": {
+    "name": "Karanlık Açığa Çıkaran",
+    "attributes": "Yok",
+    "abilities": "Gece birinin rolünü görebilirsiniz",
+    "abilityMessage": "Hedefinizin rolü"
+  },
+  "Psycho": {
+    "name": "Psikopat",
+    "attributes": "Yok",
+    "abilities": "Her gece bir kişiyi öldürün",
+    "killMessage": "Hedefinizi başarıyla öldürdünüz",
+    "slainMessage": "Psikopat tarafından öldürüldü",
+    "defenceMessage": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi"
+  },
+  "Assassin": {
+    "name": "Suikastçi",
+    "attributes": "Temel savunma ve saldırıya sahipsiniz, engellemeye karşı bağışıksınız",
+    "abilities": "Her gece bir kişiyi öldürün",
+    "goal": "Tüm halk ve bozguncu üyelerini öldürün",
+    "killMessage": "Hedefinizi başarıyla öldürdünüz",
+    "slainMessage": "Suikastçi tarafından öldürüldü",
+    "defenceMessage": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi"
+  },
+  "Detective": {
+    "name": "Dedektif",
+    "attributes": "Yok",
+    "abilities": "Birini seçin ve iki rol görün, biri o kişinin rolü",
+    "role": "Hedefinizin rolü",
+    "or": "veya"
+  },
+  "Observer": {
+    "name": "Gözlemci",
+    "attributes": "Yok",
+    "abilities": "Gece birinin hangi takıma ait olduğunu görebilirsiniz",
+    "message": "Hedefinizin takımı"
+  },
+  "Stalker": {
+    "name": "Avcı",
+    "attributes": "Yok",
+    "abilities": "Bir kişiyi seçin ve o kişinin gece nereye gittiğini görün",
+    "visitMessage": "Hedefiniz şu kişiyi ziyaret etti:",
+    "nobodyMessage": "Hedefiniz kimseyi ziyaret etmedi",
+    "thisNight": "bu gece!"
+  },
+  "Soulbinder": {
+    "name": "Ruh Bağlayıcı",
+    "attributes": "Yok",
+    "abilities": "Gece birini seçin ve eğer saldırıya uğrarlarsa ölmelerini engelleyin"
+  },
+  "CauseOfDeath": {
+    "assassin": "Suikastçi",
+    "psycho": "Psikopat",
+    "hanging": "Asılarak"
+  },
+  "StartMenu": {
+    "startGame": "Oyuna Başla",
+    "gameGuide": "Oyun Rehberi",
+    "achievements": "Başarılar",
+    "settings": "Ayarlar",
+    "credits": "Yapımcılar",
+    "exit": "Çıkış"
+  },
+  "Settings": {
+    "changeLanguage": "Dili Değiştir"
+  },
+  "EndMenu": {
+    "startGameButton": "Ana Menüye Geri Dön",
+    "hasWon": "kazandı",
+    "won": "Kazandı",
+    "lost": "Kaybetti",
+    "alive": "Hayatta",
+    "dead": "Ölü",
+    "number": "Numara",
+    "player": "Oyuncu",
+    "role": "Rol",
+    "team": "Takım",
+    "winStatus": "Kazandı/Kaybetti",
+    "aliveStatus": "Hayatta/Ölü",
+    "causeOfDeath": "Ölüm Nedeni"
+  },
+  "ChangeLangMenu": {
+    "eng": "İngilizce",
+    "tur": "Türkçe",
+    "med": "Orta Çağ",
+    "changeLang": "Dili Değiştir",
+    "medtr": "Orta Çağ Teması (tr)"
+  }
+}

@@ -180,5 +180,23 @@
     -fx-text-fill: white;
 }
 
+/* TextArea Styling with Hover Effects */
+.gameTextArea {
+    -fx-background-color: #d6ecff; /* Soft blue */
+    -fx-text-fill: #00274d; /* Deep navy */
+    -fx-font-family: "Arial";
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 1px;
+    -fx-padding: 5px;
+    -fx-transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.gameTextArea:hover {
+    -fx-background-color: #c5e6ff; /* Lighter blue when hovered */
+    -fx-border-color: #3a9ad9; /* Brighter blue border on hover */
+    -fx-effect: dropshadow(gaussian, rgba(58, 154, 217, 0.6), 10, 0.5, 0, 0); /* Subtle glow effect */
+}
+
+
 
 

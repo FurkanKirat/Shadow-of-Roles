@@ -1,0 +1,160 @@
+{
+  "Role": {
+    "role": "Roles",
+    "folkRole": "Folk Roles",
+    "corrupterRole": "Corrupter Roles",
+    "neutralRole": "Neutral Roles",
+    "folkAnalyst": "Folk Analyst",
+    "folkProtector": "Folk Protector",
+    "folkKilling": "Folk Killing",
+    "folkSupport": "Folk Support",
+    "corrupterAnalyst": "Corrupter Analyst",
+    "corrupterKilling": "Corrupter Killing",
+    "corrupterSupport": "Corrupter Support",
+    "neutralEvil": "Neutral Evil",
+    "neutralKilling": "Neutral Killing",
+    "neutralChaos": "Neutral Chaos",
+    "abilities": "Abilities",
+    "attributes": "Attributes",
+    "goal": "Goal",
+    "attack": "Attack",
+    "defence": "Defence"
+  },
+  "WriteNames": {
+    "blankAlert": "Players cannot be blank!",
+    "notNumberAlert": "Players count should be a number!",
+    "exception": "Something went wrong!",
+    "playerCount": "Write Player Count",
+    "playerCountExceeded": "Player Count is Exceeded"
+  },
+  "Menu": {
+    "day": "Day",
+    "night": "Night",
+    "number": "Your Number",
+    "useAbility": "Use Ability",
+    "vote": "Vote",
+    "passAlertTitle": "Confirm Passing",
+    "passAlertHead": "Pass Turn",
+    "passAlertMessage": "You did not choose anyone are you sure to pass your turn?",
+    "select": "Select",
+    "unselect": "Unselect",
+    "you": "You",
+    "player": "Player",
+    "apply": "Apply",
+    "announcement": "Announcements",
+    "graveyard": "Graveyard",
+    "allRoles": "All Roles",
+    "goal": "Goal",
+    "attributes": "Attributes",
+    "abilities": "Abilities",
+    "alivePlayers": "Alive Players"
+  },
+  "FolkRole": {
+    "goal": "Find all corrupters"
+  },
+  "CorrupterRole": {
+    "goal": "Kill the folk"
+  },
+  "RoleBlock": {
+    "roleBlockedMessage": "You have been role blocked this night",
+    "immuneMessage": "Someone tried to role block you but you are immune",
+    "roleBlockMessage": "You have role blocked your target"
+  },
+  "SealMaster": {
+    "name": "Seal Master",
+    "attributes": "None",
+    "abilities": "You can role block someone in the night"
+  },
+  "Interrupter": {
+    "name": "Interrupter",
+    "attributes": "None",
+    "abilities": "You can role block someone in the night"
+  },
+  "DarkRevealer": {
+    "name": "Dark Revealer",
+    "attributes": "None",
+    "abilities": "At night you see someone's role",
+    "abilityMessage": "Your target's role is"
+  },
+  "Psycho": {
+    "name": "Psycho",
+    "attributes": "None",
+    "abilities": "Kill one person each night",
+    "killMessage": "You have slain your target successfully",
+    "slainMessage": "has been slain by a Psycho",
+    "defenceMessage": "You could not slain your target because your attack was not powerful enough"
+  },
+  "Assassin": {
+    "name": "Assassin",
+    "attributes": "You have basic defence and attack, you are immune to role blocking",
+    "abilities": "Kill one person each night",
+    "goal": "Kill every folk and corrupter member",
+    "killMessage": "You have slain your target successfully",
+    "slainMessage": "has been slain by an Assassin",
+    "defenceMessage": "You could not slain your target because your attack was not powerful enough"
+  },
+  "Detective": {
+    "name": "Detective",
+    "attributes": "None",
+    "abilities": "You choose one and see two roles, including that person's role",
+    "role": "Your target's role is",
+    "or": "or"
+  },
+  "Observer": {
+    "name": "Observer",
+    "attributes": "None",
+    "abilities": "At night you can see which team a person belongs to",
+    "message": "Your target's team is"
+  },
+  "Stalker": {
+    "name": "Stalker",
+    "attributes": "None",
+    "abilities": "You choose a person and see who that person goes to at night",
+    "visitMessage": "Your target has visited",
+    "nobodyMessage": "Your target did not visited anybody",
+    "thisNight": "this night!"
+  },
+  "Soulbinder": {
+    "name": "Soulbinder",
+    "attributes": "None",
+    "abilities": "You choose someone at night and if they get attacked, you prevent them from dying"
+  },
+  "CauseOfDeath": {
+    "assassin": "Assassin",
+    "psycho": "Psycho",
+    "hanging": "Hanged"
+  },
+  "StartMenu": {
+    "startGame": "Start Game",
+    "gameGuide": "Game Guide",
+    "achievements": "Achievements",
+    "settings": "Settings",
+    "credits": "Credits",
+    "exit": "Exit"
+  },
+  "Settings": {
+    "changeLanguage": "Change Language"
+  },
+  "EndMenu": {
+    "startGameButton": "Go Back to Main Menu",
+    "hasWon": "have won",
+    "won": "Won",
+    "lost": "Lost",
+    "alive": "Alive",
+    "dead": "Dead",
+    "number": "Number",
+    "player": "Player",
+    "role": "Role",
+    "team": "Team",
+    "winStatus": "Win/Loss",
+    "aliveStatus": "Alive/Dead",
+    "causeOfDeath": "Cause of Death"
+  },
+  "ChangeLangMenu": {
+    "eng": "English",
+    "tur": "Turkish",
+    "med": "Medieval",
+    "changeLang": "Change Language",
+    "medtr": "Medieval Theme (tr)"
+  }
+}

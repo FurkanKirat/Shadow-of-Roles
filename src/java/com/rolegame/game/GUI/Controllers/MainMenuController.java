@@ -36,7 +36,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void achievementsClicked(MouseEvent event) {
-
+        SceneController.switchScene("/com/rolegame/game/fxml/Achievements.fxml", SceneController.SceneType.Achievements);
     }
 
     @FXML

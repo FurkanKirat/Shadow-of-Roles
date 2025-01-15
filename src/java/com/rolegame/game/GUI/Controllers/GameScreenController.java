@@ -259,8 +259,6 @@ public class GameScreenController {
         goalTextField.setText(gameController.getCurrentPlayer().getRole().getGoal());
         roleLabel.setText(gameController.getCurrentPlayer().getRole().getName());
 
-
-
         alivePlayersListView.getItems().clear();
 
         for(Player player: gameController.getAlivePlayers()){
@@ -289,7 +287,7 @@ public class GameScreenController {
             gameController.setDay(true);
             gameController.setDayCount(getGameController().getDayCount()+1);
             gameController.updateAlivePlayers();
-            gameController.isGameFinished();
+            gameController.checkGameFinished();
 
         }
         else{
