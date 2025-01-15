@@ -37,7 +37,7 @@ public class SimplePersonController implements Initializable {
         GameController gameController = GameScreenController.getGameController();
         for(Player player: gameController.getAllPlayers()){
             if(player.getRole() instanceof SimplePerson){
-                yesButton.isSelected();
+                player.setHasWon(noButton.isSelected());
                 break;
             }
         }
