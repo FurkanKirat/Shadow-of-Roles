@@ -1,5 +1,6 @@
 package com.rolegame.game.Roles.RoleProperties;
 
+import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
 import com.rolegame.game.Roles.NeutralRole.Killing.Assassin;
 
 public enum RoleID {
@@ -13,8 +14,8 @@ public enum RoleID {
     DarkRevealer(6),
     Interrupter(7),
     SealMaster(8),
-    Assassin(9);
-
+    Assassin(9),
+    SimplePerson(10);
     RoleID(int i) {
     }
 }

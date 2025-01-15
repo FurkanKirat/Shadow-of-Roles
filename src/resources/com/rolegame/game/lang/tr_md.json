@@ -119,6 +119,12 @@
     "attributes": "Yok",
     "abilities": "Gece birini seçin ve eğer saldırıya uğrarlarsa ölmelerini engelleyin"
   },
+  "SimplePerson": {
+    "name": "Sade bir insan",
+    "attributes": "Rolünü açıklarsan kaybedersin",
+    "abilities": "Dümdüz insan. Hiçbir şey yapmazsın",
+    "goal": "None"
+  },
   "CauseOfDeath": {
     "assassin": "Suikastçi",
     "psycho": "Psikopat",
