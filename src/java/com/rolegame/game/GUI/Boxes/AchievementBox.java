@@ -17,17 +17,6 @@ public class AchievementBox extends VBox {
     private int progress;
     private int max;
 
-    // Constructor
-    public AchievementBox(String title, String description, boolean isCompleted, Achievement.AchievementCategory category) {
-        this.title = title;
-        this.description = description;
-        this.isCompleted = isCompleted;
-        this.category = category;
-
-        // Set up the UI elements
-        setupUI();
-    }
-
     public AchievementBox(Achievement achievement) {
         this.title = achievement.getTitle();
         this.description = achievement.getDescription();

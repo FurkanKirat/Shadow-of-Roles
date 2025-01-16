@@ -102,6 +102,9 @@ public class GameScreenController {
     @FXML
     private Label alivePlayersLabel;
 
+    @FXML
+    private Button startDayButton;
+
 
     private static GameController gameController;
 
@@ -329,12 +332,14 @@ public class GameScreenController {
     }
 
     private void dayStartAnnouncements(){
+        announceBigVBox.getChildren().remove(startDayButton);
         announceVBoxStart.getChildren().clear();
         for(Message message: Message.getMessages()){
             if(message.isPublic()&&message.getDayCount() == gameController.getDayCount()){
                 announceVBoxStart.getChildren().add(new MessageBox(message));
             }
         }
+        announceBigVBox.getChildren().add(startDayButton);
         announceBigVBox.setVisible(true);
     }
     private static class moldClass extends Role{
