@@ -150,6 +150,13 @@
         "oneLeftMessage": "The role of the currently living person in the play is:",
         "zeroLeftMessage": "There are not any players to see their role"
     },
+    "Blinder": {
+        "name": "Blinder",
+        "attributes": "None",
+        "abilityMessage": "You blinded your target",
+        "abilities": "When you blind someone that player perform their ability randomly",
+        "blindMessage": "You blinded this night"
+    },
     "CauseOfDeath": {
         "assassin": "Assassin",
         "psycho": "Psycho",

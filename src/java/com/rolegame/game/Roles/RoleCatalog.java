@@ -3,6 +3,7 @@ package com.rolegame.game.Roles;
 import com.rolegame.game.Roles.CorrupterRole.Analyst.DarkRevealer;
 import com.rolegame.game.Roles.CorrupterRole.Analyst.Darkseer;
 import com.rolegame.game.Roles.CorrupterRole.Killing.Psycho;
+import com.rolegame.game.Roles.CorrupterRole.Support.Blinder;
 import com.rolegame.game.Roles.CorrupterRole.Support.Disguiser;
 import com.rolegame.game.Roles.CorrupterRole.Support.Interrupter;
 import com.rolegame.game.Roles.FolkRole.Analyst.*;
@@ -35,6 +36,7 @@ public class RoleCatalog {
         addRole(new Clown());
         addRole(new Disguiser());
         addRole(new Darkseer());
+        addRole(new Blinder());
 
     }
 
@@ -67,6 +69,7 @@ public class RoleCatalog {
         otherRoles.add(new Clown());
         otherRoles.add(new Disguiser());
         otherRoles.add(new Darkseer());
+        otherRoles.add(new Blinder());
         otherRoles.remove(otherRole);
         return otherRoles.get(new Random().nextInt(otherRoles.size()));
     }
@@ -86,6 +89,7 @@ public class RoleCatalog {
         roles.add(new Clown());
         roles.add(new Disguiser());
         roles.add(new Darkseer());
+        roles.add(new Blinder());
         return roles.get(new Random().nextInt(roles.size()));
     }
 

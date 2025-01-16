@@ -142,6 +142,7 @@
     "attributes": "None",
     "abilities": "Disguise to random role every night but you can't know until you use it"
   },
+
   "Darkseer":{
     "name": "Darkseer",
     "attributes": "None",
@@ -149,6 +150,13 @@
     "abilityMessage": "The roles of the two currently living player in the play are:",
     "oneLeftMessage": "The role of the currently living person in the play is:",
     "zeroLeftMessage": "There are not any players to see their role"
+  },
+  "Blinder": {
+    "name": "Blinder",
+    "attributes": "None",
+    "abilityMessage": "You blinded your target",
+    "abilities": "When you blind someone that player perform their ability randomly",
+    "blindMessage": "You blinded this night"
   },
   "CauseOfDeath": {
     "assassin": "Assassin",

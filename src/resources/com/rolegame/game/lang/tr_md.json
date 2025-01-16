@@ -66,7 +66,7 @@
     "abilities": "Gece birini engelleyebilirsiniz"
   },
   "Interrupter": {
-    "name": "Kesici",
+    "name": "Nuri Alço",
     "attributes": "Yok",
     "abilities": "Gece birini engelleyebilirsiniz"
   },
@@ -149,6 +149,13 @@
     "abilityMessage": "Oyunda şu anda yaşayan iki kişinin rolleri:",
     "oneLeftMessage": "Oyunda şu anda yaşayan bir kişinin rolü:",
     "zeroLeftMessage": "Rolü gösterilecek oyuncu bulunamadı"
+  },
+  "Blinder": {
+    "name": "Blinder",
+    "attributes": "None",
+    "abilityMessage": "You blinded your target",
+    "abilities": "When you blind someone that player perform their ability randomly",
+    "blindMessage": "You blinded this night"
   },
   "CauseOfDeath": {
     "assassin": "Suikastçi",
