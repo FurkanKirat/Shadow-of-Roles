@@ -123,7 +123,7 @@
     "name": "Sade bir insan",
     "attributes": "Rolünü açıklarsan kaybedersin",
     "abilities": "Dümdüz insan. Hiçbir şey yapmazsın",
-    "goal": "None"
+    "goal": "Eğlenmek"
   },
   "LastJoke": {
   "name": "Son Hiciv",
@@ -131,7 +131,17 @@
   "abilities": "Öldüğün zaman geri gelip birini hayattan koparırsın",
   "slainMessage": "için birisi son şakasını yaptı"
   },
-
+  "Clown": {
+    "name": "Şarlatan",
+    "attributes": "Yok",
+    "abilities": "Yok",
+    "goal": "Oyunu kazanmak için gece biri tarafından öldürülmen lazım"
+  },
+  "Disguiser":{
+    "name": "Hilekâr",
+    "attributes": "Yok",
+    "abilities": "Her gece başka bir role bürünürsün ama hangi rol olduğunu kullanmadan bilemezsin"
+  },
   "CauseOfDeath": {
     "assassin": "Suikastçi",
     "psycho": "Psikopat",

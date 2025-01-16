@@ -2,6 +2,7 @@ package com.rolegame.game.GameManagement;
 
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.PropertyControllers.SceneController;
+import com.rolegame.game.Roles.NeutralRole.Chaos.Clown;
 import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
 import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleCatalog;
@@ -157,7 +158,10 @@ public class GameController {
         for(Player player: allPlayers){
             if(player.getRole() instanceof SimplePerson){
                 simplePersonExist = true;
-                break;
+            } else if (player.getRole() instanceof Clown) {
+                if(!player.isAlive() && !player.getCauseOfDeath().equals(LanguageManager.getText("CauseOfDeath.hanging"))){
+                    player.setHasWon(true);
+                }
             }
         }
 
@@ -170,6 +174,8 @@ public class GameController {
 
         Message.resetMessages();
         Voting.clearVotes();
+
+
 
     }
 

@@ -8,10 +8,12 @@ import com.rolegame.game.GameManagement.Achievement.Achievement;
 import com.rolegame.game.GameManagement.Achievement.BasicAchievement;
 import com.rolegame.game.GameManagement.Achievement.ProgressiveAchievement;
 
+import javax.sound.sampled.Line;
+
 public class AchievementManager {
 
     private static final String USER_DATA_PATH = FileManager.getUserDataDirectory() + "\\achievements.json";
-    private static final Map<String,Achievement> achievements = new HashMap<>();
+    private static final Map<String,Achievement> achievements = new LinkedHashMap<>();
 
     private static final Achievement FIRST_STEPS =
             new ProgressiveAchievement("First Steps","Complete Your First Game",false, Achievement.AchievementCategory.PlayGame,0,1);
@@ -34,7 +36,7 @@ public class AchievementManager {
 
     public static Map<String, Achievement> loadAchievements() {
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, Achievement> achievements = new HashMap<>();
+        Map<String, Achievement> achievements = new LinkedHashMap<>();
         try {
             File file = new File(USER_DATA_PATH);
             if (!file.exists()) {

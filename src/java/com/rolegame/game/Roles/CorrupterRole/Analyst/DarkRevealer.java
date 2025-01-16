@@ -28,6 +28,7 @@ public class DarkRevealer extends CorrupterRole {
         String message = LanguageManager.getText("DarkRevealer.abilityMessage")+": " + getChoosenPlayer().getRole().getName();
         Message.sendMessage(message,getRoleOwner(), false);
 
+
         return true;
     }
 }

@@ -122,13 +122,25 @@
   "SimplePerson": {
     "name": "Düz Adam",
     "attributes": "Rolünü açıklarsan kaybedersin",
-    "abilities": "Dümdüz insan. Hiçbir şey yapmazsın"
+    "abilities": "Dümdüz insan. Hiçbir şey yapmazsın",
+    "goal": "Eğlenmek"
   },
   "LastJoke": {
     "name": "Ölümün Mizahı",
     "attributes": "Yok",
     "abilities": "Öldüğün zaman geri gelip birini hayattan koparırsın",
     "slainMessage": "için birisi son şakasını yaptı"
+  },
+  "Clown": {
+    "name": "Palyaço",
+    "attributes": "Yok",
+    "abilities": "Yok",
+    "goal": "Oyunu kazanmak için gece biri tarafından öldürülmen lazım"
+  },
+  "Disguiser":{
+    "name": "Kılık Değiştiren",
+    "attributes": "Yok",
+    "abilities": "Her gece başka bir role bürünürsün ama hangi rol olduğunu kullanmadan bilemezsin"
   },
   "CauseOfDeath": {
     "assassin": "Suikastçi",

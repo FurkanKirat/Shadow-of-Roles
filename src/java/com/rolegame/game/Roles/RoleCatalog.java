@@ -2,11 +2,13 @@ package com.rolegame.game.Roles;
 
 import com.rolegame.game.Roles.CorrupterRole.Analyst.DarkRevealer;
 import com.rolegame.game.Roles.CorrupterRole.Killing.Psycho;
+import com.rolegame.game.Roles.CorrupterRole.Support.Disguiser;
 import com.rolegame.game.Roles.CorrupterRole.Support.Interrupter;
 import com.rolegame.game.Roles.FolkRole.Analyst.*;
 import com.rolegame.game.Roles.FolkRole.Analyst.Observer;
 import com.rolegame.game.Roles.FolkRole.Protector.Soulbinder;
 import com.rolegame.game.Roles.FolkRole.Support.SealMaster;
+import com.rolegame.game.Roles.NeutralRole.Chaos.Clown;
 import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
 import com.rolegame.game.Roles.NeutralRole.Killing.Assassin;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
@@ -29,6 +31,8 @@ public class RoleCatalog {
         addRole(new SealMaster());
         addRole(new Assassin());
         addRole(new SimplePerson());
+        addRole(new Clown());
+        addRole(new Disguiser());
 
     }
 
@@ -58,6 +62,8 @@ public class RoleCatalog {
         otherRoles.add(new SealMaster());
         otherRoles.add(new Assassin());
         otherRoles.add(new SimplePerson());
+        otherRoles.add(new Clown());
+        otherRoles.add(new Disguiser());
         otherRoles.remove(otherRole);
         return otherRoles.get(new Random().nextInt(otherRoles.size()));
     }
@@ -74,6 +80,8 @@ public class RoleCatalog {
         roles.add(new SealMaster());
         roles.add(new Assassin());
         roles.add(new SimplePerson());
+        roles.add(new Clown());
+        roles.add(new Disguiser());
         return roles.get(new Random().nextInt(roles.size()));
     }
 
