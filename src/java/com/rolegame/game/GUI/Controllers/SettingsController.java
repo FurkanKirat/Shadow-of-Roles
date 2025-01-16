@@ -1,15 +1,20 @@
 package com.rolegame.game.GUI.Controllers;
 
+import com.rolegame.game.PropertyControllers.AchievementManager;
+import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.PropertyControllers.SceneController;
 import com.rolegame.game.PropertyControllers.ShortcutManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
 import java.net.URI;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
@@ -63,7 +68,17 @@ public class SettingsController implements Initializable {
 
     @FXML
     void resetAchievementsClicked(MouseEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Deleting achievements");
+        alert.setHeaderText(LanguageManager.getText("Menu.passAlertHead"));
+        alert.setContentText(LanguageManager.getText("Menu.passAlertMessage"));
 
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if(result.get() != ButtonType.OK){
+            return;
+        }
+        AchievementManager.resetAchievements();
     }
 
     @FXML

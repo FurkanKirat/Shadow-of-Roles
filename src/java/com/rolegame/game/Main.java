@@ -11,13 +11,13 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
 
-        LanguageManager.changeLanguage("en_us");
+        LanguageManager.changeLanguage(LanguageManager.loadLanguage());
         AchievementManager.saveAchievements();
         stage.setOnCloseRequest((event)-> {
             event.consume();
             SceneController.onClose();
         });
-        stage.setTitle("Role Game");
+        stage.setTitle("Shadow of Roles");
         SceneController.changeStage(stage);
         SceneController.mainMenuScene();
         stage.show();

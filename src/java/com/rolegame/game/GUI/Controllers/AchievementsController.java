@@ -1,7 +1,7 @@
 package com.rolegame.game.GUI.Controllers;
 
 import com.rolegame.game.GUI.Boxes.AchievementBox;
-import com.rolegame.game.GameManagement.Achievement;
+import com.rolegame.game.GameManagement.Achievement.Achievement;
 import com.rolegame.game.PropertyControllers.AchievementManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

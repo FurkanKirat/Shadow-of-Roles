@@ -1,9 +1,9 @@
-package com.rolegame.game.GameManagement;
+package com.rolegame.game.GameManagement.Achievement;
 
-public class Achievement {
+public abstract class Achievement {
     private String title;
     private String description;
-    private boolean isCompleted;
+    protected boolean isCompleted;
     private AchievementCategory category;
 
     public Achievement(String title, String description, boolean isCompleted, AchievementCategory category) {
@@ -20,35 +20,24 @@ public class Achievement {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public boolean isCompleted() {
         return isCompleted;
     }
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
-    }
-
     public AchievementCategory getCategory() {
         return category;
     }
 
-    public void setCategory(AchievementCategory category) {
-        this.category = category;
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
     }
 
     public enum AchievementCategory{
-        Chaos
+        Chaos,
+        PlayGame
     }
 }

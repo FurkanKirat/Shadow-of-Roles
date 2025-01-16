@@ -1,6 +1,7 @@
 package com.rolegame.game.GUI.Boxes;
 
-import com.rolegame.game.GameManagement.Achievement;
+import com.rolegame.game.GameManagement.Achievement.Achievement;
+import com.rolegame.game.GameManagement.Achievement.ProgressiveAchievement;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
@@ -9,10 +10,12 @@ import javafx.scene.control.Label;
 import javafx.geometry.Pos;
 
 public class AchievementBox extends VBox {
-    private String title;
-    private String description;
-    private boolean isCompleted;
-    private Achievement.AchievementCategory category;
+    private final String title;
+    private final String description;
+    private final boolean isCompleted;
+    private final Achievement.AchievementCategory category;
+    private int progress;
+    private int max;
 
     // Constructor
     public AchievementBox(String title, String description, boolean isCompleted, Achievement.AchievementCategory category) {
@@ -30,6 +33,11 @@ public class AchievementBox extends VBox {
         this.description = achievement.getDescription();
         this.isCompleted = achievement.isCompleted();
         this.category = achievement.getCategory();
+
+        if(achievement instanceof ProgressiveAchievement progressiveAchievement){
+            this.progress = progressiveAchievement.getProgress();
+            this.max = progressiveAchievement.getMax();
+        }
 
         // Set up the UI elements
         setupUI();
@@ -59,6 +67,14 @@ public class AchievementBox extends VBox {
 
         // Add elements to the VBox
         this.getChildren().addAll(titleText, descriptionLabel, statusText, categoryLabel);
+
+        if(max!=0){
+
+            Label progresslabel = new Label("Progress: " + progress+"/"+ max);
+            progresslabel.setFont(Font.font("Arial", 12));
+            progresslabel.setTextFill(Color.DARKGRAY);
+            this.getChildren().addAll(progresslabel);
+        }
 
         // Style the VBox
         this.setSpacing(10);

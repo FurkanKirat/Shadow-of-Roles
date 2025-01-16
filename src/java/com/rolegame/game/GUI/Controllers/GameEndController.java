@@ -1,7 +1,9 @@
 package com.rolegame.game.GUI.Controllers;
 
+import com.rolegame.game.GameManagement.Achievement.Achievement;
 import com.rolegame.game.GameManagement.GameController;
 import com.rolegame.game.GameManagement.Player;
+import com.rolegame.game.PropertyControllers.AchievementManager;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.PropertyControllers.SceneController;
 import com.rolegame.game.Roles.Role;
@@ -15,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class GameEndController implements Initializable {
@@ -75,6 +78,8 @@ public class GameEndController implements Initializable {
         aliveStatusColumn.setText(LanguageManager.getText("EndMenu.aliveStatus"));
         deathCauseColumn.setText(LanguageManager.getText("EndMenu.causeOfDeath"));
 
+        progressAchievements();
+
     }
 
     private void setupTableView(){
@@ -98,5 +103,15 @@ public class GameEndController implements Initializable {
             return new SimpleStringProperty(isAlive ? LanguageManager.getText("EndMenu.alive"): LanguageManager.getText("EndMenu.dead"));
 
         });
+    }
+
+    private void progressAchievements(){
+        for(Map.Entry<String, Achievement> achievementEntry : AchievementManager.loadAchievements().entrySet()){
+            if(achievementEntry.getValue().getCategory() == Achievement.AchievementCategory.PlayGame){
+                AchievementManager.addProgressToAchievement(achievementEntry.getKey(), 1);
+            }
+
+        }
+
     }
 }
