@@ -1,6 +1,7 @@
 package com.rolegame.game.Roles;
 
 import com.rolegame.game.Roles.CorrupterRole.Analyst.DarkRevealer;
+import com.rolegame.game.Roles.CorrupterRole.Analyst.Darkseer;
 import com.rolegame.game.Roles.CorrupterRole.Killing.Psycho;
 import com.rolegame.game.Roles.CorrupterRole.Support.Disguiser;
 import com.rolegame.game.Roles.CorrupterRole.Support.Interrupter;
@@ -33,6 +34,7 @@ public class RoleCatalog {
         addRole(new SimplePerson());
         addRole(new Clown());
         addRole(new Disguiser());
+        addRole(new Darkseer());
 
     }
 
@@ -64,6 +66,7 @@ public class RoleCatalog {
         otherRoles.add(new SimplePerson());
         otherRoles.add(new Clown());
         otherRoles.add(new Disguiser());
+        otherRoles.add(new Darkseer());
         otherRoles.remove(otherRole);
         return otherRoles.get(new Random().nextInt(otherRoles.size()));
     }
@@ -82,6 +85,7 @@ public class RoleCatalog {
         roles.add(new SimplePerson());
         roles.add(new Clown());
         roles.add(new Disguiser());
+        roles.add(new Darkseer());
         return roles.get(new Random().nextInt(roles.size()));
     }
 
@@ -93,7 +97,7 @@ public class RoleCatalog {
             case 8 -> eightPlayers();
             case 9 -> ninePlayers();
             case 10 -> tenPlayers();
-            default -> throw new IllegalStateException("Unexpected value: " + playerCount);
+            default -> throw new IllegalStateException("Unexpected player count: " + playerCount);
         };
 
         Collections.shuffle(roles);

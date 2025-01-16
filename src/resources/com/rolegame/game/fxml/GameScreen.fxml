@@ -103,7 +103,7 @@
                      </children>
                   </VBox>
                   <Label fx:id="alivePlayersLabel" styleClass="gameLabel" text="Alive Players" />
-                  <ListView fx:id="alivePlayersListView" prefHeight="200.0" prefWidth="200.0">
+                  <ListView fx:id="alivePlayersListView" prefHeight="435.0" prefWidth="455.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

@@ -142,6 +142,14 @@
     "attributes": "Yok",
     "abilities": "Her gece başka bir role bürünürsün ama hangi rol olduğunu kullanmadan bilemezsin"
   },
+  "Darkseer":{
+    "name": "Karanlık Görücü",
+    "attributes": "None",
+    "abilities": "\nYaşayan iki kişinin rolünü görüyorsunuz ancak rol sahibini göremezsiniz",
+    "abilityMessage": "Oyunda şu anda yaşayan iki kişinin rolleri:",
+    "oneLeftMessage": "Oyunda şu anda yaşayan bir kişinin rolü:",
+    "zeroLeftMessage": "Rolü gösterilecek oyuncu bulunamadı"
+  },
   "CauseOfDeath": {
     "assassin": "Suikastçi",
     "psycho": "Psikopat",

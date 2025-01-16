@@ -19,7 +19,8 @@ public enum RoleID {
     SimplePerson(10),
     LastJoke(11),
     Clown(12),
-    Disguiser(13);
+    Disguiser(13),
+    Darkseer(14);
     RoleID(int i) {
     }
 }
