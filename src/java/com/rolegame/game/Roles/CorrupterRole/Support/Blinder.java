@@ -5,6 +5,7 @@ import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.GameManagement.Player;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.CorrupterRole.CorrupterRole;
+import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
 import com.rolegame.game.Roles.RoleProperties.RolePriority;
@@ -12,9 +13,9 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Blinder extends CorrupterRole {
+public class Blinder extends CorrupterRole implements ActiveNightAbility {
     public Blinder() {
-        super(RoleID.Blinder, RolePriority.None, RoleCategory.CorrupterSupport, LanguageManager.getText("Blinder.name"),
+        super(RoleID.Blinder, RolePriority.High, RoleCategory.CorrupterSupport, LanguageManager.getText("Blinder.name"),
                 LanguageManager.getText("Blinder.attributes"), LanguageManager.getText("Blinder.abilities"), 0, 0);
     }
 

@@ -7,6 +7,7 @@ import com.rolegame.game.PropertyControllers.SceneController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
@@ -32,6 +33,9 @@ public class AchievementsController implements Initializable {
     private VBox bigBox;
 
     @FXML
+    private ListView<AchievementBox> achievementsListView;
+
+    @FXML
     private HBox backBox;
 
     @FXML
@@ -41,16 +45,11 @@ public class AchievementsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bigBox.getChildren().remove(backBox);
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setContent(achievementBox);
-        bigBox.getChildren().add(scrollPane);
+
         Map<String, Achievement> achievementMap = AchievementManager.loadAchievements();
 
         for(Map.Entry<String,Achievement> achievementEntry : achievementMap.entrySet()){
-            achievementBox.getChildren().add(new AchievementBox(achievementEntry.getValue()));
-            achievementBox.getChildren().add(new Separator());
+            achievementsListView.getItems().add(new AchievementBox(achievementEntry.getValue()));
         }
         bigBox.getChildren().add(backBox);
     }

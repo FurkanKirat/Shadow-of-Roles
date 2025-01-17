@@ -160,7 +160,8 @@
     "CauseOfDeath": {
         "assassin": "Assassin",
         "psycho": "Psycho",
-        "hanging": "Hanged"
+        "hanging": "Hanged",
+        "lastJoke": "Last Joke"
     },
     "StartMenu": {
         "startGame": "Start Game",

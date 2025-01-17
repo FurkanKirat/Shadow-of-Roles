@@ -6,6 +6,7 @@ import com.rolegame.game.Roles.CorrupterRole.Killing.Psycho;
 import com.rolegame.game.Roles.CorrupterRole.Support.Blinder;
 import com.rolegame.game.Roles.CorrupterRole.Support.Disguiser;
 import com.rolegame.game.Roles.CorrupterRole.Support.Interrupter;
+import com.rolegame.game.Roles.CorrupterRole.Support.LastJoke;
 import com.rolegame.game.Roles.FolkRole.Analyst.*;
 import com.rolegame.game.Roles.FolkRole.Analyst.Observer;
 import com.rolegame.game.Roles.FolkRole.Protector.Soulbinder;
@@ -37,6 +38,7 @@ public class RoleCatalog {
         addRole(new Disguiser());
         addRole(new Darkseer());
         addRole(new Blinder());
+        addRole(new LastJoke());
 
     }
 
@@ -70,6 +72,7 @@ public class RoleCatalog {
         otherRoles.add(new Disguiser());
         otherRoles.add(new Darkseer());
         otherRoles.add(new Blinder());
+        otherRoles.add(new LastJoke());
         otherRoles.remove(otherRole);
         return otherRoles.get(new Random().nextInt(otherRoles.size()));
     }
@@ -90,6 +93,7 @@ public class RoleCatalog {
         roles.add(new Disguiser());
         roles.add(new Darkseer());
         roles.add(new Blinder());
+        roles.add(new LastJoke());
         return roles.get(new Random().nextInt(roles.size()));
     }
 
@@ -112,7 +116,7 @@ public class RoleCatalog {
 
         ArrayList<Role> roles = new ArrayList<>();
 //        roles.add(getRandomRoleByCategory(RoleCategory.FolkAnalyst));
-        roles.add(new SimplePerson());
+        roles.add(new LastJoke());
         roles.add(getRandomRoleByCategory(RoleCategory.FolkSupport, RoleCategory.FolkSupport));
         roles.add(getRandomRoleByTeam(Team.Folk));
         roles.add(getRandomRoleByCategory(RoleCategory.CorrupterKilling));

@@ -68,7 +68,9 @@ public class AchievementBox extends VBox {
         // Style the VBox
         this.setSpacing(10);
         this.setStyle("-fx-padding: 10; -fx-background-color: #f4f4f4; -fx-border-radius: 10; -fx-background-radius: 10;");
-        this.setAlignment(Pos.TOP_LEFT);
+        this.setAlignment(Pos.CENTER);
+        this.setPrefWidth(500);
+        this.setMinSize(400,200);
     }
 
 }

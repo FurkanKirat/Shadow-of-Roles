@@ -5,6 +5,7 @@ import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.GameManagement.Player;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.CorrupterRole.CorrupterRole;
+import com.rolegame.game.Roles.RoleProperties.PassiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
 import com.rolegame.game.Roles.RoleProperties.RolePriority;
@@ -12,7 +13,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Darkseer extends CorrupterRole {
+public class Darkseer extends CorrupterRole implements PassiveNightAbility {
     public Darkseer() {
         super(RoleID.Darkseer, RolePriority.None, RoleCategory.CorrupterAnalyst,
                 LanguageManager.getText("Darkseer.name"),

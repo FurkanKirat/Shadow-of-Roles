@@ -3,11 +3,12 @@ package com.rolegame.game.Roles.FolkRole.Analyst;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.Roles.FolkRole.FolkRole;
+import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
 import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
-public class Stalker extends FolkRole {
+public class Stalker extends FolkRole implements ActiveNightAbility {
 
     public Stalker() {
         super(RoleID.Stalker, RolePriority.None, RoleCategory.FolkAnalyst,

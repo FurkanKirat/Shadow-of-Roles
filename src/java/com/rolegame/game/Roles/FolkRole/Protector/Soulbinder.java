@@ -3,11 +3,12 @@ package com.rolegame.game.Roles.FolkRole.Protector;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.Roles.FolkRole.FolkRole;
+import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
 import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
-public class Soulbinder extends FolkRole {
+public class Soulbinder extends FolkRole implements ActiveNightAbility {
     public Soulbinder() {
         super(RoleID.SoulBinder, RolePriority.Low, RoleCategory.FolkProtector,
                 LanguageManager.getText("Soulbinder.name"), LanguageManager.getText("Soulbinder.attributes"),

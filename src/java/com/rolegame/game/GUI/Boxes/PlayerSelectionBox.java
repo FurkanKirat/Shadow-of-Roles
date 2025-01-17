@@ -3,6 +3,8 @@ package com.rolegame.game.GUI.Boxes;
 import com.rolegame.game.GUI.Controllers.GameScreenController;
 import com.rolegame.game.GameManagement.Player;
 import com.rolegame.game.PropertyControllers.LanguageManager;
+import com.rolegame.game.Roles.CorrupterRole.Support.LastJoke;
+import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.Team;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -17,7 +19,7 @@ public class PlayerSelectionBox extends HBox{
     private Label roleLabel;
     private HBox roleBox;
 
-    public PlayerSelectionBox(Player player, Player currentPlayer) {
+    public PlayerSelectionBox(Player player, Player currentPlayer, boolean isDay) {
 
         Circle circle = new Circle(15);
         circle.getStyleClass().add("playerCircle");
@@ -88,6 +90,14 @@ public class PlayerSelectionBox extends HBox{
             }
             this.getChildren().add(youBox);
             selectButton.setVisible(false);
+        }
+
+        if(!(currentPlayer.getRole() instanceof ActiveNightAbility) && !isDay){
+            selectButton.setVisible(false);
+        }
+
+        if(currentPlayer.getRole() instanceof LastJoke lastJoker && !lastJoker.getRoleOwner().isAlive()){
+            selectButton.setVisible(true);
         }
 
         Region spacer = new Region();

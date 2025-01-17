@@ -6,10 +6,7 @@ import com.rolegame.game.GUI.Boxes.RoleBox;
 import com.rolegame.game.GameManagement.*;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.*;
-import com.rolegame.game.Roles.RoleProperties.RoleCategory;
-import com.rolegame.game.Roles.RoleProperties.RoleID;
-import com.rolegame.game.Roles.RoleProperties.RolePriority;
-import com.rolegame.game.Roles.RoleProperties.Team;
+import com.rolegame.game.Roles.RoleProperties.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -114,16 +111,20 @@ public class GameScreenController {
     void useAbilityClicked(ActionEvent event) {
 
         if(gameController.getCurrentPlayer().getRole().getChoosenPlayer()==null){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle(LanguageManager.getText("Menu.passAlertTitle"));
-            alert.setHeaderText(LanguageManager.getText("Menu.passAlertHead"));
-            alert.setContentText(LanguageManager.getText("Menu.passAlertMessage"));
 
-            Optional<ButtonType> result = alert.showAndWait();
+            if(gameController.isDay()||(!gameController.isDay()&& gameController.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle(LanguageManager.getText("Menu.passAlertTitle"));
+                alert.setHeaderText(LanguageManager.getText("Menu.passAlertHead"));
+                alert.setContentText(LanguageManager.getText("Menu.passAlertMessage"));
 
-            if(result.get() != ButtonType.OK){
-                return;
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if(result.get() != ButtonType.OK){
+                    return;
+                }
             }
+
 
         }
         passTurnPane.setVisible(true);
@@ -265,7 +266,8 @@ public class GameScreenController {
         alivePlayersListView.getItems().clear();
 
         for(Player player: gameController.getAlivePlayers()){
-            PlayerSelectionBox playerSelectionBox = new PlayerSelectionBox(player,gameController.getCurrentPlayer());
+
+            PlayerSelectionBox playerSelectionBox = new PlayerSelectionBox(player,gameController.getCurrentPlayer(), gameController.isDay());
             playerSelectionBoxes.add(playerSelectionBox);
             alivePlayersListView.getItems().add(playerSelectionBox);
         }
@@ -300,7 +302,11 @@ public class GameScreenController {
             for(Player player: gameController.getAlivePlayers()){
                 player.getRole().setChoosenPlayer(null);
             }
+
             useAbilityButton.setText(LanguageManager.getText("Menu.useAbility"));
+            if(!(gameController.getCurrentPlayer() instanceof ActiveNightAbility)){
+                useAbilityButton.setText("Pass Turn");
+            }
             dayNightIcon.setImage(new Image("/com/rolegame/game/images/night.png"));
             gameController.setDay(false);
             gameController.updateAlivePlayers();

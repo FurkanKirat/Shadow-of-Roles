@@ -160,7 +160,8 @@
   "CauseOfDeath": {
     "assassin": "Suikastçi",
     "psycho": "Psikopat",
-    "hanging": "Asılarak"
+    "hanging": "Asılarak",
+    "lastJoke": "Last Joke"
   },
   "StartMenu": {
     "startGame": "Oyuna Başla",
