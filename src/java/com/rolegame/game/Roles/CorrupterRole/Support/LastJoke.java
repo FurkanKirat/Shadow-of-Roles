@@ -10,7 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 public class LastJoke extends CorrupterRole {
     private boolean didUsedAbility;
     public LastJoke() {
-        super(RoleID.LastJoke, RolePriority.None, RoleCategory.CorrupterSupport,
+        super(RoleID.LastJoke, RolePriority.Extreme, RoleCategory.CorrupterSupport,
                 LanguageManager.getText("LastJoke.name"),
                 LanguageManager.getText("LastJoke.attributes"),
                 LanguageManager.getText("LastJoke.abilities"),3, 0);
