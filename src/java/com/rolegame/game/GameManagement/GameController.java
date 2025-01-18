@@ -9,9 +9,6 @@ import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleCatalog;
 import com.rolegame.game.Roles.RoleComparator;
 import com.rolegame.game.Roles.RoleProperties.Team;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 
 
@@ -86,7 +83,6 @@ public class GameController {
     }
     public void updateAlivePlayers(){
         alivePlayers = new ArrayList<>();
-        System.out.println("Update: " + getDayCount() + isDay);
         for (Player player : allPlayers) {
 
             if (player.isAlive()) {

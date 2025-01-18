@@ -41,7 +41,14 @@
                      </children>
                   </HBox>
                   <Label fx:id="announcementsLabel" styleClass="gameLabel" text="Announcements" />
-                  <VBox fx:id="announceVBox" prefHeight="363.0" prefWidth="455.0" />
+                  <ListView fx:id="announcementsView" prefHeight="435.0" prefWidth="455.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ListView>
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="456.0" HBox.hgrow="ALWAYS">

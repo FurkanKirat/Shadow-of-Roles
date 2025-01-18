@@ -28,7 +28,7 @@ public class GameScreenController {
     private ListView<PlayerSelectionBox> alivePlayersListView;
 
     @FXML
-    private VBox announceVBox;
+    private ListView<MessageBox> announcementsView;
 
     @FXML
     private TextField attributesTextField;
@@ -160,11 +160,6 @@ public class GameScreenController {
         initializeRolesView();
         initializeMessages();
         dayLabel.setText((gameController.isDay() ? LanguageManager.getText("Menu.day"): LanguageManager.getText("Menu.night") ) + ": " +gameController.getDayCount());
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setContent(announceVBox);
-        leftVBox.getChildren().add(scrollPane);
 
         ScrollPane scrollPane1 = new ScrollPane();
         scrollPane1.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
@@ -330,10 +325,11 @@ public class GameScreenController {
     }
 
     private void initializeMessages(){
-        announceVBox.getChildren().clear();
+        Message.sendMessage("asdıjasdpjsadjposadjopsadjposadjpoiasdjopsadjposadjpsodajopsadjopiisajdoadspojsadjosadjopsdjaopsadopjsajdpoisiadjopsadpojasd", null, true);
+        announcementsView.getItems().clear();
         for(Message message: Message.getMessages()){
             if(message.isPublic() || message.getReceiver().equals(gameController.getCurrentPlayer())){
-                announceVBox.getChildren().add(new MessageBox(message));
+                announcementsView.getItems().add(new MessageBox(message,announcementsView));
             }
         }
 
@@ -344,7 +340,7 @@ public class GameScreenController {
         announceVBoxStart.getChildren().clear();
         for(Message message: Message.getMessages()){
             if(message.isPublic()&&message.getDayCount() == gameController.getDayCount()){
-                announceVBoxStart.getChildren().add(new MessageBox(message));
+                announceVBoxStart.getChildren().add(new MessageBox(message,announcementsView));
             }
         }
         announceBigVBox.getChildren().add(startDayButton);
