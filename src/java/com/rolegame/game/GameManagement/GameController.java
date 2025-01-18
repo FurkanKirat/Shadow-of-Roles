@@ -37,13 +37,11 @@ public class GameController {
         }
         for(Role role: roleQueue){
             role.performAbility();
-            System.out.println(role.getName());
         }
     }
 
     public void executeMaxVoted(){
         Voting.updateMaxVoted();
-        System.out.println(Voting.getMaxVote()+ " " + Voting.getMaxVoted());
         if(Voting.getMaxVote()>alivePlayers.size()/2){
 
             for(Player alivePlayer : alivePlayers){
