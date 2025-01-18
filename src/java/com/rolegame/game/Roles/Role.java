@@ -29,13 +29,14 @@ public abstract class Role {
                 Team team, String goal,
                 double attack ,double defence
     ) {
+        // IMPORTANT! When adding a new role, the role name and role id in the lang json files must be the same!
         this.id = id;
         this.rolePriority = rolePriority;
         this.roleCategory = roleCategory;
-        this.name = LanguageManager.getText(getClass().getSimpleName()+".name");
-        this.attributes = LanguageManager.getText(getClass().getSimpleName()+".attributes");
+        this.name = LanguageManager.getText(id.toString()+".name");
+        this.attributes = LanguageManager.getText(id +".attributes");
         this.team = team;
-        this.abilities = LanguageManager.getText(getClass().getSimpleName()+".abilities");;
+        this.abilities = LanguageManager.getText(id +".abilities");;
         this.goal = goal;
         this.attack = attack;
         this.defence = defence;

@@ -10,7 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class SealMaster extends FolkRole implements ActiveNightAbility {
     public SealMaster() {
-        super(RoleID.SealMaster, RolePriority.Extreme, RoleCategory.FolkSupport, 0,0);
+        super(RoleID.SealMaster, RolePriority.High, RoleCategory.FolkSupport, 0,0);
     }
 
     @Override
