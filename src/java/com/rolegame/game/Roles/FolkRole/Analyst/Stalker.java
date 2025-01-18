@@ -11,9 +11,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 public class Stalker extends FolkRole implements ActiveNightAbility {
 
     public Stalker() {
-        super(RoleID.Stalker, RolePriority.None, RoleCategory.FolkAnalyst,
-                LanguageManager.getText("Stalker.name"), LanguageManager.getText("Stalker.attributes"),
-                LanguageManager.getText("Stalker.abilities"), 0, 0);
+        super(RoleID.Stalker, RolePriority.None, RoleCategory.FolkAnalyst, 0, 0);
     }
 
     @Override

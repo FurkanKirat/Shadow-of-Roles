@@ -121,13 +121,47 @@
     },
     "SimplePerson": {
         "name": "Simple Soul",
-        "attributes": "İf you reveal your role you will lose the game",
-        "abilities": "Just simple person. You do nothing"
+        "attributes": "If you reveal your role you will lose the game",
+        "abilities": "Just simple person. You do nothing",
+        "goal": "Have Fun"
+    },
+    "LastJoke": {
+        "name": "Echo of Laughter",
+        "attributes": "None",
+        "abilities": "When you die you will comeback to life and you must kill one player",
+        "slainMessage": "Someone make their Last Joke to"
+    },
+    "Clown": {
+        "name": "Madman",
+        "attributes": "None",
+        "abilities": "None",
+        "goal": "You have to die at night by someone to win the game"
+    },
+    "Disguiser":{
+        "name": "Phantom Cloak",
+        "attributes": "None",
+        "abilities": "Disguise to random role every night but you can't know until you use it"
+    },
+    "Darkseer":{
+        "name": "Specularis",
+        "attributes": "None",
+        "abilities": "You see the role of two living people, but you cannot see the role owner",
+        "abilityMessage": "The roles of the two currently living player in the play are:",
+        "oneLeftMessage": "The role of the currently living person in the play is:",
+        "zeroLeftMessage": "There are not any players to see their role"
+    },
+    "Blinder": {
+        "name": "Blinder",
+        "attributes": "None",
+        "abilityMessage": "You blinded your target",
+        "abilities": "When you blind someone that player perform their ability randomly",
+        "blindMessage": "You blinded this night"
     },
     "CauseOfDeath": {
         "assassin": "Assassin",
         "psycho": "Psycho",
-        "hanging": "Hanged"
+        "hanging": "Hanged",
+        "lastJoke": "Last Joke"
     },
     "StartMenu": {
         "startGame": "Start Game",

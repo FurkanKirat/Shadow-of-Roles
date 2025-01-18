@@ -8,8 +8,8 @@ import com.rolegame.game.Roles.RoleProperties.Team;
 import com.rolegame.game.Roles.Role;
 
 public abstract class FolkRole extends Role {
-    public FolkRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory, String name, String attributes, String abilities, double attack , double defence) {
-        super(id, rolePriority, roleCategory, name, attributes, Team.Folk, abilities, LanguageManager.getText("FolkRole.goal"),attack,defence);
+    public FolkRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,  double attack , double defence) {
+        super(id, rolePriority, roleCategory, Team.Folk, LanguageManager.getText("FolkRole.goal"),attack,defence);
     }
 
 }

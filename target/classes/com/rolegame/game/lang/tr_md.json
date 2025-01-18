@@ -66,7 +66,7 @@
     "abilities": "Gece birini engelleyebilirsiniz"
   },
   "Interrupter": {
-    "name": "Kesici",
+    "name": "Nuri Alço",
     "attributes": "Yok",
     "abilities": "Gece birini engelleyebilirsiniz"
   },
@@ -123,12 +123,45 @@
     "name": "Sade bir insan",
     "attributes": "Rolünü açıklarsan kaybedersin",
     "abilities": "Dümdüz insan. Hiçbir şey yapmazsın",
-    "goal": "None"
+    "goal": "Eğlenmek"
+  },
+  "LastJoke": {
+  "name": "Son Hiciv",
+  "attributes": "Yok",
+  "abilities": "Öldüğün zaman geri gelip birini hayattan koparırsın",
+  "slainMessage": "için birisi son şakasını yaptı"
+  },
+  "Clown": {
+    "name": "Şarlatan",
+    "attributes": "Yok",
+    "abilities": "Yok",
+    "goal": "Oyunu kazanmak için gece biri tarafından öldürülmen lazım"
+  },
+  "Disguiser":{
+    "name": "Hilekâr",
+    "attributes": "Yok",
+    "abilities": "Her gece başka bir role bürünürsün ama hangi rol olduğunu kullanmadan bilemezsin"
+  },
+  "Darkseer":{
+    "name": "Görklü",
+    "attributes": "None",
+    "abilities": "Yaşayan iki kişinin rolünü görüyorsunuz ancak rol sahibini göremezsiniz",
+    "abilityMessage": "Oyunda şu anda yaşayan iki kişinin rolleri:",
+    "oneLeftMessage": "Oyunda şu anda yaşayan bir kişinin rolü:",
+    "zeroLeftMessage": "Rolü gösterilecek oyuncu bulunamadı"
+  },
+  "Blinder": {
+    "name": "Blinder",
+    "attributes": "None",
+    "abilityMessage": "You blinded your target",
+    "abilities": "When you blind someone that player perform their ability randomly",
+    "blindMessage": "You blinded this night"
   },
   "CauseOfDeath": {
     "assassin": "Suikastçi",
     "psycho": "Psikopat",
-    "hanging": "Asılarak"
+    "hanging": "Asılarak",
+    "lastJoke": "Last Joke"
   },
   "StartMenu": {
     "startGame": "Oyuna Başla",

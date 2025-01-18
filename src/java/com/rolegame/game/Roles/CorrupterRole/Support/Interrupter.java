@@ -10,10 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Interrupter extends CorrupterRole implements ActiveNightAbility {
     public Interrupter() {
-        super(RoleID.Interrupter, RolePriority.Extreme, RoleCategory.CorrupterSupport,
-                LanguageManager.getText("Interrupter.name"),
-                LanguageManager.getText("Interrupter.attributes"),
-                LanguageManager.getText("Interrupter.abilities"), 0, 0);
+        super(RoleID.Interrupter, RolePriority.Extreme, RoleCategory.CorrupterSupport, 0, 0);
     }
 
     @Override

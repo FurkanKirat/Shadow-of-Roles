@@ -14,9 +14,7 @@ import java.util.Random;
 
 public class Detective extends FolkRole implements ActiveNightAbility {
     public Detective() {
-        super(RoleID.Detective, RolePriority.None, RoleCategory.FolkAnalyst,
-                LanguageManager.getText("Detective.name"), LanguageManager.getText("Detective.attributes"),
-                LanguageManager.getText("Detective.abilities"),0,0);
+        super(RoleID.Detective, RolePriority.None, RoleCategory.FolkAnalyst, 0,0);
     }
 
     @Override

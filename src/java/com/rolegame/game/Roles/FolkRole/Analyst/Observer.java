@@ -10,8 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Observer extends FolkRole implements ActiveNightAbility {
     public Observer() {
-        super(RoleID.Observer, RolePriority.None, RoleCategory.FolkAnalyst,LanguageManager.getText("Observer.name"),
-                LanguageManager.getText("Observer.attributes"), LanguageManager.getText("Observer.abilities"),0,0);
+        super(RoleID.Observer, RolePriority.None, RoleCategory.FolkAnalyst, 0,0);
     }
 
     @Override

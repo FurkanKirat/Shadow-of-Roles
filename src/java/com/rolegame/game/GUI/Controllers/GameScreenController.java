@@ -43,7 +43,7 @@ public class GameScreenController {
     private Label roleLabel;
 
     @FXML
-    private TreeView<Role> rolesTreeView;
+    private TreeView<Object> rolesTreeView;
 
     @FXML
     private VBox midBox;
@@ -175,31 +175,31 @@ public class GameScreenController {
 
     @FXML
     void selectRole(MouseEvent event) {
-        TreeItem<Role> selectedRole = rolesTreeView.getSelectionModel().getSelectedItem();
-        if(selectedRole!=null&&!selectedRole.getValue().equals(new MoldClass("Mold", Team.Folk,RoleCategory.FolkAnalyst))){
+        TreeItem<Object> selectedRole = rolesTreeView.getSelectionModel().getSelectedItem();
+        if(selectedRole!=null&&selectedRole.getValue() instanceof Role){
             midBox.getChildren().clear();
-            midBox.getChildren().add(new RoleBox(selectedRole.getValue()));
+            midBox.getChildren().add(new RoleBox((Role) selectedRole.getValue()));
         }
     }
 
     private void initializeRolesView(){
-        TreeItem<Role> roles = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.role"), Team.Folk, RoleCategory.FolkAnalyst));
-        TreeItem<Role> folk = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.folkRole"), Team.Folk, RoleCategory.FolkAnalyst));
-        TreeItem<Role> corrupter = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.corrupterRole"), Team.Corrupter ,RoleCategory.CorrupterAnalyst));
-        TreeItem<Role> neutral = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.neutralRole"), Team.Corrupter ,RoleCategory.CorrupterAnalyst));
+        TreeItem<Object> roles = new TreeItem<>(LanguageManager.getText("Role.role"));
+        TreeItem<Object> folk = new TreeItem<>(LanguageManager.getText("Role.folkRole"));
+        TreeItem<Object> corrupter = new TreeItem<>(LanguageManager.getText("Role.corrupterRole"));
+        TreeItem<Object> neutral = new TreeItem<>(LanguageManager.getText("Role.neutralRole"));
 
-        TreeItem<Role> folkAnalyst = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.folkAnalyst"), Team.Folk, RoleCategory.FolkAnalyst));
-        TreeItem<Role> folkProtector = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.folkProtector"), Team.Folk, RoleCategory.FolkAnalyst));
-        TreeItem<Role> folkKilling = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.folkKilling"), Team.Folk, RoleCategory.FolkAnalyst));
-        TreeItem<Role> folkSupport = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.folkSupport"), Team.Folk, RoleCategory.FolkAnalyst));
+        TreeItem<Object> folkAnalyst = new TreeItem<>(LanguageManager.getText("Role.folkAnalyst"));
+        TreeItem<Object> folkProtector = new TreeItem<>(LanguageManager.getText("Role.folkProtector"));
+        TreeItem<Object> folkKilling = new TreeItem<>(LanguageManager.getText("Role.folkKilling"));
+        TreeItem<Object> folkSupport = new TreeItem<>(LanguageManager.getText("Role.folkSupport"));
 
-        TreeItem<Role> corrupterAnalyst = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.corrupterAnalyst"), Team.Folk, RoleCategory.FolkAnalyst));
-        TreeItem<Role> corrupterKilling = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.corrupterKilling"), Team.Folk, RoleCategory.FolkAnalyst));
-        TreeItem<Role> corrupterSupport = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.corrupterSupport"), Team.Folk, RoleCategory.FolkAnalyst));
+        TreeItem<Object> corrupterAnalyst = new TreeItem<>(LanguageManager.getText("Role.corrupterAnalyst"));
+        TreeItem<Object> corrupterKilling = new TreeItem<>(LanguageManager.getText("Role.corrupterKilling"));
+        TreeItem<Object> corrupterSupport = new TreeItem<>(LanguageManager.getText("Role.corrupterSupport"));
 
-        TreeItem<Role> neutralEvil = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.neutralEvil"), Team.Folk, RoleCategory.FolkAnalyst));
-        TreeItem<Role> neutralKilling = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.neutralKilling"), Team.Folk, RoleCategory.FolkAnalyst));
-        TreeItem<Role> neutralChaos = new TreeItem<>(new MoldClass(LanguageManager.getText("Role.neutralChaos"), Team.Folk, RoleCategory.FolkAnalyst));
+        TreeItem<Object> neutralEvil = new TreeItem<>(LanguageManager.getText("Role.neutralEvil"));
+        TreeItem<Object> neutralKilling = new TreeItem<>(LanguageManager.getText("Role.neutralKilling"));
+        TreeItem<Object> neutralChaos = new TreeItem<>(LanguageManager.getText("Role.neutralChaos"));
 
         for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FolkAnalyst)){
             folkAnalyst.getChildren().add(new TreeItem<>(role));
@@ -337,17 +337,7 @@ public class GameScreenController {
         announceBigVBox.getChildren().add(startDayButton);
         announceBigVBox.setVisible(true);
     }
-    private static class MoldClass extends Role{
 
-        public MoldClass(String name, Team team , RoleCategory roleCategory) {
-            super(RoleID.Mold, RolePriority.None, roleCategory ,name, "", team,"", "",0,0);
-        }
-
-        @Override
-        public boolean performAbility() {
-            return false;
-        }
-    }
 
     public static GameController getGameController() {
         return gameController;

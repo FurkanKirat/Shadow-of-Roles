@@ -10,9 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Assassin extends NeutralRole implements ActiveNightAbility {
     public Assassin() {
-        super(RoleID.Assassin, RolePriority.None, RoleCategory.NeutralKilling, LanguageManager.getText("Assassin.name"),
-                LanguageManager.getText("Assassin.attributes"),
-                LanguageManager.getText("Assassin.abilities"), LanguageManager.getText("Assassin.goal"), 1, 1);
+        super(RoleID.Assassin, RolePriority.None, RoleCategory.NeutralKilling, 1, 1);
     }
 
     @Override

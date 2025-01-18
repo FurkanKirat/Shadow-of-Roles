@@ -15,8 +15,7 @@ import java.util.Random;
 
 public class Blinder extends CorrupterRole implements ActiveNightAbility {
     public Blinder() {
-        super(RoleID.Blinder, RolePriority.High, RoleCategory.CorrupterSupport, LanguageManager.getText("Blinder.name"),
-                LanguageManager.getText("Blinder.attributes"), LanguageManager.getText("Blinder.abilities"), 0, 0);
+        super(RoleID.Blinder, RolePriority.High, RoleCategory.CorrupterSupport, 0, 0);
     }
 
     @Override

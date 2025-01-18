@@ -15,10 +15,7 @@ import java.util.Collections;
 
 public class Darkseer extends CorrupterRole implements PassiveNightAbility {
     public Darkseer() {
-        super(RoleID.Darkseer, RolePriority.None, RoleCategory.CorrupterAnalyst,
-                LanguageManager.getText("Darkseer.name"),
-                LanguageManager.getText("Darkseer.attributes"),
-                LanguageManager.getText("Darkseer.abilities"), 0, 0);
+        super(RoleID.Darkseer, RolePriority.None, RoleCategory.CorrupterAnalyst, 0, 0);
     }
 
     @Override

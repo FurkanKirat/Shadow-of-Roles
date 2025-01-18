@@ -10,9 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class DarkRevealer extends CorrupterRole implements ActiveNightAbility {
     public DarkRevealer() {
-        super(RoleID.DarkRevealer, RolePriority.None, RoleCategory.CorrupterAnalyst ,
-                LanguageManager.getText("DarkRevealer.name"), LanguageManager.getText("DarkRevealer.attributes"),
-                LanguageManager.getText("DarkRevealer.abilities"), 0, 0);
+        super(RoleID.DarkRevealer, RolePriority.None, RoleCategory.CorrupterAnalyst , 0, 0);
     }
 
     @Override

@@ -11,10 +11,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Disguiser extends CorrupterRole implements ActiveNightAbility {
     public Disguiser() {
-        super(RoleID.Disguiser, RolePriority.None, RoleCategory.CorrupterSupport,
-                LanguageManager.getText("Disguiser.name"),
-                LanguageManager.getText("Disguiser.attributes"),
-                LanguageManager.getText("Disguiser.abilities"), 0, 0);
+        super(RoleID.Disguiser, RolePriority.None, RoleCategory.CorrupterSupport, 0, 0);
     }
 
     @Override

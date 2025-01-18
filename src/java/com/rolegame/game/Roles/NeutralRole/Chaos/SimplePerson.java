@@ -9,9 +9,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class SimplePerson extends NeutralRole implements NoNightAbility {
     public SimplePerson() {
-        super(RoleID.SimplePerson, RolePriority.None, RoleCategory.NeutralChaos, LanguageManager.getText("SimplePerson.name"),
-                LanguageManager.getText("SimplePerson.attributes"),
-                 LanguageManager.getText("SimplePerson.abilities"), LanguageManager.getText("SimplePerson.goal"),  0, 0);
+        super(RoleID.SimplePerson, RolePriority.None, RoleCategory.NeutralChaos, 0, 0);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.rolegame.game.Roles;
 
 import com.rolegame.game.GameManagement.Player;
+import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
 import com.rolegame.game.Roles.RoleProperties.RolePriority;
@@ -9,32 +10,32 @@ import com.rolegame.game.Roles.RoleProperties.Team;
 import java.util.Objects;
 
 public abstract class Role {
-    private final RoleID id;
-    private final RolePriority rolePriority;
-    private final RoleCategory roleCategory;
-    private final String name;
-    private final String attributes;
-    private final String abilities;
-    private final Team team;
-    private final String goal;
-    private Player roleOwner;
-    private Player choosenPlayer;
-    private double attack;
-    private double defence;
-    private boolean canPerform;
+    protected final RoleID id;
+    protected final RolePriority rolePriority;
+    protected final RoleCategory roleCategory;
+    protected final String name;
+    protected final String attributes;
+    protected final String abilities;
+    protected final Team team;
+    protected final String goal;
+    protected Player roleOwner;
+    protected Player choosenPlayer;
+    protected double attack;
+    protected double defence;
+    protected boolean canPerform;
 
 
-    public Role(RoleID id, RolePriority rolePriority, RoleCategory roleCategory, String name,
-                String attributes, Team team, String abilities, String goal,
+    public Role(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
+                Team team, String goal,
                 double attack ,double defence
     ) {
         this.id = id;
         this.rolePriority = rolePriority;
         this.roleCategory = roleCategory;
-        this.name = name;
-        this.attributes = attributes;
+        this.name = LanguageManager.getText(getClass().getSimpleName()+".name");
+        this.attributes = LanguageManager.getText(getClass().getSimpleName()+".attributes");
         this.team = team;
-        this.abilities = abilities;
+        this.abilities = LanguageManager.getText(getClass().getSimpleName()+".abilities");;
         this.goal = goal;
         this.attack = attack;
         this.defence = defence;
