@@ -42,11 +42,11 @@ public class RoleBox extends VBox {
         goal.setAlignment(Pos.BOTTOM_LEFT);
         goal.setSpacing(40);
 
-        TextField attackTextField = new TextField(role.getAttack()+"");
+        TextField attackTextField = new TextField(displayNumbers(role.getAttack()));
         attackTextField.setEditable(false);
         attackTextField.setPrefWidth(92.5);
 
-        TextField defenceTextField = new TextField(role.getDefence()+"");
+        TextField defenceTextField = new TextField(displayNumbers(role.getDefence()));
         defenceTextField.setEditable(false);
         defenceTextField.setPrefWidth(92.5);
 
@@ -55,10 +55,12 @@ public class RoleBox extends VBox {
         atkDef.setSpacing(28);
 
 
-        if(role.getTeam()== Team.Folk){
+        if(role.getTeam() == Team.Folk){
             this.getStyleClass().add("folkRoleVbox");
-        }else{
+        }else if(role.getTeam() == Team.Corrupter){
             this.getStyleClass().add("corrupterRoleVbox");
+        }else{
+            this.getStyleClass().add("neutralRoleVbox");
         }
         this.getChildren().addAll(roleLabel,abilities,attributes,goal,atkDef);
 
@@ -72,5 +74,12 @@ public class RoleBox extends VBox {
         label.getStyleClass().add("gameLabel");
         label.getStyleClass().add("roleShowLabel");
         return label;
+    }
+
+    private String displayNumbers(double value){
+        if(value == (int) value){
+            return (int) value+"";
+        }
+        return value +"";
     }
 }

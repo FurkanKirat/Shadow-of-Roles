@@ -77,7 +77,7 @@ public class RoleCatalog {
         otherRoles.add(new LastJoke());
         otherRoles.add(new FolkHero());
         otherRoles.remove(otherRole);
-        return otherRoles.get(new Random().nextInt(otherRoles.size()));
+        return otherRoles.get(new Random().nextInt(otherRoles.size())).clone();
     }
 
     public static Role getRandomRole(){
@@ -97,8 +97,7 @@ public class RoleCatalog {
         roles.add(new Darkseer());
         roles.add(new Blinder());
         roles.add(new LastJoke());
-        roles.add(new FolkHero());
-        return roles.get(new Random().nextInt(roles.size()));
+        return roles.get(new Random().nextInt(roles.size())).clone();
     }
 
     public static ArrayList<Role> initializeRoles(int playerCount){
@@ -119,8 +118,7 @@ public class RoleCatalog {
     private static ArrayList<Role> fivePlayers(){
 
         ArrayList<Role> roles = new ArrayList<>();
-//        roles.add(getRandomRoleByCategory(RoleCategory.FolkAnalyst));
-        roles.add(new LastJoke());
+        roles.add(getRandomRoleByCategory(RoleCategory.FolkAnalyst));
         roles.add(getRandomRoleByCategory(RoleCategory.FolkSupport, RoleCategory.FolkSupport));
         roles.add(getRandomRoleByTeam(Team.Folk));
         roles.add(getRandomRoleByCategory(RoleCategory.CorrupterKilling));
@@ -208,7 +206,7 @@ public class RoleCatalog {
     private static Role getRandomRoleByCategory(RoleCategory roleCategory){
         Random random = new Random();
         List<Role> roles = getRolesByCategory(roleCategory);
-        return roles.get(random.nextInt(roles.size()));
+        return roles.get(random.nextInt(roles.size())).clone();
     }
 
     private static Role getRandomRoleByCategory(RoleCategory... roleCategories){
@@ -217,13 +215,13 @@ public class RoleCatalog {
         for(RoleCategory roleCategory: roleCategories){
             roles.add(getRandomRoleByCategory(roleCategory));
         }
-        return roles.get(random.nextInt(roles.size()));
+        return roles.get(random.nextInt(roles.size())).clone();
     }
 
     private static Role getRandomRoleByTeam(Team team){
         Random random = new Random();
         List<Role> roles = getRolesByTeam(team);
-        return roles.get(random.nextInt(roles.size()));
+        return roles.get(random.nextInt(roles.size())).clone();
     }
 
 }

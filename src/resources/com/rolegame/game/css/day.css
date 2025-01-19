@@ -46,6 +46,13 @@
     -fx-border-width: 2px;
 }
 
+.neutralRoleVbox {
+    -fx-background-color: #383736; /* Deeper aqua blue */
+    -fx-background-radius: 10;
+    -fx-border-color: #1c1b1b; /* Deep navy border */
+    -fx-border-width: 2px;
+}
+
 /* Text Field and Text Area Styling */
 .gameTextField {
     -fx-background-color: #d6ecff; /* Soft blue */

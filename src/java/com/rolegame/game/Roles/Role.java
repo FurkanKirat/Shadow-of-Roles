@@ -9,7 +9,7 @@ import com.rolegame.game.Roles.RoleProperties.Team;
 
 import java.util.Objects;
 
-public abstract class Role {
+public abstract class Role implements Cloneable{
     protected final RoleID id;
     protected final RolePriority rolePriority;
     protected final RoleCategory roleCategory;
@@ -155,5 +155,15 @@ public abstract class Role {
 
     public RoleCategory getRoleCategory() {
         return roleCategory;
+    }
+
+    @Override
+    public Role clone() {
+        try {
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return (Role) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

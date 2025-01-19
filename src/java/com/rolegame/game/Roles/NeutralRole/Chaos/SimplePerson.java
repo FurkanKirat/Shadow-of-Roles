@@ -1,6 +1,5 @@
 package com.rolegame.game.Roles.NeutralRole.Chaos;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.NeutralRole.NeutralRole;
 import com.rolegame.game.Roles.RoleProperties.NoNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
