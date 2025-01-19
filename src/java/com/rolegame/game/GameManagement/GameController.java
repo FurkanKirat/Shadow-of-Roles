@@ -187,6 +187,9 @@ public class GameController {
     public void passTurn(){
         currentPlayerIndex = (currentPlayerIndex + 1) % alivePlayers.size();
         currentPlayer = alivePlayers.get(currentPlayerIndex);
+
+
+
     }
     public boolean isDay() {
         return isDay;

@@ -13,6 +13,7 @@ public class Player {
     private double defence;
     private boolean hasWon;
     private String causeOfDeath;
+    private boolean isImmune;
 
     public Player(int number, String name, Role role) {
         this.number = number;
@@ -93,6 +94,13 @@ public class Player {
 
     public String getCauseOfDeath() {
         return causeOfDeath;
+    }
+    public void setImmune(boolean isImmune){
+        this.isImmune = isImmune;
+    }
+
+    public boolean isImmune(){
+        return isImmune;
     }
 
     public void setCauseOfDeath(String causeOfDeath) {

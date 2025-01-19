@@ -10,7 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Interrupter extends CorrupterRole implements ActiveNightAbility {
     public Interrupter() {
-        super(RoleID.Interrupter, RolePriority.High, RoleCategory.CorrupterSupport, 0, 0);
+        super(RoleID.Interrupter, RolePriority.Roleblock, RoleCategory.CorrupterSupport, 0, 0);
     }
 
     @Override
@@ -21,8 +21,14 @@ public class Interrupter extends CorrupterRole implements ActiveNightAbility {
         }
 
         if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            Message.sendMessage(LanguageManager.getText("RoleBlock.RBimmuneMessage") ,getRoleOwner(),false);
         }
+
+        if(choosenPlayer.isImmune()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            return false;
+        }
+
 
         Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockMessage"), getRoleOwner(),false);
         getChoosenPlayer().getRole().setCanPerform(false);

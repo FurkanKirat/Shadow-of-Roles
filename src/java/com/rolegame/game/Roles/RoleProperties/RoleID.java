@@ -1,9 +1,5 @@
 package com.rolegame.game.Roles.RoleProperties;
 
-import com.rolegame.game.Roles.CorrupterRole.Support.Disguiser;
-import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
-import com.rolegame.game.Roles.NeutralRole.Killing.Assassin;
-
 public enum RoleID {
 
     Detective(1),
@@ -20,7 +16,8 @@ public enum RoleID {
     Clown(12),
     Disguiser(13),
     Darkseer(14),
-    Blinder(15);
+    Blinder(15),
+    FolkHero(16);
     RoleID(int i) {
     }
 }

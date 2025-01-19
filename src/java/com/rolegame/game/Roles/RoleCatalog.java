@@ -13,6 +13,7 @@ import com.rolegame.game.Roles.FolkRole.Protector.Soulbinder;
 import com.rolegame.game.Roles.FolkRole.Support.SealMaster;
 import com.rolegame.game.Roles.NeutralRole.Chaos.Clown;
 import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
+import com.rolegame.game.Roles.FolkRole.Support.FolkHero;
 import com.rolegame.game.Roles.NeutralRole.Killing.Assassin;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.Team;
@@ -39,6 +40,7 @@ public class RoleCatalog {
         addRole(new Darkseer());
         addRole(new Blinder());
         addRole(new LastJoke());
+        addRole(new FolkHero());
 
     }
 
@@ -73,6 +75,7 @@ public class RoleCatalog {
         otherRoles.add(new Darkseer());
         otherRoles.add(new Blinder());
         otherRoles.add(new LastJoke());
+        otherRoles.add(new FolkHero());
         otherRoles.remove(otherRole);
         return otherRoles.get(new Random().nextInt(otherRoles.size()));
     }
@@ -94,6 +97,7 @@ public class RoleCatalog {
         roles.add(new Darkseer());
         roles.add(new Blinder());
         roles.add(new LastJoke());
+        roles.add(new FolkHero());
         return roles.get(new Random().nextInt(roles.size()));
     }
 

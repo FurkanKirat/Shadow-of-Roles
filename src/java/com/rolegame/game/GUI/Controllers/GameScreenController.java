@@ -310,6 +310,8 @@ public class GameScreenController {
         for(Player alivePlayer: gameController.getAlivePlayers()){
             alivePlayer.setDefence(alivePlayer.getRole().getDefence());
             alivePlayer.getRole().setCanPerform(true);
+            alivePlayer.setImmune(false);
+
         }
         initializeMessages();
 

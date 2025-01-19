@@ -25,6 +25,11 @@ public class Stalker extends FolkRole implements ActiveNightAbility {
             return false;
         }
 
+        if(choosenPlayer.isImmune()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            return false;
+        }
+
         String message = getChoosenPlayer().getRole().getChoosenPlayer()==null ?
                 LanguageManager.getText("Stalker.nobodyMessage"):
                 LanguageManager.getText("Stalker.visitMessage")+" " + getChoosenPlayer().getRole().getChoosenPlayer().getName()+ " " + LanguageManager.getText("Stalker.thisNight");

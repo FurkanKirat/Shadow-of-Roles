@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class Blinder extends CorrupterRole implements ActiveNightAbility {
     public Blinder() {
-        super(RoleID.Blinder, RolePriority.Medium, RoleCategory.CorrupterSupport, 0, 0);
+        super(RoleID.Blinder, RolePriority.Blinder, RoleCategory.CorrupterSupport, 0, 0);
     }
 
     @Override
@@ -28,6 +28,12 @@ public class Blinder extends CorrupterRole implements ActiveNightAbility {
         if(getChoosenPlayer()==null){
             return false;
         }
+
+        if(choosenPlayer.isImmune()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            return false;
+        }
+
         String message = LanguageManager.getText("Blinder.abilityMessage");
         Message.sendMessage(message,getRoleOwner(), false);
         ArrayList<Player> players = new ArrayList<>(GameScreenController.getGameController().getAlivePlayers());

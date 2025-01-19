@@ -10,7 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Soulbinder extends FolkRole implements ActiveNightAbility {
     public Soulbinder() {
-        super(RoleID.Soulbinder, RolePriority.Low, RoleCategory.FolkProtector, 0,0);
+        super(RoleID.Soulbinder, RolePriority.Soulbinder, RoleCategory.FolkProtector, 0,0);
     }
 
     @Override
@@ -22,6 +22,11 @@ public class Soulbinder extends FolkRole implements ActiveNightAbility {
         }
 
         if(getChoosenPlayer()==null){
+            return false;
+        }
+
+        if(choosenPlayer.isImmune()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
             return false;
         }
 

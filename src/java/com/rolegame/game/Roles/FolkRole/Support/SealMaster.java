@@ -10,7 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class SealMaster extends FolkRole implements ActiveNightAbility {
     public SealMaster() {
-        super(RoleID.SealMaster, RolePriority.High, RoleCategory.FolkSupport, 0,0);
+        super(RoleID.SealMaster, RolePriority.Roleblock, RoleCategory.FolkSupport, 0,0);
     }
 
     @Override
@@ -21,7 +21,12 @@ public class SealMaster extends FolkRole implements ActiveNightAbility {
         }
 
         if(!isCanPerform()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.RBimmuneMessage") ,getRoleOwner(),false);
+        }
+
+        if(choosenPlayer.isImmune()){
             Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            return false;
         }
 
         Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockMessage"), getRoleOwner(),false);

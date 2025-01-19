@@ -25,11 +25,12 @@ public abstract class Role {
     protected boolean canPerform;
 
 
+
     public Role(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
                 Team team, String goal,
                 double attack ,double defence
     ) {
-        // IMPORTANT! When adding a new role, the role name and role id in the lang json files must be the same!
+        // IMPORTANT! When adding a new role, the role id and role name in the lang json files must be the same!
         this.id = id;
         this.rolePriority = rolePriority;
         this.roleCategory = roleCategory;
@@ -55,9 +56,12 @@ public abstract class Role {
         this.attack = role.getAttack();
         this.defence = role.getDefence();
         this.canPerform = true;
+
         this.roleOwner = role.roleOwner;
         this.choosenPlayer = roleOwner.getRole().getChoosenPlayer();
     }
+
+
 
     public abstract boolean performAbility();
 
@@ -147,6 +151,7 @@ public abstract class Role {
     public void setCanPerform(boolean canPerform) {
         this.canPerform = canPerform;
     }
+
 
     public RoleCategory getRoleCategory() {
         return roleCategory;

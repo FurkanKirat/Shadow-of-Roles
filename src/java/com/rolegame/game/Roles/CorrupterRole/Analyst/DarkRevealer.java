@@ -24,6 +24,12 @@ public class DarkRevealer extends CorrupterRole implements ActiveNightAbility {
         if(getChoosenPlayer()==null){
             return false;
         }
+
+        if(choosenPlayer.isImmune()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            return false;
+        }
+
         String message = LanguageManager.getText("DarkRevealer.abilityMessage")+": " + getChoosenPlayer().getRole().getName();
         Message.sendMessage(message,getRoleOwner(), false);
 

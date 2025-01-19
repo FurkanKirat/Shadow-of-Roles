@@ -57,7 +57,8 @@
   },
   "RoleBlock": {
     "roleBlockedMessage": "Bu gece rolünüz engellendi",
-    "immuneMessage": "Biri sizi engellemeye çalıştı ama bağışıklığınız var",
+    "immuneMessage": "Hedefin dokunulmaz",
+    "RBimmuneMessage": "Biri sizi engellemeye çalıştı ama bağışıklığınız var",
     "roleBlockMessage": "Hedefinizin rolünü engellediniz"
   },
   "SealMaster": {
@@ -156,6 +157,12 @@
     "abilityMessage": "You blinded your target",
     "abilities": "When you blind someone that player perform their ability randomly",
     "blindMessage": "You blinded this night"
+  },
+  "FolkHero": {
+    "name": "FolkHero",
+    "attributes": "Yok",
+    "abilities": "Yok",
+    "goal": "Yok"
   },
   "CauseOfDeath": {
     "assassin": "Suikastçi",

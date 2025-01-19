@@ -57,7 +57,8 @@
   },
   "RoleBlock": {
     "roleBlockedMessage": "You have been role blocked this night",
-    "immuneMessage": "Someone tried to role block you but you are immune",
+    "immuneMessage": "Hedefin dokunulmaz",
+    "RBimmuneMessage": "Someone tried to role block you but you are immune",
     "roleBlockMessage": "You have role blocked your target"
   },
   "SealMaster": {
@@ -157,6 +158,12 @@
     "abilityMessage": "You blinded your target",
     "abilities": "When you blind someone that player perform their ability randomly",
     "blindMessage": "You blinded this night"
+  },
+  "FolkHero": {
+    "name": "FolkHero",
+    "attributes": "Yok",
+    "abilities": "Yok",
+    "goal": "Yok"
   },
   "CauseOfDeath": {
     "assassin": "Assassin",

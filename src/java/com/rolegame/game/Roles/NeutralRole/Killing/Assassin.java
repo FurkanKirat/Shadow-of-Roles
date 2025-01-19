@@ -17,10 +17,15 @@ public class Assassin extends NeutralRole implements ActiveNightAbility {
     public boolean performAbility() {
 
         if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            Message.sendMessage(LanguageManager.getText("RoleBlock.RBimmuneMessage") ,getRoleOwner(),false);
         }
 
         if(getChoosenPlayer()==null){
+            return false;
+        }
+
+        if(choosenPlayer.isImmune()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
             return false;
         }
 

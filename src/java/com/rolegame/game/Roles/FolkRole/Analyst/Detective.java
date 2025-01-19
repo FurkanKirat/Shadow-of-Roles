@@ -29,6 +29,11 @@ public class Detective extends FolkRole implements ActiveNightAbility {
             return false;
         }
 
+        if(choosenPlayer.isImmune()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            return false;
+        }
+
         Role randRole = RoleCatalog.getRandomRole(getChoosenPlayer().getRole());
 
         String message =

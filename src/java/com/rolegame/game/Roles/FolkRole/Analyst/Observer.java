@@ -25,6 +25,10 @@ public class Observer extends FolkRole implements ActiveNightAbility {
             return false;
         }
 
+        if(choosenPlayer.isImmune()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            return false;
+        }
 
         Message.sendMessage(LanguageManager.getText("Observer.message")+": " +
                         this.getChoosenPlayer().getRole().getTeam(), getRoleOwner(),false);
