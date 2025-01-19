@@ -165,6 +165,12 @@
     "abilities": "Yok",
     "goal": "Yok"
   },
+  "Deneme": {
+    "name": "Deneme",
+    "attributes": "Yok",
+    "abilities": "Yok",
+    "goal": "Yok"
+  },
   "CauseOfDeath": {
     "assassin": "Assassin",
     "psycho": "Psycho",
