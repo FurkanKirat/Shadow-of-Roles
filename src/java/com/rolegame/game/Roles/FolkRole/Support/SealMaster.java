@@ -3,6 +3,7 @@ package com.rolegame.game.Roles.FolkRole.Support;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.Roles.FolkRole.FolkRole;
+import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
@@ -11,6 +12,11 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 public class SealMaster extends FolkRole implements ActiveNightAbility {
     public SealMaster() {
         super(RoleID.SealMaster, RolePriority.Roleblock, RoleCategory.FolkSupport, 0,0);
+    }
+
+    @Override
+    public Role createCopy() {
+        return new SealMaster();
     }
 
     @Override

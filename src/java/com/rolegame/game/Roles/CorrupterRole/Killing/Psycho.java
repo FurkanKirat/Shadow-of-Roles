@@ -3,6 +3,7 @@ package com.rolegame.game.Roles.CorrupterRole.Killing;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.Roles.CorrupterRole.CorrupterRole;
+import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
@@ -12,6 +13,11 @@ public class Psycho extends CorrupterRole implements ActiveNightAbility {
 
     public Psycho() {
         super(RoleID.Psycho, RolePriority.None, RoleCategory.CorrupterKilling, 1,0);
+    }
+
+    @Override
+    public Role createCopy() {
+        return new Psycho();
     }
 
     @Override

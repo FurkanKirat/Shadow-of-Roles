@@ -15,6 +15,11 @@ public class Disguiser extends CorrupterRole implements ActiveNightAbility {
     }
 
     @Override
+    public Role createCopy() {
+        return new Disguiser();
+    }
+
+    @Override
     public boolean performAbility() {
         Role currentRole = RoleCatalog.getRandomRole(new Disguiser());
         currentRole.setChoosenPlayer(this.getChoosenPlayer());

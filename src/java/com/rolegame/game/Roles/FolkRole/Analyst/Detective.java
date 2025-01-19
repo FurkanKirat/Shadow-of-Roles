@@ -18,6 +18,11 @@ public class Detective extends FolkRole implements ActiveNightAbility {
     }
 
     @Override
+    public Role createCopy() {
+        return new Detective();
+    }
+
+    @Override
     public boolean performAbility() {
 
         if(!isCanPerform()){
