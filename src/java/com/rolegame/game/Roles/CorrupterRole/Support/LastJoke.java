@@ -16,13 +16,12 @@ public class LastJoke extends CorrupterRole {
     }
 
     @Override
-    public Role createCopy() {
-        return new LastJoke();
+    public boolean performAbility() {
+        return executeAbility();
     }
 
     @Override
-    public boolean performAbility() {
-
+    public boolean executeAbility() {
         if(!didUsedAbility && !getRoleOwner().isAlive()){
             didUsedAbility = true;
 

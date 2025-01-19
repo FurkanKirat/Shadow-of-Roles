@@ -20,17 +20,16 @@ public class Darkseer extends CorrupterRole implements PassiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Darkseer();
-    }
-
-    @Override
     public boolean performAbility() {
         if(!isCanPerform()){
             Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
             return false;
         }
+        return executeAbility();
+    }
 
+    @Override
+    public boolean executeAbility() {
         ArrayList<Player> players = new ArrayList<>(GameScreenController.getGameController().getAlivePlayers());
 
         Collections.shuffle(players);

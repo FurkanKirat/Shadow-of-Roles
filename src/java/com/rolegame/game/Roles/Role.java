@@ -1,5 +1,6 @@
 package com.rolegame.game.Roles;
 
+import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.GameManagement.Player;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
@@ -23,8 +24,6 @@ public abstract class Role {
     protected double attack;
     protected double defence;
     protected boolean canPerform;
-
-
 
     public Role(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
                 Team team, String goal,
@@ -61,9 +60,33 @@ public abstract class Role {
         this.choosenPlayer = roleOwner.getRole().getChoosenPlayer();
     }
 
-    public abstract Role createCopy();
+    public Role copy() {
+        try {
+            return this.getClass().getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot create copy of Role", e);
+        }
+    }
 
-    public abstract boolean performAbility();
+    public boolean performAbility(){
+        if(!canPerform){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),roleOwner,false);
+            return false;
+        }
+
+        if(choosenPlayer==null){
+            return false;
+        }
+
+        if(choosenPlayer.isImmune()){
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,roleOwner,false);
+            return false;
+        }
+
+        return executeAbility();
+    }
+
+    public abstract boolean executeAbility();
 
     @Override
     public String toString(){

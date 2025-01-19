@@ -33,6 +33,8 @@ public class AchievementManager {
     private static final Achievement LEGENDARY_PLAYER =
             new ProgressiveAchievement("Legendary Player","Complete Your First 99 Games",false, Achievement.AchievementCategory.PlayGame,0,99);
 
+    private static final Achievement LAZY_HERO =
+            new BasicAchievement("Lazy Hero","Win the game with the folk hero without using any skills",false, Achievement.AchievementCategory.Roles);
 
     public static Map<String, Achievement> loadAchievements() {
         ObjectMapper mapper = new ObjectMapper();
@@ -92,8 +94,6 @@ public class AchievementManager {
         }
     }
 
-
-
     public static void completeAchievement(String title) {
         Map<String,Achievement> loadAchievements = loadAchievements();
         Achievement achievement = loadAchievements.get(title);
@@ -119,8 +119,6 @@ public class AchievementManager {
         }
     }
 
-
-
     static {
         addAchievement(FIRST_STEPS);
         addAchievement(NOVICE_ADVENTURER);
@@ -128,6 +126,7 @@ public class AchievementManager {
         addAchievement(ON_THE_PATH_TO_MASTERY);
         addAchievement(HALFWAY_THERE);
         addAchievement(LEGENDARY_PLAYER);
+        addAchievement(LAZY_HERO);
     }
 
     private static void addAchievement(Achievement achievement){

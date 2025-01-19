@@ -11,14 +11,13 @@ public class Deneme extends NeutralRole {
         super(RoleID.Deneme, RolePriority.None, RoleCategory.NeutralChaos, 0, 0);
     }
 
-
     @Override
-    public Role createCopy() {
-        return null;
+    public boolean performAbility() {
+        return false;
     }
 
     @Override
-    public boolean performAbility() {
+    public boolean executeAbility() {
         return false;
     }
 }

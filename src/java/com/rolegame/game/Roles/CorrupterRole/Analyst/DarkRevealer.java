@@ -15,30 +15,10 @@ public class DarkRevealer extends CorrupterRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new DarkRevealer();
-    }
+    public boolean executeAbility() {
 
-    @Override
-    public boolean performAbility() {
-
-        if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
-            return false;
-        }
-
-        if(getChoosenPlayer()==null){
-            return false;
-        }
-
-        if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
-            return false;
-        }
-
-        String message = LanguageManager.getText("DarkRevealer.abilityMessage")+": " + getChoosenPlayer().getRole().getName();
+        String message = LanguageManager.getText("DarkRevealer.abilityMessage")+": " + choosenPlayer.getRole().getName();
         Message.sendMessage(message,getRoleOwner(), false);
-
 
         return true;
     }

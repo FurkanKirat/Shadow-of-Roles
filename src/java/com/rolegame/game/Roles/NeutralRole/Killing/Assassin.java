@@ -15,11 +15,6 @@ public class Assassin extends NeutralRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Assassin();
-    }
-
-    @Override
     public boolean performAbility() {
 
         if(!isCanPerform()){
@@ -34,7 +29,12 @@ public class Assassin extends NeutralRole implements ActiveNightAbility {
             Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
             return false;
         }
+        return executeAbility();
 
+    }
+
+    @Override
+    public boolean executeAbility() {
         if(getAttack() > getChoosenPlayer().getDefence()){
             this.getChoosenPlayer().setAlive(false);
             this.getChoosenPlayer().setCauseOfDeath(LanguageManager.getText("CauseOfDeath.assassin"));
@@ -49,3 +49,4 @@ public class Assassin extends NeutralRole implements ActiveNightAbility {
         }
     }
 }
+

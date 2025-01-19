@@ -16,26 +16,7 @@ public class Psycho extends CorrupterRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Psycho();
-    }
-
-    @Override
-    public boolean performAbility() {
-
-        if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
-            return false;
-        }
-
-        if(getChoosenPlayer()==null){
-            return false;
-        }
-
-        if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
-            return false;
-        }
+    public boolean executeAbility() {
 
         if(getAttack() > getChoosenPlayer().getDefence()){
             this.getChoosenPlayer().setAlive(false);
@@ -50,6 +31,5 @@ public class Psycho extends CorrupterRole implements ActiveNightAbility {
                     getRoleOwner(),false);
             return false;
         }
-
     }
 }

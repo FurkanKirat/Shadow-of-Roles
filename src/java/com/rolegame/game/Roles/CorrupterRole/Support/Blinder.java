@@ -20,26 +20,7 @@ public class Blinder extends CorrupterRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Blinder();
-    }
-
-    @Override
-    public boolean performAbility() {
-        if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
-            return false;
-        }
-
-        if(getChoosenPlayer()==null){
-            return false;
-        }
-
-        if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
-            return false;
-        }
-
+    public boolean executeAbility() {
         String message = LanguageManager.getText("Blinder.abilityMessage");
         Message.sendMessage(message,getRoleOwner(), false);
         ArrayList<Player> players = new ArrayList<>(GameScreenController.getGameController().getAlivePlayers());

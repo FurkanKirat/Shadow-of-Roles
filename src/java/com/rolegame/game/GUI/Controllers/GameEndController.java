@@ -6,6 +6,7 @@ import com.rolegame.game.GameManagement.Player;
 import com.rolegame.game.PropertyControllers.AchievementManager;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.PropertyControllers.SceneController;
+import com.rolegame.game.Roles.FolkRole.Protector.FolkHero;
 import com.rolegame.game.Roles.Role;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -111,6 +112,13 @@ public class GameEndController implements Initializable {
                 AchievementManager.addProgressToAchievement(achievementEntry.getKey(), 1);
             }
 
+        }
+
+        for (Player player: GameScreenController.getGameController().getAllPlayers()){
+            if(player.getRole() instanceof FolkHero folkHero && folkHero.getAbilityUseCount() == 0 &&
+                    player.isHasWon()){
+                AchievementManager.completeAchievement("Lazy Hero");
+            }
         }
 
     }

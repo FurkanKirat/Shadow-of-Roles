@@ -16,30 +16,11 @@ public class Stalker extends FolkRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Stalker();
-    }
-
-    @Override
-    public boolean performAbility() {
-        if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
-            return false;
-        }
-
-        if(getChoosenPlayer()==null){
-            return false;
-        }
-
-        if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
-            return false;
-        }
-
+    public boolean executeAbility() {
         String message = getChoosenPlayer().getRole().getChoosenPlayer()==null ?
                 LanguageManager.getText("Stalker.nobodyMessage"):
-                LanguageManager.getText("Stalker.visitMessage")+" " + getChoosenPlayer().getRole().getChoosenPlayer().getName()+ " " + LanguageManager.getText("Stalker.thisNight");
-        Message.sendMessage(message,getRoleOwner(),false);
+                LanguageManager.getText("Stalker.visitMessage")+" " + choosenPlayer.getRole().getChoosenPlayer().getName()+ " " + LanguageManager.getText("Stalker.thisNight");
+        Message.sendMessage(message,roleOwner,false);
         return true;
     }
 }

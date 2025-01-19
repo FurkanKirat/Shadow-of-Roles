@@ -1,6 +1,5 @@
 package com.rolegame.game.Roles.CorrupterRole.Support;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.CorrupterRole.CorrupterRole;
 import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleCatalog;
@@ -15,16 +14,10 @@ public class Disguiser extends CorrupterRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Disguiser();
-    }
-
-    @Override
-    public boolean performAbility() {
+    public boolean executeAbility() {
         Role currentRole = RoleCatalog.getRandomRole(new Disguiser());
         currentRole.setChoosenPlayer(this.getChoosenPlayer());
         currentRole.setRoleOwner(this.getRoleOwner());
         return currentRole.performAbility();
-
     }
 }

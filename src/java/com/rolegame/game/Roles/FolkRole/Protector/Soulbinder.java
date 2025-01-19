@@ -15,28 +15,9 @@ public class Soulbinder extends FolkRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Soulbinder();
-    }
-
-    @Override
-    public boolean performAbility() {
-
-        if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
-            return false;
-        }
-
-        if(getChoosenPlayer()==null){
-            return false;
-        }
-
-        if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
-            return false;
-        }
-
-        this.getChoosenPlayer().setDefence(this.getChoosenPlayer().getDefence()+1);
+    public boolean executeAbility() {
+        Message.sendMessage(LanguageManager.getText("RoleBlock.abilityMessage") ,roleOwner,false);
+        this.choosenPlayer.setDefence(this.choosenPlayer.getDefence()+1);
         return true;
     }
 }

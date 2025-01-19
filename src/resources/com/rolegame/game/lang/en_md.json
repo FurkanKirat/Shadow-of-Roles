@@ -118,7 +118,8 @@
     "Soulbinder": {
         "name": "Vinculum Animarum",
         "attributes": "None",
-        "abilities": "You choose someone at night and if they get attacked, you prevent them from dying"
+        "abilities": "You choose someone at night and if they get attacked, you prevent them from dying",
+        "abilityMessage": "You have successfully protected your target"
     },
     "SimplePerson": {
         "name": "Simple Soul",
@@ -162,7 +163,7 @@
         "name": "FolkHero",
         "attributes": "Yok",
         "abilities": "Yok",
-        "goal": "Yok"
+        "abilityMessage": "Başarıyla hedefini bağışık hale getirdin"
     },
     "Deneme": {
         "name": "Deneme",

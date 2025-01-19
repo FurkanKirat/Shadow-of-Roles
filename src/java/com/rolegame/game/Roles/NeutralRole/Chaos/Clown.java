@@ -14,12 +14,12 @@ public class Clown extends NeutralRole implements NoNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Clown();
+    public boolean performAbility() {
+        return false;
     }
 
     @Override
-    public boolean performAbility() {
+    public boolean executeAbility() {
         return false;
     }
 }

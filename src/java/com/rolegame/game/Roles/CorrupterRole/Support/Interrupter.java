@@ -15,11 +15,6 @@ public class Interrupter extends CorrupterRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Interrupter();
-    }
-
-    @Override
     public boolean performAbility() {
 
         if(getChoosenPlayer()==null){
@@ -35,7 +30,12 @@ public class Interrupter extends CorrupterRole implements ActiveNightAbility {
             return false;
         }
 
+        return executeAbility();
 
+    }
+
+    @Override
+    public boolean executeAbility() {
         Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockMessage"), getRoleOwner(),false);
         getChoosenPlayer().getRole().setCanPerform(false);
         return true;

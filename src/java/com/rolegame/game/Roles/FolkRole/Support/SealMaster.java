@@ -15,11 +15,6 @@ public class SealMaster extends FolkRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new SealMaster();
-    }
-
-    @Override
     public boolean performAbility() {
 
         if(getChoosenPlayer()==null){
@@ -27,16 +22,21 @@ public class SealMaster extends FolkRole implements ActiveNightAbility {
         }
 
         if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.RBimmuneMessage") ,getRoleOwner(),false);
+            Message.sendMessage(LanguageManager.getText("RoleBlock.RBimmuneMessage") ,roleOwner,false);
         }
 
         if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,roleOwner,false);
             return false;
         }
+        return executeAbility();
+    }
 
-        Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockMessage"), getRoleOwner(),false);
-        getChoosenPlayer().getRole().setCanPerform(false);
+    @Override
+    public boolean executeAbility() {
+
+        Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockMessage"), roleOwner,false);
+        choosenPlayer.getRole().setCanPerform(false);
         return true;
     }
 }

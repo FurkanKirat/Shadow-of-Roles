@@ -1,7 +1,6 @@
 package com.rolegame.game.Roles.NeutralRole.Chaos;
 
 import com.rolegame.game.Roles.NeutralRole.NeutralRole;
-import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleProperties.NoNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
@@ -13,12 +12,12 @@ public class SimplePerson extends NeutralRole implements NoNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new SimplePerson();
+    public boolean performAbility() {
+        return false;
     }
 
     @Override
-    public boolean performAbility() {
+    public boolean executeAbility() {
         return false;
     }
 

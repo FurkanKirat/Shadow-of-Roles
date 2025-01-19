@@ -18,33 +18,13 @@ public class Detective extends FolkRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Detective();
-    }
-
-    @Override
-    public boolean performAbility() {
-
-        if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
-            return false;
-        }
-
-        if(getChoosenPlayer()==null){
-            return false;
-        }
-
-        if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
-            return false;
-        }
-
+    public boolean executeAbility() {
         Role randRole = RoleCatalog.getRandomRole(getChoosenPlayer().getRole());
 
         String message =
                 LanguageManager.getText("Detective.role")+": " +
-                (new Random().nextBoolean() ? getChoosenPlayer().getRole().getName() + " " + LanguageManager.getText("Detective.or") + " " + randRole.getName() :
-                        randRole.getName() + " " + LanguageManager.getText("Detective.or") + " " + getChoosenPlayer().getRole().getName());
+                        (new Random().nextBoolean() ? getChoosenPlayer().getRole().getName() + " " + LanguageManager.getText("Detective.or") + " " + randRole.getName() :
+                                randRole.getName() + " " + LanguageManager.getText("Detective.or") + " " + getChoosenPlayer().getRole().getName());
         Message.sendMessage(message,getRoleOwner(),false);
 
         return true;

@@ -15,29 +15,15 @@ public class Observer extends FolkRole implements ActiveNightAbility {
     }
 
     @Override
-    public Role createCopy() {
-        return new Observer();
+    public boolean performAbility() {
+
+       return executeAbility();
     }
 
     @Override
-    public boolean performAbility() {
-
-        if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
-            return false;
-        }
-
-        if(getChoosenPlayer()==null){
-            return false;
-        }
-
-        if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
-            return false;
-        }
-
+    public boolean executeAbility() {
         Message.sendMessage(LanguageManager.getText("Observer.message")+": " +
-                        this.getChoosenPlayer().getRole().getTeam(), getRoleOwner(),false);
+                this.getChoosenPlayer().getRole().getTeam(), getRoleOwner(),false);
         return true;
     }
 }

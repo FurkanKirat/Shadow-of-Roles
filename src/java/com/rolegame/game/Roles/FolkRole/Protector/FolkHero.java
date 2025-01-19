@@ -1,9 +1,8 @@
-package com.rolegame.game.Roles.FolkRole.Support;
+package com.rolegame.game.Roles.FolkRole.Protector;
 
 import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.FolkRole.FolkRole;
-import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
@@ -14,13 +13,8 @@ public class FolkHero extends FolkRole implements ActiveNightAbility {
     private int abilityUseCount;
 
     public FolkHero() {
-        super(RoleID.FolkHero, RolePriority.FolkHero, RoleCategory.FolkSupport, 0, 0);
+        super(RoleID.FolkHero, RolePriority.FolkHero, RoleCategory.FolkProtector, 0, 0);
         abilityUseCount = 0;
-    }
-
-    @Override
-    public Role createCopy() {
-        return new FolkHero();
     }
 
     @Override
@@ -33,14 +27,24 @@ public class FolkHero extends FolkRole implements ActiveNightAbility {
         abilityUseCount++;
 
         if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage") ,getRoleOwner(),false);
+            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage") ,roleOwner,false);
             return false;
         }
 
         if(abilityUseCount<=2){
-            getChoosenPlayer().setImmune(true);
+            Message.sendMessage(LanguageManager.getText("RoleBlock.abilityMessage") ,roleOwner,false);
+            choosenPlayer.setImmune(true);
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean executeAbility() {
+        return false;
+    }
+
+    public int getAbilityUseCount() {
+        return abilityUseCount;
     }
 }
