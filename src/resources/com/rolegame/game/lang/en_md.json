@@ -184,7 +184,9 @@
         "name": "Lorekeeper",
         "attributes": "Yok",
         "abilities": "Yok",
-        "goal": "Win the game"
+        "goal": "Win the game",
+        "abilityMessage": "The following player has revealed: {playerName} ({roleName})",
+        "guess": "Your true guess count is: {guessCount}"
     },
     "CauseOfDeath": {
         "assassin": "Assassin",

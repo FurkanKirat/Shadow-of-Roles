@@ -183,7 +183,7 @@ public class GameController {
                     else{
                         winCount = 2;
                     }
-                    
+
                     if(lorekeeper.getTrueGuessCount() >= winCount){
                         player.setHasWon(true);
                     }

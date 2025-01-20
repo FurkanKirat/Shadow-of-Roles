@@ -4,6 +4,7 @@ import com.rolegame.game.GUI.Controllers.GameScreenController;
 import com.rolegame.game.GameManagement.Player;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.CorrupterRole.Support.LastJoke;
+import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
 import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.Team;
 import javafx.geometry.Pos;
@@ -98,6 +99,11 @@ public class PlayerSelectionBox extends HBox{
 
         if(currentPlayer.getRole() instanceof LastJoke lastJoker && !lastJoker.getRoleOwner().isAlive()){
             selectButton.setVisible(true);
+        }
+
+        if(currentPlayer.getRole() instanceof Lorekeeper lorekeeper && !isDay &&
+                lorekeeper.getAlreadyChosenPlayers().contains(player)){
+            selectButton.setVisible(false);
         }
 
         Region spacer = new Region();

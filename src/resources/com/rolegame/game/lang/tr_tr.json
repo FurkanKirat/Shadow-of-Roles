@@ -184,7 +184,9 @@
     "name": "Lorekeeper",
     "attributes": "Yok",
     "abilities": "Yok",
-    "goal": "Win the game"
+    "goal": "Win the game",
+    "abilityMessage": "Şu kişi açığa çıkarıldı: {playerName} ({roleName})",
+    "guess": "Doğru tahmin sayınız: {guessCount}"
   },
   "CauseOfDeath": {
     "assassin": "Suikastçi",
