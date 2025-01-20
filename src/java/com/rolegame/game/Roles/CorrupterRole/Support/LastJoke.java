@@ -28,9 +28,10 @@ public class LastJoke extends CorrupterRole {
             if(getChoosenPlayer()==null){
                 return false;
             }
-            this.getChoosenPlayer().setAlive(false);
-            this.getChoosenPlayer().setCauseOfDeath(LanguageManager.getText("CauseOfDeath.lastJoke"));
-            Message.sendMessage(this.getChoosenPlayer().getName() + " "+ LanguageManager.getText("LastJoke.slainMessage"), getRoleOwner(),true);
+            choosenPlayer.setAlive(false);
+            choosenPlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath.lastJoke"));
+            Message.sendMessage(LanguageManager.getText("LastJoke.slainMessage")
+                    .replace("{playerName}", choosenPlayer.getName()), getRoleOwner(),true);
 
             return true;
         }

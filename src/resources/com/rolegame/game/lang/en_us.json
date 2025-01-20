@@ -77,14 +77,14 @@
     "name": "Dark Revealer",
     "attributes": "None",
     "abilities": "At night you see someone's role",
-    "abilityMessage": "Your target's role is"
+    "abilityMessage": "Your target's role is: {roleName}"
   },
   "Psycho": {
     "name": "Psycho",
     "attributes": "None",
     "abilities": "Kill one person each night",
     "killMessage": "You have slain your target successfully",
-    "slainMessage": "has been slain by a Psycho",
+    "slainMessage": "{playerName} has been slain by a Psycho",
     "defenceMessage": "You could not slain your target because your attack was not powerful enough"
   },
   "Assassin": {
@@ -93,29 +93,27 @@
     "abilities": "Kill one person each night",
     "goal": "Kill every folk and corrupter member",
     "killMessage": "You have slain your target successfully",
-    "slainMessage": "has been slain by an Assassin",
+    "slainMessage": "{playerName} has been slain by an Assassin",
     "defenceMessage": "You could not slain your target because your attack was not powerful enough"
   },
   "Detective": {
     "name": "Detective",
     "attributes": "None",
     "abilities": "You choose one and see two roles, including that person's role",
-    "role": "Your target's role is",
-    "or": "or"
+    "abilityMessage": "Your target's role is {roleName1} or {roleName2}"
   },
   "Observer": {
     "name": "Observer",
     "attributes": "None",
     "abilities": "At night you can see which team a person belongs to",
-    "message": "Your target's team is"
+    "abilityMessage": "Your target's team is: {teamName}"
   },
   "Stalker": {
     "name": "Stalker",
     "attributes": "None",
     "abilities": "You choose a person and see who that person goes to at night",
-    "visitMessage": "Your target has visited",
-    "nobodyMessage": "Your target did not visited anybody",
-    "thisNight": "this night!"
+    "visitMessage": "Your target has visited {playerName} this night!",
+    "nobodyMessage": "Your target did not visited anybody this night!"
   },
   "Soulbinder": {
     "name": "Soulbinder",
@@ -133,7 +131,7 @@
     "name": "Last Joke",
     "attributes": "None",
     "abilities": "When you die you will comeback to life and you must kill one player",
-    "slainMessage": "Someone make their Last Joke to"
+    "slainMessage": "Someone make their Last Joke to {playerName}"
   },
   "Clown": {
     "name": "Clown",
@@ -151,8 +149,8 @@
     "name": "Darkseer",
     "attributes": "None",
     "abilities": "You see the role of two living people, but you cannot see the role owner",
-    "abilityMessage": "The roles of the two currently living player in the play are:",
-    "oneLeftMessage": "The role of the currently living person in the play is:",
+    "abilityMessage": "The roles of the two currently living player in the play are: {roleName1} and {roleName2}",
+    "oneLeftMessage": "The role of the currently living person in the play is: {roleName}",
     "zeroLeftMessage": "There are not any players to see their role"
   },
   "Blinder": {

@@ -36,12 +36,13 @@ public class Darkseer extends CorrupterRole implements PassiveNightAbility {
         String message;
 
         if (players.size() >= 2) {
-            message = LanguageManager.getText("Darkseer.abilityMessage") +
-                    players.getFirst().getRole().getName() +", " + players.get(1).getRole().getName();
+            message = LanguageManager.getText("Darkseer.abilityMessage")
+                    .replace("{roleName1}",players.getFirst().getRole().getName())
+                    .replace("{roleName2}",players.get(1).getRole().getName());
         }
         else if (players.size()==1) {
-            message = LanguageManager.getText("Darkseer.oneLeftMessage") +
-                    players.getFirst().getRole().getName();
+            message = LanguageManager.getText("Darkseer.oneLeftMessage")
+                    .replace("{roleName}",players.getFirst().getRole().getName());
         }
         else{
             message = LanguageManager.getText("Darkseer.zeroLeftMessage");

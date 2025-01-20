@@ -22,13 +22,13 @@ public class LorekeeperBox extends VBox {
         });
 
         Label trueGuessLabel = new Label();
-        String textTemplate = LanguageManager.getText("Lorekeeper.guessCount");
-        
+        String textTemplate = LanguageManager.getText("Lorekeeper.guess");
+
         String text = textTemplate
-                .replace("guessCount", lorekeeper.getTrueGuessCount()+"");
+                .replace("{guessCount}", lorekeeper.getTrueGuessCount()+"");
         trueGuessLabel.setText(text);
 
-        this.getChildren().add(rolesCombobox);
+        this.getChildren().addAll(rolesCombobox, trueGuessLabel);
         this.setAlignment(Pos.CENTER);
     }
 }

@@ -77,14 +77,14 @@
     "name": "Karanlık Açığa Çıkaran",
     "attributes": "Yok",
     "abilities": "Gece birinin rolünü görebilirsiniz",
-    "abilityMessage": "Hedefinizin rolü"
+    "abilityMessage": "Hedefinizin rolü: {roleName}"
   },
   "Psycho": {
     "name": "Psikopat",
     "attributes": "Yok",
     "abilities": "Her gece bir kişiyi öldürün",
     "killMessage": "Hedefinizi başarıyla öldürdünüz",
-    "slainMessage": "Psikopat tarafından öldürüldü",
+    "slainMessage": "{playerName} psikopat tarafından öldürüldü",
     "defenceMessage": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi"
   },
   "Assassin": {
@@ -93,29 +93,27 @@
     "abilities": "Her gece bir kişiyi öldürün",
     "goal": "Tüm halk ve bozguncu üyelerini öldürün",
     "killMessage": "Hedefinizi başarıyla öldürdünüz",
-    "slainMessage": "Suikastçi tarafından öldürüldü",
+    "slainMessage": "{playerName} suikastçi tarafından öldürüldü",
     "defenceMessage": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi"
   },
   "Detective": {
     "name": "Dedektif",
     "attributes": "Yok",
     "abilities": "Birini seçin ve iki rol görün, biri o kişinin rolü",
-    "role": "Hedefinizin rolü",
-    "or": "veya"
+    "abilityMessage": "Hedefinizin rolü: {roleName1} veya {roleName2}"
   },
   "Observer": {
     "name": "Gözlemci",
     "attributes": "Yok",
     "abilities": "Gece birinin hangi takıma ait olduğunu görebilirsiniz",
-    "message": "Hedefinizin takımı"
+    "abilityMessage": "Hedefinizin takımı: {teamName}"
   },
   "Stalker": {
     "name": "Avcı",
     "attributes": "Yok",
     "abilities": "Bir kişiyi seçin ve o kişinin gece nereye gittiğini görün",
-    "visitMessage": "Hedefiniz şu kişiyi ziyaret etti:",
-    "nobodyMessage": "Hedefiniz kimseyi ziyaret etmedi",
-    "thisNight": "bu gece!"
+    "visitMessage": "Hedefiniz bu gece şu kişiyi ziyaret etti: {playerName}",
+    "nobodyMessage": "Hedefiniz bu gece kimseyi ziyaret etmedi!"
   },
   "Soulbinder": {
     "name": "Ruh Bağlayıcı",
@@ -133,7 +131,7 @@
     "name": "Ölümün Mizahı",
     "attributes": "Yok",
     "abilities": "Öldüğün zaman geri gelip birini hayattan koparırsın",
-    "slainMessage": "için birisi son şakasını yaptı"
+    "slainMessage": "{playerName} için birisi son şakasını yaptı"
   },
   "Clown": {
     "name": "Palyaço",
@@ -150,16 +148,16 @@
     "name": "Karanlık Görücü",
     "attributes": "None",
     "abilities": "\nYaşayan iki kişinin rolünü görüyorsunuz ancak rol sahibini göremezsiniz",
-    "abilityMessage": "Oyunda şu anda yaşayan iki kişinin rolleri:",
-    "oneLeftMessage": "Oyunda şu anda yaşayan bir kişinin rolü:",
+    "abilityMessage": "Oyunda şu anda yaşayan iki kişinin rolleri: {roleName1} ve {roleName2}",
+    "oneLeftMessage": "Oyunda şu anda yaşayan bir kişinin rolü: {roleName1}",
     "zeroLeftMessage": "Rolü gösterilecek oyuncu bulunamadı"
   },
   "Blinder": {
     "name": "Blinder",
     "attributes": "None",
-    "abilityMessage": "You blinded your target",
+    "abilityMessage": "You have blinded your target",
     "abilities": "When you blind someone that player perform their ability randomly",
-    "blindMessage": "You blinded this night"
+    "blindMessage": "You are blinded this night"
   },
   "FolkHero": {
     "name": "FolkHero",

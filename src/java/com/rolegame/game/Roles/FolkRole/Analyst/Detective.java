@@ -19,15 +19,21 @@ public class Detective extends FolkRole implements ActiveNightAbility {
 
     @Override
     public boolean executeAbility() {
+
         Role randRole = RoleCatalog.getRandomRole(getChoosenPlayer().getRole());
 
-        String message =
-                LanguageManager.getText("Detective.role")+": " +
-                        (new Random().nextBoolean() ? getChoosenPlayer().getRole().getName() + " " + LanguageManager.getText("Detective.or") + " " + randRole.getName() :
-                                randRole.getName() + " " + LanguageManager.getText("Detective.or") + " " + getChoosenPlayer().getRole().getName());
-        Message.sendMessage(message,getRoleOwner(),false);
+        boolean firstIsChoosen = new Random().nextBoolean();
+        String roleName1 = firstIsChoosen ? getChoosenPlayer().getRole().getName() : randRole.getName();
+        String roleName2 = firstIsChoosen ? randRole.getName() : getChoosenPlayer().getRole().getName();
+
+        String message = LanguageManager.getText("Detective.abilityMessage")
+                .replace("{roleName1}", roleName1)
+                .replace("{roleName2}", roleName2);
+
+        Message.sendMessage(message, getRoleOwner(), false);
 
         return true;
     }
+
 
 }

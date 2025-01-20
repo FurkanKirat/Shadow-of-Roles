@@ -39,7 +39,8 @@ public class Assassin extends NeutralRole implements ActiveNightAbility {
             this.getChoosenPlayer().setAlive(false);
             this.getChoosenPlayer().setCauseOfDeath(LanguageManager.getText("CauseOfDeath.assassin"));
             Message.sendMessage(LanguageManager.getText("Assassin.killMessage"), getRoleOwner(),false);
-            Message.sendMessage(this.getChoosenPlayer().getName() + " " + LanguageManager.getText("Assassin.slainMessage"), getRoleOwner(),true);
+            Message.sendMessage(LanguageManager.getText("Assassin.slainMessage")
+                    .replace("{playerName}",this.getChoosenPlayer().getName()), getRoleOwner(),true);
             return true;
         }
         else{

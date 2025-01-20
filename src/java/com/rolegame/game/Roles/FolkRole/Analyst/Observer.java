@@ -16,8 +16,9 @@ public class Observer extends FolkRole implements ActiveNightAbility {
 
     @Override
     public boolean executeAbility() {
-        Message.sendMessage(LanguageManager.getText("Observer.message")+": " +
-                this.getChoosenPlayer().getRole().getTeam(), getRoleOwner(),false);
+        Message.sendMessage(LanguageManager.getText("Observer.abilityMessage")
+                .replace("{teamName}",this.getChoosenPlayer().getRole().getTeam().name())
+                ,getRoleOwner(),false);
         return true;
     }
 }
