@@ -18,7 +18,7 @@ public enum RoleID {
     Darkseer(14),
     Blinder(15),
     FolkHero(16),
-    Deneme(17);
+    Entrepreneur(17);
     RoleID(int i) {
     }
 }

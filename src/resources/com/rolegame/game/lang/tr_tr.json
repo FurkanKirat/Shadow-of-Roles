@@ -8,6 +8,7 @@
     "folkProtector": "Halk Koruyucusu",
     "folkKilling": "Halk Katili",
     "folkSupport": "Halk Destekçisi",
+    "folkUnique": "Halk Eşsiz",
     "corrupterAnalyst": "Bozguncu Analisti",
     "corrupterKilling": "Bozguncu Katili",
     "corrupterSupport": "Bozguncu Destekçisi",
@@ -165,11 +166,14 @@
     "abilities": "Yok",
     "abilityMessage": "Başarıyla hedefini bağışık hale getirdin"
   },
-  "Deneme": {
-    "name": "Deneme",
+  "Entrepreneur": {
+    "name": "Entrepreneur",
     "attributes": "Yok",
     "abilities": "Yok",
-    "goal": "Yok"
+    "insufficientMoney": "You don't have enough money to: ",
+    "attack": "Attack",
+    "heal": "Heal,",
+    "info": "Info"
   },
 
   "CauseOfDeath": {

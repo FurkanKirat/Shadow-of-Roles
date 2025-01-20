@@ -8,6 +8,7 @@
     "folkProtector": "Folk Protector",
     "folkKilling": "Folk Killing",
     "folkSupport": "Folk Support",
+    "folkUnique": "Folk Unique",
     "corrupterAnalyst": "Corrupter Analyst",
     "corrupterKilling": "Corrupter Killing",
     "corrupterSupport": "Corrupter Support",
@@ -166,11 +167,14 @@
     "abilities": "Yok",
     "abilityMessage": "Başarıyla hedefini bağışık hale getirdin"
   },
-  "Deneme": {
-    "name": "Deneme",
+  "Entrepreneur": {
+    "name": "Entrepreneur",
     "attributes": "Yok",
     "abilities": "Yok",
-    "goal": "Yok"
+    "insufficientMoney": "You don't have enough money to: ",
+    "attack": "Attack",
+    "heal": "Heal,",
+    "info": "Info"
   },
   "CauseOfDeath": {
     "assassin": "Assassin",

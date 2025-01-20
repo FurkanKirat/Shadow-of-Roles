@@ -3,9 +3,11 @@ package com.rolegame.game.GUI.Controllers;
 import com.rolegame.game.GUI.Boxes.MessageBox;
 import com.rolegame.game.GUI.Boxes.PlayerSelectionBox;
 import com.rolegame.game.GUI.Boxes.RoleBox;
+import com.rolegame.game.GUI.Boxes.RoleSpecificBoxes.EntrepreneurBox;
 import com.rolegame.game.GameManagement.*;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.*;
+import com.rolegame.game.Roles.FolkRole.Unique.Entrepreneur;
 import com.rolegame.game.Roles.RoleProperties.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -102,6 +104,9 @@ public class GameScreenController {
     @FXML
     private Button startDayButton;
 
+    @FXML
+    private VBox extraPropertiesVbox;
+
 
     private static GameController gameController;
 
@@ -192,6 +197,7 @@ public class GameScreenController {
         TreeItem<Object> folkProtector = new TreeItem<>(LanguageManager.getText("Role.folkProtector"));
         TreeItem<Object> folkKilling = new TreeItem<>(LanguageManager.getText("Role.folkKilling"));
         TreeItem<Object> folkSupport = new TreeItem<>(LanguageManager.getText("Role.folkSupport"));
+        TreeItem<Object> folkUnique = new TreeItem<>(LanguageManager.getText("Role.folkUnique"));
 
         TreeItem<Object> corrupterAnalyst = new TreeItem<>(LanguageManager.getText("Role.corrupterAnalyst"));
         TreeItem<Object> corrupterKilling = new TreeItem<>(LanguageManager.getText("Role.corrupterKilling"));
@@ -212,6 +218,10 @@ public class GameScreenController {
         }
         for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FolkSupport)){
             folkSupport.getChildren().add(new TreeItem<>(role));
+        }
+
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FolkUnique)){
+            folkUnique.getChildren().add(new TreeItem<>(role));
         }
 
         for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CorrupterAnalyst)){
@@ -235,7 +245,7 @@ public class GameScreenController {
         }
 
 
-        folk.getChildren().addAll(folkAnalyst,folkProtector,folkKilling,folkSupport);
+        folk.getChildren().addAll(folkAnalyst,folkProtector,folkKilling,folkSupport,folkUnique);
         corrupter.getChildren().addAll(corrupterAnalyst,corrupterKilling,corrupterSupport);
         neutral.getChildren().addAll(neutralEvil,neutralKilling,neutralChaos);
         roles.getChildren().addAll(folk,corrupter,neutral);
@@ -264,6 +274,11 @@ public class GameScreenController {
         }
 
         initializeMessages();
+        extraPropertiesVbox.getChildren().clear();
+        if(gameController.getCurrentPlayer().getRole() instanceof Entrepreneur entrepreneur && !gameController.isDay()){
+            entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.None);
+            extraPropertiesVbox.getChildren().add(new EntrepreneurBox(entrepreneur));
+        }
     }
 
     private void toggleDayNightCycle(){

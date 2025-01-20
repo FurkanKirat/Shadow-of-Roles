@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public abstract class Role {
     protected final RoleID id;
-    protected final RolePriority rolePriority;
+    protected RolePriority rolePriority;
     protected final RoleCategory roleCategory;
     protected final String name;
     protected final String attributes;
@@ -177,5 +177,9 @@ public abstract class Role {
 
     public RoleCategory getRoleCategory() {
         return roleCategory;
+    }
+
+    public void setRolePriority(RolePriority rolePriority) {
+        this.rolePriority = rolePriority;
     }
 }

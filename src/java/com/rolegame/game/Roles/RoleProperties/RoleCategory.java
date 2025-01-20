@@ -5,6 +5,7 @@ public enum RoleCategory {
     FolkProtector,
     FolkKilling,
     FolkSupport,
+    FolkUnique,
 
     CorrupterAnalyst,
     CorrupterKilling,

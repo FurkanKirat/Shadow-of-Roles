@@ -31,16 +31,16 @@ public class FolkHero extends FolkRole implements ActiveNightAbility {
             return false;
         }
 
+        return executeAbility();
+    }
+
+    @Override
+    public boolean executeAbility() {
         if(abilityUseCount<=2){
             Message.sendMessage(LanguageManager.getText("RoleBlock.abilityMessage") ,roleOwner,false);
             choosenPlayer.setImmune(true);
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public boolean executeAbility() {
         return false;
     }
 
