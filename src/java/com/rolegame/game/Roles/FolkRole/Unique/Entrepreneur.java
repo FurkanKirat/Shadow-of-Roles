@@ -27,7 +27,7 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
     private ChosenAbility abilityState;
     public Entrepreneur() {
         super(RoleID.Entrepreneur, RolePriority.None, RoleCategory.FolkUnique, 0, 0);
-        this.money = 5;
+        this.money = 3;
         this.setAbilityState(ChosenAbility.None);
     }
 

@@ -167,13 +167,17 @@
     "abilityMessage": "Başarıyla hedefini bağışık hale getirdin"
   },
   "Entrepreneur": {
-    "name": "Entrepreneur",
+    "name": "Ağa Babası",
     "attributes": "Yok",
     "abilities": "Yok",
     "insufficientMoney": "You don't have enough money to: ",
     "attack": "Attack",
     "heal": "Heal,",
-    "info": "Info"
+    "info": "Info",
+    "pass": "Pass Ability",
+    "selected": "Selected: ",
+    "none": "None",
+    "money": "Your money: "
   },
   "CauseOfDeath": {
     "assassin": "Suikastçi",
