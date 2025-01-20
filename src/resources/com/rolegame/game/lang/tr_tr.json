@@ -15,6 +15,7 @@
     "neutralEvil": "Tarafsız Kötü",
     "neutralKilling": "Tarafsız Katil",
     "neutralChaos": "Tarafsız Kaos",
+    "neutralGood": "Tarafsız İyi",
     "abilities": "Yetenekler",
     "attributes": "Özellikler",
     "goal": "Hedef",
@@ -179,7 +180,12 @@
     "none": "None",
     "money": "Your money: "
   },
-
+  "Lorekeeper": {
+    "name": "Lorekeeper",
+    "attributes": "Yok",
+    "abilities": "Yok",
+    "goal": "Win the game"
+  },
   "CauseOfDeath": {
     "assassin": "Suikastçi",
     "psycho": "Psikopat",

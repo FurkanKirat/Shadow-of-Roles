@@ -60,7 +60,7 @@ public abstract class Role {
         this.choosenPlayer = roleOwner.getRole().getChoosenPlayer();
     }
 
-    public Role copy() {
+    public final Role copy() {
         try {
             return this.getClass().getDeclaredConstructor().newInstance();
         } catch (Exception e) {
@@ -95,7 +95,7 @@ public abstract class Role {
 
     // Getter and Setters
 
-    public RoleID getId() {
+    public final RoleID getId() {
         return id;
     }
 
@@ -111,75 +111,75 @@ public abstract class Role {
         return Objects.hashCode(id);
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public String getAttributes() {
+    public final String getAttributes() {
         return attributes;
     }
 
-    public String getAbilities() {
+    public final String getAbilities() {
         return abilities;
     }
 
-    public String getGoal() {
+    public final String getGoal() {
         return goal;
     }
 
-    public RolePriority getRolePriority() {
+    public final RolePriority getRolePriority() {
         return rolePriority;
     }
 
-    public Team getTeam() {
+    public final Team getTeam() {
         return team;
     }
 
-    public Player getChoosenPlayer() {
+    public final Player getChoosenPlayer() {
         return choosenPlayer;
     }
 
-    public void setChoosenPlayer(Player choosenPlayer) {
+    public final void setChoosenPlayer(Player choosenPlayer) {
         this.choosenPlayer = choosenPlayer;
     }
 
-    public double getAttack() {
+    public final double getAttack() {
         return attack;
     }
 
-    public void setAttack(double attack) {
+    public final void setAttack(double attack) {
         this.attack = attack;
     }
 
-    public double getDefence() {
+    public final double getDefence() {
         return defence;
     }
 
-    public void setDefence(double defence) {
+    public final void setDefence(double defence) {
         this.defence = defence;
     }
 
-    public Player getRoleOwner() {
+    public final Player getRoleOwner() {
         return roleOwner;
     }
 
-    public void setRoleOwner(Player roleOwner) {
+    public final void setRoleOwner(Player roleOwner) {
         this.roleOwner = roleOwner;
     }
 
-    public boolean isCanPerform() {
+    public final boolean isCanPerform() {
         return canPerform;
     }
 
-    public void setCanPerform(boolean canPerform) {
+    public final void setCanPerform(boolean canPerform) {
         this.canPerform = canPerform;
     }
 
-    public RoleCategory getRoleCategory() {
+    public final RoleCategory getRoleCategory() {
         return roleCategory;
     }
 
-    public void setRolePriority(RolePriority rolePriority) {
+    public final void setRolePriority(RolePriority rolePriority) {
         this.rolePriority = rolePriority;
     }
 }

@@ -5,6 +5,7 @@ import com.rolegame.game.PropertyControllers.SceneController;
 import com.rolegame.game.Roles.CorrupterRole.Support.LastJoke;
 import com.rolegame.game.Roles.NeutralRole.Chaos.Clown;
 import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
+import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
 import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleCatalog;
 import com.rolegame.game.Roles.RoleComparator;
@@ -161,13 +162,37 @@ public class GameController {
 
         boolean simplePersonExist = false;
         for(Player player: allPlayers){
-            if(player.getRole() instanceof SimplePerson){
-                simplePersonExist = true;
-            } else if (player.getRole() instanceof Clown) {
-                if(!player.isAlive() && !player.getCauseOfDeath().equals(LanguageManager.getText("CauseOfDeath.hanging"))){
-                    player.setHasWon(true);
+
+            switch (player.getRole()){
+                case SimplePerson simplePerson -> {
+                    if(player.getRole() instanceof SimplePerson){
+                        simplePersonExist = true;
+                    }
+                }
+                case Clown clown -> {
+                    if(!player.isAlive() && !player.getCauseOfDeath().equals(LanguageManager.getText("CauseOfDeath.hanging"))){
+                        player.setHasWon(true);
+                    }
+                }
+                case Lorekeeper lorekeeper -> {
+                    int winCount;
+
+                    if(playerCount>6){
+                        winCount = 3;
+                    }
+                    else{
+                        winCount = 2;
+                    }
+                    
+                    if(lorekeeper.getTrueGuessCount() >= winCount){
+                        player.setHasWon(true);
+                    }
+                }
+                default -> {
+
                 }
             }
+
         }
 
         if(simplePersonExist){

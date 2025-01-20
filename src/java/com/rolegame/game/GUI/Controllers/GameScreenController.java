@@ -4,10 +4,12 @@ import com.rolegame.game.GUI.Boxes.MessageBox;
 import com.rolegame.game.GUI.Boxes.PlayerSelectionBox;
 import com.rolegame.game.GUI.Boxes.RoleBox;
 import com.rolegame.game.GUI.Boxes.RoleSpecificBoxes.EntrepreneurBox;
+import com.rolegame.game.GUI.Boxes.RoleSpecificBoxes.LorekeeperBox;
 import com.rolegame.game.GameManagement.*;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.*;
 import com.rolegame.game.Roles.FolkRole.Unique.Entrepreneur;
+import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
 import com.rolegame.game.Roles.RoleProperties.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -206,6 +208,8 @@ public class GameScreenController {
         TreeItem<Object> neutralEvil = new TreeItem<>(LanguageManager.getText("Role.neutralEvil"));
         TreeItem<Object> neutralKilling = new TreeItem<>(LanguageManager.getText("Role.neutralKilling"));
         TreeItem<Object> neutralChaos = new TreeItem<>(LanguageManager.getText("Role.neutralChaos"));
+        TreeItem<Object> neutralGood = new TreeItem<>(LanguageManager.getText("Role.neutralGood"));
+
 
         for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FolkAnalyst)){
             folkAnalyst.getChildren().add(new TreeItem<>(role));
@@ -244,10 +248,14 @@ public class GameScreenController {
             neutralChaos.getChildren().add(new TreeItem<>(role));
         }
 
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NeutralGood)){
+            neutralGood.getChildren().add(new TreeItem<>(role));
+        }
+
 
         folk.getChildren().addAll(folkAnalyst,folkProtector,folkKilling,folkSupport,folkUnique);
         corrupter.getChildren().addAll(corrupterAnalyst,corrupterKilling,corrupterSupport);
-        neutral.getChildren().addAll(neutralEvil,neutralKilling,neutralChaos);
+        neutral.getChildren().addAll(neutralEvil,neutralKilling,neutralChaos,neutralGood);
         roles.getChildren().addAll(folk,corrupter,neutral);
 
 
@@ -278,6 +286,9 @@ public class GameScreenController {
         if(gameController.getCurrentPlayer().getRole() instanceof Entrepreneur entrepreneur && !gameController.isDay()){
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.None);
             extraPropertiesVbox.getChildren().add(new EntrepreneurBox(entrepreneur));
+        }
+        else if(gameController.getCurrentPlayer().getRole() instanceof Lorekeeper lorekeeper && !gameController.isDay()){
+            extraPropertiesVbox.getChildren().add(new LorekeeperBox(lorekeeper));
         }
     }
 

@@ -15,6 +15,7 @@ import com.rolegame.game.Roles.NeutralRole.Chaos.Clown;
 import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
 import com.rolegame.game.Roles.FolkRole.Protector.FolkHero;
 import com.rolegame.game.Roles.FolkRole.Unique.Entrepreneur;
+import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
 import com.rolegame.game.Roles.NeutralRole.Killing.Assassin;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.Team;
@@ -24,6 +25,7 @@ import java.util.*;
 public class RoleCatalog {
     private static final HashMap<Team, List<Role>> rolesMap = new HashMap<>();
     private static final HashMap<RoleCategory, List<Role>> categoryMap = new HashMap<>();
+    private static final List<Role> allRoles = new ArrayList<>();
 
     static {
         addRole(new Detective());
@@ -43,12 +45,14 @@ public class RoleCatalog {
         addRole(new LastJoke());
         addRole(new FolkHero());
         addRole(new Entrepreneur());
+        addRole(new Lorekeeper());
 
     }
 
     private static void addRole(Role role){
         rolesMap.computeIfAbsent(role.getTeam(), k->new ArrayList<>()).add(role);
         categoryMap.computeIfAbsent(role.getRoleCategory(), k-> new ArrayList<>()).add(role);
+        allRoles.add(role);
     }
 
     public static List<Role> getRolesByTeam(Team team){
@@ -60,49 +64,18 @@ public class RoleCatalog {
         return categoryMap.getOrDefault(roleCategory, Collections.emptyList());
     }
 
+    public static List<Role> getAllRoles(){
+        return new ArrayList<>(allRoles);
+    }
+
     public static Role getRandomRole(Role otherRole){
-        ArrayList<Role> otherRoles = new ArrayList<>();
-        otherRoles.add(new Detective());
-        otherRoles.add(new Psycho());
-        otherRoles.add(new Observer());
-        otherRoles.add(new Soulbinder());
-        otherRoles.add(new Stalker());
-        otherRoles.add(new DarkRevealer());
-        otherRoles.add(new Interrupter());
-        otherRoles.add(new SealMaster());
-        otherRoles.add(new Assassin());
-        otherRoles.add(new SimplePerson());
-        otherRoles.add(new Clown());
-        otherRoles.add(new Disguiser());
-        otherRoles.add(new Darkseer());
-        otherRoles.add(new Blinder());
-        otherRoles.add(new LastJoke());
-        otherRoles.add(new FolkHero());
-        otherRoles.add(new Entrepreneur());
+        ArrayList<Role> otherRoles = new ArrayList<>(allRoles);
         otherRoles.remove(otherRole);
         return otherRoles.get(new Random().nextInt(otherRoles.size())).copy();
     }
 
     public static Role getRandomRole(){
-        ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new Detective());
-        roles.add(new Psycho());
-        roles.add(new Observer());
-        roles.add(new Soulbinder());
-        roles.add(new Stalker());
-        roles.add(new DarkRevealer());
-        roles.add(new Interrupter());
-        roles.add(new SealMaster());
-        roles.add(new Assassin());
-        roles.add(new SimplePerson());
-        roles.add(new Clown());
-        roles.add(new Disguiser());
-        roles.add(new Darkseer());
-        roles.add(new Blinder());
-        roles.add(new LastJoke());
-        roles.add(new FolkHero());
-        roles.add(new Entrepreneur());
-        return roles.get(new Random().nextInt(roles.size())).copy();
+        return allRoles.get(new Random().nextInt(allRoles.size())).copy();
     }
 
     public static ArrayList<Role> initializeRoles(int playerCount){

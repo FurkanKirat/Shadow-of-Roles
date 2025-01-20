@@ -13,5 +13,6 @@ public enum RoleCategory {
 
     NeutralEvil,
     NeutralChaos,
-    NeutralKilling
+    NeutralKilling,
+    NeutralGood
 }

@@ -27,13 +27,12 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
     private ChosenAbility abilityState;
     public Entrepreneur() {
         super(RoleID.Entrepreneur, RolePriority.None, RoleCategory.FolkUnique, 0, 0);
-        this.money = 3;
+        this.money = 5;
         this.setAbilityState(ChosenAbility.None);
     }
 
     @Override
     public boolean performAbility(){
-        this.money = money + 2;
         return super.performAbility();
 
     }
@@ -118,5 +117,9 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
 
     public int getMoney() {
         return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }

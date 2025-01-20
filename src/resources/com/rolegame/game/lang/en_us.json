@@ -15,6 +15,7 @@
     "neutralEvil": "Neutral Evil",
     "neutralKilling": "Neutral Killing",
     "neutralChaos": "Neutral Chaos",
+    "neutralGood": "Neutral Good",
     "abilities": "Abilities",
     "attributes": "Attributes",
     "goal": "Goal",
@@ -179,6 +180,12 @@
     "selected": "Selected: ",
     "none": "None",
     "money": "Your money: "
+  },
+  "Lorekeeper": {
+    "name": "Lorekeeper",
+    "attributes": "Yok",
+    "abilities": "Yok",
+    "goal": "Win the game"
   },
   "CauseOfDeath": {
     "assassin": "Assassin",

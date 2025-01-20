@@ -12,13 +12,14 @@ import javafx.scene.layout.VBox;
 public class EntrepreneurBox extends VBox {
 
     public EntrepreneurBox(Entrepreneur entrepreneur){
+        entrepreneur.setMoney(entrepreneur.getMoney()+2);
         Button attackButton = new Button(LanguageManager.getText("Entrepreneur.attack"));
         Button healButton = new Button(LanguageManager.getText("Entrepreneur.heal"));
         Button infoButton = new Button(LanguageManager.getText("Entrepreneur.info"));
         Button passAbilityButton = new Button(LanguageManager.getText("Entrepreneur.pass"));
         Label selectedLabel = new Label(LanguageManager.getText("Entrepreneur.selected") + LanguageManager.getText("Entrepreneur.none"));
         Label moneyLabel = new Label();
-        moneyLabel.setText(LanguageManager.getText("Entrepreneur.money")+(entrepreneur.getMoney()+2));
+        moneyLabel.setText(LanguageManager.getText("Entrepreneur.money")+entrepreneur.getMoney());
 
         attackButton.setOnAction((_) ->
         {
@@ -46,7 +47,7 @@ public class EntrepreneurBox extends VBox {
             selectedLabel.setText(LanguageManager.getText("Entrepreneur.selected") + LanguageManager.getText("Entrepreneur.none"));
         });
 
-        HBox buttonBox = new HBox(attackButton,healButton,infoButton, passAbilityButton);
+        HBox buttonBox = new HBox(attackButton, healButton, infoButton, passAbilityButton);
         this.getChildren().addAll(buttonBox, selectedLabel, moneyLabel);
         this.setAlignment(Pos.CENTER);
         buttonBox.setAlignment(Pos.CENTER);

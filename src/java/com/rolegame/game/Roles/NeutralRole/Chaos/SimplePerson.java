@@ -21,4 +21,5 @@ public class SimplePerson extends NeutralRole implements NoNightAbility {
         return false;
     }
 
+
 }
