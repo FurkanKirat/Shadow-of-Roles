@@ -41,7 +41,7 @@ public class SimplePersonController implements Initializable {
                 break;
             }
         }
-        SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.EndGame);
+        SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.END_GAME);
 
     }
 

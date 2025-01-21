@@ -1,6 +1,5 @@
 package com.rolegame.game.Roles.NeutralRole.Good;
 
-import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.GameManagement.Player;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.NeutralRole.NeutralRole;
@@ -18,7 +17,7 @@ public class Lorekeeper extends NeutralRole implements ActiveNightAbility {
     private Role guessedRole;
     private int trueGuessCount;
     public Lorekeeper() {
-        super(RoleID.Lorekeeper, RolePriority.Lorekeeper, RoleCategory.NeutralGood, 0, 1);
+        super(RoleID.Lorekeeper, RolePriority.LORE_KEEPER, RoleCategory.NEUTRAL_GOOD, 0, 1);
         trueGuessCount = 0;
         alreadyChosenPlayers = new ArrayList<>();
     }
@@ -47,7 +46,7 @@ public class Lorekeeper extends NeutralRole implements ActiveNightAbility {
             String message = messageTemplate
                     .replace("{playerName}", choosenPlayer.getName())
                     .replace("{roleName}", choosenPlayer.getRole().getName());
-            Message.sendMessage(message,roleOwner, true);
+            sendAbilityMessage(message,roleOwner, true);
         }
         return false;
     }

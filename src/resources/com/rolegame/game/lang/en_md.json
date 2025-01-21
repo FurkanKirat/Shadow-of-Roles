@@ -29,6 +29,16 @@
         "playerCount": "Write Player Count",
         "playerCountExceeded": "Player Count is Exceeded"
     },
+    "Message": {
+        "vote": "You have voted for : {playerName}",
+        "voteExecute": "{playerName} ({roleName}) was hanged by majority vote",
+        "ability": "You tried to use your ability on: {playerName}",
+        "noVote": "You did not voted for anybody",
+        "noAbilityUsed": "You did not used your ability on anybody"
+    },
+    "PassTurn": {
+        "turn": "It's {playerName}'s turn"
+    },
     "Menu": {
         "day": "Day",
         "night": "Night",
@@ -169,14 +179,14 @@
         "name": "Entrepreneur",
         "attributes": "Yok",
         "abilities": "Yok",
-        "insufficientMoney": "You don't have enough money to: ",
+        "insufficientMoney": "You don't have enough money to: {abilityType}",
         "attack": "Attack",
-        "heal": "Heal,",
+        "heal": "Heal",
         "info": "Info",
         "pass": "Pass Ability",
-        "selected": "Selected: ",
+        "selected": "Selected: {abilityType}",
         "none": "None",
-        "money": "Your money: "
+        "money": "Your money: {money}"
     },
     "Lorekeeper": {
         "name": "Lorekeeper",

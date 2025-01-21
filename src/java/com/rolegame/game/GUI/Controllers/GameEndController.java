@@ -108,7 +108,7 @@ public class GameEndController implements Initializable {
 
     private void progressAchievements(){
         for(Map.Entry<String, Achievement> achievementEntry : AchievementManager.loadAchievements().entrySet()){
-            if(achievementEntry.getValue().getCategory() == Achievement.AchievementCategory.PlayGame){
+            if(achievementEntry.getValue().getCategory() == Achievement.AchievementCategory.PLAY_GAME){
                 AchievementManager.addProgressToAchievement(achievementEntry.getKey(), 1);
             }
 

@@ -29,6 +29,16 @@
     "playerCount": "Oyuncu Sayısını Yazın",
     "playerCountExceeded": "Oyuncu sayısı aşıldı"
   },
+  "Message": {
+    "vote": "Şu oyuncuya oy verdiniz : {playerName}",
+    "voteExecute": "{playerName} ({roleName}) oy çokluğuyla asıldı",
+    "ability": "Yeteneğinizi şu oyuncunun üzerinde kullanmaya çalıştınız: {playerName}",
+    "noVote": "Kimseye oy vermediniz",
+    "noAbilityUsed": "Yeteneğinizi kimsenin üzerinde kullanmadınız"
+  },
+  "PassTurn": {
+    "turn": "{playerName}'ın sırası"
+  },
   "Menu": {
     "day": "Gündüz",
     "night": "Gece",
@@ -169,14 +179,14 @@
     "name": "Entrepreneur",
     "attributes": "Yok",
     "abilities": "Yok",
-    "insufficientMoney": "You don't have enough money to: ",
+    "insufficientMoney": "You don't have enough money to: {abilityType}",
     "attack": "Attack",
-    "heal": "Heal,",
+    "heal": "Heal",
     "info": "Info",
     "pass": "Pass Ability",
-    "selected": "Selected: ",
+    "selected": "Selected: {abilityType}",
     "none": "None",
-    "money": "Your money: "
+    "money": "Your money: {money}"
   },
   "Lorekeeper": {
     "name": "Lorekeeper",

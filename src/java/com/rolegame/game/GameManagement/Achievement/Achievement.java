@@ -37,8 +37,8 @@ public abstract class Achievement {
     }
 
     public enum AchievementCategory{
-        Chaos,
-        PlayGame,
-        Roles
+        CHAOS,
+        PLAY_GAME,
+        ROLES
     }
 }

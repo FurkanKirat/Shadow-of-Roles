@@ -96,18 +96,18 @@ public class RoleCatalog {
     private static ArrayList<Role> fivePlayers(){
 
         ArrayList<Role> roles = new ArrayList<>();
-        roles.add(getRandomRoleByCategory(RoleCategory.FolkAnalyst));
-        roles.add(getRandomRoleByCategory(RoleCategory.FolkSupport, RoleCategory.FolkSupport));
-        roles.add(getRandomRoleByTeam(Team.Folk));
-        roles.add(getRandomRoleByCategory(RoleCategory.CorrupterKilling));
-        roles.add(getRandomRoleByTeam(Team.Neutral));
+        roles.add(getRandomRoleByCategory(RoleCategory.FOLK_ANALYST));
+        roles.add(getRandomRoleByCategory(RoleCategory.FOLK_SUPPORT, RoleCategory.FOLK_SUPPORT));
+        roles.add(getRandomRoleByTeam(Team.FOLK));
+        roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_KILLING));
+        roles.add(getRandomRoleByTeam(Team.NEUTRAL));
         return roles;
     }
 
     // Same as 5 players but also how an extra random folk
     private static ArrayList<Role> sixPlayers(){
         ArrayList<Role> roles = fivePlayers();
-        roles.add(getRandomRoleByTeam(Team.Folk));
+        roles.add(getRandomRoleByTeam(Team.FOLK));
         return roles;
     }
 
@@ -116,9 +116,9 @@ public class RoleCatalog {
         ArrayList<Role> roles = sixPlayers();
 
         switch (new Random().nextInt(2)){
-            case 0: roles.add(getRandomRoleByTeam(Team.Neutral));
+            case 0: roles.add(getRandomRoleByTeam(Team.NEUTRAL));
                 break;
-            case 1: roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
+            case 1: roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
                 break;
         }
 
@@ -131,16 +131,16 @@ public class RoleCatalog {
 
         switch (new Random().nextInt(3)){
             case 0:
-                roles.add(getRandomRoleByTeam(Team.Neutral));
-                roles.add(getRandomRoleByTeam(Team.Neutral));
+                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
+                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
                 break;
             case 1:
-                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
-                roles.add(getRandomRoleByTeam(Team.Neutral));
+                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
                 break;
             case 2:
-                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
-                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
+                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
                 break;
         }
 
@@ -149,32 +149,32 @@ public class RoleCatalog {
 
     private static ArrayList<Role> ninePlayers(){
         ArrayList<Role> roles = eightPlayers();
-        roles.add(getRandomRoleByTeam(Team.Folk));
+        roles.add(getRandomRoleByTeam(Team.FOLK));
         return roles;
     }
 
     private static ArrayList<Role> tenPlayers(){
 
         ArrayList<Role> roles = sixPlayers();
-        roles.add(getRandomRoleByTeam(Team.Folk));
-        roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterAnalyst));
+        roles.add(getRandomRoleByTeam(Team.FOLK));
+        roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_ANALYST));
 
         switch (new Random().nextInt(4)){
             case 0:
-                roles.add(getRandomRoleByTeam(Team.Neutral));
-                roles.add(getRandomRoleByTeam(Team.Neutral));
+                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
+                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
                 break;
             case 1:
-                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
-                roles.add(getRandomRoleByTeam(Team.Neutral));
+                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
                 break;
             case 2:
-                roles.add(getRandomRoleByCategory(RoleCategory.CorrupterSupport,RoleCategory.CorrupterSupport));
-                roles.add(getRandomRoleByTeam(Team.Folk));
+                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                roles.add(getRandomRoleByTeam(Team.FOLK));
                 break;
             case 3:
-                roles.add(getRandomRoleByTeam(Team.Neutral));
-                roles.add(getRandomRoleByTeam(Team.Folk));
+                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
+                roles.add(getRandomRoleByTeam(Team.FOLK));
                 break;
         }
 

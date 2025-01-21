@@ -71,7 +71,7 @@ public class GameScreenController {
     private Button useAbilityButton;
 
     @FXML
-    private StackPane passTurnPane;
+    private VBox passTurnPane;
 
     @FXML
     private StackPane outerStackPane;
@@ -109,6 +109,11 @@ public class GameScreenController {
     @FXML
     private VBox extraPropertiesVbox;
 
+    @FXML
+    private Label passTurnLabel;
+
+    @FXML
+    private ToggleButton messageStateButton;
 
     private static GameController gameController;
 
@@ -119,7 +124,7 @@ public class GameScreenController {
 
         if(gameController.getCurrentPlayer().getRole().getChoosenPlayer()==null){
 
-            if(gameController.isDay()||(!gameController.isDay()&& gameController.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
+            if(gameController.isDay()||(!gameController.isDay() && gameController.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle(LanguageManager.getText("Menu.passAlertTitle"));
                 alert.setHeaderText(LanguageManager.getText("Menu.passAlertHead"));
@@ -132,13 +137,9 @@ public class GameScreenController {
                 }
             }
 
-
         }
         passTurnPane.setVisible(true);
-        if(gameController.isDay()){
-            Voting.vote(gameController.getCurrentPlayer(),gameController.getCurrentPlayer().getRole().getChoosenPlayer());
-
-        }
+        gameController.sendVoteMessages();
         gameController.passTurn();
         if(gameController.getCurrentPlayerIndex()==0){
 
@@ -160,6 +161,7 @@ public class GameScreenController {
         passTurnPane.setVisible(false);
     }
 
+
     public void initialize(){
 
         gameController = WriteNamesController.getGameController();
@@ -177,7 +179,9 @@ public class GameScreenController {
         alivePlayersLabel.setText(LanguageManager.getText("Menu.alivePlayers"));
         useAbilityButton.setText(LanguageManager.getText("Menu.vote"));
 
-
+        passTurnLabel.setText(LanguageManager.getText("PassTurn.turn")
+                .replace("{playerName}", gameController.getCurrentPlayer().getName()));
+        alivePlayersListView.setSelectionModel(null);
     }
 
     @FXML
@@ -211,44 +215,44 @@ public class GameScreenController {
         TreeItem<Object> neutralGood = new TreeItem<>(LanguageManager.getText("Role.neutralGood"));
 
 
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FolkAnalyst)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_ANALYST)){
             folkAnalyst.getChildren().add(new TreeItem<>(role));
         }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FolkProtector)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_PROTECTOR)){
             folkProtector.getChildren().add(new TreeItem<>(role));
         }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FolkKilling)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_KILLING)){
             folkKilling.getChildren().add(new TreeItem<>(role));
         }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FolkSupport)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_SUPPORT)){
             folkSupport.getChildren().add(new TreeItem<>(role));
         }
 
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FolkUnique)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_UNIQUE)){
             folkUnique.getChildren().add(new TreeItem<>(role));
         }
 
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CorrupterAnalyst)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CORRUPTER_ANALYST)){
             corrupterAnalyst.getChildren().add(new TreeItem<>(role));
         }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CorrupterKilling)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CORRUPTER_KILLING)){
             corrupterKilling.getChildren().add(new TreeItem<>(role));
         }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CorrupterSupport)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CORRUPTER_SUPPORT)){
             corrupterSupport.getChildren().add(new TreeItem<>(role));
         }
 
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NeutralEvil)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NEUTRAL_EVIL)){
             neutralEvil.getChildren().add(new TreeItem<>(role));
         }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NeutralKilling)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NEUTRAL_KILLING)){
             neutralKilling.getChildren().add(new TreeItem<>(role));
         }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NeutralChaos)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NEUTRAL_CHAOS)){
             neutralChaos.getChildren().add(new TreeItem<>(role));
         }
 
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NeutralGood)){
+        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NEUTRAL_GOOD)){
             neutralGood.getChildren().add(new TreeItem<>(role));
         }
 
@@ -270,26 +274,22 @@ public class GameScreenController {
         goalTextField.setText(gameController.getCurrentPlayer().getRole().getGoal());
         roleLabel.setText(gameController.getCurrentPlayer().getRole().getName());
 
-        alivePlayersListView.getItems().clear();
-
-        for(Player player: gameController.getAlivePlayers()){
-            if(player.isAlive()){
-                PlayerSelectionBox playerSelectionBox = new PlayerSelectionBox(player,gameController.getCurrentPlayer(), gameController.isDay());
-                playerSelectionBoxes.add(playerSelectionBox);
-                alivePlayersListView.getItems().add(playerSelectionBox);
-            }
-
-        }
+        alivePlayersListView.getItems().setAll(gameController.getAlivePlayers().stream()
+                .filter(Player::isAlive)
+                .map(player -> new PlayerSelectionBox(player, gameController.getCurrentPlayer(), gameController.isDay()))
+                .toList());
 
         initializeMessages();
         extraPropertiesVbox.getChildren().clear();
         if(gameController.getCurrentPlayer().getRole() instanceof Entrepreneur entrepreneur && !gameController.isDay()){
-            entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.None);
+            entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.NONE);
             extraPropertiesVbox.getChildren().add(new EntrepreneurBox(entrepreneur));
         }
         else if(gameController.getCurrentPlayer().getRole() instanceof Lorekeeper lorekeeper && !gameController.isDay()){
             extraPropertiesVbox.getChildren().add(new LorekeeperBox(lorekeeper));
         }
+        passTurnLabel.setText(LanguageManager.getText("PassTurn.turn")
+                .replace("{playerName}", gameController.getCurrentPlayer().getName()));
     }
 
     private void toggleDayNightCycle(){
@@ -300,32 +300,24 @@ public class GameScreenController {
             gameController.performAllAbilities();
             dayStartAnnouncements();
 
-            for(Player player: gameController.getAlivePlayers()){
-                player.getRole().setChoosenPlayer(null);
-
-            }
-
             dayNightIcon.setImage(new Image("/com/rolegame/game/images/day.png"));
             gameController.setDayCount(getGameController().getDayCount()+1);
-            gameController.updateAlivePlayers();
-            gameController.checkGameFinished();
 
         }
         else{
 
             gameController.executeMaxVoted();
             gameController.updateAlivePlayers();
-            for(Player player: gameController.getAlivePlayers()){
-                player.getRole().setChoosenPlayer(null);
-            }
+            dayStartAnnouncements();
 
             useAbilityButton.setText(LanguageManager.getText("Menu.useAbility"));
             if(!(gameController.getCurrentPlayer() instanceof ActiveNightAbility)){
                 useAbilityButton.setText("Pass Turn");
             }
             dayNightIcon.setImage(new Image("/com/rolegame/game/images/night.png"));
-            gameController.updateAlivePlayers();
         }
+        gameController.updateAlivePlayers();
+        gameController.checkGameFinished();
         graveListView.getItems().clear();
 
         for(Player deadPlayer: gameController.getDeadPlayers()){
@@ -333,12 +325,7 @@ public class GameScreenController {
         }
         dayLabel.setText((gameController.isDay() ? LanguageManager.getText("Menu.day") : LanguageManager.getText("Menu.night")) + ": " +gameController.getDayCount());
 
-        for(Player alivePlayer: gameController.getAlivePlayers()){
-            alivePlayer.setDefence(alivePlayer.getRole().getDefence());
-            alivePlayer.getRole().setCanPerform(true);
-            alivePlayer.setImmune(false);
 
-        }
         initializeMessages();
 
 

@@ -11,9 +11,15 @@ public class MessageBox extends Label {
         String time = message.isDay() ? LanguageManager.getText("Menu.day") : LanguageManager.getText("Menu.night");
         time += " " + message.getDayCount()+ ": ";
         this.setText(time + message.getMessage());
-        this.getStyleClass().add("gameTextArea");
+        this.getStyleClass().add("messageBox");
+        if (message.isPublic()) {
+            this.getStyleClass().add("public");
+        } else {
+            this.getStyleClass().add("private");
+        }
         this.prefWidthProperty().bind(listView.widthProperty());
         this.setWrapText(true);
+
 
     }
 }

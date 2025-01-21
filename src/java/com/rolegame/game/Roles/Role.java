@@ -70,7 +70,7 @@ public abstract class Role {
 
     public boolean performAbility(){
         if(!canPerform){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),roleOwner,false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),roleOwner,false);
             return false;
         }
 
@@ -79,11 +79,15 @@ public abstract class Role {
         }
 
         if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,roleOwner,false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,roleOwner,false);
             return false;
         }
 
         return executeAbility();
+    }
+
+    protected void sendAbilityMessage(String message, Player receiver, boolean isPublic){
+        Message.sendMessage(message, receiver, isPublic, false);
     }
 
     public abstract boolean executeAbility();

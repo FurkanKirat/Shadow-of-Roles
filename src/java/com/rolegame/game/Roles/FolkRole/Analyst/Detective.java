@@ -1,7 +1,6 @@
 package com.rolegame.game.Roles.FolkRole.Analyst;
 
 import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.Roles.FolkRole.FolkRole;
 import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
@@ -14,7 +13,7 @@ import java.util.Random;
 
 public class Detective extends FolkRole implements ActiveNightAbility {
     public Detective() {
-        super(RoleID.Detective, RolePriority.None, RoleCategory.FolkAnalyst, 0,0);
+        super(RoleID.Detective, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0);
     }
 
     @Override
@@ -30,7 +29,7 @@ public class Detective extends FolkRole implements ActiveNightAbility {
                 .replace("{roleName1}", roleName1)
                 .replace("{roleName2}", roleName2);
 
-        Message.sendMessage(message, getRoleOwner(), false);
+        sendAbilityMessage(message, getRoleOwner(), false);
 
         return true;
     }

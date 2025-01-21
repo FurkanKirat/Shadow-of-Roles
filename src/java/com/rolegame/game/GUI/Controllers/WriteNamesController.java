@@ -72,7 +72,7 @@ public class WriteNamesController extends VBox {
         button.setOnAction((event)->{
             gameController = new GameController();
             gameController.initializePlayers(textFields);
-            SceneController.switchScene("/com/rolegame/game/fxml/GameScreen.fxml", SceneController.SceneType.Game);
+            SceneController.switchScene("/com/rolegame/game/fxml/GameScreen.fxml", SceneController.SceneType.GAME);
 
 
         });

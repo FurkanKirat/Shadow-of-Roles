@@ -1,6 +1,5 @@
 package com.rolegame.game.Roles.FolkRole.Protector;
 
-import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.FolkRole.FolkRole;
 import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
@@ -13,7 +12,7 @@ public class FolkHero extends FolkRole implements ActiveNightAbility {
     private int abilityUseCount;
 
     public FolkHero() {
-        super(RoleID.FolkHero, RolePriority.FolkHero, RoleCategory.FolkProtector, 0, 0);
+        super(RoleID.FolkHero, RolePriority.FOLK_HERO, RoleCategory.FOLK_PROTECTOR, 0, 0);
         abilityUseCount = 0;
     }
 
@@ -27,7 +26,7 @@ public class FolkHero extends FolkRole implements ActiveNightAbility {
         abilityUseCount++;
 
         if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage") ,roleOwner,false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage") ,roleOwner,false);
             return false;
         }
 
@@ -37,7 +36,7 @@ public class FolkHero extends FolkRole implements ActiveNightAbility {
     @Override
     public boolean executeAbility() {
         if(abilityUseCount<=2){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.abilityMessage") ,roleOwner,false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock.abilityMessage") ,roleOwner,false);
             choosenPlayer.setImmune(true);
             return true;
         }

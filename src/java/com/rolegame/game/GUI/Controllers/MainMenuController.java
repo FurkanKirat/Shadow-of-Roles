@@ -2,13 +2,10 @@ package com.rolegame.game.GUI.Controllers;
 
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.PropertyControllers.SceneController;
-import com.rolegame.game.PropertyControllers.ShortcutManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,12 +33,12 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void achievementsClicked(MouseEvent event) {
-        SceneController.switchScene("/com/rolegame/game/fxml/Achievements.fxml", SceneController.SceneType.Achievements);
+        SceneController.switchScene("/com/rolegame/game/fxml/Achievements.fxml", SceneController.SceneType.ACHIEVEMENTS);
     }
 
     @FXML
     void creditsClicked(MouseEvent event) {
-        SceneController.switchScene("/com/rolegame/game/fxml/Credits.fxml", SceneController.SceneType.Credits);
+        SceneController.switchScene("/com/rolegame/game/fxml/Credits.fxml", SceneController.SceneType.CREDITS);
     }
 
     @FXML
@@ -62,7 +59,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void startGame(MouseEvent event) {
-        SceneController.switchScene(new WriteNamesController(), SceneController.SceneType.WriteNames);
+        SceneController.switchScene(new WriteNamesController(), SceneController.SceneType.WRITE_NAMES);
     }
 
 

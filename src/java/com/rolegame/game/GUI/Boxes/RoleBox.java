@@ -55,9 +55,9 @@ public class RoleBox extends VBox {
         atkDef.setSpacing(28);
 
 
-        if(role.getTeam() == Team.Folk){
+        if(role.getTeam() == Team.FOLK){
             this.getStyleClass().add("folkRoleVbox");
-        }else if(role.getTeam() == Team.Corrupter){
+        }else if(role.getTeam() == Team.CORRUPTER){
             this.getStyleClass().add("corrupterRoleVbox");
         }else{
             this.getStyleClass().add("neutralRoleVbox");

@@ -76,15 +76,15 @@ public class SceneController {
     }
 
     public static void settingsScene(){
-        switchScene("/com/rolegame/game/fxml/Settings.fxml", SceneType.Settings);
+        switchScene("/com/rolegame/game/fxml/Settings.fxml", SceneType.SETTINGS);
     }
 
     public static void changeLangScene(){
-        switchScene("/com/rolegame/game/fxml/ChangeLanguage.fxml", SceneType.ChangeLang);
+        switchScene("/com/rolegame/game/fxml/ChangeLanguage.fxml", SceneType.CHANGE_LANG);
     }
 
     public static void mainMenuScene(){
-        switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneType.MainMenu);
+        switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneType.MAIN_MENU);
     }
 
     public static void onClose(){
@@ -108,15 +108,15 @@ public class SceneController {
     }
 
     public enum SceneType{
-        Mutual,
-        MainMenu,
-        Settings,
-        ChangeLang,
-        Game,
-        EndGame,
-        WriteNames,
-        Credits,
-        Achievements,
-        SimplePersonAlert
+        MUTUAL,
+        MAIN_MENU,
+        SETTINGS,
+        CHANGE_LANG,
+        GAME,
+        END_GAME,
+        WRITE_NAMES,
+        CREDITS,
+        ACHIEVEMENTS,
+        SIMPLE_PERSON_ALERT
     }
 }

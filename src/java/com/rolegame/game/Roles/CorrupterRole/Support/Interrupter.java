@@ -1,9 +1,7 @@
 package com.rolegame.game.Roles.CorrupterRole.Support;
 
 import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.Roles.CorrupterRole.CorrupterRole;
-import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
@@ -11,7 +9,7 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Interrupter extends CorrupterRole implements ActiveNightAbility {
     public Interrupter() {
-        super(RoleID.Interrupter, RolePriority.Roleblock, RoleCategory.CorrupterSupport, 0, 0);
+        super(RoleID.Interrupter, RolePriority.ROLE_BLOCK, RoleCategory.CORRUPTER_SUPPORT, 0, 0);
     }
 
     @Override
@@ -22,11 +20,11 @@ public class Interrupter extends CorrupterRole implements ActiveNightAbility {
         }
 
         if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.RBimmuneMessage") ,getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock.RBimmuneMessage") ,getRoleOwner(),false);
         }
 
         if(choosenPlayer.isImmune()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
             return false;
         }
 
@@ -36,7 +34,7 @@ public class Interrupter extends CorrupterRole implements ActiveNightAbility {
 
     @Override
     public boolean executeAbility() {
-        Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockMessage"), getRoleOwner(),false);
+        sendAbilityMessage(LanguageManager.getText("RoleBlock.roleBlockMessage"), getRoleOwner(),false);
         getChoosenPlayer().getRole().setCanPerform(false);
         return true;
     }

@@ -58,10 +58,9 @@ public class Message {
         this.message = message;
     }
 
-    public static void sendMessage(String message, Player receiver, boolean isPublic){
+    public static void sendMessage(String message, Player receiver, boolean isPublic, boolean isDay){
         messages.add(new Message(GameScreenController.getGameController().getDayCount(),
-                GameScreenController.getGameController().isDay(),
-                message, receiver, isPublic));
+                isDay, message, receiver, isPublic));
     }
 
     public static LinkedList<Message> getMessages() {

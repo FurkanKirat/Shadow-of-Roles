@@ -19,7 +19,7 @@ public class ShortcutManager {
             KeyCode keyCode = event.getCode();
 
             for (Map.Entry<SceneController.SceneType,Shortcut> shortcut : shortcuts.entrySet()) {
-                if(sceneType == shortcut.getKey() || shortcut.getKey() == SceneController.SceneType.Mutual){
+                if(sceneType == shortcut.getKey() || shortcut.getKey() == SceneController.SceneType.MUTUAL){
                     if (shortcut.getValue().keyCode().equals(keyCode)) {
                         shortcut.getValue().action().run();
                     }
@@ -39,34 +39,34 @@ public class ShortcutManager {
 
 
     private static void mutualShortcuts(){
-        ShortcutManager.addShortcut(SceneController.SceneType.Mutual,new ShortcutManager.Shortcut(KeyCode.F11, "Full Screen", () -> {
+        ShortcutManager.addShortcut(SceneController.SceneType.MUTUAL,new ShortcutManager.Shortcut(KeyCode.F11, "Full Screen", () -> {
             SceneController.getStage().setFullScreen(!SceneController.getStage().isFullScreen());
 
         }));
     }
 
     private static void settingsShortcuts(){{
-        ShortcutManager.addShortcut(SceneController.SceneType.Settings,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to main menu",
+        ShortcutManager.addShortcut(SceneController.SceneType.SETTINGS,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to main menu",
                 SceneController::mainMenuScene));}
     }
 
     private static void changeLangShortcuts(){
-        ShortcutManager.addShortcut(SceneController.SceneType.ChangeLang,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
+        ShortcutManager.addShortcut(SceneController.SceneType.CHANGE_LANG,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
                 SceneController::settingsScene));
     }
 
     private static void writeNamesShortcuts(){
-        ShortcutManager.addShortcut(SceneController.SceneType.WriteNames,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
+        ShortcutManager.addShortcut(SceneController.SceneType.WRITE_NAMES,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
                 SceneController::mainMenuScene));
     }
 
     private static void creditsShortcuts(){
-        ShortcutManager.addShortcut(SceneController.SceneType.Credits,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
+        ShortcutManager.addShortcut(SceneController.SceneType.CREDITS,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
                 SceneController::mainMenuScene));
     }
 
     private static void achievementsShortcuts(){
-        ShortcutManager.addShortcut(SceneController.SceneType.Achievements,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
+        ShortcutManager.addShortcut(SceneController.SceneType.ACHIEVEMENTS,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
                 SceneController::mainMenuScene));
     }
 

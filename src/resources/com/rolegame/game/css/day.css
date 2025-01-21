@@ -70,6 +70,34 @@
     -fx-border-width: 1px;
 }
 
+.messageBox {
+    -fx-font-family: "Arial";
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px; /* Kenarları yuvarlat */
+    -fx-background-radius: 5px; /* Arka plan kenarları */
+    -fx-padding: 10px; /* İçerik çevresindeki boşluk */
+    -fx-pref-width: 300px; /* Varsayılan genişlik */
+    -fx-min-width: 250px; /* Minimum genişlik */
+    -fx-max-width: 500px; /* Maksimum genişlik */
+    -fx-wrap-text: true; /* Metni kaydır */
+    -fx-alignment: center-left; /* Metni sola yasla */
+}
+
+/* Gündüz stili */
+.messageBox.private {
+    -fx-background-color: #f4f4d9; /* Hafif açık sarı */
+    -fx-text-fill: #333; /* Siyah metin */
+    -fx-font-size: 14px; /* Yazı boyutu */
+}
+
+/* Gece stili */
+.messageBox.public {
+    -fx-background-color: #2a3d6f; /* Koyu mavi */
+    -fx-text-fill: #fff; /* Beyaz metin */
+    -fx-font-size: 14px; /* Yazı boyutu */
+}
+
 /* Button Styling */
 .button {
     -fx-background-color: linear-gradient(to bottom, #66c1e4, #3a9ad9); /* Aqua gradient */
@@ -203,7 +231,3 @@
     -fx-border-color: #3a9ad9; /* Brighter blue border on hover */
     -fx-effect: dropshadow(gaussian, rgba(58, 154, 217, 0.6), 10, 0.5, 0, 0); /* Subtle glow effect */
 }
-
-
-
-

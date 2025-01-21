@@ -1,18 +1,18 @@
 package com.rolegame.game.Roles.RoleProperties;
 
 public enum RoleCategory {
-    FolkAnalyst,
-    FolkProtector,
-    FolkKilling,
-    FolkSupport,
-    FolkUnique,
+    FOLK_ANALYST,
+    FOLK_PROTECTOR,
+    FOLK_KILLING,
+    FOLK_SUPPORT,
+    FOLK_UNIQUE,
 
-    CorrupterAnalyst,
-    CorrupterKilling,
-    CorrupterSupport,
+    CORRUPTER_ANALYST,
+    CORRUPTER_KILLING,
+    CORRUPTER_SUPPORT,
 
-    NeutralEvil,
-    NeutralChaos,
-    NeutralKilling,
-    NeutralGood
+    NEUTRAL_EVIL,
+    NEUTRAL_CHAOS,
+    NEUTRAL_KILLING,
+    NEUTRAL_GOOD
 }

@@ -1,6 +1,5 @@
 package com.rolegame.game.Roles.FolkRole.Unique;
 
-import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.CorrupterRole.Analyst.DarkRevealer;
 import com.rolegame.game.Roles.CorrupterRole.Analyst.Darkseer;
@@ -20,15 +19,15 @@ import java.util.Random;
 
 public class Entrepreneur extends FolkRole implements ActiveNightAbility {
 
-    private static final int healPrice = 3;
-    private static final int infoPrice = 2;
-    private static final int attackPrice = 4;
+    private static final int HEAL_PRICE = 3;
+    private static final int INFO_PRICE = 2;
+    private static final int ATTACK_PRICE = 4;
     private int money;
     private ChosenAbility abilityState;
     public Entrepreneur() {
-        super(RoleID.Entrepreneur, RolePriority.None, RoleCategory.FolkUnique, 0, 0);
-        this.money = 5;
-        this.setAbilityState(ChosenAbility.None);
+        super(RoleID.Entrepreneur, RolePriority.NONE, RoleCategory.FOLK_UNIQUE, 0, 0);
+        this.money = 3;
+        this.setAbilityState(ChosenAbility.NONE);
     }
 
     @Override
@@ -38,26 +37,26 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
     }
     @Override
     public boolean executeAbility() {
-        rolePriority = RolePriority.None;
+        rolePriority = RolePriority.NONE;
         switch (abilityState){
 
-            case Attack -> {
-                if(money>=attackPrice){
-                    money -= attackPrice;
+            case ATTACK -> {
+                if(money>= ATTACK_PRICE){
+                    money -= ATTACK_PRICE;
                     return useOtherAbility(new Psycho());
                 }
 
             }
-            case Heal ->{
-                if(money>=healPrice){
-                    money -= healPrice;
+            case HEAL ->{
+                if(money>= HEAL_PRICE){
+                    money -= HEAL_PRICE;
                     return useOtherAbility(new Soulbinder());
                 }
 
             }
-            case Info -> {
-                if(money>=infoPrice){
-                    money -= infoPrice;
+            case INFO -> {
+                if(money>= INFO_PRICE){
+                    money -= INFO_PRICE;
                     return gatherInfo();
                 }
 
@@ -99,20 +98,20 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
         String message = LanguageManager.getText("Entrepreneur.insufficientMoney");
 
         switch (abilityState){
-            case Attack -> message += LanguageManager.getText("Entrepreneur.attack");
-            case Heal -> message += LanguageManager.getText("Entrepreneur.heal");
-            case Info -> message += LanguageManager.getText("Entrepreneur.info");
+            case ATTACK -> message += LanguageManager.getText("Entrepreneur.attack");
+            case HEAL -> message += LanguageManager.getText("Entrepreneur.heal");
+            case INFO -> message += LanguageManager.getText("Entrepreneur.info");
         }
-        Message.sendMessage(message, roleOwner, false);
+        sendAbilityMessage(message, roleOwner, false);
         return false;
     }
 
 
     public enum ChosenAbility{
-        Attack,
-        Heal,
-        Info,
-        None
+        ATTACK,
+        HEAL,
+        INFO,
+        NONE
     }
 
     public int getMoney() {

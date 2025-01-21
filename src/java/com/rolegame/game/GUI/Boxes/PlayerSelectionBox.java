@@ -61,7 +61,7 @@ public class PlayerSelectionBox extends HBox{
             });
         this.getChildren().addAll(stackPane,playerNameBox);
 
-        if(currentPlayer.getRole().getTeam()==Team.Corrupter&&player.getRole().getTeam()==Team.Corrupter){
+        if(currentPlayer.getRole().getTeam()==Team.CORRUPTER &&player.getRole().getTeam()==Team.CORRUPTER){
 
             roleLabel = new Label("("+player.getRole().getName()+")");
             roleLabel.setTextFill(Color.RED);
@@ -85,7 +85,7 @@ public class PlayerSelectionBox extends HBox{
             youBox.setAlignment(Pos.CENTER);
 
 
-            if(currentPlayer.getRole().getTeam()==Team.Corrupter){
+            if(currentPlayer.getRole().getTeam()==Team.CORRUPTER){
                 this.getChildren().remove(roleBox);
                 youLabel.setTextFill(Color.RED);
             }

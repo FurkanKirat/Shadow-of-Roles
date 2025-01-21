@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -40,7 +38,7 @@ public class AchievementsController implements Initializable {
 
     @FXML
     void backClicked(MouseEvent event) {
-        SceneController.switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneController.SceneType.MainMenu);
+        SceneController.switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneController.SceneType.MAIN_MENU);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

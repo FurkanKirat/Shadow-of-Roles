@@ -9,6 +9,7 @@ import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
 import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleCatalog;
 import com.rolegame.game.Roles.RoleComparator;
+import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.Team;
 import javafx.scene.control.TextField;
 
@@ -39,6 +40,17 @@ public class GameController {
         for(Role role: roleQueue){
             role.performAbility();
         }
+
+        for(Player player: alivePlayers){
+            player.getRole().setChoosenPlayer(null);
+
+        }
+        for(Player alivePlayer: alivePlayers){
+            alivePlayer.setDefence(alivePlayer.getRole().getDefence());
+            alivePlayer.getRole().setCanPerform(true);
+            alivePlayer.setImmune(false);
+
+        }
     }
 
     public void executeMaxVoted(){
@@ -53,8 +65,49 @@ public class GameController {
                 }
             }
             updateAlivePlayers();
+
+            if(Voting.getMaxVoted()!=null){
+                Message.sendMessage(LanguageManager.getText("Message.voteExecute")
+                                .replace("{playerName}", Voting.getMaxVoted().getName())
+                                .replace("{roleName}", Voting.getMaxVoted().getRole().getName()),
+                        null, true, true);
+            }
+
         }
+
+        for(Player player: alivePlayers){
+            player.getRole().setChoosenPlayer(null);
+        }
+
         Voting.clearVotes();
+    }
+
+    public void sendVoteMessages(){
+        Player chosenPlayer = currentPlayer.getRole().getChoosenPlayer();
+        if(isDay){
+            Voting.vote(currentPlayer,chosenPlayer);
+
+            if(chosenPlayer!=null){
+                Message.sendMessage(LanguageManager.getText("Message.vote")
+                                .replace("{playerName}", chosenPlayer.getName())
+                        ,currentPlayer,false, true);
+            }else{
+                Message.sendMessage(LanguageManager.getText("Message.noVote"), currentPlayer, false, true);
+            }
+
+        }
+        else{
+            if(currentPlayer.getRole() instanceof ActiveNightAbility){
+                if(chosenPlayer!=null){
+                    Message.sendMessage(LanguageManager.getText("Message.ability")
+                                    .replace("{playerName}", chosenPlayer.getName())
+                            ,currentPlayer,false, false);
+                }
+                else{
+                    Message.sendMessage(LanguageManager.getText("Message.noAbilityUsed"), currentPlayer, false,false);
+                }
+            }
+        }
     }
 
 
@@ -121,7 +174,7 @@ public class GameController {
 
         // Finishes the game if nobody is alive
         if(alivePlayers.isEmpty()){
-            winnerTeam = Team.None;
+            winnerTeam = Team.NONE;
             finishGame();
             return true;
         }
@@ -134,7 +187,7 @@ public class GameController {
         }
 
         // Checks if the living players are neutral if so game continues because they are independent
-        if(alivePlayers.getFirst().getRole().getTeam()!=Team.Neutral){
+        if(alivePlayers.getFirst().getRole().getTeam()!=Team.NEUTRAL){
             for(Player alivePlayer : alivePlayers){
                 winnerTeam = alivePlayer.getRole().getTeam();
             }
@@ -148,7 +201,7 @@ public class GameController {
 
     public void finishGame(){
 
-        if(winnerTeam!=Team.None&&winnerTeam!=Team.Neutral){
+        if(winnerTeam!=Team.NONE &&winnerTeam!=Team.NEUTRAL){
             for(Player player : allPlayers){
                 if(player.getRole().getTeam()==winnerTeam){
                     player.setHasWon(true);
@@ -156,7 +209,7 @@ public class GameController {
             }
         }
 
-        if(winnerTeam == Team.Neutral){
+        if(winnerTeam == Team.NEUTRAL){
             alivePlayers.getFirst().setHasWon(true);
         }
 
@@ -196,10 +249,10 @@ public class GameController {
         }
 
         if(simplePersonExist){
-            SceneController.switchScene("/com/rolegame/game/fxml/SimplePersonAlert.fxml", SceneController.SceneType.SimplePersonAlert);
+            SceneController.switchScene("/com/rolegame/game/fxml/SimplePersonAlert.fxml", SceneController.SceneType.SIMPLE_PERSON_ALERT);
         }
         else{
-            SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.EndGame);
+            SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.END_GAME);
         }
 
         Message.resetMessages();

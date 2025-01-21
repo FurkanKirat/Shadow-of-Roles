@@ -8,33 +8,31 @@ import com.rolegame.game.GameManagement.Achievement.Achievement;
 import com.rolegame.game.GameManagement.Achievement.BasicAchievement;
 import com.rolegame.game.GameManagement.Achievement.ProgressiveAchievement;
 
-import javax.sound.sampled.Line;
-
 public class AchievementManager {
 
     private static final String USER_DATA_PATH = FileManager.getUserDataDirectory() + "\\achievements.json";
     private static final Map<String,Achievement> achievements = new LinkedHashMap<>();
 
     private static final Achievement FIRST_STEPS =
-            new ProgressiveAchievement("First Steps","Complete Your First Game",false, Achievement.AchievementCategory.PlayGame,0,1);
+            new ProgressiveAchievement("First Steps","Complete Your First Game",false, Achievement.AchievementCategory.PLAY_GAME,0,1);
 
     private static final Achievement NOVICE_ADVENTURER =
-            new ProgressiveAchievement("Novice Adventurer","Complete Your First 5 Games",false, Achievement.AchievementCategory.PlayGame,0,5);
+            new ProgressiveAchievement("Novice Adventurer","Complete Your First 5 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,5);
 
     private static final Achievement DETERMINED_PLAYER =
-            new ProgressiveAchievement("Determined Player","Complete Your First 10 Games",false, Achievement.AchievementCategory.PlayGame,0,10);
+            new ProgressiveAchievement("Determined Player","Complete Your First 10 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,10);
 
     private static final Achievement ON_THE_PATH_TO_MASTERY =
-            new ProgressiveAchievement("On the Path to Mastery","Complete Your First 25 Games",false, Achievement.AchievementCategory.PlayGame,0,25);
+            new ProgressiveAchievement("On the Path to Mastery","Complete Your First 25 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,25);
 
     private static final Achievement HALFWAY_THERE =
-            new ProgressiveAchievement("Halfway There","Complete Your First 50 Games",false, Achievement.AchievementCategory.PlayGame,0,50);
+            new ProgressiveAchievement("Halfway There","Complete Your First 50 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,50);
 
     private static final Achievement LEGENDARY_PLAYER =
-            new ProgressiveAchievement("Legendary Player","Complete Your First 99 Games",false, Achievement.AchievementCategory.PlayGame,0,99);
+            new ProgressiveAchievement("Legendary Player","Complete Your First 99 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,99);
 
     private static final Achievement LAZY_HERO =
-            new BasicAchievement("Lazy Hero","Win the game with the folk hero without using any skills",false, Achievement.AchievementCategory.Roles);
+            new BasicAchievement("Lazy Hero","Win the game with the folk hero without using any skills",false, Achievement.AchievementCategory.ROLES);
 
     public static Map<String, Achievement> loadAchievements() {
         ObjectMapper mapper = new ObjectMapper();

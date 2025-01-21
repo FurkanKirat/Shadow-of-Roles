@@ -1,11 +1,9 @@
 package com.rolegame.game.Roles.CorrupterRole.Analyst;
 
 import com.rolegame.game.GUI.Controllers.GameScreenController;
-import com.rolegame.game.GameManagement.Message;
 import com.rolegame.game.GameManagement.Player;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.Roles.CorrupterRole.CorrupterRole;
-import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleProperties.PassiveNightAbility;
 import com.rolegame.game.Roles.RoleProperties.RoleCategory;
 import com.rolegame.game.Roles.RoleProperties.RoleID;
@@ -16,13 +14,13 @@ import java.util.Collections;
 
 public class Darkseer extends CorrupterRole implements PassiveNightAbility {
     public Darkseer() {
-        super(RoleID.Darkseer, RolePriority.None, RoleCategory.CorrupterAnalyst, 0, 0);
+        super(RoleID.Darkseer, RolePriority.NONE, RoleCategory.CORRUPTER_ANALYST, 0, 0);
     }
 
     @Override
     public boolean performAbility() {
         if(!isCanPerform()){
-            Message.sendMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
             return false;
         }
         return executeAbility();
@@ -48,7 +46,7 @@ public class Darkseer extends CorrupterRole implements PassiveNightAbility {
             message = LanguageManager.getText("Darkseer.zeroLeftMessage");
         }
 
-        Message.sendMessage(message,getRoleOwner(), false);
+        sendAbilityMessage(message,getRoleOwner(), false);
         return true;
     }
 }
