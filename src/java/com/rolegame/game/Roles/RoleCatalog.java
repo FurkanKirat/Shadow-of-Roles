@@ -79,7 +79,7 @@ public class RoleCatalog {
     }
 
     public static ArrayList<Role> initializeRoles(int playerCount){
-        ArrayList<Role> roles = switch (playerCount) {
+        HashMap<Role,Integer> roles = switch (playerCount) {
             case 5 -> fivePlayers();
             case 6 -> sixPlayers();
             case 7 -> sevenPlayers();
@@ -88,118 +88,160 @@ public class RoleCatalog {
             case 10 -> tenPlayers();
             default -> throw new IllegalStateException("Unexpected player count: " + playerCount);
         };
+        ArrayList<Role> rolesList = new ArrayList<>();
+        for(Map.Entry<Role,Integer> entry : roles.entrySet()){
 
-        Collections.shuffle(roles);
+            for(int i=0;i<entry.getValue();i++){
+                rolesList.add(entry.getKey().copy());
+            }
+        }
+        Collections.shuffle(rolesList);
+        return rolesList;
+    }
+
+    private static void putRole(HashMap<Role,Integer> roles, Role role){
+        roles.put(role, roles.getOrDefault(role,0)+1);
+    }
+    private static HashMap<Role,Integer> fivePlayers(){
+
+        HashMap<Role,Integer> roles = new HashMap<>();
+        putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.FOLK_ANALYST));
+        putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.FOLK_SUPPORT, RoleCategory.FOLK_SUPPORT));
+        putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
+        putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_KILLING));
+        putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
         return roles;
     }
 
-    private static ArrayList<Role> fivePlayers(){
 
-        ArrayList<Role> roles = new ArrayList<>();
-        roles.add(getRandomRoleByCategory(RoleCategory.FOLK_ANALYST));
-        roles.add(getRandomRoleByCategory(RoleCategory.FOLK_SUPPORT, RoleCategory.FOLK_SUPPORT));
-        roles.add(getRandomRoleByTeam(Team.FOLK));
-        roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_KILLING));
-        roles.add(getRandomRoleByTeam(Team.NEUTRAL));
-        return roles;
-    }
 
     // Same as 5 players but also how an extra random folk
-    private static ArrayList<Role> sixPlayers(){
-        ArrayList<Role> roles = fivePlayers();
-        roles.add(getRandomRoleByTeam(Team.FOLK));
+    private static HashMap<Role,Integer> sixPlayers(){
+        HashMap<Role,Integer> roles = fivePlayers();
+        putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
         return roles;
     }
 
-    private static ArrayList<Role> sevenPlayers(){
+    private static HashMap<Role,Integer> sevenPlayers(){
 
-        ArrayList<Role> roles = sixPlayers();
+        HashMap<Role,Integer> roles = sixPlayers();
 
         switch (new Random().nextInt(2)){
-            case 0: roles.add(getRandomRoleByTeam(Team.NEUTRAL));
+            case 0: putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
-            case 1: roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+            case 1: putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
                 break;
         }
 
         return roles;
     }
 
-    private static ArrayList<Role> eightPlayers(){
+    private static HashMap<Role,Integer> eightPlayers(){
 
-        ArrayList<Role> roles = sixPlayers();
+        HashMap<Role,Integer> roles = sixPlayers();
 
         switch (new Random().nextInt(3)){
             case 0:
-                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
-                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
+                putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
+                putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
             case 1:
-                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
-                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
             case 2:
-                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
-                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
                 break;
         }
 
         return roles;
     }
 
-    private static ArrayList<Role> ninePlayers(){
-        ArrayList<Role> roles = eightPlayers();
-        roles.add(getRandomRoleByTeam(Team.FOLK));
+    private static HashMap<Role,Integer> ninePlayers(){
+        HashMap<Role,Integer> roles = eightPlayers();
+        putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
         return roles;
     }
 
-    private static ArrayList<Role> tenPlayers(){
+    private static HashMap<Role,Integer> tenPlayers(){
 
-        ArrayList<Role> roles = sixPlayers();
-        roles.add(getRandomRoleByTeam(Team.FOLK));
-        roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_ANALYST));
+        HashMap<Role,Integer> roles = sixPlayers();
+        putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
+        putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_ANALYST));
 
         switch (new Random().nextInt(4)){
             case 0:
-                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
-                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
+                putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
+                putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
             case 1:
-                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
-                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
             case 2:
-                roles.add(getRandomRoleByCategory(RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
-                roles.add(getRandomRoleByTeam(Team.FOLK));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
                 break;
             case 3:
-                roles.add(getRandomRoleByTeam(Team.NEUTRAL));
-                roles.add(getRandomRoleByTeam(Team.FOLK));
+                putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
+                putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
                 break;
         }
 
         return roles;
     }
 
-    private static Role getRandomRoleByCategory(RoleCategory roleCategory){
-        Random random = new Random();
-        List<Role> roles = getRolesByCategory(roleCategory);
-        return roles.get(random.nextInt(roles.size())).copy();
+    private static Role getRoleByCategoryWithProbability(HashMap<Role,Integer> currentRoles, RoleCategory roleCategory){
+        List<Role> roles = new ArrayList<>(getRolesByCategory(roleCategory));
+        removeMaxCount(currentRoles,roles);
+
+        return getRoleWithProbability(currentRoles,roles);
     }
 
-    private static Role getRandomRoleByCategory(RoleCategory... roleCategories){
-        Random random = new Random();
+    private static Role getRoleByCategoryWithProbability(HashMap<Role,Integer> currentRoles , RoleCategory... roleCategories){
         List<Role> roles = new ArrayList<>();
         for(RoleCategory roleCategory: roleCategories){
-            roles.add(getRandomRoleByCategory(roleCategory));
+
+            roles.addAll(getRolesByCategory(roleCategory));
         }
-        return roles.get(random.nextInt(roles.size())).copy();
+        removeMaxCount(currentRoles,roles);
+        return getRoleWithProbability(currentRoles,roles);
     }
 
-    private static Role getRandomRoleByTeam(Team team){
-        Random random = new Random();
-        List<Role> roles = getRolesByTeam(team);
-        return roles.get(random.nextInt(roles.size())).copy();
+    private static Role getRoleByTeamWithProbability(HashMap<Role,Integer> currentRoles, Team team){
+
+        List<Role> roles = new ArrayList<>(getRolesByTeam(team));
+        removeMaxCount(currentRoles,roles);
+        return getRoleWithProbability(currentRoles,roles);
     }
+
+    private static void removeMaxCount(HashMap<Role,Integer> currentRoles, List<Role> currentRoleList){
+        for(Map.Entry<Role,Integer> entry : currentRoles.entrySet()){
+            if(entry.getKey().chanceProperty.maxNumber()<=entry.getValue()){
+                currentRoleList.remove(entry.getKey());
+            }
+        }
+    }
+
+    private static Role getRoleWithProbability(HashMap<Role,Integer> currentRoles, List<Role> currentRoleList){
+
+        int sum = 0;
+        for (Role role : currentRoleList) {
+            sum += role.chanceProperty.chance();
+        }
+        int randNum = new Random().nextInt(sum);
+        int currentSum = 0;
+
+        for (Role role : currentRoleList) {
+            currentSum += role.chanceProperty.chance();
+
+            if (currentSum >= randNum) {
+                return role.copy();
+            }
+        }
+        return null;
+    }
+
 
 }

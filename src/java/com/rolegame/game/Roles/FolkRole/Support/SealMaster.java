@@ -9,7 +9,8 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class SealMaster extends FolkRole implements ActiveNightAbility {
     public SealMaster() {
-        super(RoleID.SealMaster, RolePriority.ROLE_BLOCK, RoleCategory.FOLK_SUPPORT, 0,0);
+        super(RoleID.SealMaster, RolePriority.ROLE_BLOCK, RoleCategory.FOLK_SUPPORT, 0,0
+        , new ChanceProperty(30,10));
     }
 
     @Override

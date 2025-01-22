@@ -9,7 +9,8 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Assassin extends NeutralRole implements ActiveNightAbility {
     public Assassin() {
-        super(RoleID.Assassin, RolePriority.NONE, RoleCategory.NEUTRAL_KILLING, 1, 1);
+        super(RoleID.Assassin, RolePriority.NONE, RoleCategory.NEUTRAL_KILLING, 1, 1
+        , new ChanceProperty(40,1));
     }
 
     @Override

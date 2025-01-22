@@ -9,7 +9,8 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Interrupter extends CorrupterRole implements ActiveNightAbility {
     public Interrupter() {
-        super(RoleID.Interrupter, RolePriority.ROLE_BLOCK, RoleCategory.CORRUPTER_SUPPORT, 0, 0);
+        super(RoleID.Interrupter, RolePriority.ROLE_BLOCK, RoleCategory.CORRUPTER_SUPPORT, 0, 0
+        ,new ChanceProperty(30,10));
     }
 
     @Override

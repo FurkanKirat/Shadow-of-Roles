@@ -10,7 +10,8 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 public class Stalker extends FolkRole implements ActiveNightAbility {
 
     public Stalker() {
-        super(RoleID.Stalker, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0, 0);
+        super(RoleID.Stalker, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0, 0,
+                new ChanceProperty(25,10));
     }
 
     @Override

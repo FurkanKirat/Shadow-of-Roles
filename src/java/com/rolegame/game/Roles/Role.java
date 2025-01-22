@@ -24,10 +24,11 @@ public abstract class Role {
     protected double attack;
     protected double defence;
     protected boolean canPerform;
+    protected final ChanceProperty chanceProperty;
 
     public Role(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
                 Team team, String goal,
-                double attack ,double defence
+                double attack ,double defence, ChanceProperty chanceProperty
     ) {
         // IMPORTANT! When adding a new role, the role id and role name in the lang json files must be the same!
         this.id = id;
@@ -41,6 +42,7 @@ public abstract class Role {
         this.attack = attack;
         this.defence = defence;
         this.canPerform = true;
+        this.chanceProperty = chanceProperty;
     }
 
     public Role(Role role) {
@@ -55,6 +57,7 @@ public abstract class Role {
         this.attack = role.getAttack();
         this.defence = role.getDefence();
         this.canPerform = true;
+        this.chanceProperty = role.chanceProperty;
 
         this.roleOwner = role.roleOwner;
         this.choosenPlayer = roleOwner.getRole().getChoosenPlayer();
@@ -185,5 +188,16 @@ public abstract class Role {
 
     public final void setRolePriority(RolePriority rolePriority) {
         this.rolePriority = rolePriority;
+    }
+
+    public record ChanceProperty(int chance, int maxNumber) {
+        public ChanceProperty {
+            if (chance <= 0) {
+                throw new IllegalArgumentException("Chance must be positive");
+            }
+            if (maxNumber <= 0) {
+                throw new IllegalArgumentException("Max number must be positive");
+            }
+        }
     }
 }

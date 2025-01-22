@@ -10,7 +10,8 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 public class Psycho extends CorrupterRole implements ActiveNightAbility {
 
     public Psycho() {
-        super(RoleID.Psycho, RolePriority.NONE, RoleCategory.CORRUPTER_KILLING, 1,0);
+        super(RoleID.Psycho, RolePriority.NONE, RoleCategory.CORRUPTER_KILLING, 1,0
+        , new ChanceProperty(100,1));
     }
 
     @Override

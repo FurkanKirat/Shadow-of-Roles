@@ -12,7 +12,8 @@ public class FolkHero extends FolkRole implements ActiveNightAbility {
     private int abilityUseCount;
 
     public FolkHero() {
-        super(RoleID.FolkHero, RolePriority.FOLK_HERO, RoleCategory.FOLK_PROTECTOR, 0, 0);
+        super(RoleID.FolkHero, RolePriority.FOLK_HERO, RoleCategory.FOLK_PROTECTOR, 0, 0,
+                new ChanceProperty(5,1));
         abilityUseCount = 0;
     }
 

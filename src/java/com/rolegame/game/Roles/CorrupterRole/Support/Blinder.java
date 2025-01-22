@@ -14,7 +14,8 @@ import java.util.Random;
 
 public class Blinder extends CorrupterRole implements ActiveNightAbility {
     public Blinder() {
-        super(RoleID.Blinder, RolePriority.BLINDER, RoleCategory.CORRUPTER_SUPPORT, 0, 0);
+        super(RoleID.Blinder, RolePriority.BLINDER, RoleCategory.CORRUPTER_SUPPORT, 0, 0
+        ,new ChanceProperty(25,10));
     }
 
     @Override

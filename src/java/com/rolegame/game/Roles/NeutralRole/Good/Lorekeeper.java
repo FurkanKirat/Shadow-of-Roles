@@ -17,7 +17,8 @@ public class Lorekeeper extends NeutralRole implements ActiveNightAbility {
     private Role guessedRole;
     private int trueGuessCount;
     public Lorekeeper() {
-        super(RoleID.Lorekeeper, RolePriority.LORE_KEEPER, RoleCategory.NEUTRAL_GOOD, 0, 1);
+        super(RoleID.Lorekeeper, RolePriority.LORE_KEEPER, RoleCategory.NEUTRAL_GOOD, 0, 0,
+                new ChanceProperty(20,1));
         trueGuessCount = 0;
         alreadyChosenPlayers = new ArrayList<>();
     }

@@ -8,7 +8,8 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class SimplePerson extends NeutralRole implements NoNightAbility {
     public SimplePerson() {
-        super(RoleID.SimplePerson, RolePriority.NONE, RoleCategory.NEUTRAL_CHAOS, 0, 0);
+        super(RoleID.SimplePerson, RolePriority.NONE,
+                RoleCategory.NEUTRAL_CHAOS, 0, 0, new ChanceProperty(10,1));
     }
 
     @Override

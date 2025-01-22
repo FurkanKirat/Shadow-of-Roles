@@ -9,7 +9,8 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Observer extends FolkRole implements ActiveNightAbility {
     public Observer() {
-        super(RoleID.Observer, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0);
+        super(RoleID.Observer, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0
+        , new ChanceProperty(20,10));
     }
 
     @Override

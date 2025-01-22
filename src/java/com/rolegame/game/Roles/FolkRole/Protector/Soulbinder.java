@@ -9,7 +9,8 @@ import com.rolegame.game.Roles.RoleProperties.RolePriority;
 
 public class Soulbinder extends FolkRole implements ActiveNightAbility {
     public Soulbinder() {
-        super(RoleID.Soulbinder, RolePriority.SOULBINDER, RoleCategory.FOLK_PROTECTOR, 0,0);
+        super(RoleID.Soulbinder, RolePriority.SOULBINDER, RoleCategory.FOLK_PROTECTOR,
+                0,0, new ChanceProperty(20,10));
     }
 
     @Override
