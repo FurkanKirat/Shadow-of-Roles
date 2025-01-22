@@ -128,6 +128,9 @@ public class RoleCatalog {
             }
         }
         Collections.shuffle(rolesList);
+        for(Role role : rolesList){
+            System.out.println(role.getName()+" "+role.getRoleCategory() );
+        }
         return rolesList;
     }
 
@@ -146,7 +149,7 @@ public class RoleCatalog {
     private static HashMap<Role,Integer> configureFivePlayers(){
         HashMap<Role,Integer> roles = new HashMap<>();
         putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.FOLK_ANALYST));
-        putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.FOLK_SUPPORT, RoleCategory.FOLK_SUPPORT));
+        putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.FOLK_SUPPORT, RoleCategory.FOLK_PROTECTOR));
         putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
         putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_KILLING));
         putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
@@ -171,7 +174,7 @@ public class RoleCatalog {
         switch (new Random().nextInt(2)){
             case 0: putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
-            case 1: putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+            case 1: putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_ANALYST,RoleCategory.CORRUPTER_SUPPORT));
                 break;
         }
 
@@ -191,12 +194,12 @@ public class RoleCatalog {
                 putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
             case 1:
-                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_ANALYST,RoleCategory.CORRUPTER_SUPPORT));
                 putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
             case 2:
-                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
-                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_ANALYST,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_ANALYST,RoleCategory.CORRUPTER_SUPPORT));
                 break;
         }
 
@@ -227,11 +230,11 @@ public class RoleCatalog {
                 putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
             case 1:
-                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_ANALYST,RoleCategory.CORRUPTER_SUPPORT));
                 putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
             case 2:
-                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_SUPPORT));
+                putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_ANALYST,RoleCategory.CORRUPTER_SUPPORT));
                 putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
                 break;
             case 3:

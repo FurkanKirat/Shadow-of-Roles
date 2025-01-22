@@ -94,7 +94,7 @@
                               <Insets left="6.0" />
                            </VBox.margin>
                         </VBox>
-                        <TextField fx:id="attributesTextField" editable="false" mouseTransparent="true" styleClass="gameTextField" text="Attributes:" />
+                        <TextField fx:id="attributesTextField" editable="false" focusTraversable="false" mouseTransparent="true" styleClass="gameTextField" text="Attributes:" />
                         <VBox prefHeight="14.0" prefWidth="455.0">
                            <padding>
                               <Insets right="10.0" />
@@ -106,7 +106,7 @@
                               <Insets left="6.0" />
                            </VBox.margin>
                         </VBox>
-                        <TextField fx:id="abilitiesTextField" editable="false" mouseTransparent="true" styleClass="gameTextField" text="Abilities:" />
+                        <TextField fx:id="abilitiesTextField" editable="false" focusTraversable="false" mouseTransparent="true" styleClass="gameTextField" text="Abilities:" />
                      </children>
                   </VBox>
                   <Label fx:id="alivePlayersLabel" styleClass="gameLabel" text="Alive Players" />
