@@ -132,7 +132,7 @@
     "abilityMessage": "You have successfully protected your target"
   },
   "ChillGuy": {
-    "name": "Simple Person",
+    "name": "Chill Guy",
     "attributes": "If you reveal your role you will lose the game",
     "abilities": "Just simple person. You do nothing",
     "goal": "Have Fun"
