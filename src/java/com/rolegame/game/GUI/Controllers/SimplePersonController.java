@@ -3,7 +3,7 @@ package com.rolegame.game.GUI.Controllers;
 import com.rolegame.game.GameManagement.GameController;
 import com.rolegame.game.GameManagement.Player;
 import com.rolegame.game.PropertyControllers.SceneController;
-import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
+import com.rolegame.game.Roles.NeutralRole.Chaos.ChillGuy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,7 +36,7 @@ public class SimplePersonController implements Initializable {
 
         GameController gameController = GameScreenController.getGameController();
         for(Player player: gameController.getAllPlayers()){
-            if(player.getRole() instanceof SimplePerson){
+            if(player.getRole() instanceof ChillGuy){
                 player.setHasWon(noButton.isSelected());
                 break;
             }

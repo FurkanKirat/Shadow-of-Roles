@@ -12,7 +12,7 @@ import com.rolegame.game.Roles.FolkRole.Analyst.Observer;
 import com.rolegame.game.Roles.FolkRole.Protector.Soulbinder;
 import com.rolegame.game.Roles.FolkRole.Support.SealMaster;
 import com.rolegame.game.Roles.NeutralRole.Chaos.Clown;
-import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
+import com.rolegame.game.Roles.NeutralRole.Chaos.ChillGuy;
 import com.rolegame.game.Roles.FolkRole.Protector.FolkHero;
 import com.rolegame.game.Roles.FolkRole.Unique.Entrepreneur;
 import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
@@ -38,7 +38,7 @@ public class RoleCatalog {
         addRole(new Interrupter());
         addRole(new SealMaster());
         addRole(new Assassin());
-        addRole(new SimplePerson());
+        addRole(new ChillGuy());
         addRole(new Clown());
         addRole(new Disguiser());
         addRole(new Darkseer());

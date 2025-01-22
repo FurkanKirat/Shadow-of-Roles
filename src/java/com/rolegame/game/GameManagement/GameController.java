@@ -4,7 +4,7 @@ import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.PropertyControllers.SceneController;
 import com.rolegame.game.Roles.CorrupterRole.Support.LastJoke;
 import com.rolegame.game.Roles.NeutralRole.Chaos.Clown;
-import com.rolegame.game.Roles.NeutralRole.Chaos.SimplePerson;
+import com.rolegame.game.Roles.NeutralRole.Chaos.ChillGuy;
 import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
 import com.rolegame.game.Roles.Role;
 import com.rolegame.game.Roles.RoleCatalog;
@@ -217,8 +217,8 @@ public class GameController {
         for(Player player: allPlayers){
 
             switch (player.getRole()){
-                case SimplePerson simplePerson -> {
-                    if(player.getRole() instanceof SimplePerson){
+                case ChillGuy simplePerson -> {
+                    if(player.getRole() instanceof ChillGuy){
                         simplePersonExist = true;
                     }
                 }
