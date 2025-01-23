@@ -11,6 +11,9 @@ import java.util.Map;
 
 public class LanguageManager {
     private static Map<String, Map<String, String>> translations;
+    private static Map<String, Map<String, String>> roles;
+    public static String currentLang;
+    public static String currentTheme;
 
     private static final String LANGUAGE_FILE_PATH = FileManager.getUserDataDirectory() + "\\language.json";
 
@@ -23,25 +26,57 @@ public class LanguageManager {
                 throw new FileNotFoundException("File could not be found: " + languageCode + ".json");
             }
             translations = mapper.readValue(inputStream, new TypeReference<>() {});
-            saveLanguage(languageCode);
+            currentLang = languageCode;
+            saveLanguage(currentTheme, currentTheme);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static String loadLanguage() {
+    public static void changeTheme(String theme) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            InputStream inputStream = LanguageManager.class.getResourceAsStream(
+                    "/com/rolegame/game/lang/roles/" + currentLang + "_" + theme + ".json");
+            if (inputStream == null) {
+                throw new FileNotFoundException("File could not be found: " + currentLang + "_"+ theme + ".json");
+            }
+            roles = mapper.readValue(inputStream, new TypeReference<>() {
+            });
+
+            currentTheme = theme;
+            saveLanguage(currentLang,currentTheme);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadLanguageAndTheme() {
         ObjectMapper mapper = new ObjectMapper();
         try {
             File file = new File(LANGUAGE_FILE_PATH);
-            if (!file.exists()) {
-                return "en_us";
+            if (file.exists()) {
+                LanguageThemeData data = mapper.readValue(file, LanguageThemeData.class);
+                currentLang = data.language;
+                currentTheme = data.theme;
+            } else {
+                // Defaults
+                currentLang = "en_us";
+                currentTheme = "normal";
+                saveLanguage(currentLang, currentTheme);
             }
-            return mapper.readValue(file, String.class);
         } catch (IOException e) {
             e.printStackTrace();
+            // Fallback to defaults in case of error
+            currentLang = "en_us";
+            currentTheme = "normal";
         }
-        return "en_us";
+        changeLanguage(currentLang);
+        changeTheme(currentTheme);
     }
+
 
 
     public static String getText(String text) {
@@ -53,14 +88,56 @@ public class LanguageManager {
         return key;
     }
 
-    private static void saveLanguage(String language) {
+    public static String getRoleText(String text){
+        String category = text.substring(0,text.indexOf('.'));
+        String key = text.substring(text.indexOf('.')+1);
+        if (roles != null && roles.containsKey(category)) {
+            return roles.get(category).getOrDefault(key, key);
+        }
+        return key;
+    }
+
+    private static void saveLanguage(String language, String theme) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             File file = new File(LANGUAGE_FILE_PATH);
             file.getParentFile().mkdirs();
-            mapper.writeValue(file, language);
+
+            // Save language and theme as a JSON object
+            LanguageThemeData data = new LanguageThemeData(language, theme);
+            mapper.writeValue(file, data);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    private static class LanguageThemeData {
+        public String language;
+        public String theme;
+
+        public LanguageThemeData(String language, String theme) {
+            this.language = language;
+            this.theme = theme;
+        }
+
+        public LanguageThemeData() {
+        }
+
+        public String getLanguage() {
+            return language;
+        }
+
+        public void setLanguage(String language) {
+            this.language = language;
+        }
+
+        public String getTheme() {
+            return theme;
+        }
+
+        public void setTheme(String theme) {
+            this.theme = theme;
         }
     }
 }

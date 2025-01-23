@@ -8,7 +8,7 @@
 }
 
 .backgroundimage{
-     -fx-background-image: url('../images/background.jpg');
+     -fx-background-image: url('../images/night4.jpg');
      -fx-background-repeat: no-repeat;
      -fx-background-size: cover; /* Resmi tam kaplayacak şekilde ayarla */
      -fx-background-position: center; /* Ortala */
@@ -199,7 +199,7 @@
 }
 
 .Menuhover-label {
-    -fx-background-color: #66c1e4;
+    -fx-background-color: #76b879;
     -fx-border-color: black;
     -fx-border-width: 2;
     -fx-border-radius: 5;
@@ -209,7 +209,7 @@
 }
 
 .Menuhover-label:hover {
-    -fx-background-color: #3a9ad9;
+    -fx-background-color: #2b8c30;
     -fx-border-color: orange;
     -fx-effect: dropshadow(gaussian, rgba(255, 165, 0, 0.8), 10, 0.5, 0, 0);
     -fx-text-fill: white;

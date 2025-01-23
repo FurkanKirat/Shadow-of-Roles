@@ -14,13 +14,13 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
 
-        LanguageManager.changeLanguage(LanguageManager.loadLanguage());
+        LanguageManager.loadLanguageAndTheme();
         AchievementManager.saveAchievements();
         stage.setOnCloseRequest((event)-> {
             event.consume();
             SceneController.onClose();
         });
-        stage.getIcons().add(new Image("/com/rolegame/game/images/icon.jpg"));
+        stage.getIcons().add(new Image("/com/rolegame/game/images/logo.jpg"));
         stage.setTitle("Shadow of Roles");
         Screen screen = Screen.getPrimary();
 

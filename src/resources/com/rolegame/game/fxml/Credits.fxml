@@ -24,7 +24,7 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="133.0" prefWidth="1346.0">
                <children>
-                  <Label alignment="BOTTOM_CENTER" text="Developed By: Furkan Kırat" textFill="#3dfff4">
+                  <Label alignment="BOTTOM_CENTER" text="Developed By: Furkan Kırat" textFill="#09ff00">
                      <font>
                         <Font size="43.0" />
                      </font>
@@ -36,7 +36,7 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="1346.0">
                <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="524.0" text="Graphs By: Tikky" textFill="#3dfff4">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="524.0" text="Graphs By: Tikky" textFill="#09ff00">
                      <font>
                         <Font size="43.0" />
                      </font>
@@ -48,7 +48,7 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="1346.0">
                <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="549.0" text="Powered by: JavaFX, Java 23" textFill="#3dfff4">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="549.0" text="Powered by: JavaFX, Java 23" textFill="#09ff00">
                      <font>
                         <Font size="43.0" />
                      </font>
@@ -60,7 +60,7 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="1346.0">
                <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="549.0" text="Thank you for playing" textFill="#3dfff4">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="549.0" text="Thank you for playing" textFill="#09ff00">
                      <font>
                         <Font size="43.0" />
                      </font>

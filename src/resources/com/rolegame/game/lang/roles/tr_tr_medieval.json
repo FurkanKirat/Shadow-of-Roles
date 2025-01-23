@@ -1,0 +1,86 @@
+{
+  "Role": {
+    "role": "Roller",
+    "folkRole": "Halk Rolleri",
+    "corrupterRole": "Bozguncu Rolleri",
+    "neutralRole": "Tarafsız Rolleri",
+    "folkAnalyst": "Halk Bilgini",
+    "folkProtector": "Halk Koruyucusu",
+    "folkKilling": "Halk Katili",
+    "folkSupport": "Halk Destekçisi",
+    "folkUnique": "Halk Eşsiz",
+    "corrupterAnalyst": "Bozguncu Bilgini",
+    "corrupterKilling": "Bozguncu Katili",
+    "corrupterSupport": "Bozguncu Destekçisi",
+    "neutralEvil": "Tarafsız Kötü",
+    "neutralKilling": "Tarafsız Katil",
+    "neutralChaos": "Tarafsız Kaos",
+    "neutralGood": "Tarafsız İyi",
+    "abilities": "Yetenekler",
+    "attributes": "Özellikler",
+    "goal": "Hedef",
+    "attack": "Saldırı",
+    "defence": "Savunma"
+  },
+  "SealMaster": {
+    "name": "Mühür Ustası"
+  },
+  "Interrupter": {
+    "name": "Nuri Alço"
+  },
+  "DarkRevealer": {
+    "name": "Karanlık Açığa Çıkaran"
+  },
+  "Psycho": {
+    "name": "Psikopat"
+  },
+  "Assassin": {
+    "name": "Suikastçi"
+  },
+  "Detective": {
+    "name": "Dedektif"
+  },
+  "Observer": {
+    "name": "Gözlemci"
+  },
+  "Stalker": {
+    "name": "Avcı"
+  },
+  "Soulbinder": {
+    "name": "Ruh Bağlayıcı"
+  },
+  "ChillGuy": {
+    "name": "Sade bir insan"
+  },
+  "LastJoke": {
+  "name": "Son Hiciv"
+  },
+  "Clown": {
+    "name": "Şarlatan"
+  },
+  "Disguiser":{
+    "name": "Hilekâr"
+  },
+  "Darkseer":{
+    "name": "Görklü"
+  },
+  "Blinder": {
+    "name": "Blinder"
+  },
+  "FolkHero": {
+    "name": "FolkHero"
+  },
+  "Entrepreneur": {
+    "name": "Ağa Babası"
+  },
+  "Lorekeeper": {
+    "name": "Lorekeeper"
+  },
+  "CauseOfDeath": {
+    "assassin": "Suikastçi",
+    "psycho": "Psikopat",
+    "hanging": "Asılarak",
+    "lastJoke": "Last Joke"
+  }
+
+}

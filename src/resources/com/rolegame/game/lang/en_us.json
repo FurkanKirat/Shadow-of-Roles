@@ -27,7 +27,8 @@
     "notNumberAlert": "Players count should be a number!",
     "exception": "Something went wrong!",
     "playerCount": "Write Player Count",
-    "playerCountExceeded": "Player Count is Exceeded"
+    "playerCountExceeded": "Player Count is Exceeded",
+    "playerCountInsufficient": "Player count cannot be less than 5"
   },
   "Message": {
     "vote": "You have voted for : {playerName}",
@@ -74,23 +75,19 @@
     "roleBlockMessage": "You have role blocked your target"
   },
   "SealMaster": {
-    "name": "Seal Master",
     "attributes": "None",
     "abilities": "You can role block someone in the night"
   },
   "Interrupter": {
-    "name": "Interrupter",
     "attributes": "None",
     "abilities": "You can role block someone in the night"
   },
   "DarkRevealer": {
-    "name": "Dark Revealer",
     "attributes": "None",
     "abilities": "At night you see someone's role",
     "abilityMessage": "Your target's role is: {roleName}"
   },
   "Psycho": {
-    "name": "Psycho",
     "attributes": "None",
     "abilities": "Kill one person each night",
     "killMessage": "You have slain your target successfully",
@@ -98,7 +95,6 @@
     "defenceMessage": "You could not slain your target because your attack was not powerful enough"
   },
   "Assassin": {
-    "name": "Assassin",
     "attributes": "You have basic defence and attack, you are immune to role blocking",
     "abilities": "Kill one person each night",
     "goal": "Kill every folk and corrupter member",
@@ -107,56 +103,47 @@
     "defenceMessage": "You could not slain your target because your attack was not powerful enough"
   },
   "Detective": {
-    "name": "Detective",
     "attributes": "None",
     "abilities": "You choose one and see two roles, including that person's role",
     "abilityMessage": "Your target's role is {roleName1} or {roleName2}"
   },
   "Observer": {
-    "name": "Observer",
     "attributes": "None",
     "abilities": "At night you can see which team a person belongs to",
     "abilityMessage": "Your target's team is: {teamName}"
   },
   "Stalker": {
-    "name": "Stalker",
     "attributes": "None",
     "abilities": "You choose a person and see who that person goes to at night",
     "visitMessage": "Your target has visited {playerName} this night!",
     "nobodyMessage": "Your target did not visited anybody this night!"
   },
   "Soulbinder": {
-    "name": "Soulbinder",
     "attributes": "None",
     "abilities": "You choose someone at night and if they get attacked, you prevent them from dying",
     "abilityMessage": "You have successfully protected your target"
   },
   "ChillGuy": {
-    "name": "Chill Guy",
     "attributes": "If you reveal your role you will lose the game",
     "abilities": "Just simple person. You do nothing",
     "goal": "Have Fun"
   },
   "LastJoke": {
-    "name": "Last Joke",
     "attributes": "None",
     "abilities": "When you die you will comeback to life and you must kill one player",
     "slainMessage": "Someone make their Last Joke to {playerName}"
   },
   "Clown": {
-    "name": "Clown",
     "attributes": "None",
     "abilities": "None",
     "goal": "You have to die at night by someone to win the game"
   },
   "Disguiser":{
-    "name": "Disguiser",
     "attributes": "None",
     "abilities": "Disguise to random role every night but you can't know until you use it"
   },
 
   "Darkseer":{
-    "name": "Darkseer",
     "attributes": "None",
     "abilities": "You see the role of two living people, but you cannot see the role owner",
     "abilityMessage": "The roles of the two currently living player in the play are: {roleName1} and {roleName2}",
@@ -164,20 +151,17 @@
     "zeroLeftMessage": "There are not any players to see their role"
   },
   "Blinder": {
-    "name": "Blinder",
     "attributes": "None",
     "abilityMessage": "You blinded your target",
     "abilities": "When you blind someone that player perform their ability randomly",
     "blindMessage": "You blinded this night"
   },
   "FolkHero": {
-    "name": "FolkHero",
     "attributes": "Yok",
     "abilities": "Yok",
     "abilityMessage": "Başarıyla hedefini bağışık hale getirdin"
   },
   "Entrepreneur": {
-    "name": "Entrepreneur",
     "attributes": "Yok",
     "abilities": "Yok",
     "insufficientMoney": "You don't have enough money to: {abilityType}",
@@ -190,7 +174,6 @@
     "money": "Your money: {money}"
   },
   "Lorekeeper": {
-    "name": "Lorekeeper",
     "attributes": "Yok",
     "abilities": "Yok",
     "goal": "Win the game",

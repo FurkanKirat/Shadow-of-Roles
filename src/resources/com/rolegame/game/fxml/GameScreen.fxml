@@ -73,7 +73,7 @@
                         <Label fx:id="roleLabel" alignment="TOP_CENTER" styleClass="gameLabel" text="Role:" />
                         <VBox prefHeight="14.0" prefWidth="455.0">
                            <children>
-                              <Label fx:id="goalLabel" styleClass="gameLabel" text="Goal" />
+                              <Label fx:id="goalLabel" focusTraversable="false" styleClass="gameLabel" text="Goal" />
                            </children>
                            <VBox.margin>
                               <Insets left="6.0" />
@@ -82,10 +82,10 @@
                               <Insets right="10.0" />
                            </padding>
                         </VBox>
-                        <TextField fx:id="goalTextField" editable="false" mouseTransparent="true" styleClass="gameTextField" text="Goal:" />
+                        <TextField fx:id="goalTextField" editable="false" focusTraversable="false" mouseTransparent="true" styleClass="gameTextField" text="Goal:" />
                         <VBox prefHeight="14.0" prefWidth="455.0">
                            <children>
-                              <Label fx:id="attributesLabel" styleClass="gameLabel" text="Attributes" />
+                              <Label fx:id="attributesLabel" focusTraversable="false" styleClass="gameLabel" text="Attributes" />
                            </children>
                            <padding>
                               <Insets right="10.0" />
@@ -100,7 +100,7 @@
                               <Insets right="10.0" />
                            </padding>
                            <children>
-                              <Label fx:id="abilitiesLabel" styleClass="gameLabel" text="Abilities" />
+                              <Label fx:id="abilitiesLabel" focusTraversable="false" styleClass="gameLabel" text="Abilities" />
                            </children>
                            <VBox.margin>
                               <Insets left="6.0" />
@@ -123,7 +123,7 @@
                   </ListView>
                   <HBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="455.0">
                      <children>
-                        <Button fx:id="useAbilityButton" mnemonicParsing="false" onAction="#useAbilityClicked" prefHeight="41.0" prefWidth="305.0" styleClass="background2" text="Vote" />
+                        <Button fx:id="useAbilityButton" focusTraversable="false" mnemonicParsing="false" onAction="#useAbilityClicked" prefHeight="41.0" prefWidth="305.0" styleClass="background2" text="Vote" />
                      </children>
                   </HBox>
                   <Label fx:id="nameLabel" text="Your Name:" />

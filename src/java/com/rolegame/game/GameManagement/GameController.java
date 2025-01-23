@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class GameController {
-    private ArrayList<Player> allPlayers = new ArrayList<>();
+    private final ArrayList<Player> allPlayers = new ArrayList<>();
     private ArrayList<Player> alivePlayers = new ArrayList<>();
-    private ArrayList<Player> deadPlayers = new ArrayList<>();
+    private final ArrayList<Player> deadPlayers = new ArrayList<>();
     private Player currentPlayer;
     private int currentPlayerIndex;
     private int playerCount;
@@ -41,11 +41,8 @@ public class GameController {
             role.performAbility();
         }
 
-        for(Player player: alivePlayers){
-            player.getRole().setChoosenPlayer(null);
-
-        }
         for(Player alivePlayer: alivePlayers){
+            alivePlayer.getRole().setChoosenPlayer(null);
             alivePlayer.setDefence(alivePlayer.getRole().getDefence());
             alivePlayer.getRole().setCanPerform(true);
             alivePlayer.setImmune(false);
@@ -116,10 +113,7 @@ public class GameController {
         for(int i=0;i<textFields.length;i++){
             allPlayers.add(new Player(i+1,textFields[i].getText(), randomRoles.get(i)));
         }
-        alivePlayers = (ArrayList<Player>) allPlayers.clone();
         updateAlivePlayers();
-        currentPlayerIndex=0;
-        currentPlayer = alivePlayers.getFirst();
         dayCount=1;
         isDay=true;
         playerCount = textFields.length;
@@ -154,7 +148,7 @@ public class GameController {
     }
 
     public ArrayList<Player> getDeadPlayers() {
-        deadPlayers = new ArrayList<>();
+        deadPlayers.clear();
         for (Player allPlayer : allPlayers) {
             if (!allPlayer.isAlive()) {
                 deadPlayers.add(allPlayer);
@@ -217,12 +211,12 @@ public class GameController {
         for(Player player: allPlayers){
 
             switch (player.getRole()){
-                case ChillGuy simplePerson -> {
+                case ChillGuy _ -> {
                     if(player.getRole() instanceof ChillGuy){
                         simplePersonExist = true;
                     }
                 }
-                case Clown clown -> {
+                case Clown _ -> {
                     if(!player.isAlive() && !player.getCauseOfDeath().equals(LanguageManager.getText("CauseOfDeath.hanging"))){
                         player.setHasWon(true);
                     }
@@ -289,18 +283,6 @@ public class GameController {
         return currentPlayerIndex;
     }
 
-    public void setCurrentPlayerIndex(int currentPlayerIndex) {
-        this.currentPlayerIndex = currentPlayerIndex;
-        this.currentPlayer = alivePlayers.get(currentPlayerIndex);
-    }
-
-    public int getPlayerCount() {
-        return playerCount;
-    }
-
-    public void setPlayerCount(int playerCount) {
-        this.playerCount = playerCount;
-    }
     public Player getCurrentPlayer(){
         return currentPlayer;
     }

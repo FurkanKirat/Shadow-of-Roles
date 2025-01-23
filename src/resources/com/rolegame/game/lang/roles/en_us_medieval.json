@@ -1,0 +1,86 @@
+{
+    "Role": {
+        "role": "Roles",
+        "folkRole": "Folk Roles",
+        "corrupterRole": "Corrupter Roles",
+        "neutralRole": "Neutral Roles",
+        "folkAnalyst": "Folk Analyst",
+        "folkProtector": "Folk Protector",
+        "folkKilling": "Folk Killing",
+        "folkSupport": "Folk Support",
+        "folkUnique": "Folk Unique",
+        "corrupterAnalyst": "Corrupter Analyst",
+        "corrupterKilling": "Corrupter Killing",
+        "corrupterSupport": "Corrupter Support",
+        "neutralEvil": "Neutral Evil",
+        "neutralKilling": "Neutral Killing",
+        "neutralChaos": "Neutral Chaos",
+        "neutralGood": "Neutral Good",
+        "abilities": "Abilities",
+        "attributes": "Attributes",
+        "goal": "Goal",
+        "attack": "Attack",
+        "defence": "Defence"
+    },
+
+    "SealMaster": {
+        "name": "Sigillum Dominus"
+    },
+    "Interrupter": {
+        "name": "Interdictor"
+    },
+    "DarkRevealer": {
+        "name": "Tenebris Revelator"
+    },
+    "Psycho": {
+        "name": "Furiosus"
+    },
+    "Assassin": {
+        "name": "Venator Tenebrarum"
+    },
+    "Detective": {
+        "name": "Investigatore"
+    },
+    "Observer": {
+        "name": "Spectator"
+    },
+    "Stalker": {
+        "name": "Umbra Venator"
+    },
+    "Soulbinder": {
+        "name": "Vinculum Animarum"
+    },
+    "ChillGuy": {
+        "name": "Simple Soul"
+    },
+    "LastJoke": {
+        "name": "Echo of Laughter"
+    },
+    "Clown": {
+        "name": "Madman"
+    },
+    "Disguiser":{
+        "name": "Phantom Cloak"
+    },
+    "Darkseer":{
+        "name": "Specularis"
+    },
+    "Blinder": {
+        "name": "Blinder"
+    },
+    "FolkHero": {
+        "name": "FolkHero"
+    },
+    "Entrepreneur": {
+        "name": "Entrepreneur"
+    },
+    "Lorekeeper": {
+        "name": "Lorekeeper"
+    },
+    "CauseOfDeath": {
+        "assassin": "Assassin",
+        "psycho": "Psycho",
+        "hanging": "Hanged",
+        "lastJoke": "Last Joke"
+    }
+}

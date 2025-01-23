@@ -41,7 +41,7 @@ public class WriteNamesController extends VBox {
                 return;
             }
             else if(playerCount<5){
-                showAlert("Player count is less than 5");
+                showAlert(LanguageManager.getText("WriteNames.playerCountInsufficient"));
                 return;
             }
 
@@ -52,7 +52,6 @@ public class WriteNamesController extends VBox {
             showAlert(LanguageManager.getText("WriteNames.exception"));
             return;
         }
-        //
 
         textFields = new TextField[playerCount];
         for(int i=0;i<playerCount;i++){

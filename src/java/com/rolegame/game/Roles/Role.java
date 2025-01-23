@@ -34,10 +34,10 @@ public abstract class Role {
         this.id = id;
         this.rolePriority = rolePriority;
         this.roleCategory = roleCategory;
-        this.name = LanguageManager.getText(id.toString()+".name");
+        this.name = LanguageManager.getRoleText(id.toString()+".name");
         this.attributes = LanguageManager.getText(id +".attributes");
         this.team = team;
-        this.abilities = LanguageManager.getText(id +".abilities");;
+        this.abilities = LanguageManager.getText(id +".abilities");
         this.goal = goal;
         this.attack = attack;
         this.defence = defence;
@@ -188,6 +188,10 @@ public abstract class Role {
 
     public final void setRolePriority(RolePriority rolePriority) {
         this.rolePriority = rolePriority;
+    }
+
+    public ChanceProperty getChanceProperty() {
+        return chanceProperty;
     }
 
     public record ChanceProperty(int chance, int maxNumber) {

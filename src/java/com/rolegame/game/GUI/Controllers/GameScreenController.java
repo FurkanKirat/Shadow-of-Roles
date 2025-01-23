@@ -21,6 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class GameScreenController {
@@ -274,10 +275,16 @@ public class GameScreenController {
         goalTextField.setText(gameController.getCurrentPlayer().getRole().getGoal());
         roleLabel.setText(gameController.getCurrentPlayer().getRole().getName());
 
-        alivePlayersListView.getItems().setAll(gameController.getAlivePlayers().stream()
+        List<PlayerSelectionBox> boxes = gameController.getAlivePlayers().stream()
                 .filter(Player::isAlive)
                 .map(player -> new PlayerSelectionBox(player, gameController.getCurrentPlayer(), gameController.isDay()))
-                .toList());
+                .toList();
+
+        alivePlayersListView.getItems().setAll(boxes);
+
+        playerSelectionBoxes.clear();
+        playerSelectionBoxes.addAll(boxes);
+
 
         initializeMessages();
         extraPropertiesVbox.getChildren().clear();
@@ -334,7 +341,7 @@ public class GameScreenController {
     private void initializeMessages(){
         announcementsView.getItems().clear();
         for(Message message: Message.getMessages()){
-            if(message.isPublic() || message.getReceiver().equals(gameController.getCurrentPlayer())){
+            if(message.isPublic() || message.receiver().equals(gameController.getCurrentPlayer())){
                 announcementsView.getItems().add(new MessageBox(message,announcementsView));
             }
         }
@@ -345,7 +352,7 @@ public class GameScreenController {
         announceBigVBox.getChildren().remove(startDayButton);
         announcementsListView.getItems().clear();
         for(Message message: Message.getMessages()){
-            if(message.isPublic()&&message.getDayCount() == gameController.getDayCount()){
+            if(message.isPublic()&&message.dayCount() == gameController.getDayCount()){
                 announcementsListView.getItems().add(new MessageBox(message,announcementsView));
             }
         }

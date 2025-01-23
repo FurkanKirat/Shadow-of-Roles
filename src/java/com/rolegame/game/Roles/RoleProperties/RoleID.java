@@ -11,7 +11,7 @@ public enum RoleID {
     Interrupter(7),
     SealMaster(8),
     Assassin(9),
-    SimplePerson(10),
+    ChillGuy(10),
     LastJoke(11),
     Clown(12),
     Disguiser(13),

@@ -128,9 +128,7 @@ public class RoleCatalog {
             }
         }
         Collections.shuffle(rolesList);
-        for(Role role : rolesList){
-            System.out.println(role.getName()+" "+role.getRoleCategory() );
-        }
+
         return rolesList;
     }
 
@@ -307,10 +305,7 @@ public class RoleCatalog {
      */
     private static Role getRoleWithProbability(List<Role> randomRoleList){
 
-        int sum = 0;
-        for (Role role : randomRoleList) {
-            sum += role.chanceProperty.chance();
-        }
+        int sum = randomRoleList.stream().mapToInt(role -> role.getChanceProperty().chance()).sum();
         int randNum = new Random().nextInt(sum);
         int currentSum = 0;
 

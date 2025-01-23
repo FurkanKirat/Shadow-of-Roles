@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lorekeeper extends NeutralRole implements ActiveNightAbility {
-    private List<Player> alreadyChosenPlayers;
+    private final List<Player> alreadyChosenPlayers;
     private Role guessedRole;
     private int trueGuessCount;
     public Lorekeeper() {

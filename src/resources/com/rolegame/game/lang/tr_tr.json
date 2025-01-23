@@ -27,7 +27,8 @@
     "notNumberAlert": "Oyuncu sayısı bir sayı olmalı!",
     "exception": "Bir şeyler ters gitti!",
     "playerCount": "Oyuncu Sayısını Yazın",
-    "playerCountExceeded": "Oyuncu sayısı aşıldı"
+    "playerCountExceeded": "Oyuncu sayısı aşıldı",
+    "playerCountInsufficient": "Oyuncu sayısı 5'ten az olamaz"
   },
   "Message": {
     "vote": "Şu oyuncuya oy verdiniz : {playerName}",
@@ -74,23 +75,19 @@
     "roleBlockMessage": "Hedefinizin rolünü engellediniz"
   },
   "SealMaster": {
-    "name": "Mühür Ustası",
     "attributes": "Yok",
     "abilities": "Gece birini engelleyebilirsiniz"
   },
   "Interrupter": {
-    "name": "Kesici",
     "attributes": "Yok",
     "abilities": "Gece birini engelleyebilirsiniz"
   },
   "DarkRevealer": {
-    "name": "Karanlık Açığa Çıkaran",
     "attributes": "Yok",
     "abilities": "Gece birinin rolünü görebilirsiniz",
     "abilityMessage": "Hedefinizin rolü: {roleName}"
   },
   "Psycho": {
-    "name": "Psikopat",
     "attributes": "Yok",
     "abilities": "Her gece bir kişiyi öldürün",
     "killMessage": "Hedefinizi başarıyla öldürdünüz",
@@ -98,7 +95,6 @@
     "defenceMessage": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi"
   },
   "Assassin": {
-    "name": "Suikastçi",
     "attributes": "Temel savunma ve saldırıya sahipsiniz, engellemeye karşı bağışıksınız",
     "abilities": "Her gece bir kişiyi öldürün",
     "goal": "Tüm halk ve bozguncu üyelerini öldürün",
@@ -107,55 +103,46 @@
     "defenceMessage": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi"
   },
   "Detective": {
-    "name": "Dedektif",
     "attributes": "Yok",
     "abilities": "Birini seçin ve iki rol görün, biri o kişinin rolü",
     "abilityMessage": "Hedefinizin rolü: {roleName1} veya {roleName2}"
   },
   "Observer": {
-    "name": "Gözlemci",
     "attributes": "Yok",
     "abilities": "Gece birinin hangi takıma ait olduğunu görebilirsiniz",
     "abilityMessage": "Hedefinizin takımı: {teamName}"
   },
   "Stalker": {
-    "name": "Avcı",
     "attributes": "Yok",
     "abilities": "Bir kişiyi seçin ve o kişinin gece nereye gittiğini görün",
     "visitMessage": "Hedefiniz bu gece şu kişiyi ziyaret etti: {playerName}",
     "nobodyMessage": "Hedefiniz bu gece kimseyi ziyaret etmedi!"
   },
   "Soulbinder": {
-    "name": "Ruh Bağlayıcı",
     "attributes": "Yok",
     "abilities": "Gece birini seçin ve eğer saldırıya uğrarlarsa ölmelerini engelleyin",
     "abilityMessage": "You have successfully protected your target"
   },
   "ChillGuy": {
-    "name": "Düz Adam",
     "attributes": "Rolünü açıklarsan kaybedersin",
     "abilities": "Dümdüz insan. Hiçbir şey yapmazsın",
     "goal": "Eğlenmek"
   },
   "LastJoke": {
-    "name": "Ölümün Mizahı",
     "attributes": "Yok",
     "abilities": "Öldüğün zaman geri gelip birini hayattan koparırsın",
     "slainMessage": "{playerName} için birisi son şakasını yaptı"
   },
   "Clown": {
-    "name": "Palyaço",
     "attributes": "Yok",
     "abilities": "Yok",
     "goal": "Oyunu kazanmak için gece biri tarafından öldürülmen lazım"
   },
   "Disguiser":{
-    "name": "Kılık Değiştiren",
     "attributes": "Yok",
     "abilities": "Her gece başka bir role bürünürsün ama hangi rol olduğunu kullanmadan bilemezsin"
   },
   "Darkseer":{
-    "name": "Karanlık Görücü",
     "attributes": "None",
     "abilities": "\nYaşayan iki kişinin rolünü görüyorsunuz ancak rol sahibini göremezsiniz",
     "abilityMessage": "Oyunda şu anda yaşayan iki kişinin rolleri: {roleName1} ve {roleName2}",
@@ -163,20 +150,17 @@
     "zeroLeftMessage": "Rolü gösterilecek oyuncu bulunamadı"
   },
   "Blinder": {
-    "name": "Blinder",
     "attributes": "None",
     "abilityMessage": "You have blinded your target",
     "abilities": "When you blind someone that player perform their ability randomly",
     "blindMessage": "You are blinded this night"
   },
   "FolkHero": {
-    "name": "FolkHero",
     "attributes": "Yok",
     "abilities": "Yok",
     "abilityMessage": "Başarıyla hedefini bağışık hale getirdin"
   },
   "Entrepreneur": {
-    "name": "Entrepreneur",
     "attributes": "Yok",
     "abilities": "Yok",
     "insufficientMoney": "You don't have enough money to: {abilityType}",
@@ -189,7 +173,6 @@
     "money": "Your money: {money}"
   },
   "Lorekeeper": {
-    "name": "Lorekeeper",
     "attributes": "Yok",
     "abilities": "Yok",
     "goal": "Win the game",

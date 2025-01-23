@@ -9,8 +9,8 @@ public class MessageBox extends Label {
     public MessageBox(Message message, ListView<MessageBox> listView){
 
         String time = message.isDay() ? LanguageManager.getText("Menu.day") : LanguageManager.getText("Menu.night");
-        time += " " + message.getDayCount()+ ": ";
-        this.setText(time + message.getMessage());
+        time += " " + message.dayCount()+ ": ";
+        this.setText(time + message.message());
         this.getStyleClass().add("messageBox");
         if (message.isPublic()) {
             this.getStyleClass().add("public");

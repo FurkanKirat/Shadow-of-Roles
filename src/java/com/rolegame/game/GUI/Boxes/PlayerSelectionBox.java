@@ -53,10 +53,9 @@ public class PlayerSelectionBox extends HBox{
             }
 
             for(PlayerSelectionBox playerSelectionBox: GameScreenController.getPlayerSelectionBoxes()){
-                if(playerSelectionBox.equals(this)){
-                    continue;
+                if (!playerSelectionBox.equals(this)) {
+                    playerSelectionBox.setChosen(false);
                 }
-                playerSelectionBox.setChosen(false);
             }
             });
         this.getChildren().addAll(stackPane,playerNameBox);
