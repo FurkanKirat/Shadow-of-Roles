@@ -9,18 +9,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class WriteNamesController extends VBox {
+    private ComboBox<Integer> playerCountComboBox;
     private TextField[] textFields;
     private static GameController gameController;
     private final VBox textFieldsBox;
 
-    private TextField playerCountTextField;
-    int playerCount;
-    public WriteNamesController(){
+    public WriteNamesController() {
         this.getStylesheets().add("/com/rolegame/game/css/day.css");
         this.getStyleClass().add("startRoot");
         this.setPrefWidth(1366);
         this.setPrefHeight(768);
+        this.setAlignment(Pos.CENTER);
+
         textFieldsBox = new VBox();
+<<<<<<< Updated upstream
         initialize();
     }
 
@@ -72,22 +74,29 @@ public class WriteNamesController extends VBox {
             gameController = new GameController();
             gameController.initializePlayers(textFields);
             SceneController.switchScene("/com/rolegame/game/fxml/GameScreen.fxml", SceneController.SceneType.GAME);
+=======
+        textFieldsBox.setAlignment(Pos.CENTER);
+>>>>>>> Stashed changes
 
+        // ComboBox oluştur ve değerleri ekle
+        playerCountComboBox = new ComboBox<>();
+        playerCountComboBox.getItems().addAll(5, 6, 7, 8, 9, 10); // Geçerli değerler
+        playerCountComboBox.setValue(5); // Varsayılan değer
 
+        // ComboBox'a olay dinleyicisi ekle
+        playerCountComboBox.setOnAction(event -> {
+            int selectedPlayerCount = playerCountComboBox.getValue();
+            updateTextFields(selectedPlayerCount);
         });
-        textFieldsBox.getChildren().add(button);
-    }
 
-    private void initialize(){
-        playerCountTextField = new TextField();
-        playerCountTextField.setPromptText(LanguageManager.getText("WriteNames.playerCount"));
-        playerCountTextField.setMaxWidth(100);
-        Button numberButton = new Button(LanguageManager.getText("Menu.apply"));
-        numberButton.setOnAction((_) ->{
-            playerClicked();
-        });
-        this.getChildren().add(playerCountTextField);
-        this.getChildren().add(numberButton);
+        Label comboBoxLabel = new Label(LanguageManager.getText("WriteNames.playerCount"));
+        comboBoxLabel.getStyleClass().add("startLabel");
+
+        HBox comboBoxContainer = new HBox(comboBoxLabel, playerCountComboBox);
+        comboBoxContainer.setAlignment(Pos.CENTER);
+        comboBoxContainer.setSpacing(10);
+
+        this.getChildren().add(comboBoxContainer);
         this.getChildren().add(textFieldsBox);
 
         ScrollPane scrollPane = new ScrollPane();
@@ -96,15 +105,40 @@ public class WriteNamesController extends VBox {
         scrollPane.setContent(textFieldsBox);
         this.getChildren().add(scrollPane);
 
+        // Varsayılan olarak TextFields'ı güncelle
+        updateTextFields(playerCountComboBox.getValue());
     }
-    private void showAlert(String message){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText(message);
-        alert.showAndWait();
+
+    private void updateTextFields(int playerCount) {
+        textFieldsBox.getChildren().clear(); // Eski textField'leri temizle
+        textFields = new TextField[playerCount];
+
+        for (int i = 0; i < playerCount; i++) {
+            TextField textField = new TextField();
+            textField.setText(LanguageManager.getText("Menu.player") + " " + (i + 1)); // Varsayılan isimler ver
+            textField.getStyleClass().add("startTextField");
+
+            Label nameLabel = new Label(LanguageManager.getText("Menu.player") + " " + (i + 1) + ": ");
+            nameLabel.getStyleClass().add("startLabel");
+
+            HBox hBox = new HBox(nameLabel, textField);
+            hBox.setAlignment(Pos.CENTER);
+            hBox.setSpacing(10);
+
+            textFields[i] = textField;
+            textFieldsBox.getChildren().add(hBox);
+        }
+
+        Button button = new Button(LanguageManager.getText("Menu.apply"));
+        button.getStyleClass().add("startButton");
+        button.setOnAction((event) -> {
+            gameController = new GameController();
+            gameController.initializePlayers(textFields);
+            SceneController.switchScene("/com/rolegame/game/fxml/GameScreen.fxml", SceneController.SceneType.GAME);
+        });
+        textFieldsBox.getChildren().add(button);
     }
-    private void changeVBox(){
-        textFieldsBox.getChildren().clear();
-    }
+
     public static GameController getGameController() {
         return gameController;
     }
