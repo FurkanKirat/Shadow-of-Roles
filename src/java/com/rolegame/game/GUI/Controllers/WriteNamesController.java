@@ -22,61 +22,7 @@ public class WriteNamesController extends VBox {
         this.setAlignment(Pos.CENTER);
 
         textFieldsBox = new VBox();
-<<<<<<< Updated upstream
-        initialize();
-    }
-
-    private void playerClicked(){
-        if(playerCountTextField==null){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(LanguageManager.getText("WriteNames.blankAlert"));
-            alert.showAndWait();
-            return;
-        }
-
-        try{
-            playerCount = Integer.parseInt(playerCountTextField.getText());
-            textFieldsBox.getChildren().clear();
-
-            if(playerCount>10){
-                showAlert(LanguageManager.getText("WriteNames.playerCountExceeded"));
-                return;
-            }
-            else if(playerCount<5){
-                showAlert(LanguageManager.getText("WriteNames.playerCountInsufficient"));
-                return;
-            }
-
-        } catch (NumberFormatException e) {
-            showAlert(LanguageManager.getText("WriteNames.notNumberAlert"));
-            return;
-        } catch (Exception e) {
-            showAlert(LanguageManager.getText("WriteNames.exception"));
-            return;
-        }
-
-        textFields = new TextField[playerCount];
-        for(int i=0;i<playerCount;i++){
-            textFields[i] = new TextField();
-            textFields[i].setText(LanguageManager.getText("Menu.player") +" " + (i+1));
-            textFields[i].getStyleClass().add("startTextField");
-            HBox hBox = new HBox();
-            Label nameLabel = new Label(LanguageManager.getText("Menu.player") +" " + (i+1)+": ");
-            nameLabel.getStyleClass().add("startLabel");
-            hBox.getChildren().add(nameLabel);
-            hBox.getChildren().add(textFields[i]);
-            hBox.setAlignment(Pos.CENTER);
-            textFieldsBox.getChildren().add(hBox);
-        }
-        Button button = new Button(LanguageManager.getText("Menu.apply"));
-        button.getStyleClass().add("startButton");
-        button.setOnAction((event)->{
-            gameController = new GameController();
-            gameController.initializePlayers(textFields);
-            SceneController.switchScene("/com/rolegame/game/fxml/GameScreen.fxml", SceneController.SceneType.GAME);
-=======
         textFieldsBox.setAlignment(Pos.CENTER);
->>>>>>> Stashed changes
 
         // ComboBox oluştur ve değerleri ekle
         playerCountComboBox = new ComboBox<>();
