@@ -1,0 +1,36 @@
+{
+  "LAZY_HERO": {
+    "title": "Lazy Hero",
+    "description": "Win the game with the folk hero without using any skills"
+  },
+  "FIRST_STEPS": {
+    "title": "First Steps",
+    "description": "Complete Your First Game"
+  },
+  "NOVICE_ADVENTURER": {
+    "title": "Novice Adventurer",
+    "description": "Complete Your First 5 Games"
+  },
+  "DETERMINED_PLAYER": {
+    "title": "Determined Player",
+    "description": "Complete Your First 10 Games"
+  },
+  "ON_THE_PATH_TO_MASTERY": {
+    "title": "On the Path to Mastery",
+    "description": "Complete Your First 25 Games"
+  },
+  "HALFWAY_THERE": {
+    "title": "Halfway There",
+    "description": "Complete Your First 50 Games"
+  },
+  "LEGENDARY_PLAYER": {
+    "title": "Legendary Player",
+    "description": "Complete Your First 99 Games"
+  },
+  "WIN_SACRIFICE": {
+    "title": "Win Sacrifice",
+    "description": "Lose the game with revealing your role as chill guy"
+  }
+
+}
+

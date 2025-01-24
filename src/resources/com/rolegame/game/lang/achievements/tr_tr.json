@@ -1,0 +1,35 @@
+{
+  "LAZY_HERO": {
+    "title": "Tembel Kahraman",
+    "description": "Halk kahramanı ile hiçbir yetenek kullanmadan oyunu kazanın"
+  },
+  "FIRST_STEPS": {
+    "title": "İlk Adımlar",
+    "description": "İlk oyununuzu tamamlayın"
+  },
+  "NOVICE_ADVENTURER": {
+    "title": "Acemi Maceracı",
+    "description": "İlk 5 oyununuzu tamamlayın"
+  },
+  "DETERMINED_PLAYER": {
+    "title": "Kararlı Oyuncu",
+    "description": "İlk 10 oyununuzu tamamlayın"
+  },
+  "ON_THE_PATH_TO_MASTERY": {
+    "title": "Ustalık Yolunda",
+    "description": "İlk 25 oyununuzu tamamlayın"
+  },
+  "HALFWAY_THERE": {
+    "title": "Yarısına Geldiniz",
+    "description": "İlk 50 oyununuzu tamamlayın"
+  },
+  "LEGENDARY_PLAYER": {
+    "title": "Efsanevi Oyuncu",
+    "description": "İlk 99 oyununuzu tamamlayın"
+  },
+  "WIN_SACRIFICE": {
+    "title": "Kazanma Fedası",
+    "description": "Düz adam oynarken rolünü açıklayarak kaybet"
+  }
+}
+

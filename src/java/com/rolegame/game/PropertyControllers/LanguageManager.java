@@ -12,22 +12,24 @@ import java.util.Map;
 public class LanguageManager {
     private static Map<String, Map<String, String>> translations;
     private static Map<String, Map<String, String>> roles;
+    private static Map<String, Map<String, String>> achievements;
     public static String currentLang;
     public static String currentTheme;
 
-    private static final String LANGUAGE_FILE_PATH = FileManager.getUserDataDirectory() + "\\language.json";
+    private static final String LANGUAGE_FILE_PATH = FileManager.getUserDataDirectory() + File.separator + "language.json";
 
     public static void changeLanguage(String languageCode) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            InputStream inputStream = LanguageManager.class.getResourceAsStream(
-                    "/com/rolegame/game/lang/" + languageCode + ".json");
+            String langFilePath = "/com/rolegame/game/lang/" + languageCode + ".json";
+            InputStream inputStream = LanguageManager.class.getResourceAsStream(langFilePath);
             if (inputStream == null) {
-                throw new FileNotFoundException("File could not be found: " + languageCode + ".json");
+                throw new FileNotFoundException(langFilePath);
             }
             translations = mapper.readValue(inputStream, new TypeReference<>() {});
             currentLang = languageCode;
-            saveLanguage(currentTheme, currentTheme);
+            saveLanguage(currentLang, currentTheme);
+            loadAchievements(currentLang);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,9 +77,23 @@ public class LanguageManager {
         }
         changeLanguage(currentLang);
         changeTheme(currentTheme);
+        loadAchievements(currentLang);
     }
 
-
+    public static void loadAchievements(String languageCode) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            InputStream inputStream = LanguageManager.class.getResourceAsStream(
+                    "/com/rolegame/game/lang/achievements/" + languageCode + ".json");
+            if (inputStream == null) {
+                throw new FileNotFoundException("Achievement file not found: " + languageCode + ".json");
+            }
+            achievements = mapper.readValue(inputStream, new TypeReference<>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+            achievements = null;
+        }
+    }
 
     public static String getText(String text) {
         String category = text.substring(0,text.indexOf('.'));
@@ -97,13 +113,22 @@ public class LanguageManager {
         return key;
     }
 
+    public static String getAchievementText(String text){
+        String category = text.substring(0,text.indexOf('.'));
+        String key = text.substring(text.indexOf('.')+1);
+        if (achievements != null && achievements.containsKey(category)) {
+            return achievements.get(category).getOrDefault(key, key);
+        }
+        return key;
+    }
+
+
     private static void saveLanguage(String language, String theme) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             File file = new File(LANGUAGE_FILE_PATH);
             file.getParentFile().mkdirs();
 
-            // Save language and theme as a JSON object
             LanguageThemeData data = new LanguageThemeData(language, theme);
             mapper.writeValue(file, data);
         } catch (IOException e) {

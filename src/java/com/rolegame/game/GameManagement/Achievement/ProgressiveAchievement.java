@@ -4,8 +4,14 @@ public class ProgressiveAchievement extends Achievement {
     private int progress;
     private int max;
 
-    public ProgressiveAchievement(String title, String description, boolean isCompleted, AchievementCategory category, int progress, int max) {
-        super(title, description, isCompleted, category);
+    public ProgressiveAchievement(AchievementID id, boolean isCompleted, AchievementCategory category, int progress, int max) {
+        super(id, isCompleted, category);
+        this.progress = progress;
+        this.max = max;
+    }
+
+    public ProgressiveAchievement(AchievementID id, String title, String description, boolean isCompleted, AchievementCategory category, int progress, int max) {
+        super(id, title, description, isCompleted, category);
         this.progress = progress;
         this.max = max;
     }

@@ -10,33 +10,36 @@ import com.rolegame.game.GameManagement.Achievement.ProgressiveAchievement;
 
 public class AchievementManager {
 
-    private static final String USER_DATA_PATH = FileManager.getUserDataDirectory() + "\\achievements.json";
-    private static final Map<String,Achievement> achievements = new LinkedHashMap<>();
+    private static final String USER_DATA_PATH = FileManager.getUserDataDirectory() + File.separator + "achievements.json";
+    private static final Map<Achievement.AchievementID,Achievement> achievements = new LinkedHashMap<>();
 
     private static final Achievement FIRST_STEPS =
-            new ProgressiveAchievement("First Steps","Complete Your First Game",false, Achievement.AchievementCategory.PLAY_GAME,0,1);
+            new ProgressiveAchievement(Achievement.AchievementID.FIRST_STEPS,false, Achievement.AchievementCategory.PLAY_GAME,0,1);
 
     private static final Achievement NOVICE_ADVENTURER =
-            new ProgressiveAchievement("Novice Adventurer","Complete Your First 5 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,5);
+            new ProgressiveAchievement(Achievement.AchievementID.NOVICE_ADVENTURER,false, Achievement.AchievementCategory.PLAY_GAME,0,5);
 
     private static final Achievement DETERMINED_PLAYER =
-            new ProgressiveAchievement("Determined Player","Complete Your First 10 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,10);
+            new ProgressiveAchievement(Achievement.AchievementID.DETERMINED_PLAYER,false, Achievement.AchievementCategory.PLAY_GAME,0,10);
 
     private static final Achievement ON_THE_PATH_TO_MASTERY =
-            new ProgressiveAchievement("On the Path to Mastery","Complete Your First 25 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,25);
+            new ProgressiveAchievement(Achievement.AchievementID.ON_THE_PATH_TO_MASTERY,false, Achievement.AchievementCategory.PLAY_GAME,0,25);
 
     private static final Achievement HALFWAY_THERE =
-            new ProgressiveAchievement("Halfway There","Complete Your First 50 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,50);
+            new ProgressiveAchievement(Achievement.AchievementID.HALFWAY_THERE,false, Achievement.AchievementCategory.PLAY_GAME,0,50);
 
     private static final Achievement LEGENDARY_PLAYER =
-            new ProgressiveAchievement("Legendary Player","Complete Your First 99 Games",false, Achievement.AchievementCategory.PLAY_GAME,0,99);
+            new ProgressiveAchievement(Achievement.AchievementID.LEGENDARY_PLAYER,false, Achievement.AchievementCategory.PLAY_GAME,0,99);
 
     private static final Achievement LAZY_HERO =
-            new BasicAchievement("Lazy Hero","Win the game with the folk hero without using any skills",false, Achievement.AchievementCategory.ROLES);
+            new BasicAchievement(Achievement.AchievementID.LAZY_HERO,false, Achievement.AchievementCategory.ROLES);
 
-    public static Map<String, Achievement> loadAchievements() {
+    private static final Achievement WIN_SACRIFICE =
+            new BasicAchievement(Achievement.AchievementID.WIN_SACRIFICE,false, Achievement.AchievementCategory.ROLES);
+
+    public static Map<Achievement.AchievementID, Achievement> loadAchievements() {
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, Achievement> achievements = new LinkedHashMap<>();
+        Map<Achievement.AchievementID, Achievement> achievements = new LinkedHashMap<>();
         try {
             File file = new File(USER_DATA_PATH);
             if (!file.exists()) {
@@ -52,8 +55,8 @@ public class AchievementManager {
                 } else {
                     achievement = mapper.treeToValue(node, BasicAchievement.class);
                 }
-
-                achievements.put(achievement.getTitle(), achievement);
+                achievement.langTitleAndDesc();
+                achievements.put(achievement.getId(), achievement);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -81,9 +84,9 @@ public class AchievementManager {
         ObjectMapper mapper = new ObjectMapper();
         try {
             File file = new File(USER_DATA_PATH);
-            Map<String, Achievement> existingAchievements = loadAchievements();
-            existingAchievements.remove(achievement.getTitle());
-            existingAchievements.put(achievement.getTitle(), achievement);
+            Map<Achievement.AchievementID, Achievement> existingAchievements = loadAchievements();
+            existingAchievements.remove(achievement.getId());
+            existingAchievements.put(achievement.getId(), achievement);
 
             List<Achievement> achievementList = new ArrayList<>(existingAchievements.values());
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, achievementList);
@@ -92,18 +95,20 @@ public class AchievementManager {
         }
     }
 
-    public static void completeAchievement(String title) {
-        Map<String,Achievement> loadAchievements = loadAchievements();
-        Achievement achievement = loadAchievements.get(title);
+
+
+    public static void completeAchievement(Achievement.AchievementID id) {
+        Map<Achievement.AchievementID,Achievement> loadAchievements = loadAchievements();
+        Achievement achievement = loadAchievements.get(id);
         if (achievement != null) {
             achievement.setCompleted(true);
             updateAchievementInFile(achievement);
         }
     }
 
-    public static void addProgressToAchievement(String title, int amount) {
-        Map<String,Achievement> loadAchievements = loadAchievements();
-        Achievement achievement = loadAchievements.get(title);
+    public static void addProgressToAchievement(Achievement.AchievementID id, int amount) {
+        Map<Achievement.AchievementID,Achievement> loadAchievements = loadAchievements();
+        Achievement achievement = loadAchievements.get(id);
         if (achievement instanceof ProgressiveAchievement progressiveAchievement) {
             progressiveAchievement.updateProgress(amount);
             updateAchievementInFile(progressiveAchievement);
@@ -125,9 +130,10 @@ public class AchievementManager {
         addAchievement(HALFWAY_THERE);
         addAchievement(LEGENDARY_PLAYER);
         addAchievement(LAZY_HERO);
+        addAchievement(WIN_SACRIFICE);
     }
 
     private static void addAchievement(Achievement achievement){
-        achievements.put(achievement.getTitle(), achievement);
+        achievements.put(achievement.getId(), achievement);
     }
 }

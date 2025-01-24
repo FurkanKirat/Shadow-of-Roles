@@ -2,6 +2,7 @@ package com.rolegame.game.GUI.Boxes;
 
 import com.rolegame.game.GameManagement.Achievement.Achievement;
 import com.rolegame.game.GameManagement.Achievement.ProgressiveAchievement;
+import com.rolegame.game.PropertyControllers.LanguageManager;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
@@ -44,13 +45,16 @@ public class AchievementBox extends VBox {
         descriptionLabel.setTextFill(Color.GRAY);
 
         // Completion status
-        String status = isCompleted ? "Completed" : "Not Completed";
+        String status = isCompleted ? LanguageManager.getText("Achievements.completed") :
+                LanguageManager.getText("Achievements.notCompleted");
         Text statusText = new Text(status);
         statusText.setFont(Font.font("Arial", 12));
         statusText.setFill(isCompleted ? Color.GREEN : Color.RED);
 
         // Category
-        Label categoryLabel = new Label("Category: " + category);
+        Label categoryLabel = new Label(LanguageManager.getText("Achievements.category")
+                .replace("{achievementCategory}"
+                        ,LanguageManager.getText("AchievementCategory."+category.name())));
         categoryLabel.setFont(Font.font("Arial", 12));
         categoryLabel.setTextFill(Color.DARKGRAY);
 
@@ -59,7 +63,9 @@ public class AchievementBox extends VBox {
 
         if(max!=0){
 
-            Label progresslabel = new Label("Progress: " + progress+"/"+ max);
+            Label progresslabel = new Label(LanguageManager.getText("Achievements.progress")
+                    .replace("{progress}",progress+"")
+                    .replace("{goal}",max+""));
             progresslabel.setFont(Font.font("Arial", 12));
             progresslabel.setTextFill(Color.DARKGRAY);
             this.getChildren().addAll(progresslabel);

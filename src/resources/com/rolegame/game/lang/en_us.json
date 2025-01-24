@@ -157,8 +157,8 @@
     "blindMessage": "You blinded this night"
   },
   "FolkHero": {
-    "attributes": "Yok",
-    "abilities": "Yok",
+    "attributes": "You can use your ability twice in a game",
+    "abilities": "You make people immune others cannot visit your target",
     "abilityMessage": "Başarıyla hedefini bağışık hale getirdin"
   },
   "Entrepreneur": {
@@ -195,7 +195,11 @@
     "exit": "Exit"
   },
   "Settings": {
-    "changeLanguage": "Change Language"
+    "settings": "Settings",
+    "changeLang": "Change Language",
+    "fullScreen": "Full Screen",
+    "resetAchievements": "Reset Achievements",
+    "feedback": "Feedback"
   },
   "EndMenu": {
     "startGameButton": "Go Back to Main Menu",
@@ -215,8 +219,24 @@
   "ChangeLangMenu": {
     "eng": "English",
     "tur": "Turkish",
-    "med": "Medieval",
+    "medieval": "Medieval",
+    "normal": "Normal",
     "changeLang": "Change Language",
-    "medtr": "Medieval Theme (tr)"
+    "changeTheme": "Change Theme"
+  },
+  "GeneralMenu": {
+    "back": "Back"
+  },
+  "Achievements": {
+    "achievements": "Achievements",
+    "completed": "Completed",
+    "notCompleted": "Not Completed",
+    "category": "Category: {achievementCategory}",
+    "progress": "Progress: {progress}/{goal}"
+  },
+  "AchievementCategory": {
+    "CHAOS": "Chaos",
+    "PLAY_GAME": "Play Games",
+    "ROLES": "Roles"
   }
 }

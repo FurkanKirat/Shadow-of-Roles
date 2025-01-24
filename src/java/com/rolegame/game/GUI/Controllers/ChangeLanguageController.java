@@ -5,18 +5,21 @@ import com.rolegame.game.PropertyControllers.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ChangeLanguageController implements Initializable {
 
     @FXML
     private Label engLabel;
+
+    @FXML
+    private Button changeThemeButton;
 
     @FXML
     private Label turLabel;
@@ -39,19 +42,19 @@ public class ChangeLanguageController implements Initializable {
     @FXML
     void englishChosen(MouseEvent event) {
         LanguageManager.changeLanguage("en_us");
-        changeLabelLang();
+        changeLangTexts();
     }
 
     @FXML
     void turkishChosen(MouseEvent event) {
         LanguageManager.changeLanguage("tr_tr");
-        changeLabelLang();
+        changeLangTexts();
     }
 
     @FXML
     void themeChanged(ActionEvent event) {
         String theme;
-        if(themeComboBox.getValue().equalsIgnoreCase("Medieval")){
+        if(themeComboBox.getValue().equalsIgnoreCase(LanguageManager.getText("ChangeLangMenu.medieval"))){
             theme = "medieval";
         }
         else{
@@ -68,15 +71,19 @@ public class ChangeLanguageController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       changeLabelLang();
-       themeComboBox.getItems().addAll("Medieval","Normal");
-       themeComboBox.setValue(capitalizeFirstLetter(LanguageManager.currentTheme));
+       changeLangTexts();
     }
 
-    private void changeLabelLang(){
+    private void changeLangTexts(){
         engLabel.setText(LanguageManager.getText("ChangeLangMenu.eng"));
         turLabel.setText(LanguageManager.getText("ChangeLangMenu.tur"));
         upperTextLabel.setText(LanguageManager.getText("ChangeLangMenu.changeLang"));
+        backLabel.setText(LanguageManager.getText("GeneralMenu.back"));
+        changeThemeButton.setText(LanguageManager.getText("ChangeLangMenu.changeTheme"));
+        themeComboBox.getItems().clear();
+        themeComboBox.getItems().addAll(LanguageManager.getText("ChangeLangMenu.medieval")
+                ,LanguageManager.getText("ChangeLangMenu.normal"));
+        themeComboBox.setValue(LanguageManager.getText("ChangeLangMenu."+LanguageManager.currentTheme));
 
     }
 }

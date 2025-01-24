@@ -194,7 +194,11 @@
     "exit": "Çıkış"
   },
   "Settings": {
-    "changeLanguage": "Dili Değiştir"
+    "settings": "Ayarlar",
+    "changeLang": "Dili Değiştir",
+    "fullScreen": "Tam Ekran",
+    "resetAchievements": "Başarımları Sıfırla",
+    "feedback": "Geri Bildirim"
   },
   "EndMenu": {
     "startGameButton": "Ana Menüye Geri Dön",
@@ -214,8 +218,24 @@
   "ChangeLangMenu": {
     "eng": "İngilizce",
     "tur": "Türkçe",
-    "med": "Orta Çağ",
+    "medieval": "Orta Çağ",
+    "normal": "Normal",
     "changeLang": "Dili Değiştir",
-    "medtr": "Orta Çağ Teması (tr)"
+    "changeTheme": "Temayı Değiştir"
+  },
+  "GeneralMenu": {
+    "back": "Geri Dön"
+  },
+  "Achievements": {
+    "achievements": "Başarımlar",
+    "completed": "Tamamlandı",
+    "notCompleted": "Tamamlanmadı",
+    "category": "Kategori: {achievementCategory}",
+    "progress": "İlerleme: {progress}/{goal}"
+  },
+  "AchievementCategory": {
+    "CHAOS": "Kaos",
+    "PLAY_GAME": "Oyun Oyna",
+    "ROLES": "Roller"
   }
 }

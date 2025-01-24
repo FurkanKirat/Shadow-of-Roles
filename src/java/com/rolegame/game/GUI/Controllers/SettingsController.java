@@ -88,6 +88,11 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        changeLanguageLabel.setText(LanguageManager.getText("Settings.changeLang"));
+        feedbackLabel.setText(LanguageManager.getText("Settings.feedback"));
+        fullScreenLabel.setText(LanguageManager.getText("Settings.fullScreen"));
+        resetAchivementsLabel.setText(LanguageManager.getText("Settings.resetAchievements"));
+        settingsLabel.setText(LanguageManager.getText("Settings.settings"));
+        backLabel.setText(LanguageManager.getText("GeneralMenu.back"));
     }
 }

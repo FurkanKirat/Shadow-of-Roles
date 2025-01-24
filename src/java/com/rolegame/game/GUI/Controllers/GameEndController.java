@@ -7,6 +7,7 @@ import com.rolegame.game.PropertyControllers.AchievementManager;
 import com.rolegame.game.PropertyControllers.LanguageManager;
 import com.rolegame.game.PropertyControllers.SceneController;
 import com.rolegame.game.Roles.FolkRole.Protector.FolkHero;
+import com.rolegame.game.Roles.NeutralRole.Chaos.ChillGuy;
 import com.rolegame.game.Roles.Role;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -107,7 +108,7 @@ public class GameEndController implements Initializable {
     }
 
     private void progressAchievements(){
-        for(Map.Entry<String, Achievement> achievementEntry : AchievementManager.loadAchievements().entrySet()){
+        for(Map.Entry<Achievement.AchievementID, Achievement> achievementEntry : AchievementManager.loadAchievements().entrySet()){
             if(achievementEntry.getValue().getCategory() == Achievement.AchievementCategory.PLAY_GAME){
                 AchievementManager.addProgressToAchievement(achievementEntry.getKey(), 1);
             }
@@ -117,7 +118,10 @@ public class GameEndController implements Initializable {
         for (Player player: GameScreenController.getGameController().getAllPlayers()){
             if(player.getRole() instanceof FolkHero folkHero && folkHero.getAbilityUseCount() == 0 &&
                     player.isHasWon()){
-                AchievementManager.completeAchievement("Lazy Hero");
+                AchievementManager.completeAchievement(Achievement.AchievementID.LAZY_HERO);
+            }
+            else if(player.getRole() instanceof ChillGuy && !player.isHasWon()){
+                AchievementManager.completeAchievement(Achievement.AchievementID.WIN_SACRIFICE);
             }
         }
 
