@@ -26,11 +26,23 @@ public class LorekeeperBox extends VBox {
         String textTemplate = LanguageManager.getText("Lorekeeper.guess");
 
 
+
+
+
+
         String text = textTemplate
                 .replace("{guessCount}", lorekeeper.getTrueGuessCount()+"");
         trueGuessLabel.setText(text);
 
+
         this.getChildren().addAll(rolesCombobox, trueGuessLabel);
+
+
+
+        this.getChildren().addAll(rolesCombobox, trueGuessLabel);
+
+        this.getChildren().addAll(rolesCombobox,trueGuessLabel);
+
 
         this.setAlignment(Pos.CENTER);
     }
