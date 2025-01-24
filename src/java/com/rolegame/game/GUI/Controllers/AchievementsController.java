@@ -39,7 +39,7 @@ public class AchievementsController implements Initializable {
 
     @FXML
     void backClicked(MouseEvent event) {
-        SceneController.switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneController.SceneType.MAIN_MENU);
+        SceneController.switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneController.SceneType.MAIN_MENU, true);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -11,23 +11,39 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Random;
 
 
 public class SceneController {
-
+    private static final int imageCount = 6;
+    private static int currentImage;
     private static Stage stage;
+
+
+    static{
+        currentImage = new Random().nextInt(0,imageCount);
+
+    }
+
+    private static void setStyleImage(Parent root, int imageNum) {
+
+        String style = "-fx-background-image: url(/com/rolegame/game/images/backgrounds/background"+imageNum+".jpg); " +
+                "-fx-background-size: cover;";
+
+        root.styleProperty().set(style);
+    }
 
     public static void changeStage(Stage newStage){
         stage = newStage;
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     }
 
-    public static void switchScene(String fxmlPath, SceneType sceneType) {
+    public static void switchScene(String fxmlPath, SceneType sceneType, boolean randomImage) {
 
         try {
             FXMLLoader loader = new FXMLLoader(SceneController.class.getResource(fxmlPath));
             Parent root = loader.load();
-            changeScene(root, sceneType);
+            changeScene(root, sceneType, randomImage);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -35,15 +51,22 @@ public class SceneController {
 
 
     }
-    public static void switchScene(Parent root, SceneType sceneType){
-        changeScene(root, sceneType);
+    public static void switchScene(Parent root, SceneType sceneType, boolean randomImage){
+        changeScene(root, sceneType, randomImage);
     }
 
-    private static void changeScene(Parent root, SceneType sceneType){
+    private static void changeScene(Parent root, SceneType sceneType, boolean randomImage){
+
+        if(randomImage){
+            setStyleImage(root,currentImage);
+            currentImage = (currentImage + 1) % imageCount ;
+        }
+
         Scene newScene = new Scene(root);
         if(stage.getScene()==null){
             stage.setScene(newScene);
         }
+
 
         FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), stage.getScene().getRoot());
         fadeOut.setFromValue(1);
@@ -76,15 +99,15 @@ public class SceneController {
     }
 
     public static void settingsScene(){
-        switchScene("/com/rolegame/game/fxml/Settings.fxml", SceneType.SETTINGS);
+        switchScene("/com/rolegame/game/fxml/Settings.fxml", SceneType.SETTINGS,true);
     }
 
     public static void changeLangScene(){
-        switchScene("/com/rolegame/game/fxml/ChangeLanguage.fxml", SceneType.CHANGE_LANG);
+        switchScene("/com/rolegame/game/fxml/ChangeLanguage.fxml", SceneType.CHANGE_LANG,true);
     }
 
     public static void mainMenuScene(){
-        switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneType.MAIN_MENU);
+        switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneType.MAIN_MENU,true);
     }
 
     public static void onClose(){

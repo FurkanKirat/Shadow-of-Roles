@@ -53,6 +53,9 @@ public class EntrepreneurBox extends VBox {
                     .replace("{abilityType}",LanguageManager.getText("Entrepreneur.none")));
         });
 
+        selectedLabel.getStyleClass().add("time-label");
+        moneyLabel.getStyleClass().add("time-label");
+
         HBox buttonBox = new HBox(attackButton, healButton, infoButton, passAbilityButton);
         this.getChildren().addAll(buttonBox, selectedLabel, moneyLabel);
         this.setAlignment(Pos.CENTER);

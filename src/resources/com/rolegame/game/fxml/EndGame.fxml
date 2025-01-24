@@ -5,15 +5,19 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../css/day.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.GUI.Controllers.GameEndController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundimage" stylesheets="@../css/day.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.GUI.Controllers.GameEndController">
    <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="background2">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label fx:id="hasWonLabel" text="Has Won" />
+            <Label fx:id="hasWonLabel" alignment="CENTER" prefHeight="114.0" prefWidth="508.0" styleClass="time-label" text="Has Won" textFill="WHITE">
+               <font>
+                  <Font size="39.0" />
+               </font></Label>
          </children>
       </VBox>
-      <TableView fx:id="gameEndTV" prefHeight="445.0" prefWidth="1366.0">
+      <TableView fx:id="gameEndTV" prefHeight="445.0" prefWidth="1366.0" styleClass="game-table-view">
         <columns>
             <TableColumn fx:id="numberColumn" prefWidth="75.0" text="Number" />
           <TableColumn fx:id="playerColumn" prefWidth="75.0" text="Player" />
@@ -27,9 +31,10 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="background2">
+      <VBox prefHeight="200.0" prefWidth="1346.0" VBox.vgrow="ALWAYS" />
+      <VBox alignment="BOTTOM_CENTER" prefHeight="87.0" prefWidth="1346.0">
          <children>
-            <Button fx:id="startGamebutton" mnemonicParsing="false" onAction="#startGameClicked" text="Go Back to Main Menu" />
+            <Button fx:id="startGamebutton" mnemonicParsing="false" onAction="#startGameClicked" text="Go Back to Main Menu" VBox.vgrow="NEVER" />
          </children>
       </VBox>
    </children>

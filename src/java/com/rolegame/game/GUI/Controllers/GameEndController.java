@@ -18,6 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -55,6 +57,9 @@ public class GameEndController implements Initializable {
     private Button startGamebutton;
 
     @FXML
+    private VBox root;
+
+    @FXML
     void startGameClicked(ActionEvent event) {
 
         SceneController.mainMenuScene();
@@ -62,15 +67,21 @@ public class GameEndController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        startGamebutton.setText(LanguageManager.getText("EndMenu.startGameButton"));
         GameController gameController = GameScreenController.getGameController();
+        int rowHeight = 30; // Row height
+        int numberOfRows = gameController.getAllPlayers().size(); // Number of players
+
+        gameEndTV.setFixedCellSize(rowHeight); // Set fixed row height
+        gameEndTV.setPrefHeight(rowHeight * numberOfRows+30);
+        startGamebutton.setText(LanguageManager.getText("EndMenu.startGameButton"));
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         playerColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
         deathCauseColumn.setCellValueFactory(new PropertyValueFactory<>("causeOfDeath"));
         setupTableView();
         gameEndTV.getItems().addAll(gameController.getAllPlayers());
-        hasWonLabel.setText(gameController.getWinnerTeam() + " " +LanguageManager.getText("EndMenu.hasWon"));
+        hasWonLabel.setText(LanguageManager.getText("EndMenu.hasWon")
+                .replace("{teamName}",LanguageManager.getText("Role."+gameController.getWinnerTeam())));
 
         numberColumn.setText(LanguageManager.getText("EndMenu.number"));
         playerColumn.setText(LanguageManager.getText("EndMenu.player"));
@@ -79,8 +90,24 @@ public class GameEndController implements Initializable {
         winStatusColumn.setText(LanguageManager.getText("EndMenu.winStatus"));
         aliveStatusColumn.setText(LanguageManager.getText("EndMenu.aliveStatus"));
         deathCauseColumn.setText(LanguageManager.getText("EndMenu.causeOfDeath"));
-
+        setImage();
         progressAchievements();
+
+    }
+
+    private void setImage(){
+        String styleTemplate = "-fx-background-image: url(/com/rolegame/game/images/gameend/{team}.jpg);"+
+                "-fx-background-size: cover;";
+
+        String team = switch (GameScreenController.getGameController().getWinnerTeam()) {
+            case CORRUPTER -> "corrupt";
+            case FOLK -> "folk";
+            default -> "neutral";
+        };
+
+        String style = styleTemplate.replace("{team}", team);
+        root.getStyleClass().clear();
+        root.setStyle(style);
 
     }
 
@@ -88,7 +115,7 @@ public class GameEndController implements Initializable {
         teamColumn.setCellValueFactory(cellData -> {
             Role role = cellData.getValue().getRole();
             if (role != null && role.getTeam() != null) {
-                return new SimpleStringProperty(role.getTeam().toString());
+                return new SimpleStringProperty(LanguageManager.getText("Role."+role.getTeam()));
             } else {
                 return new SimpleStringProperty("-");
             }

@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class PlayerSelectionBox extends HBox{
+    private static final Color corrupterColor = Color.rgb(219, 57, 62);
     private final Button selectButton;
     private boolean isChosen = false;
     private Label roleLabel;
@@ -30,7 +31,8 @@ public class PlayerSelectionBox extends HBox{
 
         StackPane stackPane = new StackPane(circle,numberLabel);
 
-        Label playerName = new Label(player.getName());
+        Label playerName = createLabel(player.getName());
+        playerName.setTextFill(Color.WHITE);
         HBox playerNameBox = new HBox(playerName);
         playerNameBox.setAlignment(Pos.CENTER);
 
@@ -62,22 +64,22 @@ public class PlayerSelectionBox extends HBox{
 
         if(currentPlayer.getRole().getTeam()==Team.CORRUPTER &&player.getRole().getTeam()==Team.CORRUPTER){
 
-            roleLabel = new Label("("+player.getRole().getName()+")");
-            roleLabel.setTextFill(Color.RED);
+            roleLabel = createLabel("("+player.getRole().getName()+")");
+            roleLabel.setTextFill(corrupterColor);
             roleLabel.setAlignment(Pos.CENTER);
 
             roleBox = new HBox(roleLabel);
             roleBox.setAlignment(Pos.CENTER);
 
-            playerName.setTextFill(Color.RED);
+            playerName.setTextFill(corrupterColor);
             this.getChildren().add(roleBox);
 
         }
 
         if(currentPlayer.equals(player)){
 
-            Label youLabel = new Label("("+ LanguageManager.getText("Menu.you")+")");
-            youLabel.setTextFill(Color.BLACK);
+            Label youLabel = createLabel("("+ LanguageManager.getText("Menu.you")+")");
+            youLabel.setTextFill(Color.SNOW);
             youLabel.setAlignment(Pos.CENTER);
 
             HBox youBox = new HBox(youLabel);
@@ -86,7 +88,7 @@ public class PlayerSelectionBox extends HBox{
 
             if(currentPlayer.getRole().getTeam()==Team.CORRUPTER){
                 this.getChildren().remove(roleBox);
-                youLabel.setTextFill(Color.RED);
+                youLabel.setTextFill(corrupterColor);
             }
             this.getChildren().add(youBox);
             selectButton.setVisible(false);
@@ -123,5 +125,11 @@ public class PlayerSelectionBox extends HBox{
 
     public void setButtonVisible(boolean status){
         selectButton.setVisible(status);
+    }
+
+    private Label createLabel(String text){
+        Label label = new Label(text);
+        label.getStyleClass().add("playerLabel");
+        return label;
     }
 }

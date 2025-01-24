@@ -13,16 +13,19 @@ import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
 import com.rolegame.game.Roles.RoleProperties.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 public class GameScreenController {
 
@@ -53,8 +56,6 @@ public class GameScreenController {
     @FXML
     private VBox midBox;
 
-    @FXML
-    private ImageView dayNightIcon;
 
     @FXML
     private Label dayLabel;
@@ -105,16 +106,13 @@ public class GameScreenController {
     private Label alivePlayersLabel;
 
     @FXML
-    private Button startDayButton;
-
-    @FXML
     private VBox extraPropertiesVbox;
 
     @FXML
     private Label passTurnLabel;
 
     @FXML
-    private ToggleButton messageStateButton;
+    private HBox gameBox;
 
     private static GameController gameController;
 
@@ -139,6 +137,8 @@ public class GameScreenController {
             }
 
         }
+
+
         passTurnPane.setVisible(true);
         gameController.sendVoteMessages();
         gameController.passTurn();
@@ -147,18 +147,30 @@ public class GameScreenController {
             toggleDayNightCycle();
 
         }
-
+        if(gameController.isDay()){
+            setStyleImage(passTurnPane,"day");
+        }else{
+            setStyleImage(passTurnPane,"night");
+        }
         changePlayer();
+    }
+
+    private static void setStyleImage(Parent root, String time) {
+        int randNum = new Random().nextInt(4);
+        String style = "-fx-background-image: url(/com/rolegame/game/images/lobby/"+time+randNum+".jpg); " +
+                "-fx-background-size: cover;";
+        root.getStyleClass().clear();
+        root.styleProperty().set(style);
     }
 
 
     @FXML
-    void startDayClicked(ActionEvent event) {
+    void startDayClicked(MouseEvent event) {
         announceBigVBox.setVisible(false);
     }
 
     @FXML
-    void interludeClicked(ActionEvent event) {
+    void interludeClicked(MouseEvent event) {
         passTurnPane.setVisible(false);
     }
 
@@ -178,7 +190,7 @@ public class GameScreenController {
         attributesLabel.setText(LanguageManager.getText("Menu.attributes"));
         abilitiesLabel.setText(LanguageManager.getText("Menu.abilities"));
         alivePlayersLabel.setText(LanguageManager.getText("Menu.alivePlayers"));
-        useAbilityButton.setText(LanguageManager.getText("Menu.vote"));
+        useAbilityButton.setText(LanguageManager.getText("Menu.useAbility"));
 
         passTurnLabel.setText(LanguageManager.getText("PassTurn.turn")
                 .replace("{playerName}", gameController.getCurrentPlayer().getName()));
@@ -307,7 +319,8 @@ public class GameScreenController {
             gameController.performAllAbilities();
             dayStartAnnouncements();
 
-            dayNightIcon.setImage(new Image("/com/rolegame/game/images/day.png"));
+            gameBox.getStyleClass().remove("night");
+            gameBox.getStyleClass().add("day");
             gameController.setDayCount(getGameController().getDayCount()+1);
 
         }
@@ -321,7 +334,8 @@ public class GameScreenController {
             if(!(gameController.getCurrentPlayer() instanceof ActiveNightAbility)){
                 useAbilityButton.setText("Pass Turn");
             }
-            dayNightIcon.setImage(new Image("/com/rolegame/game/images/night.png"));
+            gameBox.getStyleClass().remove("day");
+            gameBox.getStyleClass().add("night");
         }
         gameController.updateAlivePlayers();
         gameController.checkGameFinished();
@@ -349,14 +363,13 @@ public class GameScreenController {
     }
 
     private void dayStartAnnouncements(){
-        announceBigVBox.getChildren().remove(startDayButton);
         announcementsListView.getItems().clear();
         for(Message message: Message.getMessages()){
             if(message.isPublic()&&message.dayCount() == gameController.getDayCount()){
                 announcementsListView.getItems().add(new MessageBox(message,announcementsView));
             }
         }
-        announceBigVBox.getChildren().add(startDayButton);
+        announceBigVBox.setStyle("-fx-background-image: url(/com/rolegame/game/images/announcements/table.jpg); ");
         announceBigVBox.setVisible(true);
     }
 

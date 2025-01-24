@@ -81,8 +81,4 @@
          </children>
       </VBox>
    </children>
-   <styleClass>
-      <String fx:value="background" />
-      <String fx:value="backgroundimage" />
-   </styleClass>
 </StackPane>

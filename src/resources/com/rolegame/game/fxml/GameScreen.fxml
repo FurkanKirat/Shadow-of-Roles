@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -7,16 +8,14 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="outerStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../css/day.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.GUI.Controllers.GameScreenController">
+<StackPane fx:id="outerStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" styleClass="night" stylesheets="@../css/day.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.GUI.Controllers.GameScreenController">
    <children>
-      <HBox prefHeight="768.0" prefWidth="1366.0" styleClass="background">
+      <HBox fx:id="gameBox" prefHeight="768.0" prefWidth="1366.0">
          <children>
             <VBox fx:id="leftVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="455.0" HBox.hgrow="ALWAYS">
                <children>
@@ -25,13 +24,13 @@
                         <VBox alignment="TOP_CENTER" prefHeight="559.0" prefWidth="227.0">
                            <children>
                               <Label fx:id="graveyardLabel" styleClass="gameLabel" text="Graveyard" />
-                              <ListView fx:id="graveListView" focusTraversable="false" mouseTransparent="true" prefHeight="358.0" prefWidth="197.0" VBox.vgrow="ALWAYS" />
+                              <ListView fx:id="graveListView" focusTraversable="false" mouseTransparent="true" prefHeight="358.0" prefWidth="197.0" styleClass="game-list-view" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="594.0" prefWidth="228.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label fx:id="allRolesLabel" styleClass="gameLabel" text="All Roles" />
-                              <TreeView fx:id="rolesTreeView" focusTraversable="false" onContextMenuRequested="#selectRole" onMouseClicked="#selectRole" prefHeight="357.0" prefWidth="228.0" showRoot="false" VBox.vgrow="ALWAYS">
+                              <TreeView fx:id="rolesTreeView" focusTraversable="false" onContextMenuRequested="#selectRole" onMouseClicked="#selectRole" prefHeight="357.0" prefWidth="228.0" showRoot="false" styleClass="game-tree-view" VBox.vgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -41,7 +40,7 @@
                      </children>
                   </HBox>
                   <Label fx:id="announcementsLabel" styleClass="gameLabel" text="Announcements" />
-                  <ListView fx:id="announcementsView" focusTraversable="false" mouseTransparent="true" prefHeight="435.0" prefWidth="455.0">
+                  <ListView fx:id="announcementsView" focusTraversable="false" prefHeight="435.0" prefWidth="455.0" styleClass="game-list-view">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -53,14 +52,12 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="456.0" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label fx:id="dayLabel" text="Day x:" />
-                        <ImageView fx:id="dayNightIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/day.png" />
-                           </image>
-                        </ImageView>
+                        <Label fx:id="dayLabel" styleClass="time-label" text="Day x:" textFill="WHITE">
+                           <font>
+                              <Font size="50.0" />
+                           </font></Label>
                      </children>
                   </VBox>
                   <VBox fx:id="midBox" prefHeight="200.0" prefWidth="100.0" />
@@ -110,7 +107,7 @@
                      </children>
                   </VBox>
                   <Label fx:id="alivePlayersLabel" styleClass="gameLabel" text="Alive Players" />
-                  <ListView fx:id="alivePlayersListView" focusTraversable="false" prefHeight="435.0" prefWidth="455.0">
+                  <ListView fx:id="alivePlayersListView" focusTraversable="false" prefHeight="435.0" prefWidth="455.0" styleClass="game-list-view">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -126,24 +123,24 @@
                         <Button fx:id="useAbilityButton" focusTraversable="false" mnemonicParsing="false" onAction="#useAbilityClicked" prefHeight="41.0" prefWidth="305.0" styleClass="background2" text="Vote" />
                      </children>
                   </HBox>
-                  <Label fx:id="nameLabel" text="Your Name:" />
-                  <Label fx:id="numberLabel" text="Your Number:" />
+                  <Label fx:id="nameLabel" prefHeight="42.0" prefWidth="150.0" styleClass="time-label" text="Your Name:" />
+                  <Label fx:id="numberLabel" prefWidth="150.0" styleClass="time-label" text="Your Number:" />
                   <VBox fx:id="extraPropertiesVbox" prefHeight="200.0" prefWidth="100.0" />
                </children>
             </VBox>
          </children>
+         <styleClass>
+            <String fx:value="night" />
+            <String fx:value="backgroundimage" />
+         </styleClass>
       </HBox>
-      <VBox fx:id="passTurnPane" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="background" visible="false" StackPane.alignment="CENTER">
+      <VBox fx:id="passTurnPane" alignment="CENTER" onMouseClicked="#interludeClicked" prefHeight="200.0" prefWidth="100.0" styleClass="backgroundimage" visible="false" StackPane.alignment="TOP_CENTER">
          <children>
-            <Label fx:id="passTurnLabel" text="Player" />
-            <Button mnemonicParsing="false" onAction="#interludeClicked" styleClass="gameButton" text="Pass Turn">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            <Label fx:id="passTurnLabel" prefHeight="98.0" prefWidth="543.0" styleClass="pass-turn-label" text="Player" textFill="WHITE" />
+            <VBox alignment="TOP_CENTER" prefHeight="632.0" prefWidth="1266.0" />
          </children>
       </VBox>
-      <VBox fx:id="announceBigVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="background" visible="false">
+      <VBox fx:id="announceBigVBox" alignment="TOP_CENTER" onMouseClicked="#startDayClicked" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="backgroundimage" visible="false">
          <children>
             <HBox alignment="CENTER" prefHeight="115.0" prefWidth="1366.0">
                <children>
@@ -156,10 +153,9 @@
             </HBox>
             <VBox fx:id="announcementsBox" alignment="CENTER" minWidth="586.0">
                <children>
-                  <ListView fx:id="announcementsListView" maxWidth="550.0" prefWidth="500.0" />
+                  <ListView fx:id="announcementsListView" maxWidth="550.0" prefWidth="500.0" styleClass="game-list-view" />
                </children>
             </VBox>
-            <Button fx:id="startDayButton" mnemonicParsing="false" onAction="#startDayClicked" text="Start Day" />
          </children>
       </VBox>
    </children>

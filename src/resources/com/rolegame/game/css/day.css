@@ -8,29 +8,124 @@
 }
 
 .backgroundimage{
-     -fx-background-image: url('../images/night4.jpg');
      -fx-background-repeat: no-repeat;
      -fx-background-size: cover; /* Resmi tam kaplayacak şekilde ayarla */
      -fx-background-position: center; /* Ortala */
      -fx-padding: 10;
 }
 
+.day{
+    -fx-background-image: url('../images/day0.jpg');
+}
+
+.night{
+    -fx-background-image: url('../images/night0.jpg');
+}
+
+.time-label {
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+    -fx-text-fill: white;
+    -fx-border-color: #a8d8ff;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+}
+
+.pass-turn-label {
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+    -fx-text-fill: white;
+    -fx-border-color: #a8d8ff;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-font-size: 50px;
+    -fx-alignment: center;
+}
+
+
+
+
 /* Label Styling */
 .gameLabel {
-    -fx-text-fill: #00274d; /* Deep navy blue */
+    -fx-text-fill: white; /* Deep navy blue */
     -fx-font-weight: bold;
     -fx-font-size: 14px;
 }
 
 /* List View Styling */
-.list-view {
+.game-list-view {
+    -fx-background-radius: 10;
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+}
+.game-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+
+/* Tree View Styling */
+.game-tree-view {
     -fx-background-color: #a8d8ff; /* Light blue */
     -fx-background-radius: 10;
     -fx-border-color: #004c99; /* Dark blue border */
     -fx-border-width: 2px;
     -fx-padding: 5px;
+    -fx-background-color: rgba(46, 13, 37, 0.5);
 }
 
+.game-tree-view .tree-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+.game-tree-view .tree-view {
+    -fx-control-inner-background: transparent; /* Varsayılan beyaz arka planı kaldırır */
+}
+.game-tree-view .arrow {
+    -fx-background-color: white; /* Kırmızı renk */
+}
+
+.game-table-view {
+    -fx-background-radius: 10;
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+}
+
+.game-table-view .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+.game-table-view .table-column {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+.game-table-view .table-cell {
+    -fx-text-fill: white; /* Hücre yazılarını beyaz yap */
+}
+
+
+/* List View Styling */
+.achievement-list-view {
+    -fx-background-radius: 10;
+    -fx-border-color: black; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+    -fx-background-color: linear-gradient(to bottom, #374E4D, #6b4004);
+
+}
+.achievement-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
 /* VBox Styling for Roles */
 .folkRoleVbox {
     -fx-background-color: #32a852; /* Aqua blue */
@@ -120,55 +215,11 @@
     -fx-fill: #00274d; -fx-stroke: black; -fx-stroke-width: 1.5;
 }
 
-/* TableView Styling */
-.table-view {
-    -fx-background-color: #a8d8ff; /* Light blue */
-    -fx-border-color: #004c99; /* Dark blue border */
-    -fx-border-width: 2px;
-    -fx-padding: 5px;
-    -fx-background-radius: 10;
-    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
+.playerLabel{
+    -fx-font-size: 20px;
 }
 
-/* TableView Header Styling */
-.table-view .column-header {
-    -fx-background-color: #66c1e4; /* Aqua gradient */
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-alignment: center;
-    -fx-border-color: #004c99;
-    -fx-border-width: 2px;
-    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
-}
 
-/* TableView Cell Styling */
-.table-view .cell {
-    -fx-background-color: #d6ecff; /* Soft blue */
-    -fx-text-fill: #00274d; /* Deep navy */
-    -fx-font-family: "Arial";
-    -fx-border-color: #004c99; /* Dark blue border */
-    -fx-border-width: 1px;
-    -fx-transition: background-color 0.3s ease, -fx-border-color 0.3s ease; /* Smooth transition for background and border color */
-}
-
-/* Alternating Row Colors */
-.table-view .row:nth-child(even) {
-    -fx-background-color: #e0f7ff; /* Light aqua for even rows */
-    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
-}
-
-.table-view .row:nth-child(odd) {
-    -fx-background-color: #d6ecff; /* Soft blue for odd rows */
-    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
-}
-
-/* TableView Focused Row */
-.table-view .focused {
-    -fx-background-color: #66c1e4; /* Aqua gradient for focused row */
-    -fx-text-fill: white;
-    -fx-transition: background-color 0.3s ease; /* Smooth background color transition */
-}
 
 
 .startRoot {
@@ -199,7 +250,8 @@
 }
 
 .Menuhover-label {
-    -fx-background-color: #76b879;
+    -fx-background-color: #374E4D;
+    -fx-text-fill: white;
     -fx-border-color: black;
     -fx-border-width: 2;
     -fx-border-radius: 5;

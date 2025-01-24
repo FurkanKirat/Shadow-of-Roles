@@ -115,7 +115,7 @@ public class GameController {
         }
         updateAlivePlayers();
         dayCount=1;
-        isDay=true;
+        isDay=false;
         playerCount = textFields.length;
     }
 
@@ -243,10 +243,10 @@ public class GameController {
         }
 
         if(simplePersonExist){
-            SceneController.switchScene("/com/rolegame/game/fxml/SimplePersonAlert.fxml", SceneController.SceneType.SIMPLE_PERSON_ALERT);
+            SceneController.switchScene("/com/rolegame/game/fxml/SimplePersonAlert.fxml", SceneController.SceneType.SIMPLE_PERSON_ALERT, false);
         }
         else{
-            SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.END_GAME);
+            SceneController.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneController.SceneType.END_GAME, false);
         }
 
         Message.resetMessages();

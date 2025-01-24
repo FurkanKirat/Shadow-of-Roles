@@ -33,12 +33,12 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void achievementsClicked(MouseEvent event) {
-        SceneController.switchScene("/com/rolegame/game/fxml/Achievements.fxml", SceneController.SceneType.ACHIEVEMENTS);
+        SceneController.switchScene("/com/rolegame/game/fxml/Achievements.fxml", SceneController.SceneType.ACHIEVEMENTS, true);
     }
 
     @FXML
     void creditsClicked(MouseEvent event) {
-        SceneController.switchScene("/com/rolegame/game/fxml/Credits.fxml", SceneController.SceneType.CREDITS);
+        SceneController.switchScene("/com/rolegame/game/fxml/Credits.fxml", SceneController.SceneType.CREDITS, true);
     }
 
     @FXML
@@ -59,7 +59,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void startGame(MouseEvent event) {
-        SceneController.switchScene(new WriteNamesController(), SceneController.SceneType.WRITE_NAMES);
+        SceneController.switchScene(new WriteNamesController(), SceneController.SceneType.WRITE_NAMES, true);
     }
 
 
