@@ -54,7 +54,10 @@ public class SettingsController implements Initializable {
                             https://github.com/FurkanKirat/Shadow-of-Roles/issues"""));
 
                 } else {
-                    System.out.println("Desktop API is not supported.");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Supporting");
+                    alert.setHeaderText("Desktop API");
+                    alert.setContentText("Desktop API is not supported.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -70,8 +73,8 @@ public class SettingsController implements Initializable {
     void resetAchievementsClicked(MouseEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Deleting achievements");
-        alert.setHeaderText(LanguageManager.getText("Menu.passAlertHead"));
-        alert.setContentText(LanguageManager.getText("Menu.passAlertMessage"));
+        alert.setHeaderText("Achievements will be resetting");
+        alert.setContentText("Are you sure to reset achievements");
 
         Optional<ButtonType> result = alert.showAndWait();
 
@@ -88,11 +91,11 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        changeLanguageLabel.setText(LanguageManager.getText("Settings.changeLang"));
-        feedbackLabel.setText(LanguageManager.getText("Settings.feedback"));
-        fullScreenLabel.setText(LanguageManager.getText("Settings.fullScreen"));
-        resetAchivementsLabel.setText(LanguageManager.getText("Settings.resetAchievements"));
-        settingsLabel.setText(LanguageManager.getText("Settings.settings"));
-        backLabel.setText(LanguageManager.getText("GeneralMenu.back"));
+        changeLanguageLabel.setText(LanguageManager.getText("Settings","changeLang"));
+        feedbackLabel.setText(LanguageManager.getText("Settings","feedback"));
+        fullScreenLabel.setText(LanguageManager.getText("Settings","fullScreen"));
+        resetAchivementsLabel.setText(LanguageManager.getText("Settings","resetAchievements"));
+        settingsLabel.setText(LanguageManager.getText("Settings","settings"));
+        backLabel.setText(LanguageManager.getText("GeneralMenu","back"));
     }
 }

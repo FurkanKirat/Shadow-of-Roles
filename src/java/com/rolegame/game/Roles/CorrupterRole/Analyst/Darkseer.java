@@ -21,7 +21,7 @@ public class Darkseer extends CorrupterRole implements PassiveNightAbility {
     @Override
     public boolean performAbility() {
         if(!isCanPerform()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),getRoleOwner(),false);
             return false;
         }
         return executeAbility();
@@ -35,16 +35,16 @@ public class Darkseer extends CorrupterRole implements PassiveNightAbility {
         String message;
 
         if (players.size() >= 2) {
-            message = LanguageManager.getText("Darkseer.abilityMessage")
+            message = LanguageManager.getText("Darkseer","abilityMessage")
                     .replace("{roleName1}",players.getFirst().getRole().getName())
                     .replace("{roleName2}",players.get(1).getRole().getName());
         }
         else if (players.size()==1) {
-            message = LanguageManager.getText("Darkseer.oneLeftMessage")
+            message = LanguageManager.getText("Darkseer","oneLeftMessage")
                     .replace("{roleName}",players.getFirst().getRole().getName());
         }
         else{
-            message = LanguageManager.getText("Darkseer.zeroLeftMessage");
+            message = LanguageManager.getText("Darkseer","zeroLeftMessage");
         }
 
         sendAbilityMessage(message,getRoleOwner(), false);

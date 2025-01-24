@@ -17,8 +17,8 @@ public class Stalker extends FolkRole implements ActiveNightAbility {
     @Override
     public boolean executeAbility() {
         String message = getChoosenPlayer().getRole().getChoosenPlayer()==null ?
-                LanguageManager.getText("Stalker.nobodyMessage"):
-                LanguageManager.getText("Stalker.visitMessage")
+                LanguageManager.getText("Stalker","nobodyMessage"):
+                LanguageManager.getText("Stalker","visitMessage")
                         .replace("playerName", choosenPlayer.getRole().getChoosenPlayer().getName());
         sendAbilityMessage(message,roleOwner,false);
         return true;

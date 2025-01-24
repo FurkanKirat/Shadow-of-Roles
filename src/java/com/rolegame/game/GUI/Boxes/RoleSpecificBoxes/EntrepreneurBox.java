@@ -13,44 +13,44 @@ public class EntrepreneurBox extends VBox {
 
     public EntrepreneurBox(Entrepreneur entrepreneur){
         entrepreneur.setMoney(entrepreneur.getMoney()+2);
-        Button attackButton = new Button(LanguageManager.getText("Entrepreneur.attack"));
-        Button healButton = new Button(LanguageManager.getText("Entrepreneur.heal"));
-        Button infoButton = new Button(LanguageManager.getText("Entrepreneur.info"));
-        Button passAbilityButton = new Button(LanguageManager.getText("Entrepreneur.pass"));
-        Label selectedLabel = new Label(LanguageManager.getText("Entrepreneur.selected")
-                .replace("{abilityType}",LanguageManager.getText("Entrepreneur.none")));
+        Button attackButton = new Button(LanguageManager.getText("Entrepreneur","attack"));
+        Button healButton = new Button(LanguageManager.getText("Entrepreneur","heal"));
+        Button infoButton = new Button(LanguageManager.getText("Entrepreneur","info"));
+        Button passAbilityButton = new Button(LanguageManager.getText("Entrepreneur","pass"));
+        Label selectedLabel = new Label(LanguageManager.getText("Entrepreneur","selected")
+                .replace("{abilityType}",LanguageManager.getText("Entrepreneur","none")));
         Label moneyLabel = new Label();
-        moneyLabel.setText(LanguageManager.getText("Entrepreneur.money")
+        moneyLabel.setText(LanguageManager.getText("Entrepreneur","money")
                 .replace("{money}",entrepreneur.getMoney()+""));
 
         attackButton.setOnAction((_) ->
         {
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.ATTACK);
             entrepreneur.setRolePriority(RolePriority.NONE);
-            selectedLabel.setText(LanguageManager.getText("Entrepreneur.selected")
-                    .replace("{abilityType}",LanguageManager.getText("Entrepreneur.attack")));
+            selectedLabel.setText(LanguageManager.getText("Entrepreneur","selected")
+                    .replace("{abilityType}",LanguageManager.getText("Entrepreneur","attack")));
         });
 
         healButton.setOnAction((_) ->
         {
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.HEAL);
             entrepreneur.setRolePriority(RolePriority.SOULBINDER);
-            selectedLabel.setText(LanguageManager.getText("Entrepreneur.selected")
-                    .replace("{abilityType}", LanguageManager.getText("Entrepreneur.heal")));
+            selectedLabel.setText(LanguageManager.getText("Entrepreneur","selected")
+                    .replace("{abilityType}", LanguageManager.getText("Entrepreneur","heal")));
         });
         infoButton.setOnAction((_) ->
         {
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.INFO);
             entrepreneur.setRolePriority(RolePriority.NONE);
-            selectedLabel.setText(LanguageManager.getText("Entrepreneur.selected")
-                    .replace("{abilityType}",LanguageManager.getText("Entrepreneur.info")));
+            selectedLabel.setText(LanguageManager.getText("Entrepreneur","selected")
+                    .replace("{abilityType}",LanguageManager.getText("Entrepreneur","info")));
         });
         passAbilityButton.setOnAction((_)->
         {
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.NONE);
             entrepreneur.setRolePriority(RolePriority.NONE);
-            selectedLabel.setText(LanguageManager.getText("Entrepreneur.selected")
-                    .replace("{abilityType}",LanguageManager.getText("Entrepreneur.none")));
+            selectedLabel.setText(LanguageManager.getText("Entrepreneur","selected")
+                    .replace("{abilityType}",LanguageManager.getText("Entrepreneur","none")));
         });
 
         selectedLabel.getStyleClass().add("time-label");

@@ -29,35 +29,25 @@ public class RoleCatalog {
 
     // Adds all roles to the catalog
     static {
-        addRole(new Detective());
-        addRole(new Psycho());
-        addRole(new Observer());
-        addRole(new Soulbinder());
-        addRole(new Stalker());
-        addRole(new DarkRevealer());
-        addRole(new Interrupter());
-        addRole(new SealMaster());
-        addRole(new Assassin());
-        addRole(new ChillGuy());
-        addRole(new Clown());
-        addRole(new Disguiser());
-        addRole(new Darkseer());
-        addRole(new Blinder());
-        addRole(new LastJoke());
-        addRole(new FolkHero());
-        addRole(new Entrepreneur());
-        addRole(new Lorekeeper());
+        addRole(new Detective(), new Psycho(), new Observer(), new Soulbinder(), new Stalker(),
+                new DarkRevealer(), new Interrupter(), new SealMaster(), new Assassin(),
+                new ChillGuy(), new Clown(), new Disguiser(), new Darkseer(), new Blinder(),
+                new LastJoke(), new FolkHero(), new Entrepreneur(), new Lorekeeper()
+        );
 
     }
 
     /**
      * Adds role to the catalog
-     * @param role the role to be added to the role catalog
+     * @param roles the roles to be added to the role catalog
      */
-    private static void addRole(Role role){
-        rolesMap.computeIfAbsent(role.getTeam(), k->new ArrayList<>()).add(role);
-        categoryMap.computeIfAbsent(role.getRoleCategory(), k-> new ArrayList<>()).add(role);
-        allRoles.add(role);
+    private static void addRole(Role... roles){
+        for(Role role: roles){
+            rolesMap.computeIfAbsent(role.getTeam(), k->new ArrayList<>()).add(role);
+            categoryMap.computeIfAbsent(role.getRoleCategory(), k-> new ArrayList<>()).add(role);
+            allRoles.add(role);
+        }
+
     }
 
     /**

@@ -21,11 +21,11 @@ public class Interrupter extends CorrupterRole implements ActiveNightAbility {
         }
 
         if(!isCanPerform()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock.RBimmuneMessage") ,getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","RBimmuneMessage") ,getRoleOwner(),false);
         }
 
         if(choosenPlayer.isImmune()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","immuneMessage") ,getRoleOwner(),false);
             return false;
         }
 
@@ -35,7 +35,7 @@ public class Interrupter extends CorrupterRole implements ActiveNightAbility {
 
     @Override
     public boolean executeAbility() {
-        sendAbilityMessage(LanguageManager.getText("RoleBlock.roleBlockMessage"), getRoleOwner(),false);
+        sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockMessage"), getRoleOwner(),false);
         getChoosenPlayer().getRole().setCanPerform(false);
         return true;
     }

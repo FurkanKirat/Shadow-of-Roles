@@ -1,0 +1,285 @@
+/* Background Styles */
+.background {
+    -fx-background-color: linear-gradient(to bottom, #d6ecff, #a8d8ff); /* Soft blue gradient */
+}
+
+.background2 {
+    -fx-background-color: #e0f7ff; /* Light aqua */
+}
+
+.backgroundimage{
+     -fx-background-repeat: no-repeat;
+     -fx-background-size: cover; /* Resmi tam kaplayacak şekilde ayarla */
+     -fx-background-position: center; /* Ortala */
+     -fx-padding: 10;
+}
+
+.day{
+    -fx-background-image: url('../images/day0.jpg');
+}
+
+.night{
+    -fx-background-image: url('../images/night0.jpg');
+}
+
+.time-label {
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+    -fx-text-fill: white;
+    -fx-border-color: #a8d8ff;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+}
+
+.pass-turn-label {
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+    -fx-text-fill: white;
+    -fx-border-color: #a8d8ff;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-font-size: 50px;
+    -fx-alignment: center;
+}
+
+
+
+
+/* Label Styling */
+.gameLabel {
+    -fx-text-fill: white; /* Deep navy blue */
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* List View Styling */
+.game-list-view {
+    -fx-background-radius: 10;
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+}
+.game-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+
+/* Tree View Styling */
+.game-tree-view {
+    -fx-background-color: #a8d8ff; /* Light blue */
+    -fx-background-radius: 10;
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+}
+
+.game-tree-view .tree-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+.game-tree-view .tree-view {
+    -fx-control-inner-background: transparent; /* Varsayılan beyaz arka planı kaldırır */
+}
+.game-tree-view .arrow {
+    -fx-background-color: white; /* Kırmızı renk */
+}
+
+.game-table-view {
+    -fx-background-radius: 10;
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+}
+
+.game-table-view .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+.game-table-view .table-column {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+.game-table-view .table-cell {
+    -fx-text-fill: white; /* Hücre yazılarını beyaz yap */
+}
+
+
+/* List View Styling */
+.achievement-list-view {
+    -fx-background-radius: 10;
+    -fx-border-color: black; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+    -fx-background-color: linear-gradient(to bottom, #374E4D, #6b4004);
+
+}
+.achievement-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+/* VBox Styling for Roles */
+.folkRoleVbox {
+    -fx-background-color: #32a852; /* Aqua blue */
+    -fx-background-radius: 10;
+    -fx-border-color: green; /* Dark blue border */
+    -fx-border-width: 2px;
+}
+
+.corrupterRoleVbox {
+    -fx-background-color: #b22222; /* Deeper aqua blue */
+    -fx-background-radius: 10;
+    -fx-border-color: red; /* Deep navy border */
+    -fx-border-width: 2px;
+}
+
+.neutralRoleVbox {
+    -fx-background-color: #383736; /* Deeper aqua blue */
+    -fx-background-radius: 10;
+    -fx-border-color: #1c1b1b; /* Deep navy border */
+    -fx-border-width: 2px;
+}
+
+/* Text Field and Text Area Styling */
+.gameTextField {
+    -fx-background-color: #d6ecff; /* Soft blue */
+    -fx-text-fill: #00274d; /* Deep navy */
+    -fx-font-family: "Arial";
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 1px;
+}
+
+.gameTextArea {
+    -fx-background-color: #d6ecff; /* Soft blue */
+    -fx-text-fill: #00274d; /* Deep navy */
+    -fx-font-family: "Arial";
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 1px;
+}
+
+.messageBox {
+    -fx-font-family: "Arial";
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px; /* Kenarları yuvarlat */
+    -fx-background-radius: 5px; /* Arka plan kenarları */
+    -fx-padding: 10px; /* İçerik çevresindeki boşluk */
+    -fx-pref-width: 300px; /* Varsayılan genişlik */
+    -fx-min-width: 250px; /* Minimum genişlik */
+    -fx-max-width: 500px; /* Maksimum genişlik */
+    -fx-wrap-text: true; /* Metni kaydır */
+    -fx-alignment: center-left; /* Metni sola yasla */
+}
+
+/* Gündüz stili */
+.messageBox.private {
+    -fx-background-color: #f4f4d9; /* Hafif açık sarı */
+    -fx-text-fill: #333; /* Siyah metin */
+    -fx-font-size: 14px; /* Yazı boyutu */
+}
+
+/* Gece stili */
+.messageBox.public {
+    -fx-background-color: #2a3d6f; /* Koyu mavi */
+    -fx-text-fill: #fff; /* Beyaz metin */
+    -fx-font-size: 14px; /* Yazı boyutu */
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #66c1e4, #3a9ad9); /* Aqua gradient */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 8px 15px;
+    -fx-font-size: 14px;
+    -fx-border-color: #00274d; /* Deep navy */
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+}
+
+.roleShowLabel{
+    -fx-text-fill: white;
+}
+
+.playerCircle{
+    -fx-fill: #00274d; -fx-stroke: black; -fx-stroke-width: 1.5;
+}
+
+.playerLabel{
+    -fx-font-size: 20px;
+}
+
+
+
+
+.startRoot {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+.startButton {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+}
+.startTextField {
+    -fx-font-size: 14px;
+    -fx-padding: 5 10;
+}
+.startLabel {
+    -fx-font-size: 14px;
+
+}
+
+.MenuLabel{
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+
+}
+
+.Menuhover-label {
+    -fx-background-color: #374E4D;
+    -fx-text-fill: white;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-transition: all 0.3s ease;
+}
+
+.Menuhover-label:hover {
+    -fx-background-color: #2b8c30;
+    -fx-border-color: orange;
+    -fx-effect: dropshadow(gaussian, rgba(255, 165, 0, 0.8), 10, 0.5, 0, 0);
+    -fx-text-fill: white;
+}
+
+/* TextArea Styling with Hover Effects */
+.gameTextArea {
+    -fx-background-color: #d6ecff; /* Soft blue */
+    -fx-text-fill: #00274d; /* Deep navy */
+    -fx-font-family: "Arial";
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 1px;
+    -fx-padding: 5px;
+    -fx-transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.gameTextArea:hover {
+    -fx-background-color: #c5e6ff; /* Lighter blue when hovered */
+    -fx-border-color: #3a9ad9; /* Brighter blue border on hover */
+    -fx-effect: dropshadow(gaussian, rgba(58, 154, 217, 0.6), 10, 0.5, 0, 0); /* Subtle glow effect */
+}

@@ -8,7 +8,7 @@ import javafx.scene.control.ListView;
 public class MessageBox extends Label {
     public MessageBox(Message message, ListView<MessageBox> listView){
 
-        String time = message.isDay() ? LanguageManager.getText("Menu.day") : LanguageManager.getText("Menu.night");
+        String time = message.isDay() ? LanguageManager.getText("Menu","day") : LanguageManager.getText("Menu","night");
         time += " " + message.dayCount()+ ": ";
         this.setText(time + message.message());
         this.getStyleClass().add("messageBox");

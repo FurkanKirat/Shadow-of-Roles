@@ -57,14 +57,14 @@ public class GameController {
             for(Player alivePlayer : alivePlayers){
                 if(alivePlayer.equals(Voting.getMaxVoted())){
                     alivePlayer.setAlive(false);
-                    alivePlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath.hanging"));
+                    alivePlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath","hanging"));
                     break;
                 }
             }
             updateAlivePlayers();
 
             if(Voting.getMaxVoted()!=null){
-                Message.sendMessage(LanguageManager.getText("Message.voteExecute")
+                Message.sendMessage(LanguageManager.getText("Message","voteExecute")
                                 .replace("{playerName}", Voting.getMaxVoted().getName())
                                 .replace("{roleName}", Voting.getMaxVoted().getRole().getName()),
                         null, true, true);
@@ -85,23 +85,23 @@ public class GameController {
             Voting.vote(currentPlayer,chosenPlayer);
 
             if(chosenPlayer!=null){
-                Message.sendMessage(LanguageManager.getText("Message.vote")
+                Message.sendMessage(LanguageManager.getText("Message","vote")
                                 .replace("{playerName}", chosenPlayer.getName())
                         ,currentPlayer,false, true);
             }else{
-                Message.sendMessage(LanguageManager.getText("Message.noVote"), currentPlayer, false, true);
+                Message.sendMessage(LanguageManager.getText("Message","noVote"), currentPlayer, false, true);
             }
 
         }
         else{
             if(currentPlayer.getRole() instanceof ActiveNightAbility){
                 if(chosenPlayer!=null){
-                    Message.sendMessage(LanguageManager.getText("Message.ability")
+                    Message.sendMessage(LanguageManager.getText("Message","ability")
                                     .replace("{playerName}", chosenPlayer.getName())
                             ,currentPlayer,false, false);
                 }
                 else{
-                    Message.sendMessage(LanguageManager.getText("Message.noAbilityUsed"), currentPlayer, false,false);
+                    Message.sendMessage(LanguageManager.getText("Message","noAbilityUsed"), currentPlayer, false,false);
                 }
             }
         }
@@ -217,7 +217,7 @@ public class GameController {
                     }
                 }
                 case Clown _ -> {
-                    if(!player.isAlive() && !player.getCauseOfDeath().equals(LanguageManager.getText("CauseOfDeath.hanging"))){
+                    if(!player.isAlive() && !player.getCauseOfDeath().equals(LanguageManager.getText("CauseOfDeath","hanging"))){
                         player.setHasWon(true);
                     }
                 }

@@ -11,8 +11,8 @@ public abstract class Achievement {
 
     public Achievement(AchievementID id, boolean isCompleted, AchievementCategory category) {
         this.id = id;
-        this.title = LanguageManager.getAchievementText(id+".title");
-        this.description = LanguageManager.getAchievementText(id+".description");
+        this.title = LanguageManager.getAchievementText(id.toString(),"title");
+        this.description = LanguageManager.getAchievementText(id.toString(),"description");
         this.isCompleted = isCompleted;
         this.category = category;
     }
@@ -54,8 +54,8 @@ public abstract class Achievement {
     }
 
     public void langTitleAndDesc(){
-        this.title = LanguageManager.getAchievementText(id+".title");
-        this.description = LanguageManager.getAchievementText(id+".description");
+        this.title = LanguageManager.getAchievementText(id.toString(),"title");
+        this.description = LanguageManager.getAchievementText(id.toString(),"description");
     }
 
     public enum AchievementCategory{

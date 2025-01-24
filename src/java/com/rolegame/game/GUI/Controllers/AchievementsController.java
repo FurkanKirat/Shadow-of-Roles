@@ -43,8 +43,8 @@ public class AchievementsController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        backLabel.setText(LanguageManager.getText("GeneralMenu.back"));
-        achievementsLabel.setText(LanguageManager.getText("Achievements.achievements"));
+        backLabel.setText(LanguageManager.getText("GeneralMenu","back"));
+        achievementsLabel.setText(LanguageManager.getText("Achievements","achievements"));
         bigBox.getChildren().remove(backBox);
 
         Map<Achievement.AchievementID, Achievement> achievementMap = AchievementManager.loadAchievements();

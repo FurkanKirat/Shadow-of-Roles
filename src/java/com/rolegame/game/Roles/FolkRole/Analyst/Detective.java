@@ -26,7 +26,7 @@ public class Detective extends FolkRole implements ActiveNightAbility {
         String roleName1 = firstIsChoosen ? getChoosenPlayer().getRole().getName() : randRole.getName();
         String roleName2 = firstIsChoosen ? randRole.getName() : getChoosenPlayer().getRole().getName();
 
-        String message = LanguageManager.getText("Detective.abilityMessage")
+        String message = LanguageManager.getText("Detective","abilityMessage")
                 .replace("{roleName1}", roleName1)
                 .replace("{roleName2}", roleName2);
 

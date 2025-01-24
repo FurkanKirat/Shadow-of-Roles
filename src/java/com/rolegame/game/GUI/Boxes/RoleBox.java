@@ -30,15 +30,15 @@ public class RoleBox extends VBox {
         roleLabel.getStyleClass().add("gameLabel");
         roleLabel.getStyleClass().add("roleShowLabel");
 
-        HBox abilities = new HBox(createLabel(LanguageManager.getText("Role.abilities") +":"), abilitesTextArea);
+        HBox abilities = new HBox(createLabel(LanguageManager.getText("Role","abilities") +":"), abilitesTextArea);
         abilities.setAlignment(Pos.TOP_LEFT);
         abilities.setSpacing(17);
 
-        HBox attributes = new HBox(createLabel(LanguageManager.getText("Role.attributes")+":"), attributesTextField);
+        HBox attributes = new HBox(createLabel(LanguageManager.getText("Role","attributes")+":"), attributesTextField);
         attributes.setAlignment(Pos.CENTER_LEFT);
         attributes.setSpacing(3);
 
-        HBox goal = new HBox(createLabel(LanguageManager.getText("Role.goal")+":"), goalTextField);
+        HBox goal = new HBox(createLabel(LanguageManager.getText("Role","goal")+":"), goalTextField);
         goal.setAlignment(Pos.BOTTOM_LEFT);
         goal.setSpacing(40);
 
@@ -50,7 +50,7 @@ public class RoleBox extends VBox {
         defenceTextField.setEditable(false);
         defenceTextField.setPrefWidth(92.5);
 
-        HBox atkDef = new HBox(createLabel(LanguageManager.getText("Role.attack")+":"),attackTextField,createLabel(LanguageManager.getText("Role.defence")+":"),defenceTextField);
+        HBox atkDef = new HBox(createLabel(LanguageManager.getText("Role","attack")+":"),attackTextField,createLabel(LanguageManager.getText("Role","defence")+":"),defenceTextField);
         atkDef.setAlignment(Pos.BOTTOM_LEFT);
         atkDef.setSpacing(28);
 

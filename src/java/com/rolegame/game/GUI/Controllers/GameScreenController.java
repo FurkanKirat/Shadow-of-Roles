@@ -56,7 +56,6 @@ public class GameScreenController {
     @FXML
     private VBox midBox;
 
-
     @FXML
     private Label dayLabel;
 
@@ -67,16 +66,10 @@ public class GameScreenController {
     private Label nameLabel;
 
     @FXML
-    private VBox leftVBox;
-
-    @FXML
     private Button useAbilityButton;
 
     @FXML
     private VBox passTurnPane;
-
-    @FXML
-    private StackPane outerStackPane;
 
     @FXML
     private ListView<MessageBox> announcementsListView;
@@ -125,9 +118,9 @@ public class GameScreenController {
 
             if(gameController.isDay()||(!gameController.isDay() && gameController.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle(LanguageManager.getText("Menu.passAlertTitle"));
-                alert.setHeaderText(LanguageManager.getText("Menu.passAlertHead"));
-                alert.setContentText(LanguageManager.getText("Menu.passAlertMessage"));
+                alert.setTitle(LanguageManager.getText("Menu","passAlertTitle"));
+                alert.setHeaderText(LanguageManager.getText("Menu","passAlertHead"));
+                alert.setContentText(LanguageManager.getText("Menu","passAlertMessage"));
 
                 Optional<ButtonType> result = alert.showAndWait();
 
@@ -181,18 +174,18 @@ public class GameScreenController {
         changePlayer();
         initializeRolesView();
         initializeMessages();
-        dayLabel.setText((gameController.isDay() ? LanguageManager.getText("Menu.day"): LanguageManager.getText("Menu.night") ) + ": " +gameController.getDayCount());
+        dayLabel.setText((gameController.isDay() ? LanguageManager.getText("Menu","day"): LanguageManager.getText("Menu","night") ) + ": " +gameController.getDayCount());
 
-        announcementsLabel.setText(LanguageManager.getText("Menu.announcement"));
-        allRolesLabel.setText(LanguageManager.getText("Menu.allRoles"));
-        graveyardLabel.setText(LanguageManager.getText("Menu.graveyard"));
-        goalLabel.setText(LanguageManager.getText("Menu.goal"));
-        attributesLabel.setText(LanguageManager.getText("Menu.attributes"));
-        abilitiesLabel.setText(LanguageManager.getText("Menu.abilities"));
-        alivePlayersLabel.setText(LanguageManager.getText("Menu.alivePlayers"));
-        useAbilityButton.setText(LanguageManager.getText("Menu.useAbility"));
+        announcementsLabel.setText(LanguageManager.getText("Menu","announcement"));
+        allRolesLabel.setText(LanguageManager.getText("Menu","allRoles"));
+        graveyardLabel.setText(LanguageManager.getText("Menu","graveyard"));
+        goalLabel.setText(LanguageManager.getText("Menu","goal"));
+        attributesLabel.setText(LanguageManager.getText("Menu","attributes"));
+        abilitiesLabel.setText(LanguageManager.getText("Menu","abilities"));
+        alivePlayersLabel.setText(LanguageManager.getText("Menu","alivePlayers"));
+        useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
 
-        passTurnLabel.setText(LanguageManager.getText("PassTurn.turn")
+        passTurnLabel.setText(LanguageManager.getText("PassTur","turn")
                 .replace("{playerName}", gameController.getCurrentPlayer().getName()));
         alivePlayersListView.setSelectionModel(null);
     }
@@ -207,25 +200,25 @@ public class GameScreenController {
     }
 
     private void initializeRolesView(){
-        TreeItem<Object> roles = new TreeItem<>(LanguageManager.getText("Role.role"));
-        TreeItem<Object> folk = new TreeItem<>(LanguageManager.getText("Role.folkRole"));
-        TreeItem<Object> corrupter = new TreeItem<>(LanguageManager.getText("Role.corrupterRole"));
-        TreeItem<Object> neutral = new TreeItem<>(LanguageManager.getText("Role.neutralRole"));
+        TreeItem<Object> roles = new TreeItem<>(LanguageManager.getText("Role","role"));
+        TreeItem<Object> folk = new TreeItem<>(LanguageManager.getText("Role","folkRole"));
+        TreeItem<Object> corrupter = new TreeItem<>(LanguageManager.getText("Role","corrupterRole"));
+        TreeItem<Object> neutral = new TreeItem<>(LanguageManager.getText("Role","neutralRole"));
 
-        TreeItem<Object> folkAnalyst = new TreeItem<>(LanguageManager.getText("Role.folkAnalyst"));
-        TreeItem<Object> folkProtector = new TreeItem<>(LanguageManager.getText("Role.folkProtector"));
-        TreeItem<Object> folkKilling = new TreeItem<>(LanguageManager.getText("Role.folkKilling"));
-        TreeItem<Object> folkSupport = new TreeItem<>(LanguageManager.getText("Role.folkSupport"));
-        TreeItem<Object> folkUnique = new TreeItem<>(LanguageManager.getText("Role.folkUnique"));
+        TreeItem<Object> folkAnalyst = new TreeItem<>(LanguageManager.getText("Role","folkAnalyst"));
+        TreeItem<Object> folkProtector = new TreeItem<>(LanguageManager.getText("Role","folkProtector"));
+        TreeItem<Object> folkKilling = new TreeItem<>(LanguageManager.getText("Role","folkKilling"));
+        TreeItem<Object> folkSupport = new TreeItem<>(LanguageManager.getText("Role","folkSupport"));
+        TreeItem<Object> folkUnique = new TreeItem<>(LanguageManager.getText("Role","folkUnique"));
 
-        TreeItem<Object> corrupterAnalyst = new TreeItem<>(LanguageManager.getText("Role.corrupterAnalyst"));
-        TreeItem<Object> corrupterKilling = new TreeItem<>(LanguageManager.getText("Role.corrupterKilling"));
-        TreeItem<Object> corrupterSupport = new TreeItem<>(LanguageManager.getText("Role.corrupterSupport"));
+        TreeItem<Object> corrupterAnalyst = new TreeItem<>(LanguageManager.getText("Role","corrupterAnalyst"));
+        TreeItem<Object> corrupterKilling = new TreeItem<>(LanguageManager.getText("Role","corrupterKilling"));
+        TreeItem<Object> corrupterSupport = new TreeItem<>(LanguageManager.getText("Role","corrupterSupport"));
 
-        TreeItem<Object> neutralEvil = new TreeItem<>(LanguageManager.getText("Role.neutralEvil"));
-        TreeItem<Object> neutralKilling = new TreeItem<>(LanguageManager.getText("Role.neutralKilling"));
-        TreeItem<Object> neutralChaos = new TreeItem<>(LanguageManager.getText("Role.neutralChaos"));
-        TreeItem<Object> neutralGood = new TreeItem<>(LanguageManager.getText("Role.neutralGood"));
+        TreeItem<Object> neutralEvil = new TreeItem<>(LanguageManager.getText("Role","neutralEvil"));
+        TreeItem<Object> neutralKilling = new TreeItem<>(LanguageManager.getText("Role","neutralKilling"));
+        TreeItem<Object> neutralChaos = new TreeItem<>(LanguageManager.getText("Role","neutralChaos"));
+        TreeItem<Object> neutralGood = new TreeItem<>(LanguageManager.getText("Role","neutralGood"));
 
 
         for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_ANALYST)){
@@ -281,7 +274,7 @@ public class GameScreenController {
     }
     private void changePlayer(){
         nameLabel.setText(gameController.getCurrentPlayer().getName());
-        numberLabel.setText(LanguageManager.getText("Menu.number")+": "+gameController.getCurrentPlayer().getNumber());
+        numberLabel.setText(LanguageManager.getText("Menu","number")+": "+gameController.getCurrentPlayer().getNumber());
         abilitiesTextField.setText(gameController.getCurrentPlayer().getRole().getAbilities());
         attributesTextField.setText(gameController.getCurrentPlayer().getRole().getAttributes());
         goalTextField.setText(gameController.getCurrentPlayer().getRole().getGoal());
@@ -307,7 +300,7 @@ public class GameScreenController {
         else if(gameController.getCurrentPlayer().getRole() instanceof Lorekeeper lorekeeper && !gameController.isDay()){
             extraPropertiesVbox.getChildren().add(new LorekeeperBox(lorekeeper));
         }
-        passTurnLabel.setText(LanguageManager.getText("PassTurn.turn")
+        passTurnLabel.setText(LanguageManager.getText("PassTurn","turn")
                 .replace("{playerName}", gameController.getCurrentPlayer().getName()));
     }
 
@@ -315,7 +308,7 @@ public class GameScreenController {
         gameController.setDay(!gameController.isDay());
         if(gameController.isDay()){
 
-            useAbilityButton.setText(LanguageManager.getText("Menu.vote"));
+            useAbilityButton.setText(LanguageManager.getText("Menu","vote"));
             gameController.performAllAbilities();
             dayStartAnnouncements();
 
@@ -330,7 +323,7 @@ public class GameScreenController {
             gameController.updateAlivePlayers();
             dayStartAnnouncements();
 
-            useAbilityButton.setText(LanguageManager.getText("Menu.useAbility"));
+            useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
             if(!(gameController.getCurrentPlayer() instanceof ActiveNightAbility)){
                 useAbilityButton.setText("Pass Turn");
             }
@@ -344,7 +337,7 @@ public class GameScreenController {
         for(Player deadPlayer: gameController.getDeadPlayers()){
             graveListView.getItems().add(deadPlayer.toString()+" ("+deadPlayer.getRole().getName()+")");
         }
-        dayLabel.setText((gameController.isDay() ? LanguageManager.getText("Menu.day") : LanguageManager.getText("Menu.night")) + ": " +gameController.getDayCount());
+        dayLabel.setText((gameController.isDay() ? LanguageManager.getText("Menu","day") : LanguageManager.getText("Menu","night")) + ": " +gameController.getDayCount());
 
 
         initializeMessages();

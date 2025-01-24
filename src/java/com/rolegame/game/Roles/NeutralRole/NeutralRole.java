@@ -10,7 +10,7 @@ import com.rolegame.game.Roles.RoleProperties.Team;
 public abstract class NeutralRole extends Role {
     public NeutralRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
                        double attack, double defence, ChanceProperty chanceProperty) {
-        super(id, rolePriority, roleCategory, Team.NEUTRAL, LanguageManager.getText(id +".goal"),
+        super(id, rolePriority, roleCategory, Team.NEUTRAL, LanguageManager.getText(id.toString() ,"goal"),
                 attack, defence, chanceProperty);
     }
 }

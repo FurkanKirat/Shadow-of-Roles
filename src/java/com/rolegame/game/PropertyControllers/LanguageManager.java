@@ -95,27 +95,22 @@ public class LanguageManager {
         }
     }
 
-    public static String getText(String text) {
-        String category = text.substring(0,text.indexOf('.'));
-        String key = text.substring(text.indexOf('.')+1);
+    public static String getText(String category, String key) {
         if (translations != null && translations.containsKey(category)) {
             return translations.get(category).getOrDefault(key, key);
         }
         return key;
     }
 
-    public static String getRoleText(String text){
-        String category = text.substring(0,text.indexOf('.'));
-        String key = text.substring(text.indexOf('.')+1);
+    public static String getRoleText(String category, String key){
+
         if (roles != null && roles.containsKey(category)) {
             return roles.get(category).getOrDefault(key, key);
         }
         return key;
     }
 
-    public static String getAchievementText(String text){
-        String category = text.substring(0,text.indexOf('.'));
-        String key = text.substring(text.indexOf('.')+1);
+    public static String getAchievementText(String category, String key){
         if (achievements != null && achievements.containsKey(category)) {
             return achievements.get(category).getOrDefault(key, key);
         }

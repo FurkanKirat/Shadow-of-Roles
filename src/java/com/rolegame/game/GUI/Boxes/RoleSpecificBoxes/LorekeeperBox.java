@@ -23,7 +23,7 @@ public class LorekeeperBox extends VBox {
 
         Label trueGuessLabel = new Label();
         trueGuessLabel.getStyleClass().add("time-label");
-        String textTemplate = LanguageManager.getText("Lorekeeper.guess");
+        String textTemplate = LanguageManager.getText("Lorekeeper","guess");
 
 
 

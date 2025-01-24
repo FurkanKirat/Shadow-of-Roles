@@ -68,12 +68,12 @@ public class MainMenuController implements Initializable {
 
 
 
-        startGameLabel.setText(LanguageManager.getText("StartMenu.startGame"));
-        gameGuideLabel.setText(LanguageManager.getText("StartMenu.gameGuide"));
-        achievementsLabel.setText(LanguageManager.getText("StartMenu.achievements"));
-        settingsLabel.setText(LanguageManager.getText("StartMenu.settings"));
-        creditsLabel.setText(LanguageManager.getText("StartMenu.credits"));
-        exitLabel.setText(LanguageManager.getText("StartMenu.exit"));
+        startGameLabel.setText(LanguageManager.getText("StartMenu","startGame"));
+        gameGuideLabel.setText(LanguageManager.getText("StartMenu","gameGuide"));
+        achievementsLabel.setText(LanguageManager.getText("StartMenu","achievements"));
+        settingsLabel.setText(LanguageManager.getText("StartMenu","settings"));
+        creditsLabel.setText(LanguageManager.getText("StartMenu","credits"));
+        exitLabel.setText(LanguageManager.getText("StartMenu","exit"));
 
 
     }

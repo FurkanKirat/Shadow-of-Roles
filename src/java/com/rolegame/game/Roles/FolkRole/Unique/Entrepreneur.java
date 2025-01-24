@@ -96,12 +96,12 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
     }
 
     private boolean insufficientMoney(){
-        String message = LanguageManager.getText("Entrepreneur.insufficientMoney");
+        String message = LanguageManager.getText("Entrepreneur","insufficientMoney");
 
         switch (abilityState){
-            case ATTACK -> message += LanguageManager.getText("Entrepreneur.attack");
-            case HEAL -> message += LanguageManager.getText("Entrepreneur.heal");
-            case INFO -> message += LanguageManager.getText("Entrepreneur.info");
+            case ATTACK -> message += LanguageManager.getText("Entrepreneur","attack");
+            case HEAL -> message += LanguageManager.getText("Entrepreneur", "heal");
+            case INFO -> message += LanguageManager.getText("Entrepreneur","info");
         }
         sendAbilityMessage(message, roleOwner, false);
         return false;

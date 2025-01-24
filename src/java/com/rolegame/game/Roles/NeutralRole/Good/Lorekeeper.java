@@ -42,7 +42,7 @@ public class Lorekeeper extends NeutralRole implements ActiveNightAbility {
         if(choosenPlayer.getRole().getId() == guessedRole.getId()){
             trueGuessCount++;
 
-            String messageTemplate = LanguageManager.getText("Lorekeeper.abilityMessage");
+            String messageTemplate = LanguageManager.getText("Lorekeeper","abilityMessage");
 
             String message = messageTemplate
                     .replace("{playerName}", choosenPlayer.getName())

@@ -34,10 +34,10 @@ public abstract class Role {
         this.id = id;
         this.rolePriority = rolePriority;
         this.roleCategory = roleCategory;
-        this.name = LanguageManager.getRoleText(id.toString()+".name");
-        this.attributes = LanguageManager.getText(id +".attributes");
+        this.name = LanguageManager.getRoleText(id.toString(),"name");
+        this.attributes = LanguageManager.getText(id.toString(),"attributes");
         this.team = team;
-        this.abilities = LanguageManager.getText(id +".abilities");
+        this.abilities = LanguageManager.getText(id.toString(),"abilities");
         this.goal = goal;
         this.attack = attack;
         this.defence = defence;
@@ -73,7 +73,7 @@ public abstract class Role {
 
     public boolean performAbility(){
         if(!canPerform){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock.roleBlockedMessage"),roleOwner,false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),roleOwner,false);
             return false;
         }
 
@@ -82,7 +82,7 @@ public abstract class Role {
         }
 
         if(choosenPlayer.isImmune()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,roleOwner,false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","immuneMessage") ,roleOwner,false);
             return false;
         }
 

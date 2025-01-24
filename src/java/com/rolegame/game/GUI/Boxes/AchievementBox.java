@@ -48,16 +48,16 @@ public class AchievementBox extends VBox {
         descriptionLabel.setTextFill(Color.GRAY);
 
         // Completion status
-        String status = isCompleted ? LanguageManager.getText("Achievements.completed") :
-                LanguageManager.getText("Achievements.notCompleted");
+        String status = isCompleted ? LanguageManager.getText("Achievements","completed") :
+                LanguageManager.getText("Achievements","notCompleted");
         Text statusText = new Text(status);
         statusText.setFont(Font.font("Arial", 12));
         statusText.setFill(isCompleted ? COMPLETED_COLOR : UNCOMPLETED_COLOR);
 
         // Category
-        Label categoryLabel = new Label(LanguageManager.getText("Achievements.category")
+        Label categoryLabel = new Label(LanguageManager.getText("Achievements","category")
                 .replace("{achievementCategory}"
-                        ,LanguageManager.getText("AchievementCategory."+category.name())));
+                        ,LanguageManager.getText("AchievementCategory",category.name())));
         categoryLabel.setFont(Font.font("Arial", 12));
         categoryLabel.setTextFill(Color.DARKGRAY);
 
@@ -66,7 +66,7 @@ public class AchievementBox extends VBox {
 
         if(max!=0){
 
-            Label progresslabel = new Label(LanguageManager.getText("Achievements.progress")
+            Label progresslabel = new Label(LanguageManager.getText("Achievements","progress")
                     .replace("{progress}",progress+"")
                     .replace("{goal}",max+""));
             progresslabel.setFont(Font.font("Arial", 12));

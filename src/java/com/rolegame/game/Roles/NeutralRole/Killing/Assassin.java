@@ -17,7 +17,7 @@ public class Assassin extends NeutralRole implements ActiveNightAbility {
     public boolean performAbility() {
 
         if(!isCanPerform()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock.RBimmuneMessage") ,getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","RBimmuneMessage") ,getRoleOwner(),false);
         }
 
         if(getChoosenPlayer()==null){
@@ -25,7 +25,7 @@ public class Assassin extends NeutralRole implements ActiveNightAbility {
         }
 
         if(choosenPlayer.isImmune()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock.immuneMessage") ,getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","immuneMessage") ,getRoleOwner(),false);
             return false;
         }
         return executeAbility();
@@ -36,14 +36,14 @@ public class Assassin extends NeutralRole implements ActiveNightAbility {
     public boolean executeAbility() {
         if(getAttack() > getChoosenPlayer().getDefence()){
             this.getChoosenPlayer().setAlive(false);
-            this.getChoosenPlayer().setCauseOfDeath(LanguageManager.getText("CauseOfDeath.assassin"));
-            sendAbilityMessage(LanguageManager.getText("Assassin.killMessage"), getRoleOwner(),false);
-            sendAbilityMessage(LanguageManager.getText("Assassin.slainMessage")
+            this.getChoosenPlayer().setCauseOfDeath(LanguageManager.getText("CauseOfDeath","assassin"));
+            sendAbilityMessage(LanguageManager.getText("Assassin","killMessage"), getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("Assassin","slainMessage")
                     .replace("{playerName}",this.getChoosenPlayer().getName()), getRoleOwner(),true);
             return true;
         }
         else{
-            sendAbilityMessage(LanguageManager.getText("Assassin.defenceMessage"),
+            sendAbilityMessage(LanguageManager.getText("Assassin","defenceMessage"),
                     getRoleOwner(),false);
             return false;
         }

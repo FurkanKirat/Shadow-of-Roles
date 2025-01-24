@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class PlayerSelectionBox extends HBox{
-    private static final Color corrupterColor = Color.rgb(219, 57, 62);
+    private static final Color CORRUPTER_COLOR = Color.rgb(219, 57, 62);
     private final Button selectButton;
     private boolean isChosen = false;
     private Label roleLabel;
@@ -39,7 +39,7 @@ public class PlayerSelectionBox extends HBox{
         playerName.setAlignment(Pos.CENTER);
 
 
-        selectButton = new Button(LanguageManager.getText("Menu.select"));
+        selectButton = new Button(LanguageManager.getText("Menu","select"));
 
         selectButton.setOnAction((_)->{
 
@@ -47,11 +47,11 @@ public class PlayerSelectionBox extends HBox{
             isChosen = !isChosen;
             if(isChosen){
                 currentPlayer.getRole().setChoosenPlayer(player);
-                selectButton.setText(LanguageManager.getText("Menu.unselect"));
+                selectButton.setText(LanguageManager.getText("Menu","unselect"));
             }
             else{
                 currentPlayer.getRole().setChoosenPlayer(null);
-                selectButton.setText(LanguageManager.getText("Menu.select"));
+                selectButton.setText(LanguageManager.getText("Menu","select"));
             }
 
             for(PlayerSelectionBox playerSelectionBox: GameScreenController.getPlayerSelectionBoxes()){
@@ -65,20 +65,20 @@ public class PlayerSelectionBox extends HBox{
         if(currentPlayer.getRole().getTeam()==Team.CORRUPTER &&player.getRole().getTeam()==Team.CORRUPTER){
 
             roleLabel = createLabel("("+player.getRole().getName()+")");
-            roleLabel.setTextFill(corrupterColor);
+            roleLabel.setTextFill(CORRUPTER_COLOR);
             roleLabel.setAlignment(Pos.CENTER);
 
             roleBox = new HBox(roleLabel);
             roleBox.setAlignment(Pos.CENTER);
 
-            playerName.setTextFill(corrupterColor);
+            playerName.setTextFill(CORRUPTER_COLOR);
             this.getChildren().add(roleBox);
 
         }
 
         if(currentPlayer.equals(player)){
 
-            Label youLabel = createLabel("("+ LanguageManager.getText("Menu.you")+")");
+            Label youLabel = createLabel("("+ LanguageManager.getText("Menu","you")+")");
             youLabel.setTextFill(Color.SNOW);
             youLabel.setAlignment(Pos.CENTER);
 
@@ -88,7 +88,7 @@ public class PlayerSelectionBox extends HBox{
 
             if(currentPlayer.getRole().getTeam()==Team.CORRUPTER){
                 this.getChildren().remove(roleBox);
-                youLabel.setTextFill(corrupterColor);
+                youLabel.setTextFill(CORRUPTER_COLOR);
             }
             this.getChildren().add(youBox);
             selectButton.setVisible(false);
@@ -120,7 +120,7 @@ public class PlayerSelectionBox extends HBox{
 
     public void setChosen(boolean chosen) {
         isChosen = chosen;
-        selectButton.setText(isChosen ? LanguageManager.getText("Menu.unselect") : LanguageManager.getText("Menu.select"));
+        selectButton.setText(isChosen ? LanguageManager.getText("Menu","unselect") : LanguageManager.getText("Menu","select"));
     }
 
     public void setButtonVisible(boolean status){

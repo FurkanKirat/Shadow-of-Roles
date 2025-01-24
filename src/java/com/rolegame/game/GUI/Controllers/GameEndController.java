@@ -73,23 +73,23 @@ public class GameEndController implements Initializable {
 
         gameEndTV.setFixedCellSize(rowHeight); // Set fixed row height
         gameEndTV.setPrefHeight(rowHeight * numberOfRows+30);
-        startGamebutton.setText(LanguageManager.getText("EndMenu.startGameButton"));
+        startGamebutton.setText(LanguageManager.getText("EndMenu","startGameButton"));
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         playerColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
         deathCauseColumn.setCellValueFactory(new PropertyValueFactory<>("causeOfDeath"));
         setupTableView();
         gameEndTV.getItems().addAll(gameController.getAllPlayers());
-        hasWonLabel.setText(LanguageManager.getText("EndMenu.hasWon")
-                .replace("{teamName}",LanguageManager.getText("Role."+gameController.getWinnerTeam())));
+        hasWonLabel.setText(LanguageManager.getText("EndMenu","hasWon")
+                .replace("{teamName}",LanguageManager.getText("Role",gameController.getWinnerTeam().toString())));
 
-        numberColumn.setText(LanguageManager.getText("EndMenu.number"));
-        playerColumn.setText(LanguageManager.getText("EndMenu.player"));
-        roleColumn.setText(LanguageManager.getText("EndMenu.role"));
-        teamColumn.setText(LanguageManager.getText("EndMenu.team"));
-        winStatusColumn.setText(LanguageManager.getText("EndMenu.winStatus"));
-        aliveStatusColumn.setText(LanguageManager.getText("EndMenu.aliveStatus"));
-        deathCauseColumn.setText(LanguageManager.getText("EndMenu.causeOfDeath"));
+        numberColumn.setText(LanguageManager.getText("EndMenu","number"));
+        playerColumn.setText(LanguageManager.getText("EndMenu","player"));
+        roleColumn.setText(LanguageManager.getText("EndMenu","role"));
+        teamColumn.setText(LanguageManager.getText("EndMenu","team"));
+        winStatusColumn.setText(LanguageManager.getText("EndMenu","winStatus"));
+        aliveStatusColumn.setText(LanguageManager.getText("EndMenu","aliveStatus"));
+        deathCauseColumn.setText(LanguageManager.getText("EndMenu","causeOfDeath"));
         setImage();
         progressAchievements();
 
@@ -115,7 +115,7 @@ public class GameEndController implements Initializable {
         teamColumn.setCellValueFactory(cellData -> {
             Role role = cellData.getValue().getRole();
             if (role != null && role.getTeam() != null) {
-                return new SimpleStringProperty(LanguageManager.getText("Role."+role.getTeam()));
+                return new SimpleStringProperty(LanguageManager.getText("Role",role.getTeam().toString()));
             } else {
                 return new SimpleStringProperty("-");
             }
@@ -123,13 +123,13 @@ public class GameEndController implements Initializable {
 
         winStatusColumn.setCellValueFactory(cellData -> {
             boolean isHasWon = cellData.getValue().isHasWon();
-            return new SimpleStringProperty(isHasWon ? LanguageManager.getText("EndMenu.won") : LanguageManager.getText("EndMenu.lost"));
+            return new SimpleStringProperty(isHasWon ? LanguageManager.getText("EndMenu","won") : LanguageManager.getText("EndMenu","lost"));
 
         });
 
         aliveStatusColumn.setCellValueFactory(cellData -> {
             boolean isAlive = cellData.getValue().isAlive();
-            return new SimpleStringProperty(isAlive ? LanguageManager.getText("EndMenu.alive"): LanguageManager.getText("EndMenu.dead"));
+            return new SimpleStringProperty(isAlive ? LanguageManager.getText("EndMenu","alive"): LanguageManager.getText("EndMenu","dead"));
 
         });
     }
