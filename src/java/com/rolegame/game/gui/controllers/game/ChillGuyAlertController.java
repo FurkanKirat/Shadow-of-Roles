@@ -1,4 +1,4 @@
-package com.rolegame.game.gui.controllers;
+package com.rolegame.game.gui.controllers.game;
 
 import com.rolegame.game.gameplay.GameController;
 import com.rolegame.game.models.Player;
@@ -41,7 +41,7 @@ public class SimplePersonController implements Initializable {
                 break;
             }
         }
-        SceneManager.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneManager.SceneType.END_GAME, false);
+        SceneManager.switchScene("/com/rolegame/game/fxml/game/EndGame.fxml", SceneManager.SceneType.END_GAME, false);
 
     }
 
