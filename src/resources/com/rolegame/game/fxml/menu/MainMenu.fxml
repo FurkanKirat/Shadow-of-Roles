@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.MainMenuController">
+   <children>
+      <VBox prefHeight="768.0" prefWidth="1366.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label text="Shadow of Roles" textFill="WHITE">
+                     <font>
+                        <Font size="43.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="startGameLabel" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#startGame" prefHeight="70.0" prefWidth="270.0" text="Start Game">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="MenuLabel" />
+                        <String fx:value="Menuhover-label" />
+                     </styleClass>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="gameGuideLabel" alignment="CENTER" onMouseClicked="#gameGuide" prefWidth="270.0" text="Game Guide">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="MenuLabel" />
+                        <String fx:value="Menuhover-label" />
+                     </styleClass>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="achievementsLabel" alignment="CENTER" onMouseClicked="#achievementsClicked" prefHeight="70.0" prefWidth="270.0" text="Achievements">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="MenuLabel" />
+                        <String fx:value="Menuhover-label" />
+                     </styleClass>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="settingsLabel" alignment="CENTER" onMouseClicked="#settingsClicked" prefHeight="70.0" prefWidth="270.0" text="Settings">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="MenuLabel" />
+                        <String fx:value="Menuhover-label" />
+                     </styleClass>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="creditsLabel" alignment="CENTER" onMouseClicked="#creditsClicked" prefHeight="70.0" prefWidth="270.0" text="Credits">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="MenuLabel" />
+                        <String fx:value="Menuhover-label" />
+                     </styleClass>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="exitLabel" alignment="CENTER" onMouseClicked="#exitClicked" prefHeight="70.0" prefWidth="270.0" text="Exit">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="MenuLabel" />
+                        <String fx:value="Menuhover-label" />
+                     </styleClass>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="249.0" prefWidth="1346.0" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="backgroundimage" />
+   </styleClass>
+</StackPane>
