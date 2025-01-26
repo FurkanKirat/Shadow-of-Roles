@@ -1,4 +1,4 @@
-package com.rolegame.game.gui.controllers;
+package com.rolegame.game.gui.controllers.menu;
 
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;

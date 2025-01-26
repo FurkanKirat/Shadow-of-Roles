@@ -1,4 +1,4 @@
-package com.rolegame.game.gui.controllers;
+package com.rolegame.game.gui.controllers.game;
 
 import com.rolegame.game.models.achievement.Achievement;
 import com.rolegame.game.gameplay.GameController;
@@ -95,6 +95,9 @@ public class GameEndController implements Initializable {
 
     }
 
+    /**
+     * Sets the background image according to winner team
+     */
     private void setImage(){
         String styleTemplate = "-fx-background-image: url(/com/rolegame/game/images/gameend/{team}.jpg);"+
                 "-fx-background-size: cover;";

@@ -1,5 +1,6 @@
-package com.rolegame.game.gui.controllers;
+package com.rolegame.game.gui.controllers.menu;
 
+import com.rolegame.game.gui.controllers.game.WriteNamesController;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
 import javafx.fxml.FXML;
@@ -33,12 +34,12 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void achievementsClicked(MouseEvent event) {
-        SceneManager.switchScene("/com/rolegame/game/fxml/Achievements.fxml", SceneManager.SceneType.ACHIEVEMENTS, true);
+        SceneManager.switchScene("/com/rolegame/game/fxml/menu/Achievements.fxml", SceneManager.SceneType.ACHIEVEMENTS, true);
     }
 
     @FXML
     void creditsClicked(MouseEvent event) {
-        SceneManager.switchScene("/com/rolegame/game/fxml/Credits.fxml", SceneManager.SceneType.CREDITS, true);
+        SceneManager.switchScene("/com/rolegame/game/fxml/menu/Credits.fxml", SceneManager.SceneType.CREDITS, true);
     }
 
     @FXML

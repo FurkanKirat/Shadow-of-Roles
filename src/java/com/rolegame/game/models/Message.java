@@ -1,7 +1,6 @@
-package com.rolegame.game.gamemanagement;
+package com.rolegame.game.models;
 
-import com.rolegame.game.GUI.Controllers.GameScreenController;
-import com.rolegame.game.models.Player;
+import com.rolegame.game.gui.controllers.game.GameScreenController;
 
 import java.util.LinkedList;
 

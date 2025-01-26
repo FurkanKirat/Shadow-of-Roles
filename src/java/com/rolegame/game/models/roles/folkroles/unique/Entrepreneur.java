@@ -1,19 +1,19 @@
-package com.rolegame.game.Roles.FolkRole.Unique;
+package com.rolegame.game.models.roles.folkroles.unique;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.Roles.CorrupterRole.Analyst.DarkRevealer;
-import com.rolegame.game.Roles.CorrupterRole.Analyst.Darkseer;
-import com.rolegame.game.Roles.CorrupterRole.Killing.Psycho;
-import com.rolegame.game.Roles.FolkRole.Analyst.Detective;
-import com.rolegame.game.Roles.FolkRole.Analyst.Observer;
-import com.rolegame.game.Roles.FolkRole.Analyst.Stalker;
-import com.rolegame.game.Roles.FolkRole.FolkRole;
-import com.rolegame.game.Roles.FolkRole.Protector.Soulbinder;
-import com.rolegame.game.Roles.Role;
-import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
-import com.rolegame.game.Roles.RoleProperties.RoleCategory;
-import com.rolegame.game.Roles.RoleProperties.RoleID;
-import com.rolegame.game.Roles.RoleProperties.RolePriority;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.corrupterroles.analyst.DarkRevealer;
+import com.rolegame.game.models.roles.corrupterroles.analyst.Darkseer;
+import com.rolegame.game.models.roles.corrupterroles.killing.Psycho;
+import com.rolegame.game.models.roles.folkroles.analyst.Detective;
+import com.rolegame.game.models.roles.folkroles.analyst.Observer;
+import com.rolegame.game.models.roles.folkroles.analyst.Stalker;
+import com.rolegame.game.models.roles.folkroles.FolkRole;
+import com.rolegame.game.models.roles.folkroles.protector.Soulbinder;
+import com.rolegame.game.models.roles.Role;
+import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
+import com.rolegame.game.models.roles.roleproperties.RoleCategory;
+import com.rolegame.game.models.roles.roleproperties.RoleID;
+import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 import java.util.Random;
 

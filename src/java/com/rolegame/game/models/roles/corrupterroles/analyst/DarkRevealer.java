@@ -1,11 +1,11 @@
-package com.rolegame.game.Roles.CorrupterRole.Analyst;
+package com.rolegame.game.models.roles.corrupterroles.analyst;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.Roles.CorrupterRole.CorrupterRole;
-import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
-import com.rolegame.game.Roles.RoleProperties.RoleCategory;
-import com.rolegame.game.Roles.RoleProperties.RoleID;
-import com.rolegame.game.Roles.RoleProperties.RolePriority;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.corrupterroles.CorrupterRole;
+import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
+import com.rolegame.game.models.roles.roleproperties.RoleCategory;
+import com.rolegame.game.models.roles.roleproperties.RoleID;
+import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public class DarkRevealer extends CorrupterRole implements ActiveNightAbility {
     public DarkRevealer() {

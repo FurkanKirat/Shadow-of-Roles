@@ -1,12 +1,12 @@
-package com.rolegame.game.Roles.CorrupterRole.Support;
+package com.rolegame.game.models.roles.corrupterroles.support;
 
-import com.rolegame.game.Roles.CorrupterRole.CorrupterRole;
-import com.rolegame.game.Roles.Role;
-import com.rolegame.game.Roles.RoleCatalog;
-import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
-import com.rolegame.game.Roles.RoleProperties.RoleCategory;
-import com.rolegame.game.Roles.RoleProperties.RoleID;
-import com.rolegame.game.Roles.RoleProperties.RolePriority;
+import com.rolegame.game.models.roles.corrupterroles.CorrupterRole;
+import com.rolegame.game.models.roles.Role;
+import com.rolegame.game.models.roles.RoleCatalog;
+import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
+import com.rolegame.game.models.roles.roleproperties.RoleCategory;
+import com.rolegame.game.models.roles.roleproperties.RoleID;
+import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public class Disguiser extends CorrupterRole implements ActiveNightAbility {
     public Disguiser() {

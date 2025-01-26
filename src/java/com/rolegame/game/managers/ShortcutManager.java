@@ -1,4 +1,4 @@
-package com.rolegame.game.PropertyControllers;
+package com.rolegame.game.managers;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;

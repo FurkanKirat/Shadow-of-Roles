@@ -1,4 +1,4 @@
-package com.rolegame.game.PropertyControllers;
+package com.rolegame.game.managers;
 
 import java.io.IOException;
 import java.nio.file.*;

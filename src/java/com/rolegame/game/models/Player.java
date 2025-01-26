@@ -1,6 +1,6 @@
-package com.rolegame.game.gamemanagement;
+package com.rolegame.game.models;
 
-import com.rolegame.game.Roles.Role;
+import com.rolegame.game.models.roles.Role;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package com.rolegame.game.PropertyControllers;
+package com.rolegame.game.managers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

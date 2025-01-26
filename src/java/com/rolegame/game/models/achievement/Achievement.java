@@ -1,6 +1,6 @@
-package com.rolegame.game.gamemanagement.Achievement;
+package com.rolegame.game.models.achievement;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
+import com.rolegame.game.managers.LanguageManager;
 
 public abstract class Achievement {
     private AchievementID id;

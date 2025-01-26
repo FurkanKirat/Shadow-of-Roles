@@ -14,7 +14,7 @@ import javafx.scene.control.ToggleGroup;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SimplePersonController implements Initializable {
+public class ChillGuyAlertController implements Initializable {
 
     @FXML
     private ToggleGroup group;
@@ -26,7 +26,7 @@ public class SimplePersonController implements Initializable {
     private Label questionLabel;
 
     @FXML
-    private Label simplePersonLabel;
+    private Label chillGuyLabel;
 
     @FXML
     private RadioButton yesButton;

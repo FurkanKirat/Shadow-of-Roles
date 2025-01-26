@@ -1,8 +1,8 @@
-package com.rolegame.game.GUI.Boxes.RoleSpecificBoxes;
+package com.rolegame.game.gui.boxes.rolespecificboxes;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.Roles.FolkRole.Unique.Entrepreneur;
-import com.rolegame.game.Roles.RoleProperties.RolePriority;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
+import com.rolegame.game.models.roles.roleproperties.RolePriority;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

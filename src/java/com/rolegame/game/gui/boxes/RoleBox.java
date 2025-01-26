@@ -1,8 +1,8 @@
-package com.rolegame.game.GUI.Boxes;
+package com.rolegame.game.gui.boxes;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.Roles.RoleProperties.Team;
-import com.rolegame.game.Roles.Role;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.models.roles.Role;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;

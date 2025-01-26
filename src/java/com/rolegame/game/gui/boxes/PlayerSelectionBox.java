@@ -1,12 +1,12 @@
-package com.rolegame.game.GUI.Boxes;
+package com.rolegame.game.gui.boxes;
 
-import com.rolegame.game.GUI.Controllers.GameScreenController;
-import com.rolegame.game.GameManagement.Player;
-import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.Roles.CorrupterRole.Support.LastJoke;
-import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
-import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
-import com.rolegame.game.Roles.RoleProperties.Team;
+import com.rolegame.game.gui.controllers.game.GameScreenController;
+import com.rolegame.game.models.Player;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
+import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
+import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
+import com.rolegame.game.models.roles.roleproperties.Team;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

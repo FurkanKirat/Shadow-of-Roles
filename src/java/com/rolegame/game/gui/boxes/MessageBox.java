@@ -1,7 +1,7 @@
-package com.rolegame.game.GUI.Boxes;
+package com.rolegame.game.gui.boxes;
 
-import com.rolegame.game.GameManagement.Message;
-import com.rolegame.game.PropertyControllers.LanguageManager;
+import com.rolegame.game.models.Message;
+import com.rolegame.game.managers.LanguageManager;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 

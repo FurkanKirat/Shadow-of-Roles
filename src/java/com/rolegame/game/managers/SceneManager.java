@@ -1,4 +1,4 @@
-package com.rolegame.game.PropertyControllers;
+package com.rolegame.game.managers;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
@@ -99,15 +99,15 @@ public class SceneManager {
     }
 
     public static void settingsScene(){
-        switchScene("/com/rolegame/game/fxml/Settings.fxml", SceneType.SETTINGS,true);
+        switchScene("/com/rolegame/game/fxml/menu/Settings.fxml", SceneType.SETTINGS,true);
     }
 
     public static void changeLangScene(){
-        switchScene("/com/rolegame/game/fxml/ChangeLanguage.fxml", SceneType.CHANGE_LANG,true);
+        switchScene("/com/rolegame/game/fxml/menu/ChangeLanguage.fxml", SceneType.CHANGE_LANG,true);
     }
 
     public static void mainMenuScene(){
-        switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneType.MAIN_MENU,true);
+        switchScene("/com/rolegame/game/fxml/menu/MainMenu.fxml", SceneType.MAIN_MENU,true);
     }
 
     public static void onClose(){

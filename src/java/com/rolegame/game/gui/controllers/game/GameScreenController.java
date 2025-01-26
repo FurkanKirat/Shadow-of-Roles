@@ -1,4 +1,4 @@
-package com.rolegame.game.gui.controllers;
+package com.rolegame.game.gui.controllers.game;
 
 import com.rolegame.game.gui.boxes.MessageBox;
 import com.rolegame.game.gui.boxes.PlayerSelectionBox;
@@ -13,6 +13,8 @@ import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.roleproperties.*;
 import com.rolegame.game.models.Message;
 import com.rolegame.game.models.Player;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -169,7 +171,6 @@ public class GameScreenController {
 
     public void initialize(){
 
-        gameController = WriteNamesController.getGameController();
         changePlayer();
         initializeRolesView();
         initializeMessages();
@@ -187,6 +188,9 @@ public class GameScreenController {
         passTurnLabel.setText(LanguageManager.getText("PassTur","turn")
                 .replace("{playerName}", gameController.getCurrentPlayer().getName()));
         alivePlayersListView.setSelectionModel(null);
+        announcementsListView.setSelectionModel(null);
+
+
     }
 
     @FXML
@@ -198,79 +202,46 @@ public class GameScreenController {
         }
     }
 
-    private void initializeRolesView(){
-        TreeItem<Object> roles = new TreeItem<>(LanguageManager.getText("Role","role"));
-        TreeItem<Object> folk = new TreeItem<>(LanguageManager.getText("Role","folkRole"));
-        TreeItem<Object> corrupter = new TreeItem<>(LanguageManager.getText("Role","corrupterRole"));
-        TreeItem<Object> neutral = new TreeItem<>(LanguageManager.getText("Role","neutralRole"));
+    private void initializeRolesView() {
+        TreeItem<Object> roles = new TreeItem<>(LanguageManager.getText("Role", "role"));
+        TreeItem<Object> folk = new TreeItem<>(LanguageManager.getText("Role", "folkRole"));
+        TreeItem<Object> corrupter = new TreeItem<>(LanguageManager.getText("Role", "corrupterRole"));
+        TreeItem<Object> neutral = new TreeItem<>(LanguageManager.getText("Role", "neutralRole"));
 
-        TreeItem<Object> folkAnalyst = new TreeItem<>(LanguageManager.getText("Role","folkAnalyst"));
-        TreeItem<Object> folkProtector = new TreeItem<>(LanguageManager.getText("Role","folkProtector"));
-        TreeItem<Object> folkKilling = new TreeItem<>(LanguageManager.getText("Role","folkKilling"));
-        TreeItem<Object> folkSupport = new TreeItem<>(LanguageManager.getText("Role","folkSupport"));
-        TreeItem<Object> folkUnique = new TreeItem<>(LanguageManager.getText("Role","folkUnique"));
+        addRoleCategories(folk, RoleCategory.FOLK_ANALYST, "folkAnalyst");
+        addRoleCategories(folk, RoleCategory.FOLK_PROTECTOR, "folkProtector");
+        addRoleCategories(folk, RoleCategory.FOLK_KILLING, "folkKilling");
+        addRoleCategories(folk, RoleCategory.FOLK_SUPPORT, "folkSupport");
+        addRoleCategories(folk, RoleCategory.FOLK_UNIQUE, "folkUnique");
 
-        TreeItem<Object> corrupterAnalyst = new TreeItem<>(LanguageManager.getText("Role","corrupterAnalyst"));
-        TreeItem<Object> corrupterKilling = new TreeItem<>(LanguageManager.getText("Role","corrupterKilling"));
-        TreeItem<Object> corrupterSupport = new TreeItem<>(LanguageManager.getText("Role","corrupterSupport"));
+        addRoleCategories(corrupter, RoleCategory.CORRUPTER_ANALYST, "corrupterAnalyst");
+        addRoleCategories(corrupter, RoleCategory.CORRUPTER_KILLING, "corrupterKilling");
+        addRoleCategories(corrupter, RoleCategory.CORRUPTER_SUPPORT, "corrupterSupport");
 
-        TreeItem<Object> neutralEvil = new TreeItem<>(LanguageManager.getText("Role","neutralEvil"));
-        TreeItem<Object> neutralKilling = new TreeItem<>(LanguageManager.getText("Role","neutralKilling"));
-        TreeItem<Object> neutralChaos = new TreeItem<>(LanguageManager.getText("Role","neutralChaos"));
-        TreeItem<Object> neutralGood = new TreeItem<>(LanguageManager.getText("Role","neutralGood"));
+        addRoleCategories(neutral, RoleCategory.NEUTRAL_EVIL, "neutralEvil");
+        addRoleCategories(neutral, RoleCategory.NEUTRAL_KILLING, "neutralKilling");
+        addRoleCategories(neutral, RoleCategory.NEUTRAL_CHAOS, "neutralChaos");
+        addRoleCategories(neutral, RoleCategory.NEUTRAL_GOOD, "neutralGood");
 
-
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_ANALYST)){
-            folkAnalyst.getChildren().add(new TreeItem<>(role));
-        }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_PROTECTOR)){
-            folkProtector.getChildren().add(new TreeItem<>(role));
-        }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_KILLING)){
-            folkKilling.getChildren().add(new TreeItem<>(role));
-        }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_SUPPORT)){
-            folkSupport.getChildren().add(new TreeItem<>(role));
-        }
-
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.FOLK_UNIQUE)){
-            folkUnique.getChildren().add(new TreeItem<>(role));
-        }
-
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CORRUPTER_ANALYST)){
-            corrupterAnalyst.getChildren().add(new TreeItem<>(role));
-        }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CORRUPTER_KILLING)){
-            corrupterKilling.getChildren().add(new TreeItem<>(role));
-        }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.CORRUPTER_SUPPORT)){
-            corrupterSupport.getChildren().add(new TreeItem<>(role));
-        }
-
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NEUTRAL_EVIL)){
-            neutralEvil.getChildren().add(new TreeItem<>(role));
-        }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NEUTRAL_KILLING)){
-            neutralKilling.getChildren().add(new TreeItem<>(role));
-        }
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NEUTRAL_CHAOS)){
-            neutralChaos.getChildren().add(new TreeItem<>(role));
-        }
-
-        for(Role role : RoleCatalog.getRolesByCategory(RoleCategory.NEUTRAL_GOOD)){
-            neutralGood.getChildren().add(new TreeItem<>(role));
-        }
-
-
-        folk.getChildren().addAll(folkAnalyst,folkProtector,folkKilling,folkSupport,folkUnique);
-        corrupter.getChildren().addAll(corrupterAnalyst,corrupterKilling,corrupterSupport);
-        neutral.getChildren().addAll(neutralEvil,neutralKilling,neutralChaos,neutralGood);
-        roles.getChildren().addAll(folk,corrupter,neutral);
-
+        roles.getChildren().addAll(folk, corrupter, neutral);
 
         rolesTreeView.setRoot(roles);
-
     }
+
+    /**
+     * Helper method of the initializeRolesView(), adds the role categories to their parent
+     * @param parent
+     * @param category
+     * @param languageKey
+     */
+    private void addRoleCategories(TreeItem<Object> parent, RoleCategory category, String languageKey) {
+        TreeItem<Object> categoryItem = new TreeItem<>(LanguageManager.getText("Role", languageKey));
+        for (Role role : RoleCatalog.getRolesByCategory(category)) {
+            categoryItem.getChildren().add(new TreeItem<>(role));
+        }
+        parent.getChildren().add(categoryItem);
+    }
+
     private void changePlayer(){
         nameLabel.setText(gameController.getCurrentPlayer().getName());
         numberLabel.setText(LanguageManager.getText("Menu","number")+": "+gameController.getCurrentPlayer().getNumber());
@@ -344,6 +315,9 @@ public class GameScreenController {
 
     }
 
+    /**
+     * Updates and displays messages list view of a player
+     */
     private void initializeMessages(){
         announcementsView.getItems().clear();
         for(Message message: Message.getMessages()){
@@ -354,6 +328,9 @@ public class GameScreenController {
 
     }
 
+    /**
+     * Updates announcements displays the announcement pane
+     */
     private void dayStartAnnouncements(){
         announcementsListView.getItems().clear();
         for(Message message: Message.getMessages()){
@@ -372,5 +349,9 @@ public class GameScreenController {
 
     public static ArrayList<PlayerSelectionBox> getPlayerSelectionBoxes() {
         return playerSelectionBoxes;
+    }
+
+    public static void setGameController(GameController gameController) {
+        GameScreenController.gameController = gameController;
     }
 }

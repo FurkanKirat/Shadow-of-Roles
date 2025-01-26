@@ -1,9 +1,9 @@
-package com.rolegame.game.GUI.Boxes.RoleSpecificBoxes;
+package com.rolegame.game.gui.boxes.rolespecificboxes;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
-import com.rolegame.game.Roles.Role;
-import com.rolegame.game.Roles.RoleCatalog;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
+import com.rolegame.game.models.roles.Role;
+import com.rolegame.game.models.roles.RoleCatalog;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -26,23 +26,11 @@ public class LorekeeperBox extends VBox {
         String textTemplate = LanguageManager.getText("Lorekeeper","guess");
 
 
-
-
-
-
         String text = textTemplate
                 .replace("{guessCount}", lorekeeper.getTrueGuessCount()+"");
         trueGuessLabel.setText(text);
 
-
         this.getChildren().addAll(rolesCombobox, trueGuessLabel);
-
-
-
-        this.getChildren().addAll(rolesCombobox, trueGuessLabel);
-
-        this.getChildren().addAll(rolesCombobox,trueGuessLabel);
-
 
         this.setAlignment(Pos.CENTER);
     }

@@ -1,8 +1,8 @@
 package com.rolegame.game;
 
-import com.rolegame.game.PropertyControllers.AchievementManager;
-import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.PropertyControllers.SceneController;
+import com.rolegame.game.managers.AchievementManager;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.managers.SceneManager;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -18,7 +18,7 @@ public class Main extends Application {
         AchievementManager.saveAchievements();
         stage.setOnCloseRequest((event)-> {
             event.consume();
-            SceneController.onClose();
+            SceneManager.onClose();
         });
         stage.getIcons().add(new Image("/com/rolegame/game/images/logo.jpg"));
         stage.setTitle("Shadow of Roles");
@@ -31,8 +31,8 @@ public class Main extends Application {
         stage.setHeight(bounds.getHeight());
         stage.initStyle(javafx.stage.StageStyle.UNDECORATED);
 
-        SceneController.changeStage(stage);
-        SceneController.mainMenuScene();
+        SceneManager.changeStage(stage);
+        SceneManager.mainMenuScene();
         stage.show();
     }
 

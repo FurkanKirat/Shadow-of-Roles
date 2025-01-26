@@ -1,11 +1,11 @@
-package com.rolegame.game.Roles.FolkRole;
+package com.rolegame.game.models.roles.folkroles;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.Roles.RoleProperties.RoleCategory;
-import com.rolegame.game.Roles.RoleProperties.RoleID;
-import com.rolegame.game.Roles.RoleProperties.RolePriority;
-import com.rolegame.game.Roles.RoleProperties.Team;
-import com.rolegame.game.Roles.Role;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.roleproperties.RoleCategory;
+import com.rolegame.game.models.roles.roleproperties.RoleID;
+import com.rolegame.game.models.roles.roleproperties.RolePriority;
+import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.models.roles.Role;
 
 public abstract class FolkRole extends Role {
     public FolkRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,

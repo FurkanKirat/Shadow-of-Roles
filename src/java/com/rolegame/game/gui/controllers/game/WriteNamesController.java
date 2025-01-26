@@ -1,4 +1,4 @@
-package com.rolegame.game.gui.controllers;
+package com.rolegame.game.gui.controllers.game;
 
 import com.rolegame.game.gameplay.GameController;
 import com.rolegame.game.managers.LanguageManager;
@@ -75,9 +75,9 @@ public class WriteNamesController extends VBox {
         Button button = new Button(LanguageManager.getText("Menu","apply"));
         button.getStyleClass().add("startButton");
         button.setOnAction((event) -> {
-            gameController = new GameController();
-            gameController.initializePlayers(textFields);
-            SceneManager.switchScene("/com/rolegame/game/fxml/GameScreen.fxml", SceneManager.SceneType.GAME, false);
+            gameController = new GameController(textFields);
+            GameScreenController.setGameController(gameController);
+            SceneManager.switchScene("/com/rolegame/game/fxml/game/GameScreen.fxml", SceneManager.SceneType.GAME, false);
 
 
         });

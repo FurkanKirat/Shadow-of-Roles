@@ -1,10 +1,10 @@
-package com.rolegame.game.Roles.NeutralRole.Chaos;
+package com.rolegame.game.models.roles.neutralroles.chaos;
 
-import com.rolegame.game.Roles.NeutralRole.NeutralRole;
-import com.rolegame.game.Roles.RoleProperties.NoNightAbility;
-import com.rolegame.game.Roles.RoleProperties.RoleCategory;
-import com.rolegame.game.Roles.RoleProperties.RoleID;
-import com.rolegame.game.Roles.RoleProperties.RolePriority;
+import com.rolegame.game.models.roles.neutralroles.NeutralRole;
+import com.rolegame.game.models.roles.roleproperties.NoNightAbility;
+import com.rolegame.game.models.roles.roleproperties.RoleCategory;
+import com.rolegame.game.models.roles.roleproperties.RoleID;
+import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public class Clown extends NeutralRole implements NoNightAbility {
     public Clown() {

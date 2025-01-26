@@ -1,4 +1,4 @@
-package com.rolegame.game.gui.controllers;
+package com.rolegame.game.gui.controllers.menu;
 
 import com.rolegame.game.gui.boxes.AchievementBox;
 import com.rolegame.game.models.achievement.Achievement;
@@ -39,7 +39,7 @@ public class AchievementsController implements Initializable {
 
     @FXML
     void backClicked(MouseEvent event) {
-        SceneManager.switchScene("/com/rolegame/game/fxml/MainMenu.fxml", SceneManager.SceneType.MAIN_MENU, true);
+        SceneManager.switchScene("/com/rolegame/game/fxml/menu/MainMenu.fxml", SceneManager.SceneType.MAIN_MENU, true);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

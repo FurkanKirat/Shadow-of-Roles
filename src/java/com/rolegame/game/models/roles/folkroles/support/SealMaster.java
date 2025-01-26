@@ -1,11 +1,11 @@
-package com.rolegame.game.Roles.FolkRole.Support;
+package com.rolegame.game.models.roles.folkroles.support;
 
-import com.rolegame.game.PropertyControllers.LanguageManager;
-import com.rolegame.game.Roles.FolkRole.FolkRole;
-import com.rolegame.game.Roles.RoleProperties.ActiveNightAbility;
-import com.rolegame.game.Roles.RoleProperties.RoleCategory;
-import com.rolegame.game.Roles.RoleProperties.RoleID;
-import com.rolegame.game.Roles.RoleProperties.RolePriority;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.folkroles.FolkRole;
+import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
+import com.rolegame.game.models.roles.roleproperties.RoleCategory;
+import com.rolegame.game.models.roles.roleproperties.RoleID;
+import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public class SealMaster extends FolkRole implements ActiveNightAbility {
     public SealMaster() {

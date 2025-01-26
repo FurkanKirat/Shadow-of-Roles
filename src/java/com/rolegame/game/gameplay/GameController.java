@@ -1,4 +1,4 @@
-package com.rolegame.game.gamemanagement;
+package com.rolegame.game.gameplay;
 
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
@@ -8,7 +8,7 @@ import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.RoleCatalog;
-import com.rolegame.game.models.roles.RoleComparator;
+import com.rolegame.game.models.roles.roleproperties.RoleComparator;
 import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
 import com.rolegame.game.models.roles.roleproperties.Team;
 import com.rolegame.game.models.Message;
@@ -30,9 +30,28 @@ public class GameController {
     private boolean isDay;
     private Team winnerTeam;
 
-    public GameController(){
-
+    public GameController(TextField[] textFields){
+        initializePlayers(textFields);
     }
+
+    /**
+     * Initializes the players and distributes their roles
+     * @param textFields the text fields that consists of players' names
+     */
+    private void initializePlayers(TextField[] textFields){
+        ArrayList<Role> randomRoles = RoleCatalog.initializeRoles(textFields.length);
+        for(int i=0;i<textFields.length;i++){
+            allPlayers.add(new Player(i+1,textFields[i].getText(), randomRoles.get(i)));
+        }
+        updateAlivePlayers();
+        dayCount=1;
+        isDay=false;
+        playerCount = textFields.length;
+    }
+
+    /**
+     *  Performs all abilities according to role priorities
+     */
     public void performAllAbilities(){
         PriorityQueue<Role> roleQueue = new PriorityQueue<>(alivePlayers.size(),new RoleComparator());
 
@@ -52,6 +71,9 @@ public class GameController {
         }
     }
 
+    /**
+     * After the day voting, executes the max voted player if they get more than half of the votes
+     */
     public void executeMaxVoted(){
         Voting.updateMaxVoted();
         if(Voting.getMaxVote()>alivePlayers.size()/2){
@@ -81,6 +103,10 @@ public class GameController {
         Voting.clearVotes();
     }
 
+    /**
+     *If it is morning, he casts a vote for the selected player and sends a message stating who he voted for.
+     *If it's night, it sends a message about who is using your role.
+     */
     public void sendVoteMessages(){
         Player chosenPlayer = currentPlayer.getRole().getChoosenPlayer();
         if(isDay){
@@ -110,25 +136,9 @@ public class GameController {
     }
 
 
-    public void initializePlayers(TextField[] textFields){
-        ArrayList<Role> randomRoles = RoleCatalog.initializeRoles(textFields.length);
-        for(int i=0;i<textFields.length;i++){
-            allPlayers.add(new Player(i+1,textFields[i].getText(), randomRoles.get(i)));
-        }
-        updateAlivePlayers();
-        dayCount=1;
-        isDay=false;
-        playerCount = textFields.length;
-    }
-
-    // Getter and Setters
-    public ArrayList<Player> getAllPlayers() {
-        return allPlayers;
-    }
-
-    public ArrayList<Player> getAlivePlayers() {
-        return alivePlayers;
-    }
+    /**
+     *  Updates alive players
+     */
     public void updateAlivePlayers(){
         alivePlayers.clear();
         for (Player player : allPlayers) {
@@ -138,6 +148,9 @@ public class GameController {
             }
 
             else{
+
+                /* If players role is last joke, player is dead and player has not used ability
+                 * yet adds the player to the alive players to use their ability */
                 if(player.getRole() instanceof LastJoke lastJoker && !lastJoker.isDidUsedAbility() && !isDay){
                     alivePlayers.add(player);
                 }
@@ -149,6 +162,10 @@ public class GameController {
         currentPlayer = alivePlayers.getFirst();
     }
 
+    /**
+     * Updates the dead players
+     * @return updated dead players
+     */
     public ArrayList<Player> getDeadPlayers() {
         deadPlayers.clear();
         for (Player allPlayer : allPlayers) {
@@ -159,6 +176,10 @@ public class GameController {
         return deadPlayers;
     }
 
+    /**
+     * Checks the game if it is finished and finishes the game
+     * @return game is finished or not
+     */
     public boolean checkGameFinished(){
 
         // Finishes the game if only 1 player is alive
@@ -195,6 +216,9 @@ public class GameController {
 
     }
 
+    /**
+     * Finishes the game if the end conditions are taken place
+     */
     public void finishGame(){
 
         if(winnerTeam!=Team.NONE &&winnerTeam!=Team.NEUTRAL){
@@ -245,10 +269,10 @@ public class GameController {
         }
 
         if(simplePersonExist){
-            SceneManager.switchScene("/com/rolegame/game/fxml/SimplePersonAlert.fxml", SceneManager.SceneType.SIMPLE_PERSON_ALERT, false);
+            SceneManager.switchScene("/com/rolegame/game/fxml/game/ChillGuyAlert.fxml", SceneManager.SceneType.SIMPLE_PERSON_ALERT, false);
         }
         else{
-            SceneManager.switchScene("/com/rolegame/game/fxml/EndGame.fxml", SceneManager.SceneType.END_GAME, false);
+            SceneManager.switchScene("/com/rolegame/game/fxml/game/EndGame.fxml", SceneManager.SceneType.END_GAME, false);
         }
 
         Message.resetMessages();
@@ -256,11 +280,16 @@ public class GameController {
 
     }
 
+    /**
+     * Passes to the turn to the next player
+     */
     public void passTurn(){
         currentPlayerIndex = (currentPlayerIndex + 1) % alivePlayers.size();
         currentPlayer = alivePlayers.get(currentPlayerIndex);
 
     }
+
+    // Getters and Setters
     public boolean isDay() {
         return isDay;
     }
@@ -287,5 +316,13 @@ public class GameController {
 
     public Team getWinnerTeam() {
         return winnerTeam;
+    }
+
+    public ArrayList<Player> getAllPlayers() {
+        return allPlayers;
+    }
+
+    public ArrayList<Player> getAlivePlayers() {
+        return alivePlayers;
     }
 }

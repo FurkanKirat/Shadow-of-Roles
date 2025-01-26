@@ -1,8 +1,8 @@
-package com.rolegame.game.GUI.Boxes;
+package com.rolegame.game.gui.boxes;
 
-import com.rolegame.game.GameManagement.Achievement.Achievement;
-import com.rolegame.game.GameManagement.Achievement.ProgressiveAchievement;
-import com.rolegame.game.PropertyControllers.LanguageManager;
+import com.rolegame.game.models.achievement.Achievement;
+import com.rolegame.game.models.achievement.ProgressiveAchievement;
+import com.rolegame.game.managers.LanguageManager;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;

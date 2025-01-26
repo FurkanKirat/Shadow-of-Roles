@@ -283,3 +283,7 @@
     -fx-border-color: #3a9ad9; /* Brighter blue border on hover */
     -fx-effect: dropshadow(gaussian, rgba(58, 154, 217, 0.6), 10, 0.5, 0, 0); /* Subtle glow effect */
 }
+
+.chillGuy{
+    -fx-background-image: url('../images/chillguy.jpg');
+}

@@ -1,4 +1,5 @@
-package com.rolegame.game.Roles.RoleProperties;
+package com.rolegame.game.models.roles.roleproperties;
 
 public interface ActiveNightAbility {
 }
+

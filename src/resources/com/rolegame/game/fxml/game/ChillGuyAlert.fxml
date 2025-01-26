@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.game.SimplePersonController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.game.ChillGuyAlertController">
    <children>
       <VBox prefHeight="768.0" prefWidth="1366.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="simplePersonLabel" text="Simple Person Alert" textFill="WHITE">
+                  <Label fx:id="chillGuyLabel" text="Chill Guy Alert" textFill="WHITE">
                      <font>
                         <Font size="43.0" />
                      </font>
@@ -25,7 +25,7 @@
             </HBox>
             <VBox alignment="TOP_CENTER" prefHeight="646.0" prefWidth="1346.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="questionLabel" alignment="CENTER" text="Did Simple Person Revealed their role?" textFill="WHITE">
+                  <Label fx:id="questionLabel" alignment="CENTER" text="Did Chill Guy Revealed their role?" textFill="WHITE">
                      <font>
                         <Font size="35.0" />
                      </font>
@@ -57,7 +57,7 @@
       </VBox>
    </children>
    <styleClass>
-      <String fx:value="background" />
       <String fx:value="backgroundimage" />
+      <String fx:value="chillGuy" />
    </styleClass>
 </StackPane>

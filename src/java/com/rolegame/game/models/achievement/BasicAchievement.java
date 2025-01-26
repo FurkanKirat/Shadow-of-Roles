@@ -1,4 +1,4 @@
-package com.rolegame.game.gamemanagement.Achievement;
+package com.rolegame.game.models.achievement;
 
 public class BasicAchievement extends Achievement {
 

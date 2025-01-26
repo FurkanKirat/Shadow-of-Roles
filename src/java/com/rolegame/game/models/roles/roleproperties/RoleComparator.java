@@ -1,4 +1,6 @@
-package com.rolegame.game.Roles;
+package com.rolegame.game.models.roles.roleproperties;
+
+import com.rolegame.game.models.roles.Role;
 
 import java.util.Comparator;
 

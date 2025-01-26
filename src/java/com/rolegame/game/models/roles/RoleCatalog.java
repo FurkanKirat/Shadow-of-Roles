@@ -1,24 +1,24 @@
-package com.rolegame.game.Roles;
+package com.rolegame.game.models.roles;
 
-import com.rolegame.game.Roles.CorrupterRole.Analyst.DarkRevealer;
-import com.rolegame.game.Roles.CorrupterRole.Analyst.Darkseer;
-import com.rolegame.game.Roles.CorrupterRole.Killing.Psycho;
-import com.rolegame.game.Roles.CorrupterRole.Support.Blinder;
-import com.rolegame.game.Roles.CorrupterRole.Support.Disguiser;
-import com.rolegame.game.Roles.CorrupterRole.Support.Interrupter;
-import com.rolegame.game.Roles.CorrupterRole.Support.LastJoke;
-import com.rolegame.game.Roles.FolkRole.Analyst.*;
-import com.rolegame.game.Roles.FolkRole.Analyst.Observer;
-import com.rolegame.game.Roles.FolkRole.Protector.Soulbinder;
-import com.rolegame.game.Roles.FolkRole.Support.SealMaster;
-import com.rolegame.game.Roles.NeutralRole.Chaos.Clown;
-import com.rolegame.game.Roles.NeutralRole.Chaos.ChillGuy;
-import com.rolegame.game.Roles.FolkRole.Protector.FolkHero;
-import com.rolegame.game.Roles.FolkRole.Unique.Entrepreneur;
-import com.rolegame.game.Roles.NeutralRole.Good.Lorekeeper;
-import com.rolegame.game.Roles.NeutralRole.Killing.Assassin;
-import com.rolegame.game.Roles.RoleProperties.RoleCategory;
-import com.rolegame.game.Roles.RoleProperties.Team;
+import com.rolegame.game.models.roles.corrupterroles.analyst.DarkRevealer;
+import com.rolegame.game.models.roles.corrupterroles.analyst.Darkseer;
+import com.rolegame.game.models.roles.corrupterroles.killing.Psycho;
+import com.rolegame.game.models.roles.corrupterroles.support.Blinder;
+import com.rolegame.game.models.roles.corrupterroles.support.Disguiser;
+import com.rolegame.game.models.roles.corrupterroles.support.Interrupter;
+import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
+import com.rolegame.game.models.roles.folkroles.analyst.*;
+import com.rolegame.game.models.roles.folkroles.analyst.Observer;
+import com.rolegame.game.models.roles.folkroles.protector.Soulbinder;
+import com.rolegame.game.models.roles.folkroles.support.SealMaster;
+import com.rolegame.game.models.roles.neutralroles.chaos.Clown;
+import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
+import com.rolegame.game.models.roles.folkroles.protector.FolkHero;
+import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
+import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
+import com.rolegame.game.models.roles.neutralroles.killing.Assassin;
+import com.rolegame.game.models.roles.roleproperties.RoleCategory;
+import com.rolegame.game.models.roles.roleproperties.Team;
 
 import java.util.*;
 
