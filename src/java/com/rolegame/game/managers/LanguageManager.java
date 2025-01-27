@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Map;
 
 public class LanguageManager {
@@ -38,11 +39,11 @@ public class LanguageManager {
 
     public static void changeTheme(String theme) {
         ObjectMapper mapper = new ObjectMapper();
+        String filePos = "/com/rolegame/game/lang/roles/" + currentLang + "_" + theme + ".json";
         try {
-            InputStream inputStream = LanguageManager.class.getResourceAsStream(
-                    "/com/rolegame/game/lang/roles/" + currentLang + "_" + theme + ".json");
+            InputStream inputStream = LanguageManager.class.getResourceAsStream(filePos);
             if (inputStream == null) {
-                throw new FileNotFoundException("File could not be found: " + currentLang + "_"+ theme + ".json");
+                throw new FileNotFoundException("File could not be found: " +filePos);
             }
             roles = mapper.readValue(inputStream, new TypeReference<>() {
             });
@@ -82,11 +83,11 @@ public class LanguageManager {
 
     public static void loadAchievements(String languageCode) {
         ObjectMapper mapper = new ObjectMapper();
+        String filePos = "/com/rolegame/game/lang/achievements/" + languageCode + ".json";
         try {
-            InputStream inputStream = LanguageManager.class.getResourceAsStream(
-                    "/com/rolegame/game/lang/achievements/" + languageCode + ".json");
+            InputStream inputStream = LanguageManager.class.getResourceAsStream(filePos);
             if (inputStream == null) {
-                throw new FileNotFoundException("Achievement file not found: " + languageCode + ".json");
+                throw new FileNotFoundException("Achievement file not found: " + filePos);
             }
             achievements = mapper.readValue(inputStream, new TypeReference<>() {});
         } catch (Exception e) {
@@ -129,6 +130,23 @@ public class LanguageManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String jsonKeyToEnum(String jsonKey) {
+        return jsonKey.replaceAll("([a-z])([A-Z])", "$1_$2").toUpperCase(Locale.ROOT);
+    }
+
+    public static String enumToJsonKey(String enumName) {
+        StringBuilder jsonKey = new StringBuilder();
+
+
+        String[] parts = enumName.split("_");
+        jsonKey.append(parts[0].toLowerCase(Locale.ROOT));
+        for (int i = 1; i < parts.length; i++) {
+            jsonKey.append(parts[i].substring(0, 1).toUpperCase(Locale.ROOT))
+                    .append(parts[i].substring(1).toLowerCase(Locale.ROOT));
+        }
+        return jsonKey.toString();
     }
 
 

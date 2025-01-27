@@ -8,7 +8,6 @@ import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.RoleCatalog;
-import com.rolegame.game.models.roles.roleproperties.RoleComparator;
 import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
 import com.rolegame.game.models.roles.roleproperties.Team;
 import com.rolegame.game.models.Message;
@@ -16,8 +15,7 @@ import com.rolegame.game.models.Player;
 import javafx.scene.control.TextField;
 
 
-import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class GameController {
     private final ArrayList<Player> allPlayers = new ArrayList<>();
@@ -53,12 +51,10 @@ public class GameController {
      *  Performs all abilities according to role priorities
      */
     public void performAllAbilities(){
-        PriorityQueue<Role> roleQueue = new PriorityQueue<>(alivePlayers.size(),new RoleComparator());
+        List<Role> roles = new ArrayList<>(new ArrayList<>(alivePlayers).stream().map(Player::getRole).toList());
+        roles.sort(Comparator.comparing((Role role) -> role.getRolePriority().getPriority()).reversed());
 
-        for (Player alivePlayer : alivePlayers) {
-            roleQueue.add(alivePlayer.getRole());
-        }
-        for(Role role: roleQueue){
+        for(Role role: roles){
             role.performAbility();
         }
 
@@ -99,7 +95,6 @@ public class GameController {
         for(Player player: alivePlayers){
             player.getRole().setChoosenPlayer(null);
         }
-
         Voting.clearVotes();
     }
 
