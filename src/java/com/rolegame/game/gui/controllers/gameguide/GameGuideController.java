@@ -82,6 +82,8 @@ public class GameGuideController {
 
             VBox.setVgrow(node, Priority.ALWAYS);
 
+
+
         } catch (IOException e) {
 
             System.out.println("FXML dosyası yüklenemedi: " + fxmlFileName);

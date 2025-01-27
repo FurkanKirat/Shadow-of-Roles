@@ -1,85 +1,85 @@
 package com.rolegame.game.gui.controllers.gameguide;
 
+import com.rolegame.game.gui.boxes.RoleBoxForGameGuide;
+import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.Role;
+import com.rolegame.game.models.roles.RoleCatalog;
+import com.rolegame.game.models.roles.roleproperties.RoleCategory;
+import com.rolegame.game.models.roles.roleproperties.Team;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RolesController {
 
     @FXML
-    private VBox changingPane;
+    private VBox rolesVBox;
 
     @FXML
-    private HBox corruptHBox;
-
-    @FXML
-    private Label corruptLabel;
-
-    @FXML
-    private HBox folkHBox;
-
-    @FXML
-    private Label folkLabel;
-
-    @FXML
-    private HBox neutralHBox;
-
-    @FXML
-    private Label neutralLabel;
+    private HBox buttonsHBox;
 
     @FXML
     void corruptClicked(MouseEvent event) {
-        loadScene("/com/rolegame/game/fxml/gameguide/Corrupt.fxml");
-        applyCss(corruptHBox);
+        filterRolesByCategory(Team.CORRUPTER);
     }
 
     @FXML
     void folkClicked(MouseEvent event) {
-        loadScene("/com/rolegame/game/fxml/gameguide/Folk.fxml");
-        applyCss(folkHBox);
+        filterRolesByCategory(Team.FOLK);
     }
 
     @FXML
     void neutralClicked(MouseEvent event) {
-        loadScene("/com/rolegame/game/fxml/gameguide/Neutral.fxml");
-        applyCss(neutralHBox);
+        filterRolesByCategory(Team.NEUTRAL);
     }
 
-    private void applyCss(Node node){
-        folkHBox.getStyleClass().remove("gameguide-choice-selected");
-
-        corruptHBox.getStyleClass().remove("gameguide-choice-selected");
-
-        neutralHBox.getStyleClass().remove("gameguide-choice-selected");
-
-        node.getStyleClass().add("gameguide-choice-selected");
+    /**
+     * Initializes the roles and adds RoleBox elements to the VBox.
+     */
+    public void initialize() {
+        // Display all roles grouped by team and category
+        displayRolesByTeamAndCategory(filterRolesByCategory(Team.FOLK));
+    }
+    private ArrayList<Role> filterRolesByCategory(Team team){
+        ArrayList<Role> roles = new ArrayList<>(RoleCatalog.getRolesByTeam(team));
+        bubbleSort(roles);
+        return roles;
 
     }
 
-    private void loadScene(String fxmlFileName) {
-        try {
+    private void bubbleSort(ArrayList<Role> roles){
+        for(int i = 0;i<roles.size();i++){
+            for(int k = 0;k<roles.size()-i-1;k++){
+                if(roles.get(k).getRoleCategory().getCategory() > roles.get(k+1).getRoleCategory().getCategory()){
+                    Role temp = roles.get(k);
+                    roles.set(k,roles.get(k+1));
+                    roles.set(k+1,temp);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
-            Node node = loader.load();
-
-
-            changingPane.getChildren().clear();
-            changingPane.getChildren().add(node);
-
-
-            VBox.setVgrow(node, Priority.ALWAYS);
-
-        } catch (IOException e) {
-
-            System.out.println("FXML dosyası yüklenemedi: " + fxmlFileName);
+                }
+            }
         }
     }
+    private void displayRolesByTeamAndCategory(ArrayList<Role> roles) {
+        rolesVBox.getChildren().clear();
+        for(int i = 0;i<roles.size();i++){
+            if(i == 0 || roles.get(i).getRoleCategory() != roles.get(i-1).getRoleCategory()){
+                Label categoryLabel = new Label("Category: " + roles.get(i).getRoleCategory());
+                categoryLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ffffff;");
+                rolesVBox.getChildren().add(categoryLabel);
+            }
+            RoleBoxForGameGuide roleBox = new RoleBoxForGameGuide(roles.get(i));
+            rolesVBox.getChildren().add(roleBox);
+        }
+    }
+
 
 }
