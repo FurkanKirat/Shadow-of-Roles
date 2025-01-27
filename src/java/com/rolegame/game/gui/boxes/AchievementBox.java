@@ -12,8 +12,9 @@ import javafx.scene.control.Label;
 import javafx.geometry.Pos;
 
 public class AchievementBox extends VBox {
-    private static final Color COMPLETED_COLOR = Color.rgb(5, 122, 17);
-    private static final Color UNCOMPLETED_COLOR = Color.rgb(181, 55, 38);
+    private static final Color COMPLETED_COLOR = Color.rgb(10, 242, 21);
+    private static final Color UNCOMPLETED_COLOR = Color.rgb(232, 5, 12);
+    private static final Color LABEL_COLOR = Color.BLACK;
     private final String title;
     private final String description;
     private final boolean isCompleted;
@@ -37,6 +38,8 @@ public class AchievementBox extends VBox {
     }
 
     private void setupUI() {
+        Separator topSeparator = new Separator();
+
         // Title
         Text titleText = new Text(title);
         titleText.setFont(Font.font("Arial", 16));
@@ -45,7 +48,7 @@ public class AchievementBox extends VBox {
         // Description
         Label descriptionLabel = new Label(description);
         descriptionLabel.setFont(Font.font("Arial", 12));
-        descriptionLabel.setTextFill(Color.GRAY);
+        descriptionLabel.setTextFill(LABEL_COLOR);
 
         // Completion status
         String status = isCompleted ? LanguageManager.getText("Achievements","completed") :
@@ -59,18 +62,24 @@ public class AchievementBox extends VBox {
                 .replace("{achievementCategory}"
                         ,LanguageManager.getText("AchievementCategory",category.name())));
         categoryLabel.setFont(Font.font("Arial", 12));
-        categoryLabel.setTextFill(Color.DARKGRAY);
+        categoryLabel.setTextFill(LABEL_COLOR);
 
         // Add elements to the VBox
-        this.getChildren().addAll(titleText, descriptionLabel, statusText, categoryLabel);
+        this.getChildren().addAll(topSeparator,titleText, descriptionLabel, statusText, categoryLabel);
 
         if(max!=0){
 
             Label progresslabel = new Label(LanguageManager.getText("Achievements","progress")
                     .replace("{progress}",progress+"")
                     .replace("{goal}",max+""));
-            progresslabel.setFont(Font.font("Arial", 12));
-            progresslabel.setTextFill(Color.DARKGRAY);
+            double percentage = (double)progress/max;
+            if(percentage>=1){
+                progresslabel.getStyleClass().add("progress-label");
+            } else if (percentage>=0.5) {
+                progresslabel.getStyleClass().add("progress-label-medium");
+            }else{
+                progresslabel.getStyleClass().add("progress-label-low");
+            }
             this.getChildren().addAll(progresslabel);
         }
         Separator separator = new Separator();
@@ -78,7 +87,7 @@ public class AchievementBox extends VBox {
 
         // Style the VBox
         this.setSpacing(10);
-        this.setStyle("-fx-padding: 10; -fx-background-color: transparent; -fx-border-radius: 10; -fx-background-radius: 10;");
+        this.getStyleClass().add("achievement-box");
         this.setAlignment(Pos.CENTER);
         this.setPrefWidth(500);
         this.setMinSize(400,100);

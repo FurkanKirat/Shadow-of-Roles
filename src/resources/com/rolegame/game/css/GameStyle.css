@@ -22,6 +22,16 @@
     -fx-background-image: url('../images/night0.jpg');
 }
 
+.gameguide-choice {
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+    -fx-text-fill: white;
+}
+
+.gameguide-choice-selected {
+    -fx-background-color: rgba(100, 50, 100, 0.7);
+    -fx-text-fill: yellow;
+}
+
 .time-label {
     -fx-background-color: rgba(46, 13, 37, 0.5);
     -fx-text-fill: white;
@@ -118,7 +128,7 @@
     -fx-border-color: black; /* Dark blue border */
     -fx-border-width: 2px;
     -fx-padding: 5px;
-    -fx-background-color: linear-gradient(to bottom, #374E4D, #6b4004);
+    -fx-background-color: rgba(23,23,23,0.5);
 
 }
 .achievement-list-view .list-cell {
@@ -126,6 +136,42 @@
     -fx-border-color: transparent;
     -fx-text-fill: white;
 }
+
+.achievement-box{
+    -fx-background-color: rgba(200,200,200,0.7);
+    -fx-border-color: gray;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 0, 0, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+.achievement-box:hover{
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,0,0.8), 10, 0.5, 0, 0);
+}
+
+
+.progress-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: green; /* Tamamlandığında */
+}
+
+.progress-label-low {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: red; /* Düşük progres */
+}
+
+.progress-label-medium {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: orange; /* Orta progres */
+}
+
+
 /* VBox Styling for Roles */
 .folkRoleVbox {
     -fx-background-color: #32a852; /* Aqua blue */
