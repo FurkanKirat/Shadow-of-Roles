@@ -1,23 +1,16 @@
 package com.rolegame.game.gui.controllers.gameguide;
 
 import com.rolegame.game.gui.boxes.RoleBoxForGameGuide;
-import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.RoleCatalog;
-import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.Team;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class RolesController {
 
@@ -29,17 +22,17 @@ public class RolesController {
 
     @FXML
     void corruptClicked(MouseEvent event) {
-        filterRolesByCategory(Team.CORRUPTER);
+        displayRolesByTeamAndCategory(filterRolesByCategory(Team.CORRUPTER));
     }
 
     @FXML
     void folkClicked(MouseEvent event) {
-        filterRolesByCategory(Team.FOLK);
+        displayRolesByTeamAndCategory(filterRolesByCategory(Team.FOLK));
     }
 
     @FXML
-    void neutralClicked(MouseEvent event) {
-        filterRolesByCategory(Team.NEUTRAL);
+    void neutralClicked(MouseEvent event){
+        displayRolesByTeamAndCategory(filterRolesByCategory(Team.NEUTRAL));
     }
 
     /**

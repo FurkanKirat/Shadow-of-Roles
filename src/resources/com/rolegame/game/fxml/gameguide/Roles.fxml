@@ -7,19 +7,16 @@
 
 <ScrollPane prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.gameguide.RolesController">
    <content>
-      <VBox fx:id="rolesVBox" prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant">
+      <VBox prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant">
          <children>
-            <VBox prefHeight="56.0" prefWidth="1342.0">
+            <HBox fx:id="buttonsHBox" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <HBox fx:id="buttonsHBox" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#folkClicked" text="Folk" />
-                        <Button mnemonicParsing="false" onMouseClicked="#corruptClicked" text="Corrupt" />
-                        <Button mnemonicParsing="false" onMouseClicked="#neutralClicked" text="Neutral" />
-                     </children>
-                  </HBox>
+                  <Button mnemonicParsing="false" onMouseClicked="#folkClicked" text="Folk" />
+                  <Button mnemonicParsing="false" onMouseClicked="#corruptClicked" text="Corrupt" />
+                  <Button mnemonicParsing="false" onMouseClicked="#neutralClicked" text="Neutral" />
                </children>
-            </VBox>
+            </HBox>
+            <VBox fx:id="rolesVBox" prefHeight="56.0" prefWidth="1342.0" />
          </children></VBox>
    </content>
 </ScrollPane>
