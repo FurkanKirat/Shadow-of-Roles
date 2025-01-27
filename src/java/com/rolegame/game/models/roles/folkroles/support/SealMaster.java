@@ -7,7 +7,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
-public class SealMaster extends FolkRole implements ActiveNightAbility {
+public final class SealMaster extends FolkRole implements ActiveNightAbility {
     public SealMaster() {
         super(RoleID.SealMaster, RolePriority.ROLE_BLOCK, RoleCategory.FOLK_SUPPORT, 0,0
         , new ChanceProperty(30,10));

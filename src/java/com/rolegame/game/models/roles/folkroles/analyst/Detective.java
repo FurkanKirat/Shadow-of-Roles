@@ -11,7 +11,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 import java.util.Random;
 
-public class Detective extends FolkRole implements ActiveNightAbility {
+public final class Detective extends FolkRole implements ActiveNightAbility {
     public Detective() {
         super(RoleID.Detective, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0
         , new ChanceProperty(30,10));

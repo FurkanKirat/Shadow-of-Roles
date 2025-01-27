@@ -7,7 +7,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
-public class Psycho extends CorrupterRole implements ActiveNightAbility {
+public final class Psycho extends CorrupterRole implements ActiveNightAbility {
 
     public Psycho() {
         super(RoleID.Psycho, RolePriority.NONE, RoleCategory.CORRUPTER_KILLING, 1,0

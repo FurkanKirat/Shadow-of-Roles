@@ -7,7 +7,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
-public class FolkHero extends FolkRole implements ActiveNightAbility {
+public final class FolkHero extends FolkRole implements ActiveNightAbility {
 
     private int abilityUseCount;
 

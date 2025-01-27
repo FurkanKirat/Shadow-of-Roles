@@ -7,7 +7,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 
-public class ChillGuy extends NeutralRole implements NoNightAbility {
+public final class ChillGuy extends NeutralRole implements NoNightAbility {
     public ChillGuy() {
         super(RoleID.ChillGuy, RolePriority.NONE, RoleCategory.NEUTRAL_CHAOS, 0, 0
         ,new ChanceProperty(10,1));

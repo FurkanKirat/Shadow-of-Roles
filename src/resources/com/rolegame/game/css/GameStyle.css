@@ -152,23 +152,25 @@
     -fx-effect: dropshadow(gaussian, rgba(255,255,0,0.8), 10, 0.5, 0, 0);
 }
 
-
-.progress-label {
+/* When achievement goal is achieved*/
+.progress-label-finished {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: green; /* Tamamlandığında */
+    -fx-text-fill: green;
 }
 
+/* When achievement progress is low*/
 .progress-label-low {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: red; /* Düşük progres */
+    -fx-text-fill: red;
 }
 
+/* When achievement progress is medium*/
 .progress-label-medium {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: orange; /* Orta progres */
+    -fx-text-fill: orange;
 }
 
 
@@ -264,8 +266,6 @@
 .playerLabel{
     -fx-font-size: 20px;
 }
-
-
 
 
 .startRoot {

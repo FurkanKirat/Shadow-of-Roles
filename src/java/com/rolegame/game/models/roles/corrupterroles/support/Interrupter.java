@@ -7,7 +7,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
-public class Interrupter extends CorrupterRole implements ActiveNightAbility {
+public final class Interrupter extends CorrupterRole implements ActiveNightAbility {
     public Interrupter() {
         super(RoleID.Interrupter, RolePriority.ROLE_BLOCK, RoleCategory.CORRUPTER_SUPPORT, 0, 0
         ,new ChanceProperty(30,10));

@@ -7,7 +7,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
-public class Stalker extends FolkRole implements ActiveNightAbility {
+public final class Stalker extends FolkRole implements ActiveNightAbility {
 
     public Stalker() {
         super(RoleID.Stalker, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0, 0,
@@ -19,7 +19,7 @@ public class Stalker extends FolkRole implements ActiveNightAbility {
         String message = getChoosenPlayer().getRole().getChoosenPlayer()==null ?
                 LanguageManager.getText("Stalker","nobodyMessage"):
                 LanguageManager.getText("Stalker","visitMessage")
-                        .replace("playerName", choosenPlayer.getRole().getChoosenPlayer().getName());
+                        .replace("{playerName}", choosenPlayer.getRole().getChoosenPlayer().getName());
         sendAbilityMessage(message,roleOwner,false);
         return true;
     }

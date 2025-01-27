@@ -12,7 +12,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Blinder extends CorrupterRole implements ActiveNightAbility {
+public final class Blinder extends CorrupterRole implements ActiveNightAbility {
     public Blinder() {
         super(RoleID.Blinder, RolePriority.BLINDER, RoleCategory.CORRUPTER_SUPPORT, 0, 0
         ,new ChanceProperty(25,10));

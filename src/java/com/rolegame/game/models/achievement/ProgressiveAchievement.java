@@ -44,4 +44,8 @@ public class ProgressiveAchievement extends Achievement {
     public void setMax(int max) {
         this.max = max;
     }
+
+    public double getProgressPercentage(){
+        return (double) progress/max;
+    }
 }

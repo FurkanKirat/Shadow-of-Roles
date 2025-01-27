@@ -7,7 +7,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
-public class DarkRevealer extends CorrupterRole implements ActiveNightAbility {
+public final class DarkRevealer extends CorrupterRole implements ActiveNightAbility {
     public DarkRevealer() {
         super(RoleID.DarkRevealer, RolePriority.NONE, RoleCategory.CORRUPTER_ANALYST,
                 0, 0, new ChanceProperty(30,10));

@@ -12,7 +12,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lorekeeper extends NeutralRole implements ActiveNightAbility {
+public final class Lorekeeper extends NeutralRole implements ActiveNightAbility {
     private final List<Player> alreadyChosenPlayers;
     private Role guessedRole;
     private int trueGuessCount;

@@ -1,85 +1,56 @@
 package com.rolegame.game.gui.boxes;
 
-import com.rolegame.game.managers.LanguageManager;
-import com.rolegame.game.models.roles.roleproperties.Team;
 import com.rolegame.game.models.roles.Role;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+/**
+ * A UI component for displaying the details of a game role in the game guide.
+ */
 public class RoleBox extends VBox {
 
-    public RoleBox(Role role){
-        TextArea abilitesTextArea = new TextArea(role.getAbilities());
-        abilitesTextArea.setPrefWidth(300);
-        abilitesTextArea.setPrefHeight(50);
-        abilitesTextArea.setWrapText(true);
-        abilitesTextArea.setEditable(false);
+    public RoleBox(Role role) {
+        // Style the box
+        setSpacing(10);
+        setPadding(new Insets(15));
+        setStyle("-fx-border-color: #a084ca; -fx-border-radius: 10; -fx-background-radius: 10;");
 
-        TextField attributesTextField = new TextField(role.getAttributes());
-        attributesTextField.setEditable(false);
-        attributesTextField.setPrefWidth(300);
+        // Set background color based on role type
+        String backgroundColor = getBackgroundColorByRoleType(role);
+        setStyle(getStyle() + "-fx-background-color: " + backgroundColor + ";");
 
-        TextField goalTextField = new TextField(role.getGoal());
-        goalTextField.setEditable(false);
-        goalTextField.setPrefWidth(300);
+        // Add the role name
+        Label roleNameLabel = new Label("Role: " + role.getName());
+        roleNameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;");
 
-        Label roleLabel = new Label(role.getName());
-        roleLabel.getStyleClass().add("gameLabel");
-        roleLabel.getStyleClass().add("roleShowLabel");
+        // Add abilities
+        Label abilitiesLabel = new Label("Abilities: " + role.getAbilities());
+        abilitiesLabel.setStyle("-fx-text-fill: #d3d3d3;");
 
-        HBox abilities = new HBox(createLabel(LanguageManager.getText("Role","abilities") +":"), abilitesTextArea);
-        abilities.setAlignment(Pos.TOP_LEFT);
-        abilities.setSpacing(17);
+        // Add attributes
+        Label attributesLabel = new Label("Attributes: " + role.getAttributes());
+        attributesLabel.setStyle("-fx-text-fill: #d3d3d3;");
 
-        HBox attributes = new HBox(createLabel(LanguageManager.getText("Role","attributes")+":"), attributesTextField);
-        attributes.setAlignment(Pos.CENTER_LEFT);
-        attributes.setSpacing(3);
+        // Add goal
+        Label goalLabel = new Label("Goal: " + role.getGoal());
+        goalLabel.setStyle("-fx-text-fill: #d3d3d3;");
 
-        HBox goal = new HBox(createLabel(LanguageManager.getText("Role","goal")+":"), goalTextField);
-        goal.setAlignment(Pos.BOTTOM_LEFT);
-        goal.setSpacing(40);
-
-        TextField attackTextField = new TextField(displayNumbers(role.getAttack()));
-        attackTextField.setEditable(false);
-        attackTextField.setPrefWidth(92.5);
-
-        TextField defenceTextField = new TextField(displayNumbers(role.getDefence()));
-        defenceTextField.setEditable(false);
-        defenceTextField.setPrefWidth(92.5);
-
-        HBox atkDef = new HBox(createLabel(LanguageManager.getText("Role","attack")+":"),attackTextField,createLabel(LanguageManager.getText("Role","defence")+":"),defenceTextField);
-        atkDef.setAlignment(Pos.BOTTOM_LEFT);
-        atkDef.setSpacing(28);
-
-
-        if(role.getTeam() == Team.FOLK){
-            this.getStyleClass().add("folkRoleVbox");
-        }else if(role.getTeam() == Team.CORRUPTER){
-            this.getStyleClass().add("corrupterRoleVbox");
-        }else{
-            this.getStyleClass().add("neutralRoleVbox");
-        }
-        this.getChildren().addAll(roleLabel,abilities,attributes,goal,atkDef);
-
-        this.setAlignment(Pos.CENTER);
-        this.paddingProperty().set(new Insets(0,0,0,5));
-
+        // Add components to the VBox
+        getChildren().addAll(roleNameLabel, abilitiesLabel, attributesLabel, goalLabel);
     }
 
-    public Label createLabel(String text){
-        Label label = new Label(text);
-        label.getStyleClass().add("gameLabel");
-        label.getStyleClass().add("roleShowLabel");
-        return label;
-    }
-
-    private String displayNumbers(double value){
-        if(value == (int) value){
-            return (int) value+"";
-        }
-        return value +"";
+    /**
+     * Returns a background color based on the role type.
+     *
+     * @param role The role whose type determines the color.
+     * @return A CSS-compatible color string.
+     */
+    private String getBackgroundColorByRoleType(Role role) {
+        return switch (role.getTeam()) { // Assuming Role has a `getType` method
+            case CORRUPTER -> "rgba(255, 69, 0, 0.8)"; // Orange-Red for aggressive roles
+            case FOLK -> "rgba(50, 205, 50, 0.8)"; // Green for support roles
+            case NEUTRAL, NONE -> "rgba(64, 64, 64, 0.8)"; // Dark Gray for stealthy roles
+        };
     }
 }

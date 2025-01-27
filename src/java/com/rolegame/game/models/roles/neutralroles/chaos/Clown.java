@@ -6,7 +6,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
-public class Clown extends NeutralRole implements NoNightAbility {
+public final class Clown extends NeutralRole implements NoNightAbility {
     public Clown() {
         super(RoleID.Clown, RolePriority.NONE, RoleCategory.NEUTRAL_CHAOS, 0, 0
         , new ChanceProperty(30,1));

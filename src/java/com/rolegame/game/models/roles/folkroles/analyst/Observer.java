@@ -7,7 +7,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
-public class Observer extends FolkRole implements ActiveNightAbility {
+public final class Observer extends FolkRole implements ActiveNightAbility {
     public Observer() {
         super(RoleID.Observer, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0
         , new ChanceProperty(20,10));

@@ -8,7 +8,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
-public class Disguiser extends CorrupterRole implements ActiveNightAbility {
+public final class Disguiser extends CorrupterRole implements ActiveNightAbility {
     public Disguiser() {
         super(RoleID.Disguiser, RolePriority.NONE, RoleCategory.CORRUPTER_SUPPORT, 0, 0,
                 new ChanceProperty(15,10));

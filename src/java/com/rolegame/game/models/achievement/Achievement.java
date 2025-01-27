@@ -6,7 +6,7 @@ public abstract class Achievement {
     private AchievementID id;
     private String title;
     private String description;
-    protected boolean isCompleted;
+    boolean isCompleted;
     private AchievementCategory category;
 
     public Achievement(AchievementID id, boolean isCompleted, AchievementCategory category) {
