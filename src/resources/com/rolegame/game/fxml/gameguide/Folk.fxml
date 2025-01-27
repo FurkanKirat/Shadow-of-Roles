@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.gameguide.FolkController">
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="backgroundimage" />
+      <String fx:value="backgroundtransparant" />
+   </styleClass>
+   <content>
+      <VBox prefHeight="745.0" prefWidth="856.0" />
+   </content>
+</ScrollPane>

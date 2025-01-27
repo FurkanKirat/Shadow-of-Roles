@@ -35,6 +35,7 @@ public class ShortcutManager {
         writeNamesShortcuts();
         creditsShortcuts();
         achievementsShortcuts();
+        gameGuideShortcuts();
     }
 
 
@@ -69,7 +70,10 @@ public class ShortcutManager {
         ShortcutManager.addShortcut(SceneManager.SceneType.ACHIEVEMENTS,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
                 SceneManager::mainMenuScene));
     }
-
+    private static void gameGuideShortcuts(){{
+        ShortcutManager.addShortcut(SceneManager.SceneType.GAME_GUIDE,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to main menu",
+                SceneManager::mainMenuScene));}
+    }
 
     public record Shortcut(KeyCode keyCode, String description, Runnable action) {
     }

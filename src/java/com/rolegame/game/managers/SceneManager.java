@@ -140,6 +140,8 @@ public class SceneManager {
         WRITE_NAMES,
         CREDITS,
         ACHIEVEMENTS,
-        SIMPLE_PERSON_ALERT
+        SIMPLE_PERSON_ALERT,
+        GAME_GUIDE,
+        GAME_RULES
     }
 }

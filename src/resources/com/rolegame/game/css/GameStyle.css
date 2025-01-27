@@ -14,6 +14,37 @@
      -fx-padding: 10;
 }
 
+.backgroundtransparant{
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+        -fx-text-fill: white;
+        -fx-border-color: #a8d8ff;
+        -fx-border-width: 2;
+        -fx-border-radius: 5;
+        -fx-background-radius: 5;
+        -fx-padding: 10;
+}
+
+.gameguide-choice {
+    -fx-background-color: rgba(46, 13, 37, 0.5);
+    -fx-text-fill: white;
+    -fx-border-color: #a8d8ff;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+}
+
+.gameguide-choice-selected {
+    -fx-background-color: rgba(100, 50, 100, 0.7);
+    -fx-text-fill: yellow;
+    -fx-border-radius: 5;
+    -fx-border-color: #a8d8ff;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+}
+
 .day{
     -fx-background-image: url('../images/day0.jpg');
 }

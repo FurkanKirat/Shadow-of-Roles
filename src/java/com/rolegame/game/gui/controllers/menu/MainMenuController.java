@@ -49,7 +49,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void gameGuide(MouseEvent event) {
-
+        SceneManager.switchScene("/com/rolegame/game/fxml/gameguide/GameGuide.fxml", SceneManager.SceneType.GAME_GUIDE, true);
     }
 
     @FXML
