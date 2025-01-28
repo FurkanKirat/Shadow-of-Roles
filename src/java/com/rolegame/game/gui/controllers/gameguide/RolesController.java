@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class RolesController {
 
     @FXML
     private Button neutralButton;
+
+    @FXML
+    private VBox largeVBox;
 
     @FXML
     void corruptClicked(MouseEvent event) {
@@ -53,6 +57,8 @@ public class RolesController {
 
         // Display all roles grouped by team and category
         displayRolesByTeamAndCategory(filterRolesByCategory(Team.FOLK));
+
+        VBox.setVgrow(largeVBox, Priority.ALWAYS);
     }
     private ArrayList<Role> filterRolesByCategory(Team team){
         ArrayList<Role> roles = new ArrayList<>(RoleCatalog.getRolesByTeam(team));

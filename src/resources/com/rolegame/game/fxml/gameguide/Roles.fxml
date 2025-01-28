@@ -5,18 +5,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.gameguide.RolesController">
-   <content>
-      <VBox prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+<VBox fx:id="largeVBox" fillWidth="false" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.gameguide.RolesController">
+   <children>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant" stylesheets="@../../css/GameStyle.css" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox fillWidth="false" prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant">
                <children>
-                  <Button fx:id="folkButton" mnemonicParsing="false" onMouseClicked="#folkClicked" text="Folk" />
-                  <Button fx:id="corruptButton" mnemonicParsing="false" onMouseClicked="#corruptClicked" text="Corrupt" />
-                  <Button fx:id="neutralButton" mnemonicParsing="false" onMouseClicked="#neutralClicked" text="Neutral" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="folkButton" mnemonicParsing="false" onMouseClicked="#folkClicked" text="Folk" />
+                        <Button fx:id="corruptButton" mnemonicParsing="false" onMouseClicked="#corruptClicked" text="Corrupt" />
+                        <Button fx:id="neutralButton" mnemonicParsing="false" onMouseClicked="#neutralClicked" text="Neutral" />
+                     </children>
+                  </HBox>
+                  <VBox fx:id="rolesVBox" prefHeight="768.0" prefWidth="1366.0" VBox.vgrow="ALWAYS" />
                </children>
-            </HBox>
-            <VBox fx:id="rolesVBox" prefHeight="56.0" prefWidth="1342.0" />
-         </children></VBox>
-   </content>
-</ScrollPane>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

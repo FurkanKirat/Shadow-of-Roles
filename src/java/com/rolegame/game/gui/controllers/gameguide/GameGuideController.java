@@ -57,6 +57,11 @@ public class GameGuideController {
         applyCss(rolesHBox);
     }
 
+    public void initialize(){
+        changingPane.prefWidthProperty().bind(borderPane.widthProperty().multiply(0.5));
+        changingPane.prefHeightProperty().bind(borderPane.heightProperty().multiply(0.5));
+    }
+
 
     private void applyCss(Node node){
         gameRulesHBox.getStyleClass().remove("gameguide-choice-selected");
@@ -81,6 +86,7 @@ public class GameGuideController {
 
 
             VBox.setVgrow(node, Priority.ALWAYS);
+            HBox.setHgrow(node,Priority.ALWAYS);
 
 
 

@@ -24,6 +24,11 @@
         -fx-padding: 10;
 }
 
+#changingPane {
+    -fx-pref-width: 72,31%;
+    -fx-pref-height: 72,31%;
+}
+
 .gameguide-choice {
     -fx-background-color: rgba(46, 13, 37, 0.5);
     -fx-text-fill: white;
