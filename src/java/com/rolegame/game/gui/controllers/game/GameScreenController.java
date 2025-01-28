@@ -13,8 +13,6 @@ import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.roleproperties.*;
 import com.rolegame.game.models.Message;
 import com.rolegame.game.models.Player;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -125,7 +123,7 @@ public class GameScreenController {
 
                 Optional<ButtonType> result = alert.showAndWait();
 
-                if(result.get() != ButtonType.OK){
+                if(result.isPresent() && result.get() != ButtonType.OK){
                     return;
                 }
             }
@@ -146,7 +144,7 @@ public class GameScreenController {
         }else{
             setStyleImage(passTurnPane,"night");
         }
-        changePlayer();
+        changePlayerUI();
     }
 
     private static void setStyleImage(Parent root, String time) {
@@ -171,7 +169,7 @@ public class GameScreenController {
 
     public void initialize(){
 
-        changePlayer();
+        changePlayerUI();
         initializeRolesView();
         initializeMessages();
         dayLabel.setText((gameController.isDay() ? LanguageManager.getText("Menu","day"): LanguageManager.getText("Menu","night") ) + ": " +gameController.getDayCount());
@@ -242,7 +240,7 @@ public class GameScreenController {
         parent.getChildren().add(categoryItem);
     }
 
-    private void changePlayer(){
+    private void changePlayerUI(){
         nameLabel.setText(gameController.getCurrentPlayer().getName());
         numberLabel.setText(LanguageManager.getText("Menu","number")+": "+gameController.getCurrentPlayer().getNumber());
         abilitiesTextField.setText(gameController.getCurrentPlayer().getRole().getAbilities());
@@ -279,11 +277,12 @@ public class GameScreenController {
         if(gameController.isDay()){
 
             useAbilityButton.setText(LanguageManager.getText("Menu","vote"));
+            gameBox.getStyleClass().remove("night");
+            gameBox.getStyleClass().add("day");
+
             gameController.performAllAbilities();
             dayStartAnnouncements();
 
-            gameBox.getStyleClass().remove("night");
-            gameBox.getStyleClass().add("day");
             gameController.setDayCount(getGameController().getDayCount()+1);
 
         }
@@ -291,8 +290,8 @@ public class GameScreenController {
 
             gameController.executeMaxVoted();
             gameController.updateAlivePlayers();
-            dayStartAnnouncements();
 
+            dayStartAnnouncements();
             useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
             if(!(gameController.getCurrentPlayer() instanceof ActiveNightAbility)){
                 useAbilityButton.setText("Pass Turn");
