@@ -142,6 +142,5 @@ public class SceneManager {
         ACHIEVEMENTS,
         SIMPLE_PERSON_ALERT,
         GAME_GUIDE,
-        GAME_RULES
     }
 }

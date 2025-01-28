@@ -1,4 +1,4 @@
-package com.rolegame.game.gui.boxes;
+package com.rolegame.game.gui.components.boxes;
 
 import com.rolegame.game.gui.controllers.game.GameScreenController;
 import com.rolegame.game.models.Player;

@@ -1,10 +1,10 @@
 package com.rolegame.game.gui.controllers.game;
 
-import com.rolegame.game.gui.boxes.MessageBox;
-import com.rolegame.game.gui.boxes.PlayerSelectionBox;
-import com.rolegame.game.gui.boxes.RoleBox;
-import com.rolegame.game.gui.boxes.rolespecificboxes.EntrepreneurBox;
-import com.rolegame.game.gui.boxes.rolespecificboxes.LorekeeperBox;
+import com.rolegame.game.gui.components.boxes.MessageBox;
+import com.rolegame.game.gui.components.boxes.PlayerSelectionBox;
+import com.rolegame.game.gui.components.boxes.RoleBox;
+import com.rolegame.game.gui.components.boxes.rolespecificboxes.EntrepreneurBox;
+import com.rolegame.game.gui.components.boxes.rolespecificboxes.LorekeeperBox;
 import com.rolegame.game.gameplay.*;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.*;

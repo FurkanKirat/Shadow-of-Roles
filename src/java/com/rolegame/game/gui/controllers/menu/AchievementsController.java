@@ -1,6 +1,6 @@
 package com.rolegame.game.gui.controllers.menu;
 
-import com.rolegame.game.gui.boxes.AchievementBox;
+import com.rolegame.game.gui.components.boxes.AchievementBox;
 import com.rolegame.game.models.achievement.Achievement;
 import com.rolegame.game.managers.AchievementManager;
 import com.rolegame.game.managers.LanguageManager;
