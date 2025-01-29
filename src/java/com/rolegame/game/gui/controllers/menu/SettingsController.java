@@ -53,10 +53,8 @@ public class SettingsController implements Initializable {
                             https://github.com/FurkanKirat/Shadow-of-Roles/issues"""));
 
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Supporting");
-                    alert.setHeaderText("Desktop API");
-                    alert.setContentText("Desktop API is not supported.");
+                    Alert alert = SceneManager.createAlert(Alert.AlertType.INFORMATION,
+                            "Supporting","Desktop API","Desktop API is not supported.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -70,10 +68,9 @@ public class SettingsController implements Initializable {
 
     @FXML
     void resetAchievementsClicked(MouseEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Deleting achievements");
-        alert.setHeaderText("Achievements will be resetting");
-        alert.setContentText("Are you sure to reset achievements");
+        Alert alert = SceneManager.createAlert(Alert.AlertType.CONFIRMATION,"Deleting achievements",
+                "Achievements will be resetting", "Are you sure to reset achievements");
+
 
         Optional<ButtonType> result = alert.showAndWait();
 

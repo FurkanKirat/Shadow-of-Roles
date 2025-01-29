@@ -7,6 +7,7 @@ import com.rolegame.game.gui.components.boxes.rolespecificboxes.EntrepreneurBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.LorekeeperBox;
 import com.rolegame.game.gameplay.*;
 import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.roles.*;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
@@ -116,10 +117,8 @@ public class GameScreenController {
         if(gameController.getCurrentPlayer().getRole().getChoosenPlayer()==null){
 
             if(gameController.isDay()||(!gameController.isDay() && gameController.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle(LanguageManager.getText("Menu","passAlertTitle"));
-                alert.setHeaderText(LanguageManager.getText("Menu","passAlertHead"));
-                alert.setContentText(LanguageManager.getText("Menu","passAlertMessage"));
+                Alert alert = SceneManager.createAlert(Alert.AlertType.CONFIRMATION,LanguageManager.getText("Menu","passAlertTitle"),
+                        LanguageManager.getText("Menu","passAlertHead"), LanguageManager.getText("Menu","passAlertMessage"));
 
                 Optional<ButtonType> result = alert.showAndWait();
 

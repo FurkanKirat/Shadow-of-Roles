@@ -20,7 +20,7 @@ public class Main extends Application {
             event.consume();
             SceneManager.onClose();
         });
-        stage.getIcons().add(new Image("/com/rolegame/game/images/logo.jpg"));
+        stage.getIcons().add(new Image("/com/rolegame/game/images/icon.jpg"));
         stage.setTitle("Shadow of Roles");
         Screen screen = Screen.getPrimary();
 
