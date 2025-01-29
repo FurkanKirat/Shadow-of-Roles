@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="largeVBox" fillWidth="false" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.gameguide.RolesController">
+<VBox fx:id="largeVBox" alignment="CENTER" fillWidth="false" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.gameguide.RolesController">
    <children>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant" stylesheets="@../../css/GameStyle.css" VBox.vgrow="ALWAYS">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../css/GameStyle.css" VBox.vgrow="ALWAYS">
          <content>
-            <VBox fillWidth="false" prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="768.0" prefWidth="1366.0">
                <children>
                   <HBox VBox.vgrow="ALWAYS">
                      <children>
@@ -18,10 +19,15 @@
                         <Button fx:id="neutralButton" mnemonicParsing="false" onMouseClicked="#neutralClicked" text="Neutral" />
                      </children>
                   </HBox>
-                  <VBox fx:id="rolesVBox" prefHeight="768.0" prefWidth="1366.0" VBox.vgrow="ALWAYS" />
+                  <VBox fx:id="rolesVBox" alignment="CENTER" prefHeight="768.0" prefWidth="1366.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </content>
       </ScrollPane>
    </children>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="backgroundimage" />
+      <String fx:value="backgroundtransparant" />
+   </styleClass>
 </VBox>

@@ -5,16 +5,20 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundtransparant" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.gameguide.MainGoalController">
    <children>
-      <TextFlow prefHeight="418.0" prefWidth="1174.0">
+      <VBox alignment="CENTER" prefHeight="156.0" prefWidth="1342.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="dnmaqbıjuwnmdbuambduamwdubawdbmnawbjmdawnbjawnmdbujanwmubdıjawnubnawubnamwujdbnawbawnmbuıadnwbudjnabuwdjbuawdnbuawnbduwaındbawujb">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Text>
+            <TextFlow prefHeight="759.0" prefWidth="1342.0" textAlignment="CENTER">
+               <children>
+                  <Text fx:id="goalText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="bdwabdawba" textAlignment="CENTER">
+                     <font>
+                        <Font size="57.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
          </children>
-      </TextFlow>
+      </VBox>
    </children>
 </VBox>

@@ -29,6 +29,21 @@
     -fx-pref-height: 72,31%;
 }
 
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane .scroll-bar {
+    -fx-opacity: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+    -fx-padding: 0;
+}
+
 .gameguide-choice {
     -fx-background-color: rgba(46, 13, 37, 0.5);
     -fx-text-fill: white;

@@ -20,7 +20,6 @@ public class GameGuideController {
     @FXML
     private VBox changingPane;
 
-
     @FXML
     private HBox gameRulesHBox;
 
@@ -41,19 +40,19 @@ public class GameGuideController {
 
     @FXML
     void gameRulesClicked(MouseEvent event) {
-        loadScene("/com/rolegame/game/fxml/gameguide/GameRules.fxml");
+        loadPane("/com/rolegame/game/fxml/gameguide/GameRules.fxml");
         applyCss(gameRulesHBox);
     }
 
     @FXML
     void mainGoalClicked(MouseEvent event) {
-        loadScene("/com/rolegame/game/fxml/gameguide/MainGoal.fxml");
+        loadPane("/com/rolegame/game/fxml/gameguide/MainGoal.fxml");
         applyCss(mainGoalHBox);
     }
 
     @FXML
     void rolesClicked(MouseEvent event) {
-        loadScene("/com/rolegame/game/fxml/gameguide/Roles.fxml");
+        loadPane("/com/rolegame/game/fxml/gameguide/Roles.fxml");
         applyCss(rolesHBox);
     }
 
@@ -74,7 +73,7 @@ public class GameGuideController {
 
     }
 
-    private void loadScene(String fxmlFileName) {
+    private void loadPane(String fxmlFileName) {
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
