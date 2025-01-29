@@ -28,6 +28,15 @@
     -fx-pref-width: 72,31%;
     -fx-pref-height: 72,31%;
 }
+.tree-view .scroll-bar:vertical,
+.tree-view .scroll-bar:horizontal,
+.list-view .scroll-bar:vertical,
+.list-view .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
 
 .scroll-pane {
     -fx-background-color: transparent;

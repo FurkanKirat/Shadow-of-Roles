@@ -1,11 +1,16 @@
 package com.rolegame.game.models.achievement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rolegame.game.managers.LanguageManager;
 
 public abstract class Achievement {
     private AchievementID id;
+
+    @JsonIgnore
     private String title;
+    @JsonIgnore
     private String description;
+
     boolean isCompleted;
     private AchievementCategory category;
 

@@ -1,4 +1,4 @@
-package com.rolegame.game.gui.boxes;
+package com.rolegame.game.gui.components.boxes;
 
 import com.rolegame.game.models.Message;
 import com.rolegame.game.managers.LanguageManager;

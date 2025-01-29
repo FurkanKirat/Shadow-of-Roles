@@ -1,4 +1,4 @@
-package com.rolegame.game.gui.boxes.rolespecificboxes;
+package com.rolegame.game.gui.components.boxes.rolespecificboxes;
 
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;

@@ -84,7 +84,4 @@ public class WriteNamesController extends VBox {
         textFieldsBox.getChildren().add(button);
     }
 
-    public static GameController getGameController() {
-        return gameController;
-    }
 }

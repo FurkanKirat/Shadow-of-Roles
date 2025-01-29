@@ -1,5 +1,7 @@
 package com.rolegame.game.models.achievement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class ProgressiveAchievement extends Achievement {
     private int progress;
     private int max;
@@ -45,6 +47,7 @@ public class ProgressiveAchievement extends Achievement {
         this.max = max;
     }
 
+    @JsonIgnore
     public double getProgressPercentage(){
         return (double) progress/max;
     }

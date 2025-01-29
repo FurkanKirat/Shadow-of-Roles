@@ -1,6 +1,6 @@
 package com.rolegame.game.gui.controllers.gameguide;
 
-import com.rolegame.game.gui.boxes.RoleBoxForGameGuide;
+import com.rolegame.game.gui.components.boxes.RoleBoxForGameGuide;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.RoleCatalog;

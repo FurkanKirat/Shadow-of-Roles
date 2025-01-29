@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -111,10 +112,8 @@ public class SceneManager {
     }
 
     public static void onClose(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("Are You sure to exit?");
-        alert.setTitle("Exiting");
-        alert.setHeaderText("Exit");
+        Alert alert = createAlert(Alert.AlertType.CONFIRMATION,"Are You sure to exit?","Exiting","Exit");
+
         alert.showAndWait().ifPresent(response -> {
             if(ButtonType.OK == response){
                 System.exit(0);
@@ -130,6 +129,16 @@ public class SceneManager {
         return stage;
     }
 
+    public static Alert createAlert(Alert.AlertType alertType, String contentText, String title, String headerText){
+        Alert alert = new Alert(alertType);
+        alert.setContentText(contentText);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+        alertStage.getIcons().add(new Image("/com/rolegame/game/images/icon.jpg"));
+        return alert;
+    }
+
     public enum SceneType{
         MUTUAL,
         MAIN_MENU,
@@ -142,6 +151,5 @@ public class SceneManager {
         ACHIEVEMENTS,
         SIMPLE_PERSON_ALERT,
         GAME_GUIDE,
-        GAME_RULES
     }
 }

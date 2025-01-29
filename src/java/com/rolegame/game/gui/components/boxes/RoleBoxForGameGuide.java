@@ -1,11 +1,8 @@
-package com.rolegame.game.gui.boxes;
+package com.rolegame.game.gui.components.boxes;
 
 import com.rolegame.game.models.roles.Role;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
