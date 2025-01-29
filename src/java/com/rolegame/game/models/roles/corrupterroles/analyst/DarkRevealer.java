@@ -9,8 +9,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public final class DarkRevealer extends CorrupterRole implements ActiveNightAbility {
     public DarkRevealer() {
-        super(RoleID.DarkRevealer, RolePriority.NONE, RoleCategory.CORRUPTER_ANALYST,
-                0, 0, new ChanceProperty(30,10));
+        super(RoleID.DarkRevealer, RolePriority.NONE, RoleCategory.CORRUPTER_ANALYST, 0, 0);
     }
 
     @Override
@@ -20,5 +19,10 @@ public final class DarkRevealer extends CorrupterRole implements ActiveNightAbil
         sendAbilityMessage(message,getRoleOwner(), false);
 
         return true;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(30,10);
     }
 }

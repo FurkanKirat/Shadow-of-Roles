@@ -19,7 +19,13 @@ public class LanguageManager {
 
     private static final String LANGUAGE_FILE_PATH = FileManager.getUserDataDirectory() + File.separator + "language.json";
 
-    public static void changeLanguage(String languageCode) {
+    public static void changeLanguage(String languageCode, boolean isStart) {
+
+        // If the current language is the same as the language you want to change, it returns
+        if(currentLang.equals(languageCode) && !isStart){
+            return;
+        }
+
         ObjectMapper mapper = new ObjectMapper();
         try {
             String langFilePath = "/com/rolegame/game/lang/" + languageCode + ".json";
@@ -77,7 +83,7 @@ public class LanguageManager {
             currentLang = "en_us";
             currentTheme = "normal";
         }
-        changeLanguage(currentLang);
+        changeLanguage(currentLang, true);
         changeTheme(currentTheme);
         loadAchievements(currentLang);
     }

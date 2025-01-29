@@ -8,8 +8,8 @@ import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.Role;
 
 public abstract class CorrupterRole extends Role {
-    public CorrupterRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory, double attack , double defence, ChanceProperty chanceProperty) {
-        super(id, rolePriority, roleCategory, Team.CORRUPTER, attack, defence, chanceProperty);
+    public CorrupterRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory, double attack , double defence) {
+        super(id, rolePriority, roleCategory, Team.CORRUPTER, attack, defence);
     }
 
     @Override

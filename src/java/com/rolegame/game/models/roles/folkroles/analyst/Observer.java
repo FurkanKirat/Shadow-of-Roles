@@ -9,8 +9,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public final class Observer extends FolkRole implements ActiveNightAbility {
     public Observer() {
-        super(RoleID.Observer, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0
-        , new ChanceProperty(20,10));
+        super(RoleID.Observer, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0);
     }
 
     @Override
@@ -19,5 +18,10 @@ public final class Observer extends FolkRole implements ActiveNightAbility {
                 .replace("{teamName}",this.getChoosenPlayer().getRole().getTeam().name())
                 ,getRoleOwner(),false);
         return true;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(20,10);
     }
 }

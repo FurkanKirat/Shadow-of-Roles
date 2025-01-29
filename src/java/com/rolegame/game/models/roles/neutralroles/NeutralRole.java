@@ -9,8 +9,8 @@ import com.rolegame.game.models.roles.roleproperties.Team;
 
 public abstract class NeutralRole extends Role {
     public NeutralRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
-                       double attack, double defence, ChanceProperty chanceProperty) {
-        super(id, rolePriority, roleCategory, Team.NEUTRAL, attack, defence, chanceProperty);
+                       double attack, double defence) {
+        super(id, rolePriority, roleCategory, Team.NEUTRAL, attack, defence);
     }
 
     @Override

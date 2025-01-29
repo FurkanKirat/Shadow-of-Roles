@@ -9,8 +9,8 @@ import com.rolegame.game.models.roles.Role;
 
 public abstract class FolkRole extends Role {
     public FolkRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
-                    double attack , double defence, ChanceProperty chanceProperty) {
-        super(id, rolePriority, roleCategory, Team.FOLK, attack, defence, chanceProperty);
+                    double attack , double defence) {
+        super(id, rolePriority, roleCategory, Team.FOLK, attack, defence);
     }
 
     @Override

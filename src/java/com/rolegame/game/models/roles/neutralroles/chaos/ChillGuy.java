@@ -9,8 +9,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public final class ChillGuy extends NeutralRole implements NoNightAbility {
     public ChillGuy() {
-        super(RoleID.ChillGuy, RolePriority.NONE, RoleCategory.NEUTRAL_CHAOS, 0, 0
-        ,new ChanceProperty(10,1));
+        super(RoleID.ChillGuy, RolePriority.NONE, RoleCategory.NEUTRAL_CHAOS, 0, 0);
 
     }
 
@@ -22,6 +21,11 @@ public final class ChillGuy extends NeutralRole implements NoNightAbility {
     @Override
     public boolean executeAbility() {
         return false;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(10,1);
     }
 
 

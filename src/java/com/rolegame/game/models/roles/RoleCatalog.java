@@ -284,7 +284,7 @@ public class RoleCatalog {
      */
     private static void removeMaxCount(HashMap<Role,Integer> currentRoles, List<Role> randomRoleList){
         for(Map.Entry<Role,Integer> entry : currentRoles.entrySet()){
-            if(entry.getKey().chanceProperty.maxNumber()<=entry.getValue()){
+            if(entry.getKey().getChanceProperty().maxNumber()<=entry.getValue()){
                 randomRoleList.remove(entry.getKey());
             }
         }
@@ -301,7 +301,7 @@ public class RoleCatalog {
         int currentSum = 0;
 
         for (Role role : randomRoleList) {
-            currentSum += role.chanceProperty.chance();
+            currentSum += role.getChanceProperty().chance();
 
             if (currentSum >= randNum) {
                 return role.copy();

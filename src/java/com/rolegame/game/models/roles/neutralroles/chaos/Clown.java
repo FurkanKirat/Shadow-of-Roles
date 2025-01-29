@@ -8,8 +8,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public final class Clown extends NeutralRole implements NoNightAbility {
     public Clown() {
-        super(RoleID.Clown, RolePriority.NONE, RoleCategory.NEUTRAL_CHAOS, 0, 0
-        , new ChanceProperty(30,1));
+        super(RoleID.Clown, RolePriority.NONE, RoleCategory.NEUTRAL_CHAOS, 0, 0);
     }
 
     @Override
@@ -20,5 +19,10 @@ public final class Clown extends NeutralRole implements NoNightAbility {
     @Override
     public boolean executeAbility() {
         return false;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(30,1);
     }
 }

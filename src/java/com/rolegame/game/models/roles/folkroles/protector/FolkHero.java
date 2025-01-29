@@ -12,8 +12,7 @@ public final class FolkHero extends FolkRole implements ActiveNightAbility {
     private int abilityUseCount;
 
     public FolkHero() {
-        super(RoleID.FolkHero, RolePriority.FOLK_HERO, RoleCategory.FOLK_PROTECTOR, 0, 0,
-                new ChanceProperty(5,1));
+        super(RoleID.FolkHero, RolePriority.FOLK_HERO, RoleCategory.FOLK_PROTECTOR, 0, 0);
         abilityUseCount = 0;
     }
 
@@ -42,6 +41,11 @@ public final class FolkHero extends FolkRole implements ActiveNightAbility {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(5,1);
     }
 
     public int getAbilityUseCount() {

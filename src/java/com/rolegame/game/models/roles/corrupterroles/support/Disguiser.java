@@ -10,8 +10,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public final class Disguiser extends CorrupterRole implements ActiveNightAbility {
     public Disguiser() {
-        super(RoleID.Disguiser, RolePriority.NONE, RoleCategory.CORRUPTER_SUPPORT, 0, 0,
-                new ChanceProperty(15,10));
+        super(RoleID.Disguiser, RolePriority.NONE, RoleCategory.CORRUPTER_SUPPORT, 0, 0);
     }
 
     @Override
@@ -20,5 +19,10 @@ public final class Disguiser extends CorrupterRole implements ActiveNightAbility
         currentRole.setChoosenPlayer(this.getChoosenPlayer());
         currentRole.setRoleOwner(this.getRoleOwner());
         return currentRole.performAbility();
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(15,10);
     }
 }

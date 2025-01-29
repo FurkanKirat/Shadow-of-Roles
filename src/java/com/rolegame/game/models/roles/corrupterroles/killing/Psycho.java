@@ -10,8 +10,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 public final class Psycho extends CorrupterRole implements ActiveNightAbility {
 
     public Psycho() {
-        super(RoleID.Psycho, RolePriority.NONE, RoleCategory.CORRUPTER_KILLING, 1,0
-        , new ChanceProperty(100,1));
+        super(RoleID.Psycho, RolePriority.NONE, RoleCategory.CORRUPTER_KILLING, 1,0);
     }
 
     @Override
@@ -30,5 +29,10 @@ public final class Psycho extends CorrupterRole implements ActiveNightAbility {
                     getRoleOwner(),false);
             return false;
         }
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(100,1);
     }
 }

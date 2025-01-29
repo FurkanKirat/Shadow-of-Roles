@@ -17,8 +17,7 @@ public final class Lorekeeper extends NeutralRole implements ActiveNightAbility 
     private Role guessedRole;
     private int trueGuessCount;
     public Lorekeeper() {
-        super(RoleID.Lorekeeper, RolePriority.LORE_KEEPER, RoleCategory.NEUTRAL_GOOD, 0, 0,
-                new ChanceProperty(20,1));
+        super(RoleID.Lorekeeper, RolePriority.LORE_KEEPER, RoleCategory.NEUTRAL_GOOD, 0, 0);
         trueGuessCount = 0;
         alreadyChosenPlayers = new ArrayList<>();
     }
@@ -50,6 +49,11 @@ public final class Lorekeeper extends NeutralRole implements ActiveNightAbility 
             sendAbilityMessage(message,roleOwner, true);
         }
         return false;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(20,1);
     }
 
     public Role getGuessedRole() {

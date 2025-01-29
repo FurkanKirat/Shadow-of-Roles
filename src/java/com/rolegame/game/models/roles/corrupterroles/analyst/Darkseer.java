@@ -14,8 +14,7 @@ import java.util.Collections;
 
 public final class Darkseer extends CorrupterRole implements PassiveNightAbility {
     public Darkseer() {
-        super(RoleID.Darkseer, RolePriority.NONE, RoleCategory.CORRUPTER_ANALYST, 0, 0
-        , new ChanceProperty(10,10));
+        super(RoleID.Darkseer, RolePriority.NONE, RoleCategory.CORRUPTER_ANALYST, 0, 0);
     }
 
     @Override
@@ -49,5 +48,10 @@ public final class Darkseer extends CorrupterRole implements PassiveNightAbility
 
         sendAbilityMessage(message,getRoleOwner(), false);
         return true;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(10,10);
     }
 }

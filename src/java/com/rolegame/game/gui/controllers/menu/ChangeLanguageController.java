@@ -41,13 +41,13 @@ public class ChangeLanguageController implements Initializable {
 
     @FXML
     void englishChosen(MouseEvent event) {
-        LanguageManager.changeLanguage("en_us");
+        LanguageManager.changeLanguage("en_us", false);
         changeLangTexts();
     }
 
     @FXML
     void turkishChosen(MouseEvent event) {
-        LanguageManager.changeLanguage("tr_tr");
+        LanguageManager.changeLanguage("tr_tr", false);
         changeLangTexts();
     }
 

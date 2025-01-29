@@ -9,8 +9,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 
 public final class Interrupter extends CorrupterRole implements ActiveNightAbility {
     public Interrupter() {
-        super(RoleID.Interrupter, RolePriority.ROLE_BLOCK, RoleCategory.CORRUPTER_SUPPORT, 0, 0
-        ,new ChanceProperty(30,10));
+        super(RoleID.Interrupter, RolePriority.ROLE_BLOCK, RoleCategory.CORRUPTER_SUPPORT, 0, 0);
     }
 
     @Override
@@ -38,5 +37,10 @@ public final class Interrupter extends CorrupterRole implements ActiveNightAbili
         sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockMessage"), getRoleOwner(),false);
         getChoosenPlayer().getRole().setCanPerform(false);
         return true;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(30,10);
     }
 }

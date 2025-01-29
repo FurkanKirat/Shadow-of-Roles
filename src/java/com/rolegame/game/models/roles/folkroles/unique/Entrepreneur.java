@@ -25,8 +25,7 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
     private int money;
     private ChosenAbility abilityState;
     public Entrepreneur() {
-        super(RoleID.Entrepreneur, RolePriority.NONE, RoleCategory.FOLK_UNIQUE, 0, 0
-        , new ChanceProperty(15,1));
+        super(RoleID.Entrepreneur, RolePriority.NONE, RoleCategory.FOLK_UNIQUE, 0, 0);
         this.money = 3;
         this.setAbilityState(ChosenAbility.NONE);
     }
@@ -67,6 +66,11 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
             }
         }
         return insufficientMoney();
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(15,1);
     }
 
     public ChosenAbility getAbilityState() {

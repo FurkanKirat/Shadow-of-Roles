@@ -13,8 +13,7 @@ import java.util.Random;
 
 public final class Detective extends FolkRole implements ActiveNightAbility {
     public Detective() {
-        super(RoleID.Detective, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0
-        , new ChanceProperty(30,10));
+        super(RoleID.Detective, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0);
     }
 
     @Override
@@ -33,6 +32,11 @@ public final class Detective extends FolkRole implements ActiveNightAbility {
         sendAbilityMessage(message, getRoleOwner(), false);
 
         return true;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(30,10);
     }
 
 

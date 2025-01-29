@@ -9,8 +9,7 @@ import com.rolegame.game.models.roles.roleproperties.RolePriority;
 public final class LastJoke extends CorrupterRole {
     private boolean didUsedAbility;
     public LastJoke() {
-        super(RoleID.LastJoke, RolePriority.LAST_JOKE, RoleCategory.CORRUPTER_SUPPORT, 3, 0,
-                new ChanceProperty(5,1));
+        super(RoleID.LastJoke, RolePriority.LAST_JOKE, RoleCategory.CORRUPTER_SUPPORT, 3, 0);
         this.didUsedAbility = false;
     }
 
@@ -36,6 +35,11 @@ public final class LastJoke extends CorrupterRole {
         }
 
         return false;
+    }
+
+    @Override
+    public ChanceProperty getChanceProperty() {
+        return new ChanceProperty(5,1);
     }
 
     public boolean isDidUsedAbility() {
