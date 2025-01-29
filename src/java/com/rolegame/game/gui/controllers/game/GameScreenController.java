@@ -319,7 +319,7 @@ public class GameScreenController {
     private void initializeMessages(){
         announcementsView.getItems().clear();
         for(Message message: Message.getMessages()){
-            if(message.isPublic() || message.receiver().equals(gameController.getCurrentPlayer())){
+            if(message.isPublic() || message.receiver().getNumber()==gameController.getCurrentPlayer().getNumber()){
                 announcementsView.getItems().add(new MessageBox(message,announcementsView));
             }
         }

@@ -1,5 +1,6 @@
 package com.rolegame.game.gui.components.boxes;
 
+import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.Role;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -26,19 +27,22 @@ public class RoleBoxForGameGuide extends VBox {
         content.setPadding(new Insets(10));
 
         // Add the role name
-        Label roleNameLabel = new Label("Role: " + role.getName());
+        Label roleNameLabel = new Label(role.getName());
         roleNameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;");
 
         // Add abilities
-        Label abilitiesLabel = new Label("Abilities: " + role.getAbilities());
+        Label abilitiesLabel = new Label(LanguageManager.getText("GameGuide","RoleAbilities")
+                .replace("{abilities}",role.getAbilities()));
         abilitiesLabel.setStyle("-fx-text-fill: #d3d3d3;");
 
         // Add attributes
-        Label attributesLabel = new Label("Attributes: " + role.getAttributes());
+        Label attributesLabel = new Label(LanguageManager.getText("GameGuide","RoleAttributes")
+                .replace("{attributes}",role.getAttributes()));
         attributesLabel.setStyle("-fx-text-fill: #d3d3d3;");
 
         // Add goal
-        Label goalLabel = new Label("Goal: " + role.getGoal());
+        Label goalLabel = new Label(LanguageManager.getText("GameGuide","RoleGoal")
+                .replace("{goal}",role.getGoal()));
         goalLabel.setStyle("-fx-text-fill: #d3d3d3;");
 
         // Add components to the VBox

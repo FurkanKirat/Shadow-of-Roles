@@ -75,7 +75,7 @@ public class PlayerSelectionBox extends HBox{
 
         }
 
-        if(currentPlayer.equals(player)){
+        if(currentPlayer.getNumber()==player.getNumber()){
 
             Label youLabel = createLabel("("+ LanguageManager.getText("Menu","you")+")");
             youLabel.setTextFill(Color.SNOW);

@@ -248,6 +248,9 @@
     "GameGuideLabel": "Oyun Rehberi",
     "RolesLabel": "Roller",
     "RulesLabel": "Oyun Kuralları",
-    "MainGoalLabel": "Asıl Amaç"
+    "MainGoalLabel": "Asıl Amaç",
+    "RoleGoal": "Amaç: {goal}",
+    "RoleAttributes": "Özellikler: {attributes}",
+    "RoleAbilities": "Yetenekler: {abilities}"
   }
 }

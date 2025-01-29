@@ -249,6 +249,9 @@
     "GameGuideLabel": "Game Guide",
     "RolesLabel": "Roles",
     "RulesLabel": "Game Rules",
-    "MainGoalLabel": "Main Goal"
+    "MainGoalLabel": "Main Goal",
+    "RoleGoal": "Goal: {goal}",
+    "RoleAttributes": "Attributes: {attributes}",
+    "RoleAbilities": "Abilities: {abilities}"
   }
 }

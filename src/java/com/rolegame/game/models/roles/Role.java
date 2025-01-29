@@ -14,11 +14,7 @@ public abstract class Role {
     protected final RoleID id;
     protected RolePriority rolePriority;
     protected final RoleCategory roleCategory;
-    protected String name;
-    protected String attributes;
-    protected String abilities;
     protected final Team team;
-    protected final String goal;
     protected Player roleOwner;
     protected Player choosenPlayer;
     protected double attack;
@@ -27,18 +23,13 @@ public abstract class Role {
     protected final ChanceProperty chanceProperty;
 
     public Role(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
-                Team team, String goal,
-                double attack ,double defence, ChanceProperty chanceProperty
+                Team team, double attack ,double defence, ChanceProperty chanceProperty
     ) {
         // IMPORTANT! When adding a new role, the role id and role name in the lang json files must be the same!
         this.id = id;
         this.rolePriority = rolePriority;
         this.roleCategory = roleCategory;
-        this.name = LanguageManager.getRoleText(id.toString(),"name");
-        this.attributes = LanguageManager.getText(id.toString(),"attributes");
         this.team = team;
-        this.abilities = LanguageManager.getText(id.toString(),"abilities");
-        this.goal = goal;
         this.attack = attack;
         this.defence = defence;
         this.canPerform = true;
@@ -49,11 +40,7 @@ public abstract class Role {
         this.id = role.id;
         this.rolePriority = role.rolePriority;
         this.roleCategory = role.roleCategory;
-        this.name = role.name;
-        this.attributes = role.attributes;
         this.team = role.team;
-        this.abilities = role.abilities;
-        this.goal = role.goal;
         this.attack = role.getAttack();
         this.defence = role.getDefence();
         this.canPerform = true;
@@ -69,12 +56,6 @@ public abstract class Role {
         } catch (Exception e) {
             throw new RuntimeException("Cannot create copy of Role", e);
         }
-    }
-
-    public void updateLang(){
-        this.name = LanguageManager.getRoleText(id.toString(),"name");
-        this.attributes = LanguageManager.getText(id.toString(),"attributes");
-        this.abilities = LanguageManager.getText(id.toString(),"abilities");
     }
 
     public boolean performAbility(){
@@ -102,14 +83,8 @@ public abstract class Role {
     public abstract boolean executeAbility();
 
     @Override
-    public String toString(){
-        return name;
-    }
-
-    // Getter and Setters
-
-    public final RoleID getId() {
-        return id;
+    public String toString() {
+        return getName();
     }
 
     @Override
@@ -123,22 +98,25 @@ public abstract class Role {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+    // Getter and Setters
 
+    public final RoleID getId() {
+        return id;
+    }
+    
     public final String getName() {
-        return name;
+        return LanguageManager.getRoleText(id.toString(),"name");
     }
 
     public final String getAttributes() {
-        return attributes;
+        return LanguageManager.getText(id.toString(),"attributes");
     }
 
     public final String getAbilities() {
-        return abilities;
+        return LanguageManager.getText(id.toString(),"abilities");
     }
 
-    public final String getGoal() {
-        return goal;
-    }
+    public abstract String getGoal();
 
     public final RolePriority getRolePriority() {
         return rolePriority;

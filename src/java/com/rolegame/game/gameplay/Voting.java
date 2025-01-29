@@ -27,7 +27,7 @@ public class Voting {
     public static int getVoteCount(Player player){
         int count = 0;
         for(Player votedPlayer: votes.values()){
-            if(votedPlayer.equals(player)){
+            if(votedPlayer.getNumber()==player.getNumber()){
                 count++;
             }
         }

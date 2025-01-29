@@ -10,7 +10,11 @@ import com.rolegame.game.models.roles.roleproperties.Team;
 public abstract class NeutralRole extends Role {
     public NeutralRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
                        double attack, double defence, ChanceProperty chanceProperty) {
-        super(id, rolePriority, roleCategory, Team.NEUTRAL, LanguageManager.getText(id.toString() ,"goal"),
-                attack, defence, chanceProperty);
+        super(id, rolePriority, roleCategory, Team.NEUTRAL, attack, defence, chanceProperty);
+    }
+
+    @Override
+    public String getGoal() {
+        return LanguageManager.getText(id.toString() ,"goal");
     }
 }

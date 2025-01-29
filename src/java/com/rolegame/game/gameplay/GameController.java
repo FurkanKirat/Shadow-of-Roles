@@ -75,7 +75,7 @@ public class GameController {
         if(Voting.getMaxVote()>alivePlayers.size()/2){
 
             for(Player alivePlayer : alivePlayers){
-                if(alivePlayer.equals(Voting.getMaxVoted())){
+                if(alivePlayer.getNumber()==Voting.getMaxVoted().getNumber()){
                     alivePlayer.setAlive(false);
                     alivePlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath","hanging"));
                     break;

@@ -10,8 +10,11 @@ import com.rolegame.game.models.roles.Role;
 public abstract class FolkRole extends Role {
     public FolkRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory,
                     double attack , double defence, ChanceProperty chanceProperty) {
-        super(id, rolePriority, roleCategory, Team.FOLK,
-                LanguageManager.getText("FolkRole","goal"),attack,defence, chanceProperty);
+        super(id, rolePriority, roleCategory, Team.FOLK, attack, defence, chanceProperty);
     }
 
+    @Override
+    public String getGoal() {
+        return LanguageManager.getText("FolkRole","goal");
+    }
 }

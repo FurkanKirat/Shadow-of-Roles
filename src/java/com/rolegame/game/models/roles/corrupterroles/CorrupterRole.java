@@ -9,6 +9,11 @@ import com.rolegame.game.models.roles.Role;
 
 public abstract class CorrupterRole extends Role {
     public CorrupterRole(RoleID id, RolePriority rolePriority, RoleCategory roleCategory, double attack , double defence, ChanceProperty chanceProperty) {
-        super(id, rolePriority, roleCategory, Team.CORRUPTER, LanguageManager.getText("CorrupterRole","goal"), attack, defence, chanceProperty);
+        super(id, rolePriority, roleCategory, Team.CORRUPTER, attack, defence, chanceProperty);
+    }
+
+    @Override
+    public String getGoal() {
+        return LanguageManager.getText("CorrupterRole","goal");
     }
 }
