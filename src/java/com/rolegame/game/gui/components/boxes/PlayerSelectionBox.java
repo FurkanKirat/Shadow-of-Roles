@@ -18,7 +18,6 @@ public class PlayerSelectionBox extends HBox{
     private static final Color CORRUPTER_COLOR = Color.rgb(219, 57, 62);
     private final Button selectButton;
     private boolean isChosen = false;
-    private Label roleLabel;
     private HBox roleBox;
 
     public PlayerSelectionBox(Player player, Player currentPlayer, boolean isDay) {
@@ -64,7 +63,7 @@ public class PlayerSelectionBox extends HBox{
 
         if(currentPlayer.getRole().getTeam()==Team.CORRUPTER &&player.getRole().getTeam()==Team.CORRUPTER){
 
-            roleLabel = createLabel("("+player.getRole().getName()+")");
+            Label roleLabel = createLabel("(" + player.getRole().getName() + ")");
             roleLabel.setTextFill(CORRUPTER_COLOR);
             roleLabel.setAlignment(Pos.CENTER);
 

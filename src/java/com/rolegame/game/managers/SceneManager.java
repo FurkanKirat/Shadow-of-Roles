@@ -6,12 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -134,8 +136,14 @@ public class SceneManager {
         alert.setContentText(contentText);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
-        Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(SceneManager.class.getResource("/com/rolegame/game/css/Alert.css")).toExternalForm());
+
+        Stage alertStage = (Stage) dialogPane.getScene().getWindow();
         alertStage.getIcons().add(new Image("/com/rolegame/game/images/icon.jpg"));
+
+
         return alert;
     }
 

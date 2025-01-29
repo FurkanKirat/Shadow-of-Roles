@@ -3,6 +3,7 @@ package com.rolegame.game.gui.components.boxes;
 import com.rolegame.game.models.roles.Role;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
@@ -47,6 +48,8 @@ public class RoleBoxForGameGuide extends VBox {
         getChildren().addAll(content);
 
         VBox.setVgrow(this, Priority.ALWAYS);
+        HBox.setHgrow(this, Priority.NEVER);
+
     }
 
     /**

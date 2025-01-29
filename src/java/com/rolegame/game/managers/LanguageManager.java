@@ -2,6 +2,7 @@ package com.rolegame.game.managers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rolegame.game.models.roles.RoleCatalog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,6 +32,7 @@ public class LanguageManager {
             currentLang = languageCode;
             saveLanguage(currentLang, currentTheme);
             loadAchievements(currentLang);
+            RoleCatalog.updateRoleLang();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,6 +52,7 @@ public class LanguageManager {
 
             currentTheme = theme;
             saveLanguage(currentLang,currentTheme);
+            RoleCatalog.updateRoleLang();
 
         } catch (Exception e) {
             e.printStackTrace();

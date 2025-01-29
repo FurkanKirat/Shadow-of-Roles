@@ -38,6 +38,15 @@ public class RoleCatalog {
     }
 
     /**
+     * Updates the lang of all roles
+     */
+    public static void updateRoleLang(){
+        for (Role role: allRoles){
+            role.updateLang();
+        }
+    }
+
+    /**
      * Adds role to the catalog
      * @param roles the roles to be added to the role catalog
      */

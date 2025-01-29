@@ -1,5 +1,6 @@
 package com.rolegame.game.gui.controllers.gameguide;
 
+import com.rolegame.game.managers.LanguageManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,6 +41,9 @@ public class GameGuideController implements Initializable {
 
     @FXML
     private Label rolesLabel;
+
+    @FXML
+    private Label gameGuideLabel;
 
     @FXML
     void gameRulesClicked(MouseEvent event) {
@@ -88,7 +92,7 @@ public class GameGuideController implements Initializable {
 
 
             VBox.setVgrow(node, Priority.ALWAYS);
-            HBox.setHgrow(node,Priority.ALWAYS);
+            HBox.setHgrow(node,Priority.NEVER);
 
 
 
@@ -102,5 +106,10 @@ public class GameGuideController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changingPane.prefWidthProperty().bind(borderPane.widthProperty().multiply(0.5));
         changingPane.prefHeightProperty().bind(borderPane.heightProperty().multiply(0.5));
+
+        gameGuideLabel.setText(LanguageManager.getText("GameGuide","GameGuideLabel"));
+        gameRulesLabel.setText(LanguageManager.getText("GameGuide","RulesLabel"));
+        rolesLabel.setText(LanguageManager.getText("GameGuide","RolesLabel"));
+        mainGoalLabel.setText(LanguageManager.getText("GameGuide","MainGoalLabel"));
     }
 }

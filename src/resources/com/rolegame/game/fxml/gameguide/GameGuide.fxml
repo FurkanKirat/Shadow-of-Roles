@@ -14,7 +14,7 @@
    <top>
       <HBox alignment="TOP_CENTER" prefHeight="62.0" prefWidth="1288.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="62.0" prefWidth="227.0" styleClass="time-label" text="Game Guide" textFill="WHITE">
+            <Label fx:id="gameGuideLabel" alignment="CENTER" prefHeight="62.0" prefWidth="227.0" styleClass="time-label" text="Game Guide" textFill="WHITE">
                <font>
                   <Font size="28.0" />
                </font>
@@ -29,7 +29,7 @@
       </HBox>
    </top>
    <left>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="290.0" spacing="10.0" styleClass="container" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="290.0" spacing="10.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
@@ -108,7 +108,7 @@
       </VBox>
    </left>
    <center>
-      <VBox fx:id="changingPane" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="changingPane" prefHeight="600.0" prefWidth="1000.0" spacing="10.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
          </BorderPane.margin>

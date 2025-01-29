@@ -244,6 +244,10 @@
   },
   "GameGuide": {
     "Rules": "Oyun Kuralları ve Akışı\n1. Gece Aşaması:\n\nOyun gece başlar ve her oyuncu, sırasıyla cihazı alarak kendi rolüne bakar.\nHer oyuncu, rolüne uygun şekilde görevini gerçekleştirir ve ardından cihazı bir sonraki oyuncuya devreder.\nGece aşaması, tüm oyuncular görevlerini tamamladıktan sonra sona erer.\n2. Sabah Aşaması:\n\nSabah olduğunda her oyuncu, cihazı sırayla alarak gece rolünün gerçekleştirdiği görevin sonucunu görür.\nTüm oyuncular sonuçları gördükten sonra cihaz, ilk oyuncuya geri döner ve oylama aşamasına geçilir.\n3. Oylama Aşaması:\n\nOylama öncesinde, oyuncular gece boyunca aldıkları bilgileri paylaşarak tartışır ve fikir alışverişi yapar.\nOylama açık bir şekilde gerçekleşir; her oyuncu sırasıyla oyunu söyler ve ilk oyuncu oyları kaydeder.\nOyuncu sayısının yarısından fazla oy alan oyuncu elenir.\nOylama tamamlandıktan sonra oyun, gece aşamasına geçerek döngü bu şekilde devam eder.\nTakımlar ve Amaçları\nHalk:\n\nAmacı, oyunun sonunda hayatta kalan tüm oyuncuların sadece halktan olmasıdır.\nYozlaşmışlar:\n\nAmacı, oyunun sonunda hayatta kalan tüm oyuncuların sadece yozlaşmışlardan olmasıdır.\nTarafsızlar:\n\nTarafsız oyuncuların, kendilerine özgü kazanma yolları veya görevleri vardır. Amaçları, kendi bireysel hedeflerine ulaşmaktır.\n\nNot: Oyun, gece ve gündüz döngüsüyle ilerler ve her aşama takım hedeflerine ulaşmak için strateji ve iş birliği gerektirir.",
-    "MainGoal": "Eğlencenize bakın"
+    "MainGoal": "Eğlencenize bakın",
+    "GameGuideLabel": "Oyun Rehberi",
+    "RolesLabel": "Roller",
+    "RulesLabel": "Oyun Kuralları",
+    "MainGoalLabel": "Asıl Amaç"
   }
 }

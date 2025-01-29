@@ -14,9 +14,9 @@ public abstract class Role {
     protected final RoleID id;
     protected RolePriority rolePriority;
     protected final RoleCategory roleCategory;
-    protected final String name;
-    protected final String attributes;
-    protected final String abilities;
+    protected String name;
+    protected String attributes;
+    protected String abilities;
     protected final Team team;
     protected final String goal;
     protected Player roleOwner;
@@ -69,6 +69,12 @@ public abstract class Role {
         } catch (Exception e) {
             throw new RuntimeException("Cannot create copy of Role", e);
         }
+    }
+
+    public void updateLang(){
+        this.name = LanguageManager.getRoleText(id.toString(),"name");
+        this.attributes = LanguageManager.getText(id.toString(),"attributes");
+        this.abilities = LanguageManager.getText(id.toString(),"abilities");
     }
 
     public boolean performAbility(){

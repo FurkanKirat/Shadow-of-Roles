@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 public class WriteNamesController extends VBox {
     private final ComboBox<Integer> playerCountComboBox;
     private TextField[] textFields;
-    private static GameController gameController;
     private final VBox textFieldsBox;
 
     public WriteNamesController() {
@@ -23,6 +22,7 @@ public class WriteNamesController extends VBox {
 
         textFieldsBox = new VBox();
         textFieldsBox.setAlignment(Pos.CENTER);
+        textFieldsBox.getStyleClass().add("backgroundtransparant");
 
         playerCountComboBox = new ComboBox<>();
         playerCountComboBox.getItems().addAll(5, 6, 7, 8, 9, 10);
@@ -37,18 +37,13 @@ public class WriteNamesController extends VBox {
         comboBoxLabel.getStyleClass().add("startLabel");
 
         HBox comboBoxContainer = new HBox(comboBoxLabel, playerCountComboBox);
+        comboBoxContainer.getStyleClass().add("backgroundtransparant");
         comboBoxContainer.setAlignment(Pos.CENTER);
         comboBoxContainer.setSpacing(10);
 
         this.getChildren().add(comboBoxContainer);
         this.getChildren().add(textFieldsBox);
-
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setContent(textFieldsBox);
-        this.getChildren().add(scrollPane);
-
+        this.getStyleClass().add("backgroundtransparant");
         updateTextFields(playerCountComboBox.getValue());
     }
 
@@ -58,30 +53,43 @@ public class WriteNamesController extends VBox {
 
         for (int i = 0; i < playerCount; i++) {
             TextField textField = new TextField();
-            textField.setText(LanguageManager.getText("Menu","player") + " " + (i + 1));
+            textField.setText(LanguageManager.getText("Menu", "player") + " " + (i + 1));
             textField.getStyleClass().add("startTextField");
+            textField.setPrefWidth(200);
+            textField.setMinWidth(150);
+            textField.setMaxWidth(250);
+            textField.getStyleClass().add("gameStartLabel");
 
-            Label nameLabel = new Label(LanguageManager.getText("Menu","player") + " " + (i + 1) + ": ");
+            Label nameLabel = new Label(LanguageManager.getText("Menu", "player") + " " + (i + 1) + ": ");
             nameLabel.getStyleClass().add("startLabel");
+            nameLabel.setMinWidth(100);
+            nameLabel.setAlignment(Pos.CENTER_RIGHT);
 
             HBox hBox = new HBox(nameLabel, textField);
             hBox.setAlignment(Pos.CENTER);
             hBox.setSpacing(10);
+            hBox.setPrefWidth(textFieldsBox.getWidth());
+            hBox.setMaxWidth(Double.MAX_VALUE);
 
             textFields[i] = textField;
             textFieldsBox.getChildren().add(hBox);
         }
 
+        textFieldsBox.setSpacing(5);
+        textFieldsBox.setAlignment(Pos.CENTER);
+
+
         Button button = new Button(LanguageManager.getText("Menu","apply"));
         button.getStyleClass().add("startButton");
         button.setOnAction((event) -> {
-            gameController = new GameController(textFields);
+            GameController gameController = new GameController(textFields);
             GameScreenController.setGameController(gameController);
             SceneManager.switchScene("/com/rolegame/game/fxml/game/GameScreen.fxml", SceneManager.SceneType.GAME, false);
 
 
         });
         textFieldsBox.getChildren().add(button);
+
     }
 
 }
