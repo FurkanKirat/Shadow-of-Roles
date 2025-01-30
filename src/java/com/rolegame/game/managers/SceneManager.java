@@ -1,6 +1,7 @@
 package com.rolegame.game.managers;
 
-import javafx.animation.FadeTransition;
+import com.rolegame.game.gui.components.LoadingScreen;
+import javafx.animation.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -58,48 +59,49 @@ public class SceneManager {
         changeScene(root, sceneType, randomImage);
     }
 
-    private static void changeScene(Parent root, SceneType sceneType, boolean randomImage){
-
-        if(randomImage){
-            setStyleImage(root,currentImage);
-            currentImage = (currentImage + 1) % imageCount ;
+    private static void changeScene(Parent root, SceneType sceneType, boolean randomImage) {
+        if (randomImage) {
+            setStyleImage(root, currentImage);
+            currentImage = (currentImage + 1) % imageCount;
         }
 
         Scene newScene = new Scene(root);
-        if(stage.getScene()==null){
+
+        if (stage.getScene() == null) {
             stage.setScene(newScene);
+            return;
         }
 
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+        boolean isFullScreen = stage.isFullScreen();
 
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), stage.getScene().getRoot());
-        fadeOut.setFromValue(1);
-        fadeOut.setToValue(0);
-        fadeOut.setOnFinished(_ -> {
-            double currentWidth = stage.getWidth();
-            double currentHeight = stage.getHeight();
-            boolean isFullScreen = stage.isFullScreen();
+        LoadingScreen loadingScreen = new LoadingScreen();
+        Scene loadingScene = new Scene(loadingScreen, stage.getWidth(), stage.getHeight());
+
+        if (isFullScreen) {
+            stage.setFullScreen(true);
+        }
+        stage.setScene(loadingScene);
+        int duration = 500; //ms
+        PauseTransition pause = new PauseTransition(Duration.millis(duration));
+        pause.setOnFinished(_ -> {
 
             stage.setScene(newScene);
 
-            if(isFullScreen){
+            if (isFullScreen) {
                 stage.setFullScreen(true);
-            }
-            else{
+            } else {
                 stage.setWidth(currentWidth);
                 stage.setHeight(currentHeight);
-
             }
 
-
-            FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), newScene.getRoot());
-            fadeIn.setFromValue(0);
-            fadeIn.setToValue(1);
-            fadeIn.play();
+            ShortcutManager.attachToScene(newScene, sceneType);
         });
-
-        fadeOut.play();
-        ShortcutManager.attachToScene(newScene, sceneType);
+        loadingScreen.animateProgressBar(duration);
+        pause.play();
     }
+
 
     public static void settingsScene(){
         switchScene("/com/rolegame/game/fxml/menu/Settings.fxml", SceneType.SETTINGS,true);
@@ -139,8 +141,8 @@ public class SceneManager {
 
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(SceneManager.class.getResource("/com/rolegame/game/css/Alert.css")).toExternalForm());
-
         Stage alertStage = (Stage) dialogPane.getScene().getWindow();
+        alertStage.setAlwaysOnTop(true);
         alertStage.getIcons().add(new Image("/com/rolegame/game/images/icon.jpg"));
 
 

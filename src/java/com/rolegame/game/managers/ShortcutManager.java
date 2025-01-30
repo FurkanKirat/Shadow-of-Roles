@@ -57,17 +57,17 @@ public class ShortcutManager {
     }
 
     private static void writeNamesShortcuts(){
-        ShortcutManager.addShortcut(SceneManager.SceneType.WRITE_NAMES,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
+        ShortcutManager.addShortcut(SceneManager.SceneType.WRITE_NAMES,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to main menu",
                 SceneManager::mainMenuScene));
     }
 
     private static void creditsShortcuts(){
-        ShortcutManager.addShortcut(SceneManager.SceneType.CREDITS,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
+        ShortcutManager.addShortcut(SceneManager.SceneType.CREDITS,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to main menu",
                 SceneManager::mainMenuScene));
     }
 
     private static void achievementsShortcuts(){
-        ShortcutManager.addShortcut(SceneManager.SceneType.ACHIEVEMENTS,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to settings menu",
+        ShortcutManager.addShortcut(SceneManager.SceneType.ACHIEVEMENTS,new ShortcutManager.Shortcut(KeyCode.ESCAPE, "Go back to main menu",
                 SceneManager::mainMenuScene));
     }
     private static void gameGuideShortcuts(){{
