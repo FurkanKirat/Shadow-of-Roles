@@ -26,32 +26,21 @@ public class AchievementsController implements Initializable {
     private Label achievementsLabel;
 
     @FXML
-    private Label backLabel;
-
-    @FXML
-    private VBox bigBox;
+    private VBox root;
 
     @FXML
     private ListView<AchievementBox> achievementsListView;
 
-    @FXML
-    private HBox backBox;
 
-    @FXML
-    void backClicked(MouseEvent event) {
-        SceneManager.switchScene("/com/rolegame/game/fxml/menu/MainMenu.fxml", SceneManager.SceneType.MAIN_MENU, true);
-    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        backLabel.setText(LanguageManager.getText("GeneralMenu","back"));
+
         achievementsLabel.setText(LanguageManager.getText("Achievements","achievements"));
-        bigBox.getChildren().remove(backBox);
 
         Map<Achievement.AchievementID, Achievement> achievementMap = AchievementManager.loadAchievements();
 
         for(Map.Entry<Achievement.AchievementID,Achievement> achievementEntry : achievementMap.entrySet()){
             achievementsListView.getItems().add(new AchievementBox(achievementEntry.getValue()));
         }
-        bigBox.getChildren().add(backBox);
     }
 }

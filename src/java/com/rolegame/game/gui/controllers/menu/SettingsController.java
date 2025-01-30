@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
 import java.awt.*;
 import java.net.URI;
@@ -17,6 +18,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
+
+    @FXML
+    private VBox root;
 
     @FXML
     private Label changeLanguageLabel;

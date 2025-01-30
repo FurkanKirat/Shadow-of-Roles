@@ -1,52 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.menu.AchievementsController">
+<VBox fx:id="root" focusTraversable="true" prefHeight="768.0" prefWidth="1366.0" styleClass="backgroundimage" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.menu.AchievementsController">
    <children>
-      <VBox fx:id="bigBox" focusTraversable="true" prefHeight="768.0" prefWidth="1366.0">
+      <HBox alignment="CENTER" focusTraversable="true" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
-               <children>
-                  <Label fx:id="achievementsLabel" text="Achievements" textFill="WHITE">
-                     <font>
-                        <Font size="43.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <VBox fx:id="achievementBox" alignment="CENTER" minWidth="586.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <ListView fx:id="achievementsListView" maxWidth="550.0" prefWidth="500.0" styleClass="achievement-list-view" />
-               </children></VBox>
-            <HBox fx:id="backBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Label fx:id="backLabel" alignment="CENTER" onMouseClicked="#backClicked" prefHeight="70.0" prefWidth="290.0" text="Back">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <styleClass>
-                        <String fx:value="MenuLabel" />
-                        <String fx:value="Menuhover-label" />
-                     </styleClass>
-                  </Label>
-               </children>
-            </HBox>
+            <Label fx:id="achievementsLabel" text="Achievements" textFill="WHITE">
+               <font>
+                  <Font size="43.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox fx:id="achievementBox" alignment="CENTER" focusTraversable="true" minWidth="586.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ListView fx:id="achievementsListView" focusTraversable="false" maxWidth="660.0" prefHeight="501.0" prefWidth="660.0" styleClass="achievement-list-view" />
          </children>
       </VBox>
+      <Region prefHeight="120.0" prefWidth="1346.0" />
    </children>
-   <styleClass>
-      <String fx:value="background" />
-      <String fx:value="backgroundimage" />
-   </styleClass>
-</StackPane>
+</VBox>

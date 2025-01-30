@@ -6,58 +6,54 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.game.ChillGuyAlertController">
+<VBox fx:id="root" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.game.ChillGuyAlertController">
    <children>
-      <VBox prefHeight="768.0" prefWidth="1366.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <Label fx:id="chillGuyLabel" text="Chill Guy Alert" textFill="WHITE">
+               <font>
+                  <Font size="43.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" prefHeight="646.0" prefWidth="1346.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label fx:id="questionLabel" alignment="CENTER" text="Did Chill Guy Revealed their role?" textFill="WHITE">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="194.0" prefWidth="1346.0">
                <children>
-                  <Label fx:id="chillGuyLabel" text="Chill Guy Alert" textFill="WHITE">
-                     <font>
-                        <Font size="43.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <VBox alignment="TOP_CENTER" prefHeight="646.0" prefWidth="1346.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Label fx:id="questionLabel" alignment="CENTER" text="Did Chill Guy Revealed their role?" textFill="WHITE">
+                  <RadioButton fx:id="yesButton" mnemonicParsing="false" text="Yes">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="group" />
+                     </toggleGroup>
                      <font>
                         <Font size="35.0" />
                      </font>
-                  </Label>
-                  <HBox alignment="CENTER" prefHeight="194.0" prefWidth="1346.0">
-                     <children>
-                        <RadioButton fx:id="yesButton" mnemonicParsing="false" text="Yes">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="group" />
-                           </toggleGroup>
-                           <font>
-                              <Font size="35.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="194.0" prefWidth="1346.0">
-                     <children>
-                        <RadioButton fx:id="noButton" mnemonicParsing="false" text="No" toggleGroup="$group">
-                           <font>
-                              <Font size="35.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
-                  </HBox>
-                  <Button fx:id="button" mnemonicParsing="false" onAction="#buttonClicked" text="Accept" />
-               </children></VBox>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="194.0" prefWidth="1346.0">
+               <children>
+                  <RadioButton fx:id="noButton" mnemonicParsing="false" text="No" toggleGroup="$group">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <Button fx:id="button" mnemonicParsing="false" onAction="#buttonClicked" text="Accept" />
          </children>
       </VBox>
    </children>
    <styleClass>
-      <String fx:value="backgroundimage" />
       <String fx:value="chillGuy" />
+      <String fx:value="backgroundimage" />
    </styleClass>
-</StackPane>
+</VBox>

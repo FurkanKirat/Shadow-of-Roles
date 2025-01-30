@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ import java.util.Optional;
 import java.util.Random;
 
 public class GameScreenController {
+
+    @FXML
+    private StackPane root;
 
     @FXML
     private TextField abilitiesTextField;
@@ -182,10 +186,12 @@ public class GameScreenController {
         alivePlayersLabel.setText(LanguageManager.getText("Menu","alivePlayers"));
         useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
 
-        passTurnLabel.setText(LanguageManager.getText("PassTur","turn")
+        passTurnLabel.setText(LanguageManager.getText("PassTurn","turn")
                 .replace("{playerName}", gameController.getCurrentPlayer().getName()));
         alivePlayersListView.setSelectionModel(null);
         announcementsListView.setSelectionModel(null);
+
+        setStyleImage(passTurnPane,"night");
 
 
     }

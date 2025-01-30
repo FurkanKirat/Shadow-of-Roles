@@ -253,5 +253,9 @@
     "RoleGoal": "Goal: {goal}",
     "RoleAttributes": "Attributes: {attributes}",
     "RoleAbilities": "Abilities: {abilities}"
+  },
+
+  "Credits": {
+    "creditText": "Developed By: Furkan Kırat\nGraphs By: Tikky\nPowered by: JavaFX, Java 23\nThanks for Playing"
   }
 }

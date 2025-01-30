@@ -252,5 +252,8 @@
     "RoleGoal": "Amaç: {goal}",
     "RoleAttributes": "Özellikler: {attributes}",
     "RoleAbilities": "Yetenekler: {abilities}"
+  },
+  "Credits": {
+    "creditText": "Developed By: Furkan Kırat\nGraphs By: Tikky\nPowered by: JavaFX, Java 23\nThanks for Playing"
   }
 }

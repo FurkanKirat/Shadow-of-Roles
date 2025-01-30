@@ -10,11 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChillGuyAlertController implements Initializable {
+
+    @FXML
+    private VBox root;
 
     @FXML
     private ToggleGroup group;
