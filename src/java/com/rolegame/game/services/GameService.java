@@ -49,6 +49,20 @@ public class GameService {
         
     }
 
+    public void toggleDayNightCycle(){
+        isDay = !isDay;
+        if(isDay){
+            performAllAbilities();
+            dayCount++;
+        }else{
+            executeMaxVoted();
+        }
+
+        if(checkGameFinished()){
+            finishGame();
+        }
+    }
+
     /**
      *  Performs all abilities according to role priorities
      */
@@ -311,6 +325,9 @@ public class GameService {
         currentPlayerIndex = (currentPlayerIndex + 1) % alivePlayers.size();
         currentPlayer = alivePlayers.get(currentPlayerIndex);
 
+        if(currentPlayerIndex == 0){
+            toggleDayNightCycle();
+        }
     }
 
     // Getters and Setters

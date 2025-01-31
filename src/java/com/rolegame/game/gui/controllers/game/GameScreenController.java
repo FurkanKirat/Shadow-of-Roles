@@ -137,15 +137,19 @@ public class GameScreenController {
         passTurnPane.setVisible(true);
         gameService.sendVoteMessages();
         gameService.passTurn();
+
         if(gameService.getCurrentPlayerIndex()==0){
 
-            toggleDayNightCycle();
+            toggleDayNightCycleUI();
 
         }
         if(gameService.isDay()){
             setStyleImage(passTurnPane,"day");
         }else{
             setStyleImage(passTurnPane,"night");
+            if(!(gameService.getCurrentPlayer() instanceof ActiveNightAbility)){
+                useAbilityButton.setText("Pass Turn");
+            }
         }
         changePlayerUI();
     }
@@ -277,40 +281,25 @@ public class GameScreenController {
                 .replace("{playerName}", gameService.getCurrentPlayer().getName()));
     }
 
-    private void toggleDayNightCycle(){
-        gameService.setDay(!gameService.isDay());
+    private void toggleDayNightCycleUI(){
+
         if(gameService.isDay()){
 
-            gameService.performAllAbilities();
             useAbilityButton.setText(LanguageManager.getText("Menu","vote"));
             gameBox.getStyleClass().remove("night");
             gameBox.getStyleClass().add("day");
 
-            dayStartAnnouncements();
-
-            gameService.setDayCount(gameService.getDayCount()+1);
-
         }
         else{
 
-            gameService.executeMaxVoted();
             useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
             gameBox.getStyleClass().remove("day");
             gameBox.getStyleClass().add("night");
 
-            dayStartAnnouncements();
-
-            if(!(gameService.getCurrentPlayer() instanceof ActiveNightAbility)){
-                useAbilityButton.setText("Pass Turn");
-            }
-
         }
-        gameService.updateAlivePlayers();
 
-        if(gameService.checkGameFinished()){
-            gameService.finishGame();
-            return;
-        }
+        displayAnnouncements();
+
 
         graveListView.getItems().clear();
 
@@ -341,7 +330,7 @@ public class GameScreenController {
     /**
      * Updates announcements displays the announcement pane
      */
-    private void dayStartAnnouncements(){
+    private void displayAnnouncements(){
         announcementsListView.getItems().clear();
         for(Message message: Message.getMessages()){
             if(message.isPublic()&&message.dayCount() == gameService.getDayCount()){
