@@ -1,6 +1,6 @@
 package com.rolegame.game.gui.controllers.game;
 
-import com.rolegame.game.gameplay.GameController;
+import com.rolegame.game.services.GameService;
 import com.rolegame.game.models.Player;
 import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
@@ -38,8 +38,8 @@ public class ChillGuyAlertController implements Initializable {
     @FXML
     void buttonClicked(ActionEvent event) {
 
-        GameController gameController = GameScreenController.getGameController();
-        for(Player player: gameController.getAllPlayers()){
+        GameService gameService = GameScreenController.getGameService();
+        for(Player player: gameService.getAllPlayers()){
             if(player.getRole() instanceof ChillGuy){
                 player.setHasWon(noButton.isSelected());
                 break;

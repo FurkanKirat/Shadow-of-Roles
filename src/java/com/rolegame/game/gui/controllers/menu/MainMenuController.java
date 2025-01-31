@@ -1,6 +1,6 @@
 package com.rolegame.game.gui.controllers.menu;
 
-import com.rolegame.game.gui.controllers.game.WriteNamesController;
+import com.rolegame.game.gui.controllers.game.PlayerNamesController;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
 import javafx.fxml.FXML;
@@ -64,7 +64,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void startGame(MouseEvent event) {
-        SceneManager.switchScene(new WriteNamesController(), SceneManager.SceneType.WRITE_NAMES, true);
+        SceneManager.switchScene(new PlayerNamesController(), SceneManager.SceneType.WRITE_NAMES, true);
     }
 
 

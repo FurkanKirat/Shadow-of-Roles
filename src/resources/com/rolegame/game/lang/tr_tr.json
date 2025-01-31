@@ -207,6 +207,7 @@
   "EndMenu": {
     "startGameButton": "Ana Menüye Geri Dön",
     "hasWon": "{teamName} kazandı",
+    "draw": "Oyun berabere bitti!",
     "won": "Kazandı",
     "lost": "Kaybetti",
     "alive": "Hayatta",

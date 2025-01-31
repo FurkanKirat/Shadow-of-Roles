@@ -19,14 +19,14 @@ public final class Psycho extends CorrupterRole implements ActiveNightAbility {
         if(getAttack() > getChoosenPlayer().getDefence()){
             this.getChoosenPlayer().setAlive(false);
             this.getChoosenPlayer().setCauseOfDeath(LanguageManager.getText("CauseOfDeath","psycho"));
-            sendAbilityMessage(LanguageManager.getText("Psycho","killMessage"), getRoleOwner(),false);
-            sendAbilityMessage( LanguageManager.getText("Psycho","slainMessage").replace("{playerName}",this.getChoosenPlayer().getName()), getRoleOwner(),true);
+            sendAbilityMessage(LanguageManager.getText("Psycho","killMessage"), getRoleOwner());
+            sendAbilityAnnouncement( LanguageManager.getText("Psycho","slainMessage").replace("{playerName}",this.getChoosenPlayer().getName()));
 
             return true;
         }
         else{
             sendAbilityMessage(LanguageManager.getText("Psycho","defenceMessage"),
-                    getRoleOwner(),false);
+                    getRoleOwner());
             return false;
         }
     }

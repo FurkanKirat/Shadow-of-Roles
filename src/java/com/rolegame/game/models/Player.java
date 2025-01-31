@@ -58,6 +58,9 @@ public class Player {
 
     public void setRole(Role role) {
         this.role = role;
+        this.role.setRoleOwner(this);
+        this.attack = role.getAttack();
+        this.defence = role.getDefence();
     }
 
     public boolean isAlive() {

@@ -14,7 +14,7 @@ public final class Soulbinder extends FolkRole implements ActiveNightAbility {
 
     @Override
     public boolean executeAbility() {
-        sendAbilityMessage(LanguageManager.getText("Soulbinder","abilityMessage") ,roleOwner,false);
+        sendAbilityMessage(LanguageManager.getText("Soulbinder","abilityMessage") ,roleOwner);
         this.choosenPlayer.setDefence(this.choosenPlayer.getDefence()+1);
         return true;
     }

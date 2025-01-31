@@ -16,7 +16,7 @@ public final class DarkRevealer extends CorrupterRole implements ActiveNightAbil
     public boolean executeAbility() {
 
         String message = LanguageManager.getText("DarkRevealer","abilityMessage").replace("{roleName}",choosenPlayer.getRole().getName());
-        sendAbilityMessage(message,getRoleOwner(), false);
+        sendAbilityMessage(message,getRoleOwner());
 
         return true;
     }

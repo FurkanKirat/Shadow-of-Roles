@@ -20,7 +20,7 @@ public final class Darkseer extends CorrupterRole implements PassiveNightAbility
     @Override
     public boolean performAbility() {
         if(!isCanPerform()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),getRoleOwner(),false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),getRoleOwner());
             return false;
         }
         return executeAbility();
@@ -28,7 +28,7 @@ public final class Darkseer extends CorrupterRole implements PassiveNightAbility
 
     @Override
     public boolean executeAbility() {
-        ArrayList<Player> players = new ArrayList<>(GameScreenController.getGameController().getAlivePlayers());
+        ArrayList<Player> players = new ArrayList<>(GameScreenController.getGameService().getAlivePlayers());
 
         Collections.shuffle(players);
         String message;
@@ -46,7 +46,7 @@ public final class Darkseer extends CorrupterRole implements PassiveNightAbility
             message = LanguageManager.getText("Darkseer","zeroLeftMessage");
         }
 
-        sendAbilityMessage(message,getRoleOwner(), false);
+        sendAbilityMessage(message,getRoleOwner());
         return true;
     }
 

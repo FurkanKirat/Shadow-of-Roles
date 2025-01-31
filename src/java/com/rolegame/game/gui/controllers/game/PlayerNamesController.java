@@ -1,19 +1,26 @@
 package com.rolegame.game.gui.controllers.game;
 
-import com.rolegame.game.gameplay.GameController;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
+
+import com.rolegame.game.services.GameService;
+import com.rolegame.game.services.PlayerNamesService;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class WriteNamesController extends VBox {
+import java.util.ArrayList;
+
+public class PlayerNamesController extends VBox {
     private final ComboBox<Integer> playerCountComboBox;
     private TextField[] textFields;
     private final VBox textFieldsBox;
+    private final PlayerNamesService writeNamesService;
 
-    public WriteNamesController() {
+    public PlayerNamesController() {
+        this.writeNamesService = new PlayerNamesService(); // Servis örneği
+
         this.getStylesheets().add("/com/rolegame/game/css/GameStyle.css");
         this.getStyleClass().add("startRoot");
         this.setPrefWidth(1366);
@@ -78,18 +85,34 @@ public class WriteNamesController extends VBox {
         textFieldsBox.setSpacing(5);
         textFieldsBox.setAlignment(Pos.CENTER);
 
-
         Button button = new Button(LanguageManager.getText("Menu","apply"));
         button.getStyleClass().add("startButton");
-        button.setOnAction((event) -> {
-            GameController gameController = new GameController(textFields);
-            GameScreenController.setGameController(gameController);
-            SceneManager.switchScene("/com/rolegame/game/fxml/game/GameScreen.fxml", SceneManager.SceneType.GAME, false);
+        button.setOnAction((_) -> handleApplyButton(playerCount));
 
-
-        });
         textFieldsBox.getChildren().add(button);
-
     }
 
+    private void handleApplyButton(int playerCount) {
+        ArrayList<String> playerNames = new ArrayList<>(textFields.length);
+
+        for (TextField textField : textFields) {
+            playerNames.add(textField.getText());
+        }
+
+        try {
+            GameService gameService = writeNamesService.createGameService(playerNames, playerCount);
+            GameScreenController.setGameService(gameService);
+            SceneManager.switchScene("/com/rolegame/game/fxml/game/GameScreen.fxml", SceneManager.SceneType.GAME, false);
+        } catch (IllegalArgumentException e) {
+            showAlert("Error", e.getMessage());
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

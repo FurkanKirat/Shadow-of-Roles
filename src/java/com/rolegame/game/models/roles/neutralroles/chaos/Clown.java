@@ -25,4 +25,9 @@ public final class Clown extends NeutralRole implements NoNightAbility {
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(30,1);
     }
+
+    @Override
+    public boolean canWinWithOtherTeams() {
+        return true;
+    }
 }

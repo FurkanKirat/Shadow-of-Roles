@@ -46,7 +46,7 @@ public final class Lorekeeper extends NeutralRole implements ActiveNightAbility 
             String message = messageTemplate
                     .replace("{playerName}", choosenPlayer.getName())
                     .replace("{roleName}", choosenPlayer.getRole().getName());
-            sendAbilityMessage(message,roleOwner, true);
+            sendAbilityAnnouncement(message);
         }
         return false;
     }
@@ -76,4 +76,8 @@ public final class Lorekeeper extends NeutralRole implements ActiveNightAbility 
         return alreadyChosenPlayers;
     }
 
+    @Override
+    public boolean canWinWithOtherTeams() {
+        return true;
+    }
 }

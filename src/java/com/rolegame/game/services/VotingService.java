@@ -1,21 +1,21 @@
-package com.rolegame.game.gameplay;
+package com.rolegame.game.services;
 
 import com.rolegame.game.models.Player;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Voting {
-    private static final HashMap<Player,Player> votes = new HashMap<>();
-    private static Player maxVoted;
-    private static int maxVote;
+public class VotingService {
+    private HashMap<Player,Player> votes = new HashMap<>();
+    private Player maxVoted;
+    private int maxVote;
 
     /**
      * Casts a vote from the voter player to the voted player
      * @param voter voter player
      * @param voted voted player
      */
-    public static void vote(Player voter, Player voted){
+    public void vote(Player voter, Player voted){
         votes.put(voter,voted);
     }
 
@@ -24,7 +24,7 @@ public class Voting {
      * @param player the desired player
      * @return player's vote count
      */
-    public static int getVoteCount(Player player){
+    public int getVoteCount(Player player){
         int count = 0;
         for(Player votedPlayer: votes.values()){
             if(votedPlayer.getNumber()==player.getNumber()){
@@ -37,7 +37,7 @@ public class Voting {
     /**
      * Updates the max voted player
      */
-    public static void updateMaxVoted(){
+    public void updateMaxVoted(){
         HashMap<Player,Integer> voteCounts = new HashMap<>();
 
         for(Player votedPlayer: votes.values()){
@@ -53,20 +53,26 @@ public class Voting {
     }
 
     /**
-     * Clears the votes after game is finished
+     * Clears the votes after day is finished
      */
-    public static void clearVotes(){
+    public void clearVotes(){
         votes.clear();
         maxVoted = null;
         maxVote = 0;
     }
 
+    public void nullifyVotes(){
+        votes = null;
+        maxVoted = null;
+        maxVote = 0;
+    }
+
     // Getters
-    public static Player getMaxVoted() {
+    public Player getMaxVoted() {
         return maxVoted;
     }
 
-    public static int getMaxVote() {
+    public int getMaxVote() {
         return maxVote;
     }
 }

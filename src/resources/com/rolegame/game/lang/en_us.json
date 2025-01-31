@@ -207,7 +207,8 @@
   },
   "EndMenu": {
     "startGameButton": "Go Back to Main Menu",
-    "hasWon": "{teamName} have won",
+    "hasWon": "{teamName} have won!",
+    "draw": "The game is draw!",
     "won": "Won",
     "lost": "Lost",
     "alive": "Alive",

@@ -5,7 +5,7 @@ import com.rolegame.game.gui.components.boxes.PlayerSelectionBox;
 import com.rolegame.game.gui.components.boxes.RoleBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.EntrepreneurBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.LorekeeperBox;
-import com.rolegame.game.gameplay.*;
+import com.rolegame.game.services.*;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.roles.*;
@@ -111,16 +111,16 @@ public class GameScreenController {
     @FXML
     private HBox gameBox;
 
-    private static GameController gameController;
+    private static GameService gameService;
 
     private static final ArrayList<PlayerSelectionBox> playerSelectionBoxes = new ArrayList<>();
 
     @FXML
     void useAbilityClicked(ActionEvent event) {
 
-        if(gameController.getCurrentPlayer().getRole().getChoosenPlayer()==null){
+        if(gameService.getCurrentPlayer().getRole().getChoosenPlayer()==null){
 
-            if(gameController.isDay()||(!gameController.isDay() && gameController.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
+            if(gameService.isDay()||(!gameService.isDay() && gameService.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
                 Alert alert = SceneManager.createAlert(Alert.AlertType.CONFIRMATION,LanguageManager.getText("Menu","passAlertTitle"),
                         LanguageManager.getText("Menu","passAlertHead"), LanguageManager.getText("Menu","passAlertMessage"));
 
@@ -135,14 +135,14 @@ public class GameScreenController {
 
 
         passTurnPane.setVisible(true);
-        gameController.sendVoteMessages();
-        gameController.passTurn();
-        if(gameController.getCurrentPlayerIndex()==0){
+        gameService.sendVoteMessages();
+        gameService.passTurn();
+        if(gameService.getCurrentPlayerIndex()==0){
 
             toggleDayNightCycle();
 
         }
-        if(gameController.isDay()){
+        if(gameService.isDay()){
             setStyleImage(passTurnPane,"day");
         }else{
             setStyleImage(passTurnPane,"night");
@@ -175,7 +175,7 @@ public class GameScreenController {
         changePlayerUI();
         initializeRolesView();
         initializeMessages();
-        dayLabel.setText((gameController.isDay() ? LanguageManager.getText("Menu","day"): LanguageManager.getText("Menu","night") ) + ": " +gameController.getDayCount());
+        dayLabel.setText((gameService.isDay() ? LanguageManager.getText("Menu","day"): LanguageManager.getText("Menu","night") ) + ": " + gameService.getDayCount());
 
         announcementsLabel.setText(LanguageManager.getText("Menu","announcement"));
         allRolesLabel.setText(LanguageManager.getText("Menu","allRoles"));
@@ -187,7 +187,7 @@ public class GameScreenController {
         useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
 
         passTurnLabel.setText(LanguageManager.getText("PassTurn","turn")
-                .replace("{playerName}", gameController.getCurrentPlayer().getName()));
+                .replace("{playerName}", gameService.getCurrentPlayer().getName()));
         alivePlayersListView.setSelectionModel(null);
         announcementsListView.setSelectionModel(null);
 
@@ -246,16 +246,16 @@ public class GameScreenController {
     }
 
     private void changePlayerUI(){
-        nameLabel.setText(gameController.getCurrentPlayer().getName());
-        numberLabel.setText(LanguageManager.getText("Menu","number")+": "+gameController.getCurrentPlayer().getNumber());
-        abilitiesTextField.setText(gameController.getCurrentPlayer().getRole().getAbilities());
-        attributesTextField.setText(gameController.getCurrentPlayer().getRole().getAttributes());
-        goalTextField.setText(gameController.getCurrentPlayer().getRole().getGoal());
-        roleLabel.setText(gameController.getCurrentPlayer().getRole().getName());
+        nameLabel.setText(gameService.getCurrentPlayer().getName());
+        numberLabel.setText(LanguageManager.getText("Menu","number")+": "+ gameService.getCurrentPlayer().getNumber());
+        abilitiesTextField.setText(gameService.getCurrentPlayer().getRole().getAbilities());
+        attributesTextField.setText(gameService.getCurrentPlayer().getRole().getAttributes());
+        goalTextField.setText(gameService.getCurrentPlayer().getRole().getGoal());
+        roleLabel.setText(gameService.getCurrentPlayer().getRole().getName());
 
-        List<PlayerSelectionBox> boxes = gameController.getAlivePlayers().stream()
+        List<PlayerSelectionBox> boxes = gameService.getAlivePlayers().stream()
                 .filter(Player::isAlive)
-                .map(player -> new PlayerSelectionBox(player, gameController.getCurrentPlayer(), gameController.isDay()))
+                .map(player -> new PlayerSelectionBox(player, gameService.getCurrentPlayer(), gameService.isDay()))
                 .toList();
 
         alivePlayersListView.getItems().setAll(boxes);
@@ -266,52 +266,58 @@ public class GameScreenController {
 
         initializeMessages();
         extraPropertiesVbox.getChildren().clear();
-        if(gameController.getCurrentPlayer().getRole() instanceof Entrepreneur entrepreneur && !gameController.isDay()){
+        if(gameService.getCurrentPlayer().getRole() instanceof Entrepreneur entrepreneur && !gameService.isDay()){
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.NONE);
             extraPropertiesVbox.getChildren().add(new EntrepreneurBox(entrepreneur));
         }
-        else if(gameController.getCurrentPlayer().getRole() instanceof Lorekeeper lorekeeper && !gameController.isDay()){
+        else if(gameService.getCurrentPlayer().getRole() instanceof Lorekeeper lorekeeper && !gameService.isDay()){
             extraPropertiesVbox.getChildren().add(new LorekeeperBox(lorekeeper));
         }
         passTurnLabel.setText(LanguageManager.getText("PassTurn","turn")
-                .replace("{playerName}", gameController.getCurrentPlayer().getName()));
+                .replace("{playerName}", gameService.getCurrentPlayer().getName()));
     }
 
     private void toggleDayNightCycle(){
-        gameController.setDay(!gameController.isDay());
-        if(gameController.isDay()){
+        gameService.setDay(!gameService.isDay());
+        if(gameService.isDay()){
 
+            gameService.performAllAbilities();
             useAbilityButton.setText(LanguageManager.getText("Menu","vote"));
             gameBox.getStyleClass().remove("night");
             gameBox.getStyleClass().add("day");
 
-            gameController.performAllAbilities();
             dayStartAnnouncements();
 
-            gameController.setDayCount(getGameController().getDayCount()+1);
+            gameService.setDayCount(gameService.getDayCount()+1);
 
         }
         else{
 
-            gameController.executeMaxVoted();
-            gameController.updateAlivePlayers();
-
-            dayStartAnnouncements();
+            gameService.executeMaxVoted();
             useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
-            if(!(gameController.getCurrentPlayer() instanceof ActiveNightAbility)){
-                useAbilityButton.setText("Pass Turn");
-            }
             gameBox.getStyleClass().remove("day");
             gameBox.getStyleClass().add("night");
+
+            dayStartAnnouncements();
+
+            if(!(gameService.getCurrentPlayer() instanceof ActiveNightAbility)){
+                useAbilityButton.setText("Pass Turn");
+            }
+
         }
-        gameController.updateAlivePlayers();
-        gameController.checkGameFinished();
+        gameService.updateAlivePlayers();
+
+        if(gameService.checkGameFinished()){
+            gameService.finishGame();
+            return;
+        }
+
         graveListView.getItems().clear();
 
-        for(Player deadPlayer: gameController.getDeadPlayers()){
+        for(Player deadPlayer: gameService.getDeadPlayers()){
             graveListView.getItems().add(deadPlayer.toString()+" ("+deadPlayer.getRole().getName()+")");
         }
-        dayLabel.setText((gameController.isDay() ? LanguageManager.getText("Menu","day") : LanguageManager.getText("Menu","night")) + ": " +gameController.getDayCount());
+        dayLabel.setText((gameService.isDay() ? LanguageManager.getText("Menu","day") : LanguageManager.getText("Menu","night")) + ": " + gameService.getDayCount());
 
 
         initializeMessages();
@@ -325,7 +331,7 @@ public class GameScreenController {
     private void initializeMessages(){
         announcementsView.getItems().clear();
         for(Message message: Message.getMessages()){
-            if(message.isPublic() || message.receiver().getNumber()==gameController.getCurrentPlayer().getNumber()){
+            if(message.isPublic() || message.receiver().getNumber() == gameService.getCurrentPlayer().getNumber()){
                 announcementsView.getItems().add(new MessageBox(message,announcementsView));
             }
         }
@@ -338,7 +344,7 @@ public class GameScreenController {
     private void dayStartAnnouncements(){
         announcementsListView.getItems().clear();
         for(Message message: Message.getMessages()){
-            if(message.isPublic()&&message.dayCount() == gameController.getDayCount()){
+            if(message.isPublic()&&message.dayCount() == gameService.getDayCount()){
                 announcementsListView.getItems().add(new MessageBox(message,announcementsView));
             }
         }
@@ -347,15 +353,15 @@ public class GameScreenController {
     }
 
 
-    public static GameController getGameController() {
-        return gameController;
+    public static GameService getGameService() {
+        return gameService;
     }
 
     public static ArrayList<PlayerSelectionBox> getPlayerSelectionBoxes() {
         return playerSelectionBoxes;
     }
 
-    public static void setGameController(GameController gameController) {
-        GameScreenController.gameController = gameController;
+    public static void setGameService(GameService gameService) {
+        GameScreenController.gameService = gameService;
     }
 }

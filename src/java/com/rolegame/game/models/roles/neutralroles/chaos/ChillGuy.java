@@ -29,4 +29,8 @@ public final class ChillGuy extends NeutralRole implements NoNightAbility {
     }
 
 
+    @Override
+    public boolean canWinWithOtherTeams() {
+        return true;
+    }
 }

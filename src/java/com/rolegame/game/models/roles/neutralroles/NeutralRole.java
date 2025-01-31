@@ -17,4 +17,6 @@ public abstract class NeutralRole extends Role {
     public String getGoal() {
         return LanguageManager.getText(id.toString() ,"goal");
     }
+
+    public abstract boolean canWinWithOtherTeams();
 }

@@ -1,7 +1,7 @@
 package com.rolegame.game.gui.controllers.game;
 
 import com.rolegame.game.models.achievement.Achievement;
-import com.rolegame.game.gameplay.GameController;
+import com.rolegame.game.services.GameService;
 import com.rolegame.game.models.Player;
 import com.rolegame.game.managers.AchievementManager;
 import com.rolegame.game.managers.LanguageManager;
@@ -9,6 +9,7 @@ import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.roles.folkroles.protector.FolkHero;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 import com.rolegame.game.models.roles.Role;
+import com.rolegame.game.models.roles.roleproperties.Team;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,9 +68,9 @@ public class GameEndController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        GameController gameController = GameScreenController.getGameController();
+        GameService gameService = GameScreenController.getGameService();
         int rowHeight = 30; // Row height
-        int numberOfRows = gameController.getAllPlayers().size(); // Number of players
+        int numberOfRows = gameService.getAllPlayers().size(); // Number of players
 
         gameEndTV.setFixedCellSize(rowHeight); // Set fixed row height
         gameEndTV.setPrefHeight(rowHeight * numberOfRows+30);
@@ -79,9 +80,13 @@ public class GameEndController implements Initializable {
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
         deathCauseColumn.setCellValueFactory(new PropertyValueFactory<>("causeOfDeath"));
         setupTableView();
-        gameEndTV.getItems().addAll(gameController.getAllPlayers());
-        hasWonLabel.setText(LanguageManager.getText("EndMenu","hasWon")
-                .replace("{teamName}",LanguageManager.getText("Role",gameController.getWinnerTeam().toString())));
+        gameEndTV.getItems().addAll(gameService.getAllPlayers());
+
+        boolean winnerTeamExists = gameService.getWinnerTeam()!= Team.NONE;
+        hasWonLabel.setText(winnerTeamExists ?
+                LanguageManager.getText("EndMenu","hasWon")
+                .replace("{teamName}",LanguageManager.getText("Role", gameService.getWinnerTeam().toString()))
+                : LanguageManager.getText("EndMenu","draw"));
 
         numberColumn.setText(LanguageManager.getText("EndMenu","number"));
         playerColumn.setText(LanguageManager.getText("EndMenu","player"));
@@ -91,7 +96,7 @@ public class GameEndController implements Initializable {
         aliveStatusColumn.setText(LanguageManager.getText("EndMenu","aliveStatus"));
         deathCauseColumn.setText(LanguageManager.getText("EndMenu","causeOfDeath"));
         setImage();
-        progressAchievements();
+
 
     }
 
@@ -102,7 +107,7 @@ public class GameEndController implements Initializable {
         String styleTemplate = "-fx-background-image: url(/com/rolegame/game/images/gameend/{team}.jpg);"+
                 "-fx-background-size: cover;";
 
-        String team = switch (GameScreenController.getGameController().getWinnerTeam()) {
+        String team = switch (GameScreenController.getGameService().getWinnerTeam()) {
             case CORRUPTER -> "corrupt";
             case FOLK -> "folk";
             default -> "neutral";
@@ -145,7 +150,7 @@ public class GameEndController implements Initializable {
 
         }
 
-        for (Player player: GameScreenController.getGameController().getAllPlayers()){
+        for (Player player: GameScreenController.getGameService().getAllPlayers()){
             if(player.getRole() instanceof FolkHero folkHero && folkHero.getAbilityUseCount() == 0 &&
                     player.isHasWon()){
                 AchievementManager.completeAchievement(Achievement.AchievementID.LAZY_HERO);

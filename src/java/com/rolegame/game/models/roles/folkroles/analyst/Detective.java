@@ -29,7 +29,7 @@ public final class Detective extends FolkRole implements ActiveNightAbility {
                 .replace("{roleName1}", roleName1)
                 .replace("{roleName2}", roleName2);
 
-        sendAbilityMessage(message, getRoleOwner(), false);
+        sendAbilityMessage(message, getRoleOwner());
 
         return true;
     }

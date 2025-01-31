@@ -20,11 +20,11 @@ public final class SealMaster extends FolkRole implements ActiveNightAbility {
         }
 
         if(!isCanPerform()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock","RBimmuneMessage") ,roleOwner,false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","RBimmuneMessage") ,roleOwner);
         }
 
         if(choosenPlayer.isImmune()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock","immuneMessage") ,roleOwner,false);
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","immuneMessage") ,roleOwner);
             return false;
         }
         return executeAbility();
@@ -33,7 +33,7 @@ public final class SealMaster extends FolkRole implements ActiveNightAbility {
     @Override
     public boolean executeAbility() {
 
-        sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockMessage"), roleOwner,false);
+        sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockMessage"), roleOwner);
         choosenPlayer.getRole().setCanPerform(false);
         return true;
     }

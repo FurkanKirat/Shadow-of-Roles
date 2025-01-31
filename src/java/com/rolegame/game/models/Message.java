@@ -22,7 +22,7 @@ public record Message(int dayCount, boolean isDay, String message, Player receiv
 
 
     public static void sendMessage(String message, Player receiver, boolean isPublic, boolean isDay) {
-        messages.add(new Message(GameScreenController.getGameController().getDayCount(),
+        messages.add(new Message(GameScreenController.getGameService().getDayCount(),
                 isDay, message, receiver, isPublic));
     }
 

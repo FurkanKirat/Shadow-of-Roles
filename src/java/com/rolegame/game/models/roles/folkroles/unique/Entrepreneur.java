@@ -107,7 +107,7 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
             case HEAL -> message += LanguageManager.getText("Entrepreneur", "heal");
             case INFO -> message += LanguageManager.getText("Entrepreneur","info");
         }
-        sendAbilityMessage(message, roleOwner, false);
+        sendAbilityMessage(message, roleOwner);
         return false;
     }
 

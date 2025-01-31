@@ -20,14 +20,14 @@ public final class Blinder extends CorrupterRole implements ActiveNightAbility {
     @Override
     public boolean executeAbility() {
         String message = LanguageManager.getText("Blinder","abilityMessage");
-        sendAbilityMessage(message,getRoleOwner(), false);
-        ArrayList<Player> players = new ArrayList<>(GameScreenController.getGameController().getAlivePlayers());
+        sendAbilityMessage(message,getRoleOwner());
+        ArrayList<Player> players = new ArrayList<>(GameScreenController.getGameService().getAlivePlayers());
 
         players.remove(getChoosenPlayer());
 
         this.getChoosenPlayer().getRole().setChoosenPlayer(players.get(new Random().nextInt(players.size())));
 
-        sendAbilityMessage(LanguageManager.getText("Blinder","blindMessage"),getChoosenPlayer(),false );
+        sendAbilityMessage(LanguageManager.getText("Blinder","blindMessage"),getChoosenPlayer() );
 
         return true;
     }

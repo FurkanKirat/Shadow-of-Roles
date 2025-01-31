@@ -1,50 +1,52 @@
-package com.rolegame.game.gameplay;
+package com.rolegame.game.services;
 
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
+import com.rolegame.game.models.roles.neutralroles.NeutralRole;
 import com.rolegame.game.models.roles.neutralroles.chaos.Clown;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.RoleCatalog;
 import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
 import com.rolegame.game.models.roles.roleproperties.Team;
 import com.rolegame.game.models.Message;
 import com.rolegame.game.models.Player;
-import javafx.scene.control.TextField;
 
 
 import java.util.*;
 
-public class GameController {
+public class GameService {
     private final ArrayList<Player> allPlayers = new ArrayList<>();
     private final ArrayList<Player> alivePlayers = new ArrayList<>();
     private final ArrayList<Player> deadPlayers = new ArrayList<>();
+    private final VotingService votingService;
     private Player currentPlayer;
     private int currentPlayerIndex;
     private int playerCount;
-    private int dayCount;
-    private boolean isDay;
+    private int dayCount = 1;
+    private boolean isDay = false;
     private Team winnerTeam;
 
-    public GameController(TextField[] textFields){
-        initializePlayers(textFields);
+    public GameService(ArrayList<String> names, ArrayList<Role> roles){
+        initializePlayers(names, roles);
+        votingService = new VotingService();
     }
+
 
     /**
      * Initializes the players and distributes their roles
-     * @param textFields the text fields that consists of players' names
+     * @param names players' names list
      */
-    private void initializePlayers(TextField[] textFields){
-        ArrayList<Role> randomRoles = RoleCatalog.initializeRoles(textFields.length);
-        for(int i=0;i<textFields.length;i++){
-            allPlayers.add(new Player(i+1,textFields[i].getText(), randomRoles.get(i)));
+    private void initializePlayers(ArrayList<String> names, ArrayList<Role> roles){
+
+        playerCount = names.size();
+
+        for(int i=0;i<playerCount;i++){
+            allPlayers.add(new Player(i+1,names.get(i), roles.get(i)));
         }
         updateAlivePlayers();
-        dayCount=1;
-        isDay=false;
-        playerCount = textFields.length;
+        
     }
 
     /**
@@ -71,11 +73,11 @@ public class GameController {
      * After the day voting, executes the max voted player if they get more than half of the votes
      */
     public void executeMaxVoted(){
-        Voting.updateMaxVoted();
-        if(Voting.getMaxVote()>alivePlayers.size()/2){
+        votingService.updateMaxVoted();
+        if(votingService.getMaxVote()>alivePlayers.size()/2){
 
             for(Player alivePlayer : alivePlayers){
-                if(alivePlayer.getNumber()==Voting.getMaxVoted().getNumber()){
+                if(alivePlayer.getNumber()== votingService.getMaxVoted().getNumber()){
                     alivePlayer.setAlive(false);
                     alivePlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath","hanging"));
                     break;
@@ -83,10 +85,10 @@ public class GameController {
             }
             updateAlivePlayers();
 
-            if(Voting.getMaxVoted()!=null){
+            if(votingService.getMaxVoted()!=null){
                 Message.sendMessage(LanguageManager.getText("Message","voteExecute")
-                                .replace("{playerName}", Voting.getMaxVoted().getName())
-                                .replace("{roleName}", Voting.getMaxVoted().getRole().getName()),
+                                .replace("{playerName}", votingService.getMaxVoted().getName())
+                                .replace("{roleName}", votingService.getMaxVoted().getRole().getName()),
                         null, true, true);
             }
 
@@ -95,7 +97,7 @@ public class GameController {
         for(Player player: alivePlayers){
             player.getRole().setChoosenPlayer(null);
         }
-        Voting.clearVotes();
+        votingService.clearVotes();
     }
 
     /**
@@ -105,7 +107,7 @@ public class GameController {
     public void sendVoteMessages(){
         Player chosenPlayer = currentPlayer.getRole().getChoosenPlayer();
         if(isDay){
-            Voting.vote(currentPlayer,chosenPlayer);
+            votingService.vote(currentPlayer,chosenPlayer);
 
             if(chosenPlayer!=null){
                 Message.sendMessage(LanguageManager.getText("Message","vote")
@@ -153,8 +155,11 @@ public class GameController {
 
 
         }
-        currentPlayerIndex=0;
-        currentPlayer = alivePlayers.getFirst();
+        if(!alivePlayers.isEmpty()){
+            currentPlayerIndex=0;
+            currentPlayer = alivePlayers.getFirst();
+        }
+
     }
 
     /**
@@ -180,15 +185,39 @@ public class GameController {
         // Finishes the game if only 1 player is alive
         if(alivePlayers.size()==1){
             winnerTeam = alivePlayers.getFirst().getRole().getTeam();
-            finishGame();
             return true;
         }
 
         // Finishes the game if nobody is alive
         if(alivePlayers.isEmpty()){
             winnerTeam = Team.NONE;
-            finishGame();
             return true;
+        }
+
+
+        // If only 2 players are alive checks the game if it is finished
+        if(alivePlayers.size()==2){
+            Player player1 = alivePlayers.getFirst();
+            Player player2 = alivePlayers.get(1);
+
+            Optional<Player> player = alivePlayers.stream()
+                    .filter(p -> p.getRole() instanceof NeutralRole neutralRole && neutralRole.canWinWithOtherTeams())
+                    .findFirst();
+
+            // If one of the players' role is neutral role and the role can win with other teams finishes the game
+            if(player.isPresent()){
+                winnerTeam = player1.getRole().getTeam() == Team.NEUTRAL ? player2.getRole().getTeam() : player1.getRole().getTeam();
+                return true;
+            }
+
+            // Finishes the game if the last two players cannot kill each other
+            if(player1.getRole().getTeam()!=player2.getRole().getTeam()
+                    &&player2.getRole().getAttack()<=player1.getRole().getDefence()
+                    &&player1.getRole().getAttack()<=player2.getDefence()) {
+                winnerTeam = Team.NONE;
+                return true;
+            }
+
         }
 
         // Continues the game if all players have the same team
@@ -203,7 +232,6 @@ public class GameController {
             for(Player alivePlayer : alivePlayers){
                 winnerTeam = alivePlayer.getRole().getTeam();
             }
-            finishGame();
             return true;
         }
 
@@ -271,7 +299,8 @@ public class GameController {
         }
 
         Message.resetMessages();
-        Voting.clearVotes();
+        votingService.nullifyVotes();
+        GameEndService.progressAchievements();
 
     }
 
@@ -319,5 +348,10 @@ public class GameController {
 
     public ArrayList<Player> getAlivePlayers() {
         return alivePlayers;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.allPlayers.addAll(players);
+        updateAlivePlayers();
     }
 }
