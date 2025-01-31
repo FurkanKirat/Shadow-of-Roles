@@ -26,6 +26,7 @@ public record Message(int dayCount, boolean isDay, String message, Player receiv
                 isDay, message, receiver, isPublic));
     }
 
+
     public static LinkedList<Message> getMessages() {
         return messages;
     }

@@ -333,7 +333,9 @@ public class GameScreenController {
     private void displayAnnouncements(){
         announcementsListView.getItems().clear();
         for(Message message: Message.getMessages()){
-            if(message.isPublic()&&message.dayCount() == gameService.getDayCount()){
+            if(!gameService.isDay() && message.isPublic() && message.dayCount() == gameService.getDayCount()){
+                announcementsListView.getItems().add(new MessageBox(message,announcementsView));
+            } else if (gameService.isDay()&&message.isPublic()&&message.dayCount() == gameService.getDayCount()-1) {
                 announcementsListView.getItems().add(new MessageBox(message,announcementsView));
             }
         }

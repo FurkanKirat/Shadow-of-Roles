@@ -81,6 +81,7 @@ public class GameService {
             alivePlayer.setImmune(false);
 
         }
+        updateAlivePlayers();
     }
 
     /**
