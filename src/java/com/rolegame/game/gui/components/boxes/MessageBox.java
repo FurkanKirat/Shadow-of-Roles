@@ -21,6 +21,11 @@ public class MessageBox extends Label {
         this.maxWidthProperty().bind(listView.widthProperty());
         this.minWidthProperty().bind(listView.widthProperty());
         this.setWrapText(true);
+<<<<<<< Updated upstream
         
+=======
+        this.setMaxWidth(Double.MAX_VALUE );
+
+>>>>>>> Stashed changes
     }
 }

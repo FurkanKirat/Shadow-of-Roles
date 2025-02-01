@@ -17,7 +17,7 @@
    <children>
       <HBox fx:id="gameBox" prefHeight="768.0" prefWidth="1366.0">
          <children>
-            <VBox fx:id="leftVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="455.0" HBox.hgrow="ALWAYS">
+            <VBox fx:id="leftVBox" maxWidth="-Infinity" prefHeight="200.0" prefWidth="455.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox prefHeight="388.0" prefWidth="455.0" VBox.vgrow="ALWAYS">
                      <children>
@@ -39,7 +39,10 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Label fx:id="announcementsLabel" styleClass="gameLabel" text="Announcements" />
+                  <Label fx:id="announcementsLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="gameLabel" text="Announcements">
+                     <VBox.margin>
+                        <Insets left="170.0" />
+                     </VBox.margin></Label>
                   <ListView fx:id="announcementsView" focusTraversable="false" prefHeight="435.0" prefWidth="455.0" styleClass="game-list-view">
                      <opaqueInsets>
                         <Insets />
@@ -49,6 +52,9 @@
                      </cursor>
                   </ListView>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="456.0" HBox.hgrow="ALWAYS">
                <children>
