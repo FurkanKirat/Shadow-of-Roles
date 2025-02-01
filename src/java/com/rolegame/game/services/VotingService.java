@@ -3,7 +3,9 @@ package com.rolegame.game.services;
 import com.rolegame.game.models.Player;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class VotingService {
     private HashMap<Player,Player> votes = new HashMap<>();
@@ -38,11 +40,11 @@ public class VotingService {
      * Updates the max voted player
      */
     public void updateMaxVoted(){
+
         HashMap<Player,Integer> voteCounts = new HashMap<>();
 
         for(Player votedPlayer: votes.values()){
             if(votedPlayer!=null) voteCounts.put(votedPlayer, voteCounts.getOrDefault(votedPlayer,0)+1);
-
         }
 
         for(Map.Entry<Player, Integer> entry : voteCounts.entrySet()){
