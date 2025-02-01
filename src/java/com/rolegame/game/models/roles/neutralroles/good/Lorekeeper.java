@@ -4,10 +4,10 @@ import com.rolegame.game.models.Player;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
 import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
-import com.rolegame.game.models.roles.roleproperties.RoleCategory;
-import com.rolegame.game.models.roles.roleproperties.RoleID;
-import com.rolegame.game.models.roles.roleproperties.RolePriority;
+import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
+import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.enums.RoleID;
+import com.rolegame.game.models.roles.enums.RolePriority;
 
 import java.util.ArrayList;
 import java.util.List;

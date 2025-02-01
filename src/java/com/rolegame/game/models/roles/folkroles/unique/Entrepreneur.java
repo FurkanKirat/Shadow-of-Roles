@@ -10,10 +10,10 @@ import com.rolegame.game.models.roles.folkroles.analyst.Stalker;
 import com.rolegame.game.models.roles.folkroles.FolkRole;
 import com.rolegame.game.models.roles.folkroles.protector.Soulbinder;
 import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
-import com.rolegame.game.models.roles.roleproperties.RoleCategory;
-import com.rolegame.game.models.roles.roleproperties.RoleID;
-import com.rolegame.game.models.roles.roleproperties.RolePriority;
+import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
+import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.enums.RoleID;
+import com.rolegame.game.models.roles.enums.RolePriority;
 
 import java.util.Random;
 

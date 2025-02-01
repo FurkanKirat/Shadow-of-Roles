@@ -1,4 +1,4 @@
-package com.rolegame.game.models.roles.roleproperties;
+package com.rolegame.game.models.roles.enums;
 
 public enum Team {
     FOLK,

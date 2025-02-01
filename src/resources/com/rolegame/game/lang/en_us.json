@@ -50,6 +50,7 @@
     "number": "Your Number",
     "useAbility": "Use Ability",
     "vote": "Vote",
+    "pass": "Pass",
     "passAlertTitle": "Confirm Passing",
     "passAlertHead": "Pass Turn",
     "passAlertMessage": "You did not choose anyone are you sure to pass your turn?",

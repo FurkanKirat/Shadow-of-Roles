@@ -1,10 +1,10 @@
 package com.rolegame.game.models.roles.neutralroles.chaos;
 
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
-import com.rolegame.game.models.roles.roleproperties.NoNightAbility;
-import com.rolegame.game.models.roles.roleproperties.RoleCategory;
-import com.rolegame.game.models.roles.roleproperties.RoleID;
-import com.rolegame.game.models.roles.roleproperties.RolePriority;
+import com.rolegame.game.models.roles.interfaces.NoNightAbility;
+import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.enums.RoleID;
+import com.rolegame.game.models.roles.enums.RolePriority;
 
 
 public final class ChillGuy extends NeutralRole implements NoNightAbility {

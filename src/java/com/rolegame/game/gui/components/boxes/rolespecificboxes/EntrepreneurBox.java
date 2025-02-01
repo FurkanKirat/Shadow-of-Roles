@@ -2,7 +2,7 @@ package com.rolegame.game.gui.components.boxes.rolespecificboxes;
 
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
-import com.rolegame.game.models.roles.roleproperties.RolePriority;
+import com.rolegame.game.models.roles.enums.RolePriority;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

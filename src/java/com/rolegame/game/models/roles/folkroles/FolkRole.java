@@ -1,10 +1,10 @@
 package com.rolegame.game.models.roles.folkroles;
 
 import com.rolegame.game.managers.LanguageManager;
-import com.rolegame.game.models.roles.roleproperties.RoleCategory;
-import com.rolegame.game.models.roles.roleproperties.RoleID;
-import com.rolegame.game.models.roles.roleproperties.RolePriority;
-import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.enums.RoleID;
+import com.rolegame.game.models.roles.enums.RolePriority;
+import com.rolegame.game.models.roles.enums.Team;
 import com.rolegame.game.models.roles.Role;
 
 public abstract class FolkRole extends Role {

@@ -1,4 +1,4 @@
-package com.rolegame.game.models.roles.roleproperties;
+package com.rolegame.game.models.roles.enums;
 
 public enum RoleCategory {
     FOLK_ANALYST(0),

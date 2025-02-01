@@ -41,7 +41,8 @@ public class VotingService {
         HashMap<Player,Integer> voteCounts = new HashMap<>();
 
         for(Player votedPlayer: votes.values()){
-            voteCounts.put(votedPlayer, voteCounts.getOrDefault(votedPlayer,0)+1);
+            if(votedPlayer!=null) voteCounts.put(votedPlayer, voteCounts.getOrDefault(votedPlayer,0)+1);
+
         }
 
         for(Map.Entry<Player, Integer> entry : voteCounts.entrySet()){

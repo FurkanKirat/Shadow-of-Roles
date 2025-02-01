@@ -1,12 +1,11 @@
 package com.rolegame.game.models.roles;
 
-import com.rolegame.game.models.Message;
 import com.rolegame.game.models.Player;
 import com.rolegame.game.managers.LanguageManager;
-import com.rolegame.game.models.roles.roleproperties.RoleCategory;
-import com.rolegame.game.models.roles.roleproperties.RoleID;
-import com.rolegame.game.models.roles.roleproperties.RolePriority;
-import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.enums.RoleID;
+import com.rolegame.game.models.roles.enums.RolePriority;
+import com.rolegame.game.models.roles.enums.Team;
 import com.rolegame.game.services.MessageService;
 
 import java.util.Objects;

@@ -3,17 +3,13 @@ package com.rolegame.game;
 import com.rolegame.game.services.GameService;
 import com.rolegame.game.models.Player;
 import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.corrupterroles.analyst.DarkRevealer;
-import com.rolegame.game.models.roles.corrupterroles.analyst.Darkseer;
-import com.rolegame.game.models.roles.corrupterroles.support.Interrupter;
 import com.rolegame.game.models.roles.folkroles.analyst.Detective;
 import com.rolegame.game.models.roles.folkroles.analyst.Stalker;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 import com.rolegame.game.models.roles.neutralroles.chaos.Clown;
-import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.neutralroles.killing.Assassin;
-import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.models.roles.enums.Team;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

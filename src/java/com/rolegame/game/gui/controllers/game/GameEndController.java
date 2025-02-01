@@ -10,7 +10,7 @@ import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.roles.folkroles.protector.FolkHero;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.models.roles.enums.Team;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -50,6 +50,7 @@
     "number": "Numaranız",
     "useAbility": "Yetenek Kullan",
     "vote": "Oy Ver",
+    "pass": "Sıra Geç",
     "passAlertTitle": "Geçiş Onayı",
     "passAlertHead": "Hamle Geç",
     "passAlertMessage": "Kimseyi seçmediniz. Hamle geçmek istediğinize emin misiniz?",

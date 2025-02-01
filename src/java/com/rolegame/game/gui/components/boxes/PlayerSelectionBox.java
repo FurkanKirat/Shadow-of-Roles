@@ -1,12 +1,13 @@
 package com.rolegame.game.gui.components.boxes;
 
+import com.rolegame.game.gamestate.Time;
 import com.rolegame.game.gui.controllers.game.GameScreenController;
 import com.rolegame.game.models.Player;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
-import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
-import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
+import com.rolegame.game.models.roles.enums.Team;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,7 +21,7 @@ public class PlayerSelectionBox extends HBox{
     private boolean isChosen = false;
     private HBox roleBox;
 
-    public PlayerSelectionBox(Player player, Player currentPlayer, boolean isDay) {
+    public PlayerSelectionBox(Player player, Player currentPlayer, Time time) {
 
         Circle circle = new Circle(15);
         circle.getStyleClass().add("playerCircle");
@@ -93,7 +94,11 @@ public class PlayerSelectionBox extends HBox{
             selectButton.setVisible(false);
         }
 
-        if(!(currentPlayer.getRole() instanceof ActiveNightAbility) && !isDay){
+        if(time==Time.DAY){
+            selectButton.setVisible(false);
+        }
+
+        if(!(currentPlayer.getRole() instanceof ActiveNightAbility) && time==Time.NIGHT){
             selectButton.setVisible(false);
         }
 
@@ -101,7 +106,7 @@ public class PlayerSelectionBox extends HBox{
             selectButton.setVisible(true);
         }
 
-        if(currentPlayer.getRole() instanceof Lorekeeper lorekeeper && !isDay &&
+        if(currentPlayer.getRole() instanceof Lorekeeper lorekeeper && time==Time.NIGHT &&
                 lorekeeper.getAlreadyChosenPlayers().contains(player)){
             selectButton.setVisible(false);
         }

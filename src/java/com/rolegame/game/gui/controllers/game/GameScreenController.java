@@ -1,17 +1,19 @@
 package com.rolegame.game.gui.controllers.game;
 
+import com.rolegame.game.gamestate.Time;
 import com.rolegame.game.gui.components.boxes.MessageBox;
 import com.rolegame.game.gui.components.boxes.PlayerSelectionBox;
 import com.rolegame.game.gui.components.boxes.RoleBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.EntrepreneurBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.LorekeeperBox;
+import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
 import com.rolegame.game.services.*;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.roles.*;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
-import com.rolegame.game.models.roles.roleproperties.*;
 import com.rolegame.game.models.Message;
 import com.rolegame.game.models.Player;
 import javafx.event.ActionEvent;
@@ -120,7 +122,8 @@ public class GameScreenController {
 
         if(gameService.getCurrentPlayer().getRole().getChoosenPlayer()==null){
 
-            if(gameService.isDay()||(!gameService.isDay() && gameService.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
+            if(gameService.getTimeService().getTime()== Time.VOTING||
+                    (gameService.getTimeService().getTime()==Time.NIGHT && gameService.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
                 Alert alert = SceneManager.createAlert(Alert.AlertType.CONFIRMATION,LanguageManager.getText("Menu","passAlertTitle"),
                         LanguageManager.getText("Menu","passAlertHead"), LanguageManager.getText("Menu","passAlertMessage"));
 
@@ -143,7 +146,7 @@ public class GameScreenController {
             toggleDayNightCycleUI();
 
         }
-        if(gameService.isDay()){
+        if(gameService.getTimeService().getTime()!=Time.NIGHT){
             setStyleImage(passTurnPane,"day");
         }else{
             setStyleImage(passTurnPane,"night");
@@ -179,7 +182,7 @@ public class GameScreenController {
         changePlayerUI();
         initializeRolesView();
         initializeMessages();
-        dayLabel.setText((gameService.isDay() ? LanguageManager.getText("Menu","day"): LanguageManager.getText("Menu","night") ) + ": " + gameService.getDayCount());
+        dayLabel.setText((gameService.getTimeService().getTime()!=Time.NIGHT ? LanguageManager.getText("Menu","day"): LanguageManager.getText("Menu","night") ) + ": " + gameService.getTimeService().getDayCount());
 
         announcementsLabel.setText(LanguageManager.getText("Menu","announcement"));
         allRolesLabel.setText(LanguageManager.getText("Menu","allRoles"));
@@ -259,7 +262,7 @@ public class GameScreenController {
 
         List<PlayerSelectionBox> boxes = gameService.getAlivePlayers().stream()
                 .filter(Player::isAlive)
-                .map(player -> new PlayerSelectionBox(player, gameService.getCurrentPlayer(), gameService.isDay()))
+                .map(player -> new PlayerSelectionBox(player, gameService.getCurrentPlayer(), gameService.getTimeService().getTime()))
                 .toList();
 
         alivePlayersListView.getItems().setAll(boxes);
@@ -270,11 +273,11 @@ public class GameScreenController {
 
         initializeMessages();
         extraPropertiesVbox.getChildren().clear();
-        if(gameService.getCurrentPlayer().getRole() instanceof Entrepreneur entrepreneur && !gameService.isDay()){
+        if(gameService.getCurrentPlayer().getRole() instanceof Entrepreneur entrepreneur && gameService.getTimeService().getTime()==Time.NIGHT){
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.NONE);
             extraPropertiesVbox.getChildren().add(new EntrepreneurBox(entrepreneur));
         }
-        else if(gameService.getCurrentPlayer().getRole() instanceof Lorekeeper lorekeeper && !gameService.isDay()){
+        else if(gameService.getCurrentPlayer().getRole() instanceof Lorekeeper lorekeeper && gameService.getTimeService().getTime()==Time.NIGHT){
             extraPropertiesVbox.getChildren().add(new LorekeeperBox(lorekeeper));
         }
         passTurnLabel.setText(LanguageManager.getText("PassTurn","turn")
@@ -286,29 +289,33 @@ public class GameScreenController {
      */
     private void toggleDayNightCycleUI(){
 
-        if(gameService.isDay()){
-
-            useAbilityButton.setText(LanguageManager.getText("Menu","vote"));
-            gameBox.getStyleClass().remove("night");
-            gameBox.getStyleClass().add("day");
-
+        switch (gameService.getTimeService().getTime()){
+            case DAY -> {
+                useAbilityButton.setText(LanguageManager.getText("Menu","pass"));
+                gameBox.getStyleClass().remove("night");
+                gameBox.getStyleClass().add("day");
+                displayAnnouncements();
+            }
+            case VOTING -> {
+                useAbilityButton.setText(LanguageManager.getText("Menu","vote"));
+                gameBox.getStyleClass().remove("night");
+                gameBox.getStyleClass().add("day");
+            }
+            case NIGHT -> {
+                useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
+                gameBox.getStyleClass().remove("day");
+                gameBox.getStyleClass().add("night");
+                displayAnnouncements();
+            }
         }
-        else{
 
-            useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
-            gameBox.getStyleClass().remove("day");
-            gameBox.getStyleClass().add("night");
-
-        }
-
-        displayAnnouncements();
 
         graveListView.getItems().clear();
 
         for(Player deadPlayer: gameService.getDeadPlayers()){
             graveListView.getItems().add(deadPlayer.toString()+" ("+deadPlayer.getRole().getName()+")");
         }
-        dayLabel.setText((gameService.isDay() ? LanguageManager.getText("Menu","day") : LanguageManager.getText("Menu","night")) + ": " + gameService.getDayCount());
+        dayLabel.setText((gameService.getTimeService().getTime()!=Time.NIGHT ? LanguageManager.getText("Menu","day") : LanguageManager.getText("Menu","night")) + ": " + gameService.getTimeService().getDayCount());
 
         initializeMessages();
 
@@ -333,9 +340,9 @@ public class GameScreenController {
     private void displayAnnouncements(){
         announcementsListView.getItems().clear();
         for(Message message: MessageService.getMessages()){
-            if(!gameService.isDay() && message.isPublic() && message.dayCount() == gameService.getDayCount()){
+            if(gameService.getTimeService().getTime() == Time.NIGHT && message.isPublic() && message.dayCount() == gameService.getTimeService().getDayCount()){
                 announcementsListView.getItems().add(new MessageBox(message,announcementsView));
-            } else if (gameService.isDay() && message.isPublic() && message.dayCount() == gameService.getDayCount()-1) {
+            } else if (gameService.getTimeService().getTime() == Time.DAY && message.isPublic() && message.dayCount() == gameService.getTimeService().getDayCount()-1) {
                 announcementsListView.getItems().add(new MessageBox(message,announcementsView));
             }
         }

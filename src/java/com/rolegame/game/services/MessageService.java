@@ -16,7 +16,7 @@ public class MessageService {
 
 
     public static void sendMessage(String message, Player receiver, boolean isPublic, boolean isDay) {
-        messages.add(new Message(GameScreenController.getGameService().getDayCount(),
+        messages.add(new Message(GameScreenController.getGameService().getTimeService().getDayCount(),
                 isDay, message, receiver, isPublic));
     }
 

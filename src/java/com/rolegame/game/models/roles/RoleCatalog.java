@@ -17,8 +17,8 @@ import com.rolegame.game.models.roles.folkroles.protector.FolkHero;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.neutralroles.killing.Assassin;
-import com.rolegame.game.models.roles.roleproperties.RoleCategory;
-import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.enums.Team;
 
 import java.util.*;
 

@@ -1,5 +1,6 @@
 package com.rolegame.game.services;
 
+import com.rolegame.game.gamestate.Time;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
@@ -8,9 +9,8 @@ import com.rolegame.game.models.roles.neutralroles.chaos.Clown;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.roleproperties.ActiveNightAbility;
-import com.rolegame.game.models.roles.roleproperties.Team;
-import com.rolegame.game.models.Message;
+import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
+import com.rolegame.game.models.roles.enums.Team;
 import com.rolegame.game.models.Player;
 
 
@@ -21,15 +21,16 @@ public class GameService {
     private final ArrayList<Player> alivePlayers = new ArrayList<>();
     private final ArrayList<Player> deadPlayers = new ArrayList<>();
     private final VotingService votingService;
+    private final TimeService timeService;
     private Player currentPlayer;
     private int currentPlayerIndex;
     private int playerCount;
-    private int dayCount = 1;
-    private boolean isDay = false;
+
     private Team winnerTeam;
 
     public GameService(ArrayList<String> names, ArrayList<Role> roles){
         initializePlayers(names, roles);
+        timeService = new TimeService();
         votingService = new VotingService();
     }
 
@@ -50,13 +51,17 @@ public class GameService {
     }
 
     public void toggleDayNightCycle(){
-        isDay = !isDay;
-        if(isDay){
-            performAllAbilities();
-            dayCount++;
-        }else{
-            executeMaxVoted();
+        timeService.toggleTimeCycle();
+        Time time = timeService.getTime();
+        switch (time) {
+            case DAY -> {
+                performAllAbilities();
+            }
+            case NIGHT -> {
+                executeMaxVoted();
+            }
         }
+
 
         if(checkGameFinished()){
             finishGame();
@@ -92,7 +97,7 @@ public class GameService {
         if(votingService.getMaxVote()>alivePlayers.size()/2){
 
             for(Player alivePlayer : alivePlayers){
-                if(alivePlayer.getNumber()== votingService.getMaxVoted().getNumber()){
+                if(alivePlayer.getNumber() == votingService.getMaxVoted().getNumber()){
                     alivePlayer.setAlive(false);
                     alivePlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath","hanging"));
                     break;
@@ -121,7 +126,7 @@ public class GameService {
      */
     public void sendVoteMessages(){
         Player chosenPlayer = currentPlayer.getRole().getChoosenPlayer();
-        if(isDay){
+        if(timeService.getTime() == Time.VOTING){
             votingService.vote(currentPlayer,chosenPlayer);
 
             if(chosenPlayer!=null){
@@ -133,7 +138,7 @@ public class GameService {
             }
 
         }
-        else{
+        else if(timeService.getTime() == Time.NIGHT){
             if(currentPlayer.getRole() instanceof ActiveNightAbility){
                 if(chosenPlayer!=null){
                     MessageService.sendMessage(LanguageManager.getText("Message","ability")
@@ -163,7 +168,8 @@ public class GameService {
 
                 /* If players role is last joke, player is dead and player has not used ability
                  * yet adds the player to the alive players to use their ability */
-                if(player.getRole() instanceof LastJoke lastJoker && !lastJoker.isDidUsedAbility() && !isDay){
+                if(player.getRole() instanceof LastJoke lastJoker && !lastJoker.isDidUsedAbility() &&
+                        timeService.getTime() == Time.NIGHT){
                     alivePlayers.add(player);
                 }
             }
@@ -332,21 +338,6 @@ public class GameService {
     }
 
     // Getters and Setters
-    public boolean isDay() {
-        return isDay;
-    }
-
-    public void setDay(boolean day) {
-        isDay = day;
-    }
-
-    public int getDayCount() {
-        return dayCount;
-    }
-
-    public void setDayCount(int dayCount) {
-        this.dayCount = dayCount;
-    }
 
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
@@ -368,8 +359,7 @@ public class GameService {
         return alivePlayers;
     }
 
-    public void setPlayers(ArrayList<Player> players) {
-        this.allPlayers.addAll(players);
-        updateAlivePlayers();
+    public TimeService getTimeService() {
+        return timeService;
     }
 }

@@ -2,9 +2,9 @@ package com.rolegame.game.models.roles.corrupterroles.support;
 
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.corrupterroles.CorrupterRole;
-import com.rolegame.game.models.roles.roleproperties.RoleCategory;
-import com.rolegame.game.models.roles.roleproperties.RoleID;
-import com.rolegame.game.models.roles.roleproperties.RolePriority;
+import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.enums.RoleID;
+import com.rolegame.game.models.roles.enums.RolePriority;
 
 public final class LastJoke extends CorrupterRole {
     private boolean didUsedAbility;

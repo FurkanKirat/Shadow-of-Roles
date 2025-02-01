@@ -4,7 +4,7 @@ import com.rolegame.game.gui.components.boxes.RoleBoxForGameGuide;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.RoleCatalog;
-import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.models.roles.enums.Team;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
