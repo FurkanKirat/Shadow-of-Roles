@@ -18,8 +18,9 @@ public class MessageBox extends Label {
             this.getStyleClass().add("private");
         }
         this.prefWidthProperty().bind(listView.widthProperty());
+        this.maxWidthProperty().bind(listView.widthProperty());
+        this.minWidthProperty().bind(listView.widthProperty());
         this.setWrapText(true);
-
-
+        
     }
 }

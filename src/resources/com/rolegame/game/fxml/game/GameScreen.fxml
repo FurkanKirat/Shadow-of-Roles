@@ -134,7 +134,7 @@
             <String fx:value="backgroundimage" />
          </styleClass>
       </HBox>
-      <VBox fx:id="passTurnPane" alignment="CENTER" onMouseClicked="#interludeClicked" prefHeight="200.0" prefWidth="100.0" styleClass="backgroundimage" StackPane.alignment="TOP_CENTER">
+      <VBox fx:id="passTurnPane" alignment="CENTER" onMouseClicked="#interludeClicked" prefHeight="200.0" prefWidth="100.0" styleClass="backgroundimage" visible="false" StackPane.alignment="TOP_CENTER">
          <children>
             <Label fx:id="passTurnLabel" prefHeight="98.0" prefWidth="543.0" styleClass="pass-turn-label" text="Player" textFill="WHITE" />
             <VBox alignment="TOP_CENTER" prefHeight="632.0" prefWidth="1266.0" />

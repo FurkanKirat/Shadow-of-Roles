@@ -7,6 +7,7 @@ import com.rolegame.game.models.roles.roleproperties.RoleCategory;
 import com.rolegame.game.models.roles.roleproperties.RoleID;
 import com.rolegame.game.models.roles.roleproperties.RolePriority;
 import com.rolegame.game.models.roles.roleproperties.Team;
+import com.rolegame.game.services.MessageService;
 
 import java.util.Objects;
 
@@ -74,11 +75,11 @@ public abstract class Role {
     }
 
     protected void sendAbilityMessage(String message, Player receiver){
-        Message.sendMessage(message, receiver, false, false);
+        MessageService.sendMessage(message, receiver, false, false);
     }
 
     protected void sendAbilityAnnouncement(String message){
-        Message.sendMessage(message, null, true, false);
+        MessageService.sendMessage(message, null, true, false);
     }
 
     public abstract boolean executeAbility();

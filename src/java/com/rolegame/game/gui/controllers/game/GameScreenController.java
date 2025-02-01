@@ -281,6 +281,9 @@ public class GameScreenController {
                 .replace("{playerName}", gameService.getCurrentPlayer().getName()));
     }
 
+    /**
+     * Implements the UI changes when time state is changed
+     */
     private void toggleDayNightCycleUI(){
 
         if(gameService.isDay()){
@@ -300,7 +303,6 @@ public class GameScreenController {
 
         displayAnnouncements();
 
-
         graveListView.getItems().clear();
 
         for(Player deadPlayer: gameService.getDeadPlayers()){
@@ -308,9 +310,7 @@ public class GameScreenController {
         }
         dayLabel.setText((gameService.isDay() ? LanguageManager.getText("Menu","day") : LanguageManager.getText("Menu","night")) + ": " + gameService.getDayCount());
 
-
         initializeMessages();
-
 
     }
 
@@ -319,7 +319,7 @@ public class GameScreenController {
      */
     private void initializeMessages(){
         announcementsView.getItems().clear();
-        for(Message message: Message.getMessages()){
+        for(Message message: MessageService.getMessages()){
             if(message.isPublic() || message.receiver().getNumber() == gameService.getCurrentPlayer().getNumber()){
                 announcementsView.getItems().add(new MessageBox(message,announcementsView));
             }
@@ -332,10 +332,10 @@ public class GameScreenController {
      */
     private void displayAnnouncements(){
         announcementsListView.getItems().clear();
-        for(Message message: Message.getMessages()){
+        for(Message message: MessageService.getMessages()){
             if(!gameService.isDay() && message.isPublic() && message.dayCount() == gameService.getDayCount()){
                 announcementsListView.getItems().add(new MessageBox(message,announcementsView));
-            } else if (gameService.isDay()&&message.isPublic()&&message.dayCount() == gameService.getDayCount()-1) {
+            } else if (gameService.isDay() && message.isPublic() && message.dayCount() == gameService.getDayCount()-1) {
                 announcementsListView.getItems().add(new MessageBox(message,announcementsView));
             }
         }

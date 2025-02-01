@@ -101,7 +101,7 @@ public class GameService {
             updateAlivePlayers();
 
             if(votingService.getMaxVoted()!=null){
-                Message.sendMessage(LanguageManager.getText("Message","voteExecute")
+                MessageService.sendMessage(LanguageManager.getText("Message","voteExecute")
                                 .replace("{playerName}", votingService.getMaxVoted().getName())
                                 .replace("{roleName}", votingService.getMaxVoted().getRole().getName()),
                         null, true, true);
@@ -125,23 +125,23 @@ public class GameService {
             votingService.vote(currentPlayer,chosenPlayer);
 
             if(chosenPlayer!=null){
-                Message.sendMessage(LanguageManager.getText("Message","vote")
+                MessageService.sendMessage(LanguageManager.getText("Message","vote")
                                 .replace("{playerName}", chosenPlayer.getName())
                         ,currentPlayer,false, true);
             }else{
-                Message.sendMessage(LanguageManager.getText("Message","noVote"), currentPlayer, false, true);
+                MessageService.sendMessage(LanguageManager.getText("Message","noVote"), currentPlayer, false, true);
             }
 
         }
         else{
             if(currentPlayer.getRole() instanceof ActiveNightAbility){
                 if(chosenPlayer!=null){
-                    Message.sendMessage(LanguageManager.getText("Message","ability")
+                    MessageService.sendMessage(LanguageManager.getText("Message","ability")
                                     .replace("{playerName}", chosenPlayer.getName())
                             ,currentPlayer,false, false);
                 }
                 else{
-                    Message.sendMessage(LanguageManager.getText("Message","noAbilityUsed"), currentPlayer, false,false);
+                    MessageService.sendMessage(LanguageManager.getText("Message","noAbilityUsed"), currentPlayer, false,false);
                 }
             }
         }
@@ -313,9 +313,9 @@ public class GameService {
             SceneManager.switchScene("/com/rolegame/game/fxml/game/EndGame.fxml", SceneManager.SceneType.END_GAME, false);
         }
 
-        Message.resetMessages();
+        MessageService.resetMessages();
         votingService.nullifyVotes();
-        GameEndService.progressAchievements();
+
 
     }
 
