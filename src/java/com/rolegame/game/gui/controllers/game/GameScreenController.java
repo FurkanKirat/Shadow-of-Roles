@@ -150,9 +150,7 @@ public class GameScreenController {
             setStyleImage(passTurnPane,"day");
         }else{
             setStyleImage(passTurnPane,"night");
-            if(!(gameService.getCurrentPlayer() instanceof ActiveNightAbility)){
-                useAbilityButton.setText("Pass Turn");
-            }
+
         }
         changePlayerUI();
     }
@@ -273,15 +271,33 @@ public class GameScreenController {
 
         initializeMessages();
         extraPropertiesVbox.getChildren().clear();
-        if(gameService.getCurrentPlayer().getRole() instanceof Entrepreneur entrepreneur && gameService.getTimeService().getTime()==Time.NIGHT){
-            entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.NONE);
-            extraPropertiesVbox.getChildren().add(new EntrepreneurBox(entrepreneur));
+
+        if(gameService.getTimeService().getTime() == Time.NIGHT){
+
+            if(!(gameService.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
+                useAbilityButton.setText(LanguageManager.getText("Menu","pass"));
+            }else{
+                useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
+            }
+
+            switch (gameService.getCurrentPlayer().getRole()){
+                case Entrepreneur entrepreneur -> {
+
+                    entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.NONE);
+                    extraPropertiesVbox.getChildren().add(new EntrepreneurBox(entrepreneur));
+                }
+                case Lorekeeper lorekeeper ->{
+                    extraPropertiesVbox.getChildren().add(new LorekeeperBox(lorekeeper));
+                }
+                default -> {}
+            }
+
         }
-        else if(gameService.getCurrentPlayer().getRole() instanceof Lorekeeper lorekeeper && gameService.getTimeService().getTime()==Time.NIGHT){
-            extraPropertiesVbox.getChildren().add(new LorekeeperBox(lorekeeper));
-        }
+
         passTurnLabel.setText(LanguageManager.getText("PassTurn","turn")
                 .replace("{playerName}", gameService.getCurrentPlayer().getName()));
+
+
     }
 
     /**
@@ -340,11 +356,18 @@ public class GameScreenController {
     private void displayAnnouncements(){
         announcementsListView.getItems().clear();
         for(Message message: MessageService.getMessages()){
-            if(gameService.getTimeService().getTime() == Time.NIGHT && message.isPublic() && message.dayCount() == gameService.getTimeService().getDayCount()){
-                announcementsListView.getItems().add(new MessageBox(message,announcementsView));
-            } else if (gameService.getTimeService().getTime() == Time.DAY && message.isPublic() && message.dayCount() == gameService.getTimeService().getDayCount()-1) {
-                announcementsListView.getItems().add(new MessageBox(message,announcementsView));
+
+            if(message.isPublic() && message.dayCount() == gameService.getTimeService().getDayCount()){
+
+                if(gameService.getTimeService().getTime()==Time.NIGHT && message.isDay()){
+                    announcementsListView.getItems().add(new MessageBox(message,announcementsView));
+                } else if(gameService.getTimeService().getTime() == Time.DAY && !message.isDay()){
+                    announcementsListView.getItems().add(new MessageBox(message,announcementsView));
+                }
+
             }
+
+
         }
         announceBigVBox.setStyle("-fx-background-image: url(/com/rolegame/game/images/announcements/table.jpg); ");
         announceBigVBox.setVisible(true);
