@@ -79,6 +79,10 @@
     -fx-background-image: url('../images/night0.jpg');
 }
 
+.voting{
+    -fx-background-image: url('../images/voting0.jpg');
+}
+
 .gameguide-choice {
     -fx-background-color: rgba(46, 13, 37, 0.5);
     -fx-text-fill: white;

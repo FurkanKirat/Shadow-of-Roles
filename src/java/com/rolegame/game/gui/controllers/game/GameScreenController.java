@@ -122,8 +122,8 @@ public class GameScreenController {
 
         if(gameService.getCurrentPlayer().getRole().getChoosenPlayer()==null){
 
-            if(gameService.getTimeService().getTime()== Time.VOTING||
-                    (gameService.getTimeService().getTime()==Time.NIGHT && gameService.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
+            if(gameService.getTimeService().getTime() == Time.VOTING||
+                    (gameService.getTimeService().getTime() == Time.NIGHT && gameService.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
                 Alert alert = SceneManager.createAlert(Alert.AlertType.CONFIRMATION,LanguageManager.getText("Menu","passAlertTitle"),
                         LanguageManager.getText("Menu","passAlertHead"), LanguageManager.getText("Menu","passAlertMessage"));
 
@@ -146,11 +146,10 @@ public class GameScreenController {
             toggleDayNightCycleUI();
 
         }
-        if(gameService.getTimeService().getTime()!=Time.NIGHT){
-            setStyleImage(passTurnPane,"day");
-        }else{
-            setStyleImage(passTurnPane,"night");
-
+        switch (gameService.getTimeService().getTime()){
+            case DAY -> setStyleImage(passTurnPane,"day");
+            case VOTING -> setStyleImage(passTurnPane,"vote");
+            case NIGHT -> setStyleImage(passTurnPane,"night");
         }
         changePlayerUI();
     }
@@ -309,17 +308,20 @@ public class GameScreenController {
             case DAY -> {
                 useAbilityButton.setText(LanguageManager.getText("Menu","pass"));
                 gameBox.getStyleClass().remove("night");
+                gameBox.getStyleClass().remove("voting");
                 gameBox.getStyleClass().add("day");
                 displayAnnouncements();
             }
             case VOTING -> {
                 useAbilityButton.setText(LanguageManager.getText("Menu","vote"));
                 gameBox.getStyleClass().remove("night");
-                gameBox.getStyleClass().add("day");
+                gameBox.getStyleClass().remove("day");
+                gameBox.getStyleClass().add("voting");
             }
             case NIGHT -> {
                 useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
                 gameBox.getStyleClass().remove("day");
+                gameBox.getStyleClass().remove("voting");
                 gameBox.getStyleClass().add("night");
                 displayAnnouncements();
             }

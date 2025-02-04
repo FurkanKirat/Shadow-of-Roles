@@ -8,9 +8,7 @@ public class TimeService {
 
     public void toggleTimeCycle(){
         switch (time) {
-            case DAY -> {
-                time = Time.VOTING;
-            }
+            case DAY -> time = Time.VOTING;
             case VOTING -> time = Time.NIGHT;
             case NIGHT -> {
                 time = Time.DAY;

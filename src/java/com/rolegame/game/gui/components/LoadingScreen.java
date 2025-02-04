@@ -18,7 +18,7 @@ public class LoadingScreen extends StackPane {
 
     public LoadingScreen() {
         // Background color and border radius for a more modern look
-        setStyle("-fx-background-color: #34495e; -fx-background-radius: 10px;");
+        setStyle("-fx-background-image: url(/com/rolegame/game/images/loading.jpg);");
         setPrefSize(400, 200);
 
         // Create a label for the loading text

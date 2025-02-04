@@ -18,7 +18,7 @@ public final class Disguiser extends CorrupterRole implements ActiveNightAbility
         Role currentRole = RoleCatalog.getRandomRole(new Disguiser());
         currentRole.setChoosenPlayer(this.getChoosenPlayer());
         currentRole.setRoleOwner(this.getRoleOwner());
-        return currentRole.performAbility();
+        return true;
     }
 
     @Override

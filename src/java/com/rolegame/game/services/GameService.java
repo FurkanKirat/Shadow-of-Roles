@@ -277,14 +277,12 @@ public class GameService {
             alivePlayers.getFirst().setHasWon(true);
         }
 
-        boolean simplePersonExist = false;
+        boolean chillGuyExist = false;
         for(Player player: allPlayers){
 
             switch (player.getRole()){
                 case ChillGuy _ -> {
-                    if(player.getRole() instanceof ChillGuy){
-                        simplePersonExist = true;
-                    }
+                    chillGuyExist = true;
                 }
                 case Clown _ -> {
                     if(!player.isAlive() && !player.getCauseOfDeath().equals(LanguageManager.getText("CauseOfDeath","hanging"))){
@@ -312,7 +310,7 @@ public class GameService {
 
         }
 
-        if(simplePersonExist){
+        if(chillGuyExist){
             SceneManager.switchScene("/com/rolegame/game/fxml/game/ChillGuyAlert.fxml", SceneManager.SceneType.SIMPLE_PERSON_ALERT, false);
         }
         else{
