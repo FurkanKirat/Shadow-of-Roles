@@ -3,7 +3,7 @@ package com.rolegame.game.services;
 import com.rolegame.game.gui.controllers.game.GameScreenController;
 import com.rolegame.game.models.achievement.Achievement;
 import com.rolegame.game.managers.AchievementManager;
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.models.roles.folkroles.protector.FolkHero;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 

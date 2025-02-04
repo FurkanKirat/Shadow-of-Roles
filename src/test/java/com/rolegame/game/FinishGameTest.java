@@ -1,7 +1,8 @@
 package com.rolegame.game;
 
+import com.rolegame.game.gui.controllers.game.PlayerNamesController;
 import com.rolegame.game.services.GameService;
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.folkroles.analyst.Detective;
 import com.rolegame.game.models.roles.folkroles.analyst.Stalker;
@@ -23,14 +24,14 @@ class FinishGameTest {
 
     @BeforeEach
     void setUp() {
-        ArrayList<String> names = new ArrayList<>();
-        names.add("Furkan");
-        names.add("Turhan");
-        names.add("Tikky");
-        names.add("Enis");
-        names.add("Ege");
-        names.add("Duran");
-        names.add("Kerem");
+        ArrayList<PlayerNamesController.NameAndIsAI> names = new ArrayList<>();
+        names.add(new PlayerNamesController.NameAndIsAI("Furkan",true));
+        names.add(new PlayerNamesController.NameAndIsAI("Turhan",true));
+        names.add(new PlayerNamesController.NameAndIsAI("Tikky",true));
+        names.add(new PlayerNamesController.NameAndIsAI("Enis",true));
+        names.add(new PlayerNamesController.NameAndIsAI("Ege",true));
+        names.add(new PlayerNamesController.NameAndIsAI("Duran",true));
+        names.add(new PlayerNamesController.NameAndIsAI("Kerem",true));
 
         ArrayList<Role> roles = new ArrayList<>();
         roles.add(new Detective());
@@ -40,6 +41,15 @@ class FinishGameTest {
         roles.add(new ChillGuy());
         roles.add(new Entrepreneur());
         roles.add(new Assassin());
+
+        ArrayList<Boolean> isPlayerAI = new ArrayList<>();
+        isPlayerAI.add(true);
+        isPlayerAI.add(true);
+        isPlayerAI.add(true);
+        isPlayerAI.add(true);
+        isPlayerAI.add(true);
+        isPlayerAI.add(true);
+        isPlayerAI.add(true);
         gameService = new GameService(names,roles);
     }
 
@@ -112,9 +122,6 @@ class FinishGameTest {
 
     @Test
     void testGameFinishesWhenNeutralLastTwoPlayersCanKillEachOther() {
-
-
-        Player player2 = new Player(2,"Tikky", new ChillGuy());
 
         gameService.updateAlivePlayers();
 

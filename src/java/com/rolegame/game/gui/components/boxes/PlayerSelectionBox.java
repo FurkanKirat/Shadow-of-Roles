@@ -2,7 +2,7 @@ package com.rolegame.game.gui.components.boxes;
 
 import com.rolegame.game.gamestate.Time;
 import com.rolegame.game.gui.controllers.game.GameScreenController;
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;

@@ -3,7 +3,7 @@ package com.rolegame.game.gui.controllers.game;
 import com.rolegame.game.models.achievement.Achievement;
 import com.rolegame.game.services.GameEndService;
 import com.rolegame.game.services.GameService;
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.managers.AchievementManager;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;

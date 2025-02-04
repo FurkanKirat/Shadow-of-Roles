@@ -32,7 +32,8 @@
     "exception": "Bir şeyler ters gitti!",
     "playerCount": "Oyuncu Sayısını Yazın",
     "playerCountExceeded": "Oyuncu sayısı aşıldı",
-    "playerCountInsufficient": "Oyuncu sayısı 5'ten az olamaz"
+    "playerCountInsufficient": "Oyuncu sayısı 5'ten az olamaz",
+    "isAI": "AI: "
   },
   "Message": {
     "vote": "Şu oyuncuya oy verdiniz : {playerName}",

@@ -1,7 +1,7 @@
 package com.rolegame.game.models.roles.corrupterroles.analyst;
 
 import com.rolegame.game.gui.controllers.game.GameScreenController;
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.corrupterroles.CorrupterRole;
 import com.rolegame.game.models.roles.interfaces.PassiveNightAbility;

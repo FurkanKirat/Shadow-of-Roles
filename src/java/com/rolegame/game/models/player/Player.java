@@ -1,10 +1,10 @@
-package com.rolegame.game.models;
+package com.rolegame.game.models.player;
 
 import com.rolegame.game.models.roles.Role;
 
 import java.util.Objects;
 
-public class Player {
+public abstract class Player {
     private final int number;
     private final String name;
     private Role role;
@@ -109,4 +109,6 @@ public class Player {
     public void setCauseOfDeath(String causeOfDeath) {
         this.causeOfDeath = causeOfDeath;
     }
+
+    public abstract boolean isAIPlayer();
 }

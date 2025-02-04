@@ -6,6 +6,7 @@ import com.rolegame.game.gui.components.boxes.PlayerSelectionBox;
 import com.rolegame.game.gui.components.boxes.RoleBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.EntrepreneurBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.LorekeeperBox;
+import com.rolegame.game.models.player.AIPlayer;
 import com.rolegame.game.models.roles.enums.RoleCategory;
 import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
 import com.rolegame.game.services.*;
@@ -15,7 +16,7 @@ import com.rolegame.game.models.roles.*;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.Message;
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -120,6 +121,7 @@ public class GameScreenController {
     @FXML
     void useAbilityClicked(ActionEvent event) {
 
+
         if(gameService.getCurrentPlayer().getRole().getChoosenPlayer()==null){
 
             if(gameService.getTimeService().getTime() == Time.VOTING||
@@ -136,12 +138,10 @@ public class GameScreenController {
 
         }
 
-
         passTurnPane.setVisible(true);
         gameService.sendVoteMessages();
-        gameService.passTurn();
 
-        if(gameService.getCurrentPlayerIndex()==0){
+        if(gameService.passTurn()){
 
             toggleDayNightCycleUI();
 

@@ -1,11 +1,9 @@
 package com.rolegame.game.services;
 
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class VotingService {
     private HashMap<Player,Player> votes = new HashMap<>();

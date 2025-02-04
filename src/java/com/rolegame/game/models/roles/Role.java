@@ -1,6 +1,6 @@
 package com.rolegame.game.models.roles;
 
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.enums.RoleCategory;
 import com.rolegame.game.models.roles.enums.RoleID;

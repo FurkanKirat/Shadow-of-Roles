@@ -1,8 +1,11 @@
 package com.rolegame.game.services;
 
 import com.rolegame.game.gamestate.Time;
+import com.rolegame.game.gui.controllers.game.PlayerNamesController;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
+import com.rolegame.game.models.player.AIPlayer;
+import com.rolegame.game.models.player.HumanPlayer;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
 import com.rolegame.game.models.roles.neutralroles.chaos.Clown;
@@ -11,7 +14,7 @@ import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
 import com.rolegame.game.models.roles.enums.Team;
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 
 
 import java.util.*;
@@ -28,8 +31,8 @@ public class GameService {
 
     private Team winnerTeam;
 
-    public GameService(ArrayList<String> names, ArrayList<Role> roles){
-        initializePlayers(names, roles);
+    public GameService(ArrayList<PlayerNamesController.NameAndIsAI> info, ArrayList<Role> roles){
+        initializePlayers(info, roles);
         timeService = new TimeService();
         votingService = new VotingService();
     }
@@ -37,14 +40,19 @@ public class GameService {
 
     /**
      * Initializes the players and distributes their roles
-     * @param names players' names list
+     * @param info players' information list
      */
-    private void initializePlayers(ArrayList<String> names, ArrayList<Role> roles){
+    private void initializePlayers(ArrayList<PlayerNamesController.NameAndIsAI> info, ArrayList<Role> roles){
 
-        playerCount = names.size();
+        playerCount = info.size();
 
         for(int i=0;i<playerCount;i++){
-            allPlayers.add(new Player(i+1,names.get(i), roles.get(i)));
+            if(info.get(i).isAI()){
+                allPlayers.add(new AIPlayer(i+1,info.get(i).name(), roles.get(i)));
+            }else{
+                allPlayers.add(new HumanPlayer(i+1,info.get(i).name(), roles.get(i)));
+            }
+
         }
         updateAlivePlayers();
         
@@ -73,6 +81,13 @@ public class GameService {
      */
     public void performAllAbilities(){
         List<Role> roles = new ArrayList<>(new ArrayList<>(alivePlayers).stream().map(Player::getRole).toList());
+
+        for(Role role: roles){
+            if(role.getRoleOwner() instanceof AIPlayer aiPlayer){
+                aiPlayer.chooseRandomPlayer(alivePlayers);
+            }
+        }
+
         roles.sort(Comparator.comparing((Role role) -> role.getRolePriority().getPriority()).reversed());
 
         for(Role role: roles){
@@ -125,6 +140,11 @@ public class GameService {
      *If it's night, it sends a message about who is using your role.
      */
     public void sendVoteMessages(){
+
+        if(currentPlayer instanceof AIPlayer aiPlayer){
+            aiPlayer.chooseRandomPlayer(alivePlayers);
+        }
+
         Player chosenPlayer = currentPlayer.getRole().getChoosenPlayer();
         if(timeService.getTime() == Time.VOTING){
             votingService.vote(currentPlayer,chosenPlayer);
@@ -177,8 +197,7 @@ public class GameService {
 
         }
         if(!alivePlayers.isEmpty()){
-            currentPlayerIndex=0;
-            currentPlayer = alivePlayers.getFirst();
+            moveToFirstHumanPlayer();
         }
 
     }
@@ -326,17 +345,59 @@ public class GameService {
     /**
      * Passes to the turn to the next player
      */
-    public void passTurn(){
-        currentPlayerIndex = (currentPlayerIndex + 1) % alivePlayers.size();
-        currentPlayer = alivePlayers.get(currentPlayerIndex);
+    public boolean passTurn() {
 
-        if(currentPlayerIndex == 0){
-            toggleDayNightCycle();
+        if(!doesHumanPlayerExist()){
+            while(!checkGameFinished()){
+                toggleDayNightCycle();
+            }
+            finishGame();
+            return true;
+        }
+
+        boolean firstTurn = true;
+
+        do {
+            currentPlayerIndex = (currentPlayerIndex + 1) % alivePlayers.size();
+            currentPlayer = alivePlayers.get(currentPlayerIndex);
+
+            if (currentPlayerIndex == 0) {
+                toggleDayNightCycle();
+                firstTurn = false;
+            }
+
+        } while (currentPlayer instanceof AIPlayer && firstTurn);
+        return !firstTurn;
+    }
+
+    /**
+     * Moves the turn to the first human player, skipping AI players.
+     */
+    public void moveToFirstHumanPlayer() {
+
+        for(int i=0;i<alivePlayers.size();i++){
+            if(!alivePlayers.get(i).isAIPlayer()){
+                currentPlayerIndex = i;
+                currentPlayer = alivePlayers.get(currentPlayerIndex);
+                break;
+            }
         }
     }
 
-    // Getters and Setters
 
+
+    private boolean doesHumanPlayerExist(){
+        for (Player alivePlayer : alivePlayers) {
+            if (!alivePlayer.isAIPlayer()) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
+    // Getters and Setters
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
     }

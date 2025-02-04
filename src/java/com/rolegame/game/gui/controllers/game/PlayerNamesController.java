@@ -15,12 +15,12 @@ import java.util.ArrayList;
 public class PlayerNamesController extends VBox {
     private final ComboBox<Integer> playerCountComboBox;
     private TextField[] textFields;
+    private CheckBox[] checkBoxes;
     private final VBox textFieldsBox;
     private final PlayerNamesService writeNamesService;
 
     public PlayerNamesController() {
-        this.writeNamesService = new PlayerNamesService(); // Servis örneği
-
+        this.writeNamesService = new PlayerNamesService();
         this.getStylesheets().add("/com/rolegame/game/css/GameStyle.css");
         this.getStyleClass().add("startRoot");
         this.setPrefWidth(1366);
@@ -56,8 +56,9 @@ public class PlayerNamesController extends VBox {
 
     private void updateTextFields(int playerCount) {
         textFieldsBox.getChildren().clear();
-        textFields = new TextField[playerCount];
 
+        textFields = new TextField[playerCount];
+        checkBoxes = new CheckBox[playerCount];
         for (int i = 0; i < playerCount; i++) {
             TextField textField = new TextField();
             textField.setText(LanguageManager.getText("Menu", "player") + " " + (i + 1));
@@ -72,13 +73,20 @@ public class PlayerNamesController extends VBox {
             nameLabel.setMinWidth(100);
             nameLabel.setAlignment(Pos.CENTER_RIGHT);
 
-            HBox hBox = new HBox(nameLabel, textField);
+            Label AILabel = new Label(LanguageManager.getText("WriteNames","isAI"));
+            AILabel.getStyleClass().add("startLabel");
+            AILabel.setMinWidth(100);
+            AILabel.setAlignment(Pos.CENTER_RIGHT);
+            CheckBox isAICheckBox = new CheckBox();
+
+            HBox hBox = new HBox(nameLabel, textField, AILabel, isAICheckBox);
             hBox.setAlignment(Pos.CENTER);
             hBox.setSpacing(10);
             hBox.setPrefWidth(textFieldsBox.getWidth());
             hBox.setMaxWidth(Double.MAX_VALUE);
 
             textFields[i] = textField;
+            checkBoxes[i] = isAICheckBox;
             textFieldsBox.getChildren().add(hBox);
         }
 
@@ -93,14 +101,13 @@ public class PlayerNamesController extends VBox {
     }
 
     private void handleApplyButton(int playerCount) {
-        ArrayList<String> playerNames = new ArrayList<>(textFields.length);
-
-        for (TextField textField : textFields) {
-            playerNames.add(textField.getText());
+        ArrayList<NameAndIsAI> information = new ArrayList<>(playerCount);
+        for(int i=0;i<playerCount;i++){
+            information.add(new NameAndIsAI(textFields[i].getText(),checkBoxes[i].isSelected()));
         }
 
         try {
-            GameService gameService = writeNamesService.createGameService(playerNames, playerCount);
+            GameService gameService = writeNamesService.createGameService(information, playerCount);
             GameScreenController.setGameService(gameService);
             SceneManager.switchScene("/com/rolegame/game/fxml/game/GameScreen.fxml", SceneManager.SceneType.GAME, false);
         } catch (IllegalArgumentException e) {
@@ -114,5 +121,8 @@ public class PlayerNamesController extends VBox {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public record NameAndIsAI(String name, boolean isAI) {
     }
 }

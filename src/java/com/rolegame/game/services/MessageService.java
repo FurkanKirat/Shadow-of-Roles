@@ -2,7 +2,7 @@ package com.rolegame.game.services;
 
 import com.rolegame.game.gui.controllers.game.GameScreenController;
 import com.rolegame.game.models.Message;
-import com.rolegame.game.models.Player;
+import com.rolegame.game.models.player.Player;
 
 import java.util.LinkedList;
 
