@@ -108,7 +108,7 @@ public class GameService {
 
             if(alivePlayers.get(i) instanceof AIPlayer aiPlayer){
 
-                aiPlayer.chooseRandomPlayer(alivePlayers);
+                aiPlayer.chooseRandomPlayerVoting(alivePlayers);
                 votingService.vote(aiPlayer,aiPlayer.getRole().getChoosenPlayer());
             }
         }
@@ -409,7 +409,7 @@ public class GameService {
     private void chooseRandomPlayersForAI(List<Role> roles){
         for(Role role: roles){
             if(role.getRoleOwner() instanceof AIPlayer aiPlayer){
-                aiPlayer.chooseRandomPlayer(alivePlayers);
+                aiPlayer.chooseRandomPlayerNight(alivePlayers);
             }
         }
     }

@@ -102,8 +102,19 @@ public class PlayerNamesController extends VBox {
 
     private void handleApplyButton(int playerCount) {
         ArrayList<NameAndIsAI> information = new ArrayList<>(playerCount);
+
+        boolean allPlayersAI = true;
         for(int i=0;i<playerCount;i++){
             information.add(new NameAndIsAI(textFields[i].getText(),checkBoxes[i].isSelected()));
+
+            if(!allPlayersAI || !checkBoxes[i].isSelected()){
+                allPlayersAI = false;
+            }
+        }
+
+        if(allPlayersAI){
+            showAlert("AI alert","All Players Cannot be AI");
+            return;
         }
 
         try {
