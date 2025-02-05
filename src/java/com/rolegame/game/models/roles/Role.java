@@ -107,6 +107,8 @@ public abstract class Role {
 
     public abstract boolean executeAbility();
 
+    public abstract boolean isRoleBlockImmune();
+
     @Override
     public String toString() {
         return getName();

@@ -35,6 +35,11 @@ public final class Detective extends FolkRole implements ActiveNightAbility {
     }
 
     @Override
+    public boolean isRoleBlockImmune() {
+        return false;
+    }
+
+    @Override
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(30,10);
     }

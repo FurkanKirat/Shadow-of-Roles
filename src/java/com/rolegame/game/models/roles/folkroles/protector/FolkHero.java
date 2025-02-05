@@ -44,6 +44,11 @@ public final class FolkHero extends FolkRole implements ActiveNightAbility {
     }
 
     @Override
+    public boolean isRoleBlockImmune() {
+        return false;
+    }
+
+    @Override
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(5,1);
     }

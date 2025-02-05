@@ -24,6 +24,11 @@ public final class ChillGuy extends NeutralRole implements NoNightAbility {
     }
 
     @Override
+    public boolean isRoleBlockImmune() {
+        return false;
+    }
+
+    @Override
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(10,1);
     }

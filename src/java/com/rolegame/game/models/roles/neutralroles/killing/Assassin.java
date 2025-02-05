@@ -37,6 +37,11 @@ public final class Assassin extends NeutralRole implements ActiveNightAbility {
     }
 
     @Override
+    public boolean isRoleBlockImmune() {
+        return true;
+    }
+
+    @Override
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(40,1);
     }

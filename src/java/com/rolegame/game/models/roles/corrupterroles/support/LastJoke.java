@@ -38,6 +38,11 @@ public final class LastJoke extends CorrupterRole {
     }
 
     @Override
+    public boolean isRoleBlockImmune() {
+        return true;
+    }
+
+    @Override
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(5,1);
     }

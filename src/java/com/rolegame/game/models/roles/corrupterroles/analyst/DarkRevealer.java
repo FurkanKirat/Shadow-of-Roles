@@ -22,6 +22,11 @@ public final class DarkRevealer extends CorrupterRole implements ActiveNightAbil
     }
 
     @Override
+    public boolean isRoleBlockImmune() {
+        return false;
+    }
+
+    @Override
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(30,10);
     }

@@ -6,7 +6,9 @@ import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.player.AIPlayer;
 import com.rolegame.game.models.player.HumanPlayer;
+import com.rolegame.game.models.roles.corrupterroles.support.Interrupter;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
+import com.rolegame.game.models.roles.folkroles.support.SealMaster;
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
 import com.rolegame.game.models.roles.neutralroles.chaos.Clown;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
@@ -255,6 +257,21 @@ public class GameService {
             if(player1.getRole().getTeam()!=player2.getRole().getTeam()
                     &&player2.getRole().getAttack()<=player1.getRole().getDefence()
                     &&player1.getRole().getAttack()<=player2.getDefence()) {
+                winnerTeam = Team.NONE;
+                return true;
+            }
+
+            // Finishes the game if one of the last two players can role block and the other is not immune to role block
+            Optional<Player> roleBlockerPlayer = alivePlayers.stream()
+                    .filter(p -> p.getRole() instanceof Interrupter || p.getRole() instanceof SealMaster)
+                    .findFirst();
+
+            Optional<Player> roleBlockablePlayer = alivePlayers.stream()
+                    .filter(p -> !p.getRole().isRoleBlockImmune())
+                    .findFirst();
+
+            if(roleBlockerPlayer.isPresent() && roleBlockablePlayer.isPresent() &&
+                    player1.getRole().getTeam() != player2.getRole().getTeam()){
                 winnerTeam = Team.NONE;
                 return true;
             }

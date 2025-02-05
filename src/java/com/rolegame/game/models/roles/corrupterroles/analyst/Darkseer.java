@@ -47,6 +47,11 @@ public final class Darkseer extends CorrupterRole implements PassiveNightAbility
     }
 
     @Override
+    public boolean isRoleBlockImmune() {
+        return false;
+    }
+
+    @Override
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(10,10);
     }

@@ -52,6 +52,11 @@ public final class Lorekeeper extends NeutralRole implements ActiveNightAbility 
     }
 
     @Override
+    public boolean isRoleBlockImmune() {
+        return true;
+    }
+
+    @Override
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(20,1);
     }

@@ -32,6 +32,11 @@ public final class Psycho extends CorrupterRole implements ActiveNightAbility {
     }
 
     @Override
+    public boolean isRoleBlockImmune() {
+        return false;
+    }
+
+    @Override
     public ChanceProperty getChanceProperty() {
         return new ChanceProperty(100,1);
     }
