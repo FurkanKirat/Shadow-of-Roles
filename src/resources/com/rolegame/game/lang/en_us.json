@@ -30,7 +30,7 @@
     "blankAlert": "Players cannot be blank!",
     "notNumberAlert": "Players count should be a number!",
     "exception": "Something went wrong!",
-    "playerCount": "Write Player Count",
+    "playerCount": "Choose Player Count",
     "playerCountExceeded": "Player Count is Exceeded",
     "playerCountInsufficient": "Player count cannot be less than 5",
     "isAI": "Bot: "

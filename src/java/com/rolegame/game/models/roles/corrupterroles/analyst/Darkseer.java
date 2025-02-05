@@ -19,11 +19,7 @@ public final class Darkseer extends CorrupterRole implements PassiveNightAbility
 
     @Override
     public boolean performAbility() {
-        if(!isCanPerform()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),getRoleOwner());
-            return false;
-        }
-        return executeAbility();
+        return performAbilityForPassiveRoles();
     }
 
     @Override

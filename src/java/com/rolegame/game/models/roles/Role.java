@@ -73,6 +73,30 @@ public abstract class Role {
         return executeAbility();
     }
 
+    protected boolean performAbilityForPassiveRoles(){
+        if(!isCanPerform()){
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),getRoleOwner());
+            return false;
+        }
+        return executeAbility();
+    }
+
+    protected boolean performAbilityForBlockImmuneRoles(){
+        if(!isCanPerform()){
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","RBimmuneMessage") ,getRoleOwner());
+        }
+
+        if(getChoosenPlayer()==null){
+            return false;
+        }
+
+        if(choosenPlayer.isImmune()){
+            sendAbilityMessage(LanguageManager.getText("RoleBlock","immuneMessage") ,getRoleOwner());
+            return false;
+        }
+        return executeAbility();
+    }
+
     protected void sendAbilityMessage(String message, Player receiver){
         MessageService.sendNightMessage(message, receiver, false, false);
     }

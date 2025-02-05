@@ -30,11 +30,7 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
         this.setAbilityState(ChosenAbility.NONE);
     }
 
-    @Override
-    public boolean performAbility(){
-        return super.performAbility();
 
-    }
     @Override
     public boolean executeAbility() {
         rolePriority = RolePriority.NONE;

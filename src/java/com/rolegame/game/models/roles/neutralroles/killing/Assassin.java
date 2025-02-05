@@ -15,19 +15,7 @@ public final class Assassin extends NeutralRole implements ActiveNightAbility {
     @Override
     public boolean performAbility() {
 
-        if(!isCanPerform()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock","RBimmuneMessage") ,getRoleOwner());
-        }
-
-        if(getChoosenPlayer()==null){
-            return false;
-        }
-
-        if(choosenPlayer.isImmune()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock","immuneMessage") ,getRoleOwner());
-            return false;
-        }
-        return executeAbility();
+       return performAbilityForBlockImmuneRoles();
 
     }
 
