@@ -23,6 +23,7 @@ public class PlayerSelectionBox extends HBox{
 
     public PlayerSelectionBox(Player player, Player currentPlayer, Time time) {
 
+        this.getStyleClass().add("player-selection-box");
         Circle circle = new Circle(15);
         circle.getStyleClass().add("playerCircle");
 
@@ -65,13 +66,14 @@ public class PlayerSelectionBox extends HBox{
         if(currentPlayer.getRole().getTeam()==Team.CORRUPTER &&player.getRole().getTeam()==Team.CORRUPTER){
 
             Label roleLabel = createLabel("(" + player.getRole().getName() + ")");
-            roleLabel.setTextFill(CORRUPTER_COLOR);
             roleLabel.setAlignment(Pos.CENTER);
 
             roleBox = new HBox(roleLabel);
             roleBox.setAlignment(Pos.CENTER);
 
             playerName.setTextFill(CORRUPTER_COLOR);
+            roleLabel.getStyleClass().add("corrupt-role-label");
+            playerName.getStyleClass().add("corrupt-role-label");
             this.getChildren().add(roleBox);
 
         }
@@ -90,6 +92,7 @@ public class PlayerSelectionBox extends HBox{
                 this.getChildren().remove(roleBox);
                 youLabel.setTextFill(CORRUPTER_COLOR);
             }
+            youLabel.getStyleClass().add("you-label");
             this.getChildren().add(youBox);
             selectButton.setVisible(false);
         }

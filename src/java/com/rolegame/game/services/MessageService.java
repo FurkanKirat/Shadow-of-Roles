@@ -20,6 +20,11 @@ public class MessageService {
                 isDay, message, receiver, isPublic));
     }
 
+    public static void sendNightMessage(String message, Player receiver, boolean isPublic, boolean isDay) {
+        messages.add(new Message(GameScreenController.getGameService().getTimeService().getDayCount()-1,
+                isDay, message, receiver, isPublic));
+    }
+
 
     public static LinkedList<Message> getMessages() {
         return messages;

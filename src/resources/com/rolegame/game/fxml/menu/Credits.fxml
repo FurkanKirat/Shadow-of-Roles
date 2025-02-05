@@ -14,7 +14,7 @@
    <top>
       <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="1346.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" text="Credits" textFill="WHITE">
+            <Label alignment="CENTER" styleClass="game-logo" text="Credits" textFill="WHITE">
                <font>
                   <Font size="43.0" />
                </font>
@@ -27,7 +27,7 @@
          <children>
             <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
                <children>
-                  <Text fx:id="creditsText" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed By: Furkan Kırat" textAlignment="CENTER">
+                  <Text fx:id="creditsText" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="game-logo" text="Developed By: Furkan Kırat" textAlignment="CENTER">
                      <font>
                         <Font size="43.0" />
                      </font>

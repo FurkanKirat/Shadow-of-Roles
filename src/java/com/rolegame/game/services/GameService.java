@@ -16,7 +16,6 @@ import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
 import com.rolegame.game.models.roles.enums.Team;
 import com.rolegame.game.models.player.Player;
 
-
 import java.util.*;
 
 public class GameService {
@@ -80,13 +79,9 @@ public class GameService {
      *  Performs all abilities according to role priorities
      */
     public void performAllAbilities(){
-        List<Role> roles = new ArrayList<>(new ArrayList<>(alivePlayers).stream().map(Player::getRole).toList());
+        ArrayList<Role> roles = new ArrayList<>(new ArrayList<>(alivePlayers).stream().map(Player::getRole).toList());
 
-        for(Role role: roles){
-            if(role.getRoleOwner() instanceof AIPlayer aiPlayer){
-                aiPlayer.chooseRandomPlayer(alivePlayers);
-            }
-        }
+        chooseRandomPlayersForAI(roles);
 
         roles.sort(Comparator.comparing((Role role) -> role.getRolePriority().getPriority()).reversed());
 
@@ -108,9 +103,18 @@ public class GameService {
      * After the day voting, executes the max voted player if they get more than half of the votes
      */
     public void executeMaxVoted(){
+
+        for(int i=0;i<alivePlayers.size();i++) {
+
+            if(alivePlayers.get(i) instanceof AIPlayer aiPlayer){
+
+                aiPlayer.chooseRandomPlayer(alivePlayers);
+                votingService.vote(aiPlayer,aiPlayer.getRole().getChoosenPlayer());
+            }
+        }
+
         votingService.updateMaxVoted();
         if(votingService.getMaxVote()>alivePlayers.size()/2){
-
             for(Player alivePlayer : alivePlayers){
                 if(alivePlayer.getNumber() == votingService.getMaxVoted().getNumber()){
                     alivePlayer.setAlive(false);
@@ -136,16 +140,13 @@ public class GameService {
     }
 
     /**
-     *If it is morning, he casts a vote for the selected player and sends a message stating who he voted for.
+     *If it is morning, he casts a vote for the selected player and sends a message stating who they voted for.
      *If it's night, it sends a message about who is using your role.
      */
     public void sendVoteMessages(){
 
-        if(currentPlayer instanceof AIPlayer aiPlayer){
-            aiPlayer.chooseRandomPlayer(alivePlayers);
-        }
-
         Player chosenPlayer = currentPlayer.getRole().getChoosenPlayer();
+
         if(timeService.getTime() == Time.VOTING){
             votingService.vote(currentPlayer,chosenPlayer);
 
@@ -344,6 +345,7 @@ public class GameService {
 
     /**
      * Passes to the turn to the next player
+     * @return true if time state is changed
      */
     public boolean passTurn() {
 
@@ -361,7 +363,7 @@ public class GameService {
             currentPlayerIndex = (currentPlayerIndex + 1) % alivePlayers.size();
             currentPlayer = alivePlayers.get(currentPlayerIndex);
 
-            if (currentPlayerIndex == 0) {
+            if (currentPlayerIndex == findFirstHumanPlayer()) {
                 toggleDayNightCycle();
                 firstTurn = false;
             }
@@ -384,7 +386,15 @@ public class GameService {
         }
     }
 
+    public int findFirstHumanPlayer() {
 
+        for(int i=0;i<alivePlayers.size();i++){
+            if(!alivePlayers.get(i).isAIPlayer()){
+                return i;
+            }
+        }
+        return -1;
+    }
 
     private boolean doesHumanPlayerExist(){
         for (Player alivePlayer : alivePlayers) {
@@ -396,6 +406,13 @@ public class GameService {
 
     }
 
+    private void chooseRandomPlayersForAI(List<Role> roles){
+        for(Role role: roles){
+            if(role.getRoleOwner() instanceof AIPlayer aiPlayer){
+                aiPlayer.chooseRandomPlayer(alivePlayers);
+            }
+        }
+    }
 
     // Getters and Setters
     public int getCurrentPlayerIndex() {

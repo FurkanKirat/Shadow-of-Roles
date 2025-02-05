@@ -359,11 +359,11 @@ public class GameScreenController {
         announcementsListView.getItems().clear();
         for(Message message: MessageService.getMessages()){
 
-            if(message.isPublic() && message.dayCount() == gameService.getTimeService().getDayCount()){
+            if(message.isPublic()){
 
-                if(gameService.getTimeService().getTime()==Time.NIGHT && message.isDay()){
+                if(gameService.getTimeService().getTime()==Time.NIGHT && message.isDay() && message.dayCount() == gameService.getTimeService().getDayCount()){
                     announcementsListView.getItems().add(new MessageBox(message,announcementsView));
-                } else if(gameService.getTimeService().getTime() == Time.DAY && !message.isDay()){
+                } else if(gameService.getTimeService().getTime() == Time.DAY && !message.isDay()&&message.dayCount() == gameService.getTimeService().getDayCount()-1){
                     announcementsListView.getItems().add(new MessageBox(message,announcementsView));
                 }
 

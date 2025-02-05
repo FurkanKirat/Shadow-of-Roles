@@ -30,7 +30,6 @@
       </ScrollPane>
    </children>
    <styleClass>
-      <String fx:value="background" />
       <String fx:value="backgroundimage" />
       <String fx:value="backgroundtransparant" />
    </styleClass>

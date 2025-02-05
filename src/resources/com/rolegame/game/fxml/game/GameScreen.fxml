@@ -8,12 +8,13 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" styleClass="night" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.game.GameScreenController">
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../css/GameStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rolegame.game.gui.controllers.game.GameScreenController">
    <children>
       <HBox fx:id="gameBox" prefHeight="768.0" prefWidth="1366.0">
          <children>
@@ -23,17 +24,29 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="559.0" prefWidth="227.0">
                            <children>
-                              <Label fx:id="graveyardLabel" styleClass="gameLabel" text="Graveyard" />
-                              <ListView fx:id="graveListView" focusTraversable="false" mouseTransparent="true" prefHeight="358.0" prefWidth="197.0" styleClass="game-list-view" VBox.vgrow="ALWAYS" />
+                              <Label fx:id="graveyardLabel" styleClass="gameLabel" text="Graveyard">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect></Label>
+                              <ListView fx:id="graveListView" focusTraversable="false" mouseTransparent="true" prefHeight="358.0" prefWidth="197.0" styleClass="game-list-view" VBox.vgrow="ALWAYS">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect></ListView>
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="594.0" prefWidth="228.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label fx:id="allRolesLabel" styleClass="gameLabel" text="All Roles" />
+                              <Label fx:id="allRolesLabel" styleClass="gameLabel" text="All Roles">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect></Label>
                               <TreeView fx:id="rolesTreeView" focusTraversable="false" onContextMenuRequested="#selectRole" onMouseClicked="#selectRole" prefHeight="357.0" prefWidth="228.0" showRoot="false" styleClass="game-tree-view" VBox.vgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
                               </TreeView>
                            </children>
                         </VBox>
@@ -42,7 +55,10 @@
                   <Label fx:id="announcementsLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="gameLabel" text="Announcements">
                      <VBox.margin>
                         <Insets left="170.0" />
-                     </VBox.margin></Label>
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect></Label>
                   <ListView fx:id="announcementsView" focusTraversable="false" prefHeight="435.0" prefWidth="455.0" styleClass="game-list-view">
                      <opaqueInsets>
                         <Insets />
@@ -50,6 +66,9 @@
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </ListView>
                </children>
                <HBox.margin>
@@ -63,7 +82,10 @@
                         <Label fx:id="dayLabel" styleClass="time-label" text="Day x:" textFill="WHITE">
                            <font>
                               <Font size="50.0" />
-                           </font></Label>
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect></Label>
                      </children>
                   </VBox>
                   <VBox fx:id="midBox" prefHeight="200.0" prefWidth="100.0" />
@@ -73,10 +95,16 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label fx:id="roleLabel" alignment="TOP_CENTER" styleClass="gameLabel" text="Role:" />
+                        <Label fx:id="roleLabel" alignment="TOP_CENTER" styleClass="gameLabel" text="Role:">
+                           <effect>
+                              <DropShadow />
+                           </effect></Label>
                         <VBox prefHeight="14.0" prefWidth="455.0">
                            <children>
-                              <Label fx:id="goalLabel" focusTraversable="false" styleClass="gameLabel" text="Goal" />
+                              <Label fx:id="goalLabel" focusTraversable="false" styleClass="gameLabel" text="Goal">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect></Label>
                            </children>
                            <VBox.margin>
                               <Insets left="6.0" />
@@ -85,10 +113,16 @@
                               <Insets right="10.0" />
                            </padding>
                         </VBox>
-                        <TextField fx:id="goalTextField" editable="false" focusTraversable="false" mouseTransparent="true" styleClass="time-label" text="Goal:" />
+                        <TextField fx:id="goalTextField" editable="false" focusTraversable="false" mouseTransparent="true" styleClass="time-label" text="Goal:">
+                           <effect>
+                              <DropShadow />
+                           </effect></TextField>
                         <VBox prefHeight="14.0" prefWidth="455.0">
                            <children>
-                              <Label fx:id="attributesLabel" focusTraversable="false" styleClass="gameLabel" text="Attributes" />
+                              <Label fx:id="attributesLabel" focusTraversable="false" styleClass="gameLabel" text="Attributes">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect></Label>
                            </children>
                            <padding>
                               <Insets right="10.0" />
@@ -97,22 +131,34 @@
                               <Insets left="6.0" />
                            </VBox.margin>
                         </VBox>
-                        <TextField fx:id="attributesTextField" editable="false" focusTraversable="false" mouseTransparent="true" styleClass="time-label" text="Attributes:" />
+                        <TextField fx:id="attributesTextField" editable="false" focusTraversable="false" mouseTransparent="true" styleClass="time-label" text="Attributes:">
+                           <effect>
+                              <DropShadow />
+                           </effect></TextField>
                         <VBox prefHeight="14.0" prefWidth="455.0">
                            <padding>
                               <Insets right="10.0" />
                            </padding>
                            <children>
-                              <Label fx:id="abilitiesLabel" focusTraversable="false" styleClass="gameLabel" text="Abilities" />
+                              <Label fx:id="abilitiesLabel" focusTraversable="false" styleClass="gameLabel" text="Abilities">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect></Label>
                            </children>
                            <VBox.margin>
                               <Insets left="6.0" />
                            </VBox.margin>
                         </VBox>
-                        <TextField fx:id="abilitiesTextField" editable="false" focusTraversable="false" mouseTransparent="true" styleClass="time-label" text="Abilities:" />
+                        <TextField fx:id="abilitiesTextField" editable="false" focusTraversable="false" mouseTransparent="true" styleClass="time-label" text="Abilities:">
+                           <effect>
+                              <DropShadow />
+                           </effect></TextField>
                      </children>
                   </VBox>
-                  <Label fx:id="alivePlayersLabel" styleClass="gameLabel" text="Alive Players" />
+                  <Label fx:id="alivePlayersLabel" styleClass="gameLabel" text="Alive Players">
+                     <effect>
+                        <DropShadow />
+                     </effect></Label>
                   <ListView fx:id="alivePlayersListView" focusTraversable="false" prefHeight="435.0" prefWidth="455.0" styleClass="game-list-view">
                      <opaqueInsets>
                         <Insets />
@@ -123,14 +169,23 @@
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </ListView>
                   <HBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="455.0">
                      <children>
-                        <Button fx:id="useAbilityButton" focusTraversable="false" mnemonicParsing="false" onAction="#useAbilityClicked" prefHeight="41.0" prefWidth="305.0" styleClass="background2" text="Vote" />
+                        <Button fx:id="useAbilityButton" focusTraversable="false" mnemonicParsing="false" onAction="#useAbilityClicked" prefHeight="41.0" prefWidth="305.0" text="Vote" />
                      </children>
                   </HBox>
-                  <Label fx:id="nameLabel" prefHeight="42.0" prefWidth="150.0" styleClass="time-label" text="Your Name:" />
-                  <Label fx:id="numberLabel" prefWidth="150.0" styleClass="time-label" text="Your Number:" />
+                  <Label fx:id="nameLabel" prefHeight="42.0" prefWidth="150.0" styleClass="time-label" text="Your Name:">
+                     <effect>
+                        <DropShadow />
+                     </effect></Label>
+                  <Label fx:id="numberLabel" prefWidth="150.0" styleClass="time-label" text="Your Number:">
+                     <effect>
+                        <DropShadow />
+                     </effect></Label>
                   <VBox fx:id="extraPropertiesVbox" prefHeight="200.0" prefWidth="100.0" />
                </children>
             </VBox>
@@ -142,7 +197,10 @@
       </HBox>
       <VBox fx:id="passTurnPane" alignment="CENTER" onMouseClicked="#interludeClicked" prefHeight="200.0" prefWidth="100.0" styleClass="backgroundimage" visible="false" StackPane.alignment="TOP_CENTER">
          <children>
-            <Label fx:id="passTurnLabel" prefHeight="98.0" prefWidth="543.0" styleClass="pass-turn-label" text="Player" textFill="WHITE" />
+            <Label fx:id="passTurnLabel" prefHeight="98.0" prefWidth="543.0" styleClass="pass-turn-label" text="Player" textFill="WHITE">
+               <effect>
+                  <DropShadow />
+               </effect></Label>
             <VBox alignment="TOP_CENTER" prefHeight="632.0" prefWidth="1266.0" />
          </children>
       </VBox>
@@ -154,6 +212,9 @@
                      <font>
                         <Font size="43.0" />
                      </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </Label>
                </children>
             </HBox>

@@ -11,7 +11,7 @@
    <children>
       <HBox alignment="CENTER" focusTraversable="true" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
          <children>
-            <Label fx:id="achievementsLabel" text="Achievements" textFill="WHITE">
+            <Label fx:id="achievementsLabel" styleClass="game-logo" text="Achievements" textFill="WHITE">
                <font>
                   <Font size="43.0" />
                </font>

@@ -16,7 +16,8 @@ public class RoleBoxForGameGuide extends VBox {
     public RoleBoxForGameGuide(Role role) {
         // Style the container
         setPadding(new Insets(15));
-        setStyle("-fx-border-color: #a084ca; -fx-border-radius: 10; -fx-background-radius: 10;");
+        setStyle("-fx-border-color: #a084ca; -fx-border-radius: 10; -fx-background-radius: 10; " +
+                "-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 2, 2);");
 
         // Set background color based on role type
         String backgroundColor = getBackgroundColorByRoleType(role);
@@ -28,7 +29,8 @@ public class RoleBoxForGameGuide extends VBox {
 
         // Add the role name
         Label roleNameLabel = new Label(role.getName());
-        roleNameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;");
+        roleNameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" +
+                "-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 2, 2);");
 
         // Add abilities
         Label abilitiesLabel = new Label(LanguageManager.getText("GameGuide","RoleAbilities")
@@ -63,11 +65,11 @@ public class RoleBoxForGameGuide extends VBox {
      * @return A CSS-compatible color string.
      */
     private String getBackgroundColorByRoleType(Role role) {
-        return switch (role.getTeam()) { // Assuming Role has a `getTeam` method
-            case CORRUPTER -> "rgba(255, 69, 0, 0.8)"; // Orange-Red for corrupter roles
-            case FOLK -> "rgba(50, 205, 50, 0.8)"; // Green for folk roles
-            case NEUTRAL -> "rgba(135, 206, 250, 0.8)"; // Light blue for neutral roles
-            default -> "rgba(46, 13, 37, 0.8)"; // Default background color
+        return switch (role.getTeam()) {
+            case CORRUPTER -> "rgba(255, 69, 0, 0.8)";
+            case FOLK -> "rgba(50, 205, 50, 0.8)";
+            case NEUTRAL -> "rgba(135, 206, 250, 0.8)";
+            default -> "rgba(46, 13, 37, 0.8)";
         };
     }
 }

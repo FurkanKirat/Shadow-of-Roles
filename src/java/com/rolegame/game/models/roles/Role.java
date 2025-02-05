@@ -74,11 +74,11 @@ public abstract class Role {
     }
 
     protected void sendAbilityMessage(String message, Player receiver){
-        MessageService.sendMessage(message, receiver, false, false);
+        MessageService.sendNightMessage(message, receiver, false, false);
     }
 
     protected void sendAbilityAnnouncement(String message){
-        MessageService.sendMessage(message, null, true, false);
+        MessageService.sendNightMessage(message, null, true, false);
     }
 
     public abstract boolean executeAbility();

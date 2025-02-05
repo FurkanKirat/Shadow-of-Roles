@@ -115,9 +115,6 @@
     -fx-alignment: center;
 }
 
-
-
-
 /* Label Styling */
 .gameLabel {
     -fx-text-fill: white; /* Deep navy blue */
@@ -198,19 +195,70 @@
     -fx-text-fill: white;
 }
 
-.achievement-box{
-    -fx-background-color: rgba(200,200,200,0.7);
-    -fx-border-color: gray;
+.achievement-box {
+    -fx-background-color: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
+    -fx-border-color: #cccccc;
     -fx-border-width: 2;
-    -fx-padding: 10;
-    -fx-background-radius: 5;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 0, 0, 0, 0);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-spacing: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);
     -fx-transition: all 0.3s ease;
 }
 
-.achievement-box:hover{
-    -fx-background-color: white;
-    -fx-effect: dropshadow(gaussian, rgba(255,255,0,0.8), 10, 0.5, 0, 0);
+/* Hover efekti: Kutuyu biraz yükselt ve gölgeyi belirginleştir */
+.achievement-box:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #d6d6d6);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 8, 0, 4, 4);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+/* Başlık Stili */
+.achievement-box Text {
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+/* Açıklama Metni */
+.achievement-box Label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #333;
+}
+
+/* Tamamlanan ve tamamlanmayan başarı renkleri */
+.completed {
+    -fx-text-fill: rgb(10, 242, 21);
+    -fx-font-weight: bold;
+}
+
+.uncompleted {
+    -fx-text-fill: rgb(232, 5, 12);
+    -fx-font-weight: bold;
+}
+
+/* Kategori etiketi */
+.category-label {
+    -fx-font-style: italic;
+    -fx-text-fill: #555;
+}
+
+/* İlerleme durumu renkleri */
+.progress-label-finished {
+    -fx-text-fill: #28a745;
+    -fx-font-weight: bold;
+}
+
+.progress-label-medium {
+    -fx-text-fill: #f39c12;
+    -fx-font-weight: bold;
+}
+
+.progress-label-low {
+    -fx-text-fill: #e74c3c;
+    -fx-font-weight: bold;
 }
 
 /* When achievement goal is achieved*/
@@ -257,23 +305,6 @@
     -fx-border-width: 2px;
 }
 
-/* Text Field and Text Area Styling */
-.gameTextField {
-    -fx-background-color: #d6ecff; /* Soft blue */
-    -fx-text-fill: #00274d; /* Deep navy */
-    -fx-font-family: "Arial";
-    -fx-border-color: #004c99; /* Dark blue border */
-    -fx-border-width: 1px;
-}
-
-.gameTextArea {
-    -fx-background-color: #d6ecff; /* Soft blue */
-    -fx-text-fill: #00274d; /* Deep navy */
-    -fx-font-family: "Arial";
-    -fx-border-color: #004c99; /* Dark blue border */
-    -fx-border-width: 1px;
-}
-
 .messageBox {
     -fx-font-family: "Arial";
     -fx-border-color: #004c99; /* Dark blue border */
@@ -288,46 +319,55 @@
     -fx-alignment: center-left; /* Metni sola yasla */
 }
 
-/* Gündüz stili */
 .messageBox.private {
-    -fx-background-color: #f4f4d9; /* Hafif açık sarı */
-    -fx-text-fill: #333; /* Siyah metin */
-    -fx-font-size: 14px; /* Yazı boyutu */
+    -fx-background-color: linear-gradient(to bottom, #f4f4d9, #e0e0b9);
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }
 
-/* Gece stili */
 .messageBox.public {
-    -fx-background-color: #2a3d6f; /* Koyu mavi */
-    -fx-text-fill: #fff; /* Beyaz metin */
-    -fx-font-size: 14px; /* Yazı boyutu */
+    -fx-background-color: linear-gradient(to bottom, #2a3d6f, #1f2b4b);
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }
 
-/* Button Styling */
 .button {
-    -fx-background-color: linear-gradient(to bottom, #66c1e4, #3a9ad9); /* Aqua gradient */
+    -fx-background-color: linear-gradient(to bottom, #7db7e6, #4a91c6);
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-padding: 8px 15px;
     -fx-font-size: 14px;
-    -fx-border-color: #00274d; /* Deep navy */
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10px 15px;
+    -fx-border-color: #3a75a1;
     -fx-border-width: 2px;
     -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
 }
+
+/* Hover efekti: Butonu biraz büyüt, ve gölge ekle */
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #66a9d8, #387aa8); /* Koyu mavi tonları */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0.5, 0, 5); /* Gölgeler */
+}
+
+/* Tıklama efekti: Buton aşağı kayacak ve biraz daha yoğun gölge */
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #4a91c6, #266f99); /* Daha koyu mavi */
+    -fx-translate-y: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 8, 0.5, 0, 6); /* Yoğun gölge */
+}
+
 
 .roleShowLabel{
     -fx-text-fill: white;
 }
-
-.playerCircle{
-    -fx-fill: #00274d; -fx-stroke: black; -fx-stroke-width: 1.5;
-}
-
-.playerLabel{
-    -fx-font-size: 20px;
-}
-
 
 .startRoot {
     -fx-background-color: #f4f4f4;
@@ -350,47 +390,62 @@
 
 }
 
-.MenuLabel{
-    -fx-border-color: black;
+.Menuhover-label {
+    -fx-background-color: linear-gradient(to bottom, #e69530, #b06a17);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-color: #8a4b08;
     -fx-border-width: 2;
-    -fx-padding: 10;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 12 20;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 2, 2);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
 
+    -fx-min-height: 70px;
+    -fx-pref-height: 70px;
+    -fx-max-height: 70px;
 }
 
-.Menuhover-label {
-    -fx-background-color: #374E4D;
-    -fx-text-fill: white;
-    -fx-border-color: black;
-    -fx-border-width: 2;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-    -fx-padding: 10;
+/* Hover efekti */
+.Menuhover-label:hover {
+    -fx-background-color: linear-gradient(to bottom, #f0a541, #c47822);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Tıklanınca basılma efekti */
+.Menuhover-label:pressed {
+    -fx-background-color: linear-gradient(to bottom, #b06a17, #8a4b08);
+    -fx-translate-y: 2px;
+}
+
+.game-logo {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.3, 0, 3);
+    -fx-opacity: 1;
     -fx-transition: all 0.3s ease;
 }
 
-.Menuhover-label:hover {
-    -fx-background-color: #2b8c30;
-    -fx-border-color: orange;
-    -fx-effect: dropshadow(gaussian, rgba(255, 165, 0, 0.8), 10, 0.5, 0, 0);
-    -fx-text-fill: white;
+/* Hover efekti: Parlama, büyüme ve opaklık değişimi */
+.game-logo:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 215, 0, 0.8), 15, 0.5, 0, 4);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-opacity: 0.9;
+    -fx-cursor: hand;
 }
 
-/* TextArea Styling with Hover Effects */
-.gameTextArea {
-    -fx-background-color: #d6ecff; /* Soft blue */
-    -fx-text-fill: #00274d; /* Deep navy */
-    -fx-font-family: "Arial";
-    -fx-border-color: #004c99; /* Dark blue border */
-    -fx-border-width: 1px;
-    -fx-padding: 5px;
-    -fx-transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+/* Tıklama efekti: Küçük bir basılma efekti */
+.game-logo:pressed {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(255, 165, 0, 0.8), 10, 0.5, 0, 3);
+    -fx-translate-y: 2px;
 }
 
-.gameTextArea:hover {
-    -fx-background-color: #c5e6ff; /* Lighter blue when hovered */
-    -fx-border-color: #3a9ad9; /* Brighter blue border on hover */
-    -fx-effect: dropshadow(gaussian, rgba(58, 154, 217, 0.6), 10, 0.5, 0, 0); /* Subtle glow effect */
-}
 
 .chillGuy{
     -fx-background-image: url('../images/chillguy.jpg');
@@ -401,6 +456,42 @@
     -fx-border-color: linear-gradient(from 25% 25% to 100% 100%, #1b2838, #2a394d);
     -fx-background-color: transparent;
     -fx-text-fill: rgb(209, 227, 213);
+    -fx-font-weight: bold;
+}
+
+.playerCircle {
+    -fx-fill: #4b9cd3; /* Soğuk mavi tonları */
+}
+
+/* Player Label */
+.playerLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 0 10px;
+}
+
+/* Player Selection Box (Background and Padding) */
+.player-selection-box {
+    -fx-background-color: linear-gradient(to bottom, rgba(95, 146, 180,0.5), rgba(60, 110, 143,0.5)); /* Soğuk mavi tonları */
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-alignment: center;
+}
+
+/* Corrupter Role Color */
+.corrupt-role-label {
+    -fx-text-fill: rgb(219, 57, 62); /* Corrupt Role Color */
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
+
+/* "You" Label */
+.you-label {
+    -fx-text-fill: snow;
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
 }
 
