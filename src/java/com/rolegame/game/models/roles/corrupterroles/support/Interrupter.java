@@ -22,11 +22,7 @@ public final class Interrupter extends CorrupterRole implements ActiveNightAbili
     @Override
     public boolean executeAbility() {
         sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockMessage"), getRoleOwner());
-        if(!choosenPlayer.getRole().isRoleBlockImmune()){
-            choosenPlayer.getRole().setCanPerform(false);
-            choosenPlayer.getRole().setChoosenPlayer(null);
-            return true;
-        }
+        choosenPlayer.getRole().setCanPerform(false);
 
         return true;
     }

@@ -22,12 +22,7 @@ public final class SealMaster extends FolkRole implements ActiveNightAbility {
     public boolean executeAbility() {
 
         sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockMessage"), roleOwner);
-
-        if(!choosenPlayer.getRole().isRoleBlockImmune()){
-            choosenPlayer.getRole().setCanPerform(false);
-            choosenPlayer.getRole().setChoosenPlayer(null);
-            return true;
-        }
+        choosenPlayer.getRole().setCanPerform(false);
 
         return false;
     }
