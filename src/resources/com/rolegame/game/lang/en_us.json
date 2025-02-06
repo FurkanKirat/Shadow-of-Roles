@@ -76,7 +76,7 @@
   },
   "RoleBlock": {
     "roleBlockedMessage": "You have been role blocked this night",
-    "immuneMessage": "Hedefin dokunulmaz",
+    "immuneMessage": "Your target is immune",
     "RBimmuneMessage": "Someone tried to role block you but you are immune",
     "roleBlockMessage": "You have role blocked your target"
   },
@@ -165,11 +165,11 @@
   "FolkHero": {
     "attributes": "You can use your ability twice in a game",
     "abilities": "You make people immune others cannot visit your target",
-    "abilityMessage": "Başarıyla hedefini bağışık hale getirdin"
+    "abilityMessage": "You have successfully immunized your target"
   },
   "Entrepreneur": {
-    "attributes": "Yok",
-    "abilities": "Yok",
+    "attributes": "You get 2 coins every day",
+    "abilities": "You have some money, you can get other people to do work with this money.",
     "insufficientMoney": "You don't have enough money to: {abilityType}",
     "attack": "Attack",
     "heal": "Heal",
@@ -180,9 +180,9 @@
     "money": "Your money: {money}"
   },
   "Lorekeeper": {
-    "attributes": "Yok",
-    "abilities": "Yok",
-    "goal": "Win the game",
+    "attributes": "You need to correctly guess 2 roles out of 5,6,7 people. You need to correctly guess 3 roles in 8,9,10 people.",
+    "abilities": "You choose an actor and then you choose what role that actor plays.",
+    "goal": "You try to guess the actors' roles",
     "abilityMessage": "The following player has revealed: {playerName} ({roleName})",
     "guess": "Your true guess count is: {guessCount}"
   },

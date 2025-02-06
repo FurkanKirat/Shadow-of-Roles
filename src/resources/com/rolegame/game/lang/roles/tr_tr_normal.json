@@ -65,21 +65,21 @@
     "name": "Karanlık Görücü"
   },
   "Blinder": {
-    "name": "Blinder"
+    "name": "Kör eden"
   },
   "FolkHero": {
     "name": "Halk Kahramanı"
   },
   "Entrepreneur": {
-    "name": "Entrepreneur"
+    "name": "Ticaret İnsanı"
   },
   "Lorekeeper": {
-    "name": "Lorekeeper"
+    "name": "Kadim Bilge"
   },
   "CauseOfDeath": {
     "assassin": "Suikastçi",
     "psycho": "Psikopat",
     "hanging": "Asılarak",
-    "lastJoke": "Last Joke"
+    "lastJoke": "Şakalandı"
   }
 }

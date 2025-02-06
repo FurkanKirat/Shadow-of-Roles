@@ -149,39 +149,39 @@
     "abilities": "Her gece başka bir role bürünürsün ama hangi rol olduğunu kullanmadan bilemezsin"
   },
   "Darkseer":{
-    "attributes": "None",
+    "attributes": "Yok",
     "abilities": "\nYaşayan iki kişinin rolünü görüyorsunuz ancak rol sahibini göremezsiniz",
     "abilityMessage": "Oyunda şu anda yaşayan iki kişinin rolleri: {roleName1} ve {roleName2}",
     "oneLeftMessage": "Oyunda şu anda yaşayan bir kişinin rolü: {roleName1}",
     "zeroLeftMessage": "Rolü gösterilecek oyuncu bulunamadı"
   },
   "Blinder": {
-    "attributes": "None",
-    "abilityMessage": "You have blinded your target",
-    "abilities": "When you blind someone that player perform their ability randomly",
-    "blindMessage": "You are blinded this night"
+    "attributes": "Yok",
+    "abilityMessage": "Hedefini kör ettin",
+    "abilities": "Birini kör ettiğinizde, o oyuncu yeteneğini rastgele kullanır",
+    "blindMessage": "Bu gece kör oldun"
   },
   "FolkHero": {
-    "attributes": "Yok",
-    "abilities": "Yok",
+    "attributes": "Özelliğini bir oynuda 2 kere kullanabilirsin",
+    "abilities": "Gece gittiğin kişiye başka oyuncuların gitmesini engellersin",
     "abilityMessage": "Başarıyla hedefini bağışık hale getirdin"
   },
   "Entrepreneur": {
-    "attributes": "Yok",
-    "abilities": "Yok",
-    "insufficientMoney": "You don't have enough money to: {abilityType}",
-    "attack": "Attack",
-    "heal": "Heal",
-    "info": "Info",
-    "pass": "Pass Ability",
-    "selected": "Selected: {abilityType}",
-    "none": "None",
-    "money": "Your money: {money}"
+    "attributes": "Her gün 2 para alırsın",
+    "abilities": "Bir miktar paran var bu parayla başkalarına iş yaptırırsın",
+    "insufficientMoney": "Bunu yapacak kadar paranız yok: {abilityType}",
+    "attack": "Saldır",
+    "heal": "İyileştir",
+    "info": "Bilgi al",
+    "pass": "Pas geç",
+    "selected": "Seçildi: {abilityType}",
+    "none": "Yok",
+    "money": "Paran: {money}"
   },
   "Lorekeeper": {
-    "attributes": "Yok",
-    "abilities": "Yok",
-    "goal": "Win the game",
+    "attributes": "5,6,7 kişide 2 rolü doğru tahmin etmen gerek. 8,9,10 Kişide 3 rolü doğru tahmin etmen gerek.",
+    "abilities": "Bir oyuncu seçersin sonra o oyuncunun hangi rolü oynadığını seçersin.",
+    "goal": "Oyuncuların rollerini tahmin etmeye çalışırsın",
     "abilityMessage": "Şu kişi açığa çıkarıldı: {playerName} ({roleName})",
     "guess": "Doğru tahmin sayınız: {guessCount}"
   },
@@ -257,6 +257,6 @@
     "RoleAbilities": "Yetenekler: {abilities}"
   },
   "Credits": {
-    "creditText": "Developed By: Furkan Kırat\nGraphs By: Tikky\nPowered by: JavaFX, Java 23\nThanks for Playing"
+    "creditText": "\"Geliştiren: Furkan Kırat\\nGrafikler: Tikky\\nPowered by: JavaFX, Java 23\\nOynadığınız için teşekkürler\""
   }
 }
