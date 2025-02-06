@@ -1,5 +1,6 @@
 package com.rolegame.game.gui.controllers.game;
 
+import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.services.GameService;
 import com.rolegame.game.models.player.Player;
 import com.rolegame.game.managers.SceneManager;
@@ -7,6 +8,7 @@ import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -16,6 +18,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChillGuyAlertController implements Initializable {
+    @FXML
+    private Button button;
 
     @FXML
     private VBox root;
@@ -52,5 +56,10 @@ public class ChillGuyAlertController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         noButton.setSelected(true);
+        chillGuyLabel.setText(LanguageManager.getText("ChillGuy","ChillGuyAlert"));
+        questionLabel.setText(LanguageManager.getText("ChillGuy","ChillGuyReveal"));
+        yesButton.setText(LanguageManager.getText("GeneralMenu","yes"));
+        noButton.setText(LanguageManager.getText("GeneralMenu","no"));
+        button.setText(LanguageManager.getText("Menu","apply"));
     }
 }
