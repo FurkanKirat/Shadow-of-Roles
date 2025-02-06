@@ -23,8 +23,6 @@ public final class FolkHero extends FolkRole implements ActiveNightAbility {
             return false;
         }
 
-        abilityUseCount++;
-
         if(!isCanPerform()){
             sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage") ,roleOwner);
             return false;
@@ -38,6 +36,7 @@ public final class FolkHero extends FolkRole implements ActiveNightAbility {
         if(abilityUseCount<=2){
             sendAbilityMessage(LanguageManager.getText("RoleBlock","abilityMessage") ,roleOwner);
             choosenPlayer.setImmune(true);
+            abilityUseCount++;
             return true;
         }
         return false;

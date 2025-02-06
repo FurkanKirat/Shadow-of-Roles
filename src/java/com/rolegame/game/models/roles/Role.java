@@ -56,7 +56,7 @@ public abstract class Role {
     }
 
     public boolean performAbility(){
-        if(!canPerform){
+        if(!canPerform&&!roleOwner.isImmune()){
             sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),roleOwner);
             return false;
         }
@@ -74,7 +74,7 @@ public abstract class Role {
     }
 
     protected boolean performAbilityForPassiveRoles(){
-        if(!isCanPerform()){
+        if(!isCanPerform()&&!roleOwner.isImmune()){
             sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),getRoleOwner());
             return false;
         }
@@ -82,7 +82,7 @@ public abstract class Role {
     }
 
     protected boolean performAbilityForBlockImmuneRoles(){
-        if(!isCanPerform()){
+        if(!canPerform&&!roleOwner.isImmune()){
             sendAbilityMessage(LanguageManager.getText("RoleBlock","RBimmuneMessage") ,getRoleOwner());
         }
 
