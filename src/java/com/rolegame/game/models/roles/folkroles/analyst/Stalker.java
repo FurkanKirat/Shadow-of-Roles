@@ -1,22 +1,21 @@
 package com.rolegame.game.models.roles.folkroles.analyst;
 
 import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.player.Player;
+import com.rolegame.game.models.roles.enums.*;
 import com.rolegame.game.models.roles.folkroles.FolkRole;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
 
-public final class Stalker extends FolkRole implements ActiveNightAbility {
+public final class Stalker extends FolkRole {
 
     public Stalker() {
-        super(RoleID.Stalker, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0, 0);
+        super(RoleID.Stalker, AbilityType.ACTIVE_OTHERS,
+                RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0, 0);
     }
 
     @Override
-    public boolean executeAbility() {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
         String message;
-        if(getChoosenPlayer().getRole().getChoosenPlayer()==null||!getChoosenPlayer().getRole().isCanPerform()){
+        if(choosenPlayer.getRole().getChoosenPlayer()==null||!choosenPlayer.getRole().isCanPerform()){
             message = LanguageManager.getText("Stalker","nobodyMessage");
         }
         else{
@@ -25,12 +24,7 @@ public final class Stalker extends FolkRole implements ActiveNightAbility {
         }
 
         sendAbilityMessage(message,roleOwner);
-        return true;
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return false;
+        return AbilityResult.SUCCESSFUL;
     }
 
     @Override

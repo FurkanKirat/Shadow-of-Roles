@@ -34,31 +34,31 @@ public abstract class Achievement {
     public Achievement() {
     }
 
-    public String getTitle() {
+    public final String getTitle() {
         return title;
     }
 
-    public String getDescription() {
+    public final String getDescription() {
         return description;
     }
 
-    public boolean isCompleted() {
+    public final boolean isCompleted() {
         return isCompleted;
     }
 
-    public AchievementCategory getCategory() {
+    public final AchievementCategory getCategory() {
         return category;
     }
 
-    public void setCompleted(boolean completed) {
+    public final void setCompleted(boolean completed) {
         isCompleted = completed;
     }
 
-    public AchievementID getId() {
+    public final AchievementID getId() {
         return id;
     }
 
-    public void langTitleAndDesc(){
+    public final void langTitleAndDesc(){
         this.title = LanguageManager.getAchievementText(id.toString(),"title");
         this.description = LanguageManager.getAchievementText(id.toString(),"description");
     }

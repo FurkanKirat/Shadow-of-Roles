@@ -3,7 +3,9 @@ package com.rolegame.game.gui.controllers.gameguide;
 import com.rolegame.game.gui.components.boxes.RoleBoxForGameGuide;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.RoleCatalog;
+import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.templates.RoleTemplate;
+import com.rolegame.game.services.RoleService;
 import com.rolegame.game.models.roles.enums.Team;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -60,14 +62,14 @@ public class RolesController {
 
         VBox.setVgrow(largeVBox, Priority.ALWAYS);
     }
-    private ArrayList<Role> filterRolesByCategory(Team team){
-        ArrayList<Role> roles = new ArrayList<>(RoleCatalog.getRolesByTeam(team));
-        roles.sort(Comparator.comparing(role -> role.getRoleCategory().getCategory()));
+    private ArrayList<RoleTemplate> filterRolesByCategory(Team team){
+        ArrayList<RoleTemplate> roles = new ArrayList<>(RoleService.getRolesByTeam(team));
+        roles.sort(Comparator.comparing(roleTemplate -> roleTemplate.getRoleCategory().getCategory()));
         return roles;
 
     }
 
-    private void displayRolesByTeamAndCategory(ArrayList<Role> roles) {
+    private void displayRolesByTeamAndCategory(ArrayList<RoleTemplate> roles) {
         rolesVBox.getChildren().clear();
         for(int i = 0;i<roles.size();i++){
             if(i == 0 || roles.get(i).getRoleCategory() != roles.get(i-1).getRoleCategory()){

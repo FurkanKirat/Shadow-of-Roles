@@ -40,7 +40,7 @@ public class ChillGuyAlertController implements Initializable {
 
         GameService gameService = GameScreenController.getGameService();
         for(Player player: gameService.getAllPlayers()){
-            if(player.getRole() instanceof ChillGuy){
+            if(player.getRole().getTemplate() instanceof ChillGuy){
                 player.setHasWon(noButton.isSelected());
                 break;
             }

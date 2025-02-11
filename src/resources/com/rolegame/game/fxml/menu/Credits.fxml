@@ -25,9 +25,9 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
+            <TextFlow prefHeight="62.0" prefWidth="1342.0" textAlignment="CENTER">
                <children>
-                  <Text fx:id="creditsText" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="game-logo" text="Developed By: Furkan Kırat" textAlignment="CENTER">
+                  <Text fx:id="creditsText" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed By: Furkan Kırat" textAlignment="CENTER">
                      <font>
                         <Font size="43.0" />
                      </font>

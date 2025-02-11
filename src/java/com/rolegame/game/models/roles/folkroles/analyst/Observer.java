@@ -1,28 +1,21 @@
 package com.rolegame.game.models.roles.folkroles.analyst;
 
 import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.player.Player;
+import com.rolegame.game.models.roles.enums.*;
 import com.rolegame.game.models.roles.folkroles.FolkRole;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
 
-public final class Observer extends FolkRole implements ActiveNightAbility {
+public final class Observer extends FolkRole {
     public Observer() {
-        super(RoleID.Observer, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0);
+        super(RoleID.Observer, AbilityType.ACTIVE_OTHERS, RolePriority.NONE, RoleCategory.FOLK_ANALYST, 0,0);
     }
 
     @Override
-    public boolean executeAbility() {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
         sendAbilityMessage(LanguageManager.getText("Observer","abilityMessage")
-                .replace("{teamName}",this.getChoosenPlayer().getRole().getTeam().name())
-                ,getRoleOwner());
-        return true;
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return false;
+                .replace("{teamName}", choosenPlayer.getRole().getTemplate().getTeam().name())
+                ,roleOwner);
+        return AbilityResult.SUCCESSFUL;
     }
 
     @Override

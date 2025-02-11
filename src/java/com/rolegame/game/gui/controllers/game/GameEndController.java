@@ -123,8 +123,8 @@ public class GameEndController implements Initializable {
     private void setupTableView(){
         teamColumn.setCellValueFactory(cellData -> {
             Role role = cellData.getValue().getRole();
-            if (role != null && role.getTeam() != null) {
-                return new SimpleStringProperty(LanguageManager.getText("Role",role.getTeam().toString()));
+            if (role != null && role.getTemplate().getTeam() != null) {
+                return new SimpleStringProperty(LanguageManager.getText("Role",role.getTemplate().getTeam().toString()));
             } else {
                 return new SimpleStringProperty("-");
             }
@@ -152,11 +152,11 @@ public class GameEndController implements Initializable {
         }
 
         for (Player player: GameScreenController.getGameService().getAllPlayers()){
-            if(player.getRole() instanceof FolkHero folkHero && folkHero.getAbilityUseCount() == 0 &&
+            if(player.getRole().getTemplate() instanceof FolkHero folkHero && folkHero.getAbilityUseCount() == 0 &&
                     player.isHasWon()){
                 AchievementManager.completeAchievement(Achievement.AchievementID.LAZY_HERO);
             }
-            else if(player.getRole() instanceof ChillGuy && !player.isHasWon()){
+            else if(player.getRole().getTemplate() instanceof ChillGuy && !player.isHasWon()){
                 AchievementManager.completeAchievement(Achievement.AchievementID.WIN_SACRIFICE);
             }
         }

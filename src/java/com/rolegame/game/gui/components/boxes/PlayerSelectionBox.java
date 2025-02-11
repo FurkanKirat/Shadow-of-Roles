@@ -5,8 +5,8 @@ import com.rolegame.game.gui.controllers.game.GameScreenController;
 import com.rolegame.game.models.player.Player;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
+import com.rolegame.game.models.roles.enums.AbilityType;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
 import com.rolegame.game.models.roles.enums.Team;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -18,6 +18,7 @@ import javafx.scene.shape.Circle;
 public class PlayerSelectionBox extends HBox{
     private static final Color CORRUPTER_COLOR = Color.rgb(219, 57, 62);
     private final Button selectButton;
+    private Label roleLabel;
     private boolean isChosen = false;
     private HBox roleBox;
 
@@ -38,6 +39,7 @@ public class PlayerSelectionBox extends HBox{
         playerNameBox.setAlignment(Pos.CENTER);
 
         playerName.setAlignment(Pos.CENTER);
+
 
 
         selectButton = new Button(LanguageManager.getText("Menu","select"));
@@ -63,21 +65,32 @@ public class PlayerSelectionBox extends HBox{
             });
         this.getChildren().addAll(stackPane,playerNameBox);
 
-        if(currentPlayer.getRole().getTeam()==Team.CORRUPTER &&player.getRole().getTeam()==Team.CORRUPTER){
+        if(player.isRevealed()){
+            roleLabel = createLabel("(" + player.getRole().getTemplate().getName() + ")");
+            roleLabel.setAlignment(Pos.CENTER);
+        }
+        if(currentPlayer.getRole().getTemplate().getTeam()==Team.CORRUPTER &&
+                player.getRole().getTemplate().getTeam()==Team.CORRUPTER){
 
-            Label roleLabel = createLabel("(" + player.getRole().getName() + ")");
+            roleLabel = createLabel("(" + player.getRole().getTemplate().getName() + ")");
             roleLabel.setAlignment(Pos.CENTER);
 
-            roleBox = new HBox(roleLabel);
-            roleBox.setAlignment(Pos.CENTER);
 
             playerName.setTextFill(CORRUPTER_COLOR);
             roleLabel.getStyleClass().add("corrupt-role-label");
             playerName.getStyleClass().add("corrupt-role-label");
-            this.getChildren().add(roleBox);
+
+
+            if(currentPlayer.getRole().getTemplate().getAbilityType() == AbilityType.OTHER_THAN_CORRUPTER){
+                selectButton.setVisible(false);
+            }
 
         }
-
+        if(roleLabel != null){
+            roleBox = new HBox(roleLabel);
+            roleBox.setAlignment(Pos.CENTER);
+            this.getChildren().add(roleBox);
+        }
         if(currentPlayer.getNumber()==player.getNumber()){
 
             Label youLabel = createLabel("("+ LanguageManager.getText("Menu","you")+")");
@@ -88,31 +101,48 @@ public class PlayerSelectionBox extends HBox{
             youBox.setAlignment(Pos.CENTER);
 
 
-            if(currentPlayer.getRole().getTeam()==Team.CORRUPTER){
+            if(currentPlayer.getRole().getTemplate().getTeam()==Team.CORRUPTER){
                 this.getChildren().remove(roleBox);
                 youLabel.setTextFill(CORRUPTER_COLOR);
             }
             youLabel.getStyleClass().add("you-label");
             this.getChildren().add(youBox);
-            selectButton.setVisible(false);
+
+            if(time!=Time.NIGHT){
+                selectButton.setVisible(false);
+            }
+            else{
+                switch (currentPlayer.getRole().getTemplate().getAbilityType()){
+                    case PASSIVE, ACTIVE_OTHERS, OTHER_THAN_CORRUPTER, NO_ABILITY:
+                        selectButton.setVisible(false);
+                }
+            }
+
+
         }
 
         if(time==Time.DAY){
             selectButton.setVisible(false);
         }
 
-        if(!(currentPlayer.getRole() instanceof ActiveNightAbility) && time==Time.NIGHT){
-            selectButton.setVisible(false);
+        else if(time == Time.NIGHT){
+            switch (currentPlayer.getRole().getTemplate().getAbilityType()) {
+                case ACTIVE_SELF, NO_ABILITY:
+                    selectButton.setVisible(false);
+            }
+
+            if(currentPlayer.getRole().getTemplate() instanceof Lorekeeper lorekeeper &&
+                    lorekeeper.getAlreadyChosenPlayers().contains(player)){
+                selectButton.setVisible(false);
+            }
         }
 
-        if(currentPlayer.getRole() instanceof LastJoke lastJoker && !lastJoker.getRoleOwner().isAlive()){
+
+        if(currentPlayer.getRole().getTemplate() instanceof LastJoke && !currentPlayer.isAlive()){
             selectButton.setVisible(true);
         }
 
-        if(currentPlayer.getRole() instanceof Lorekeeper lorekeeper && time==Time.NIGHT &&
-                lorekeeper.getAlreadyChosenPlayers().contains(player)){
-            selectButton.setVisible(false);
-        }
+
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -139,4 +169,5 @@ public class PlayerSelectionBox extends HBox{
         label.getStyleClass().add("playerLabel");
         return label;
     }
+
 }

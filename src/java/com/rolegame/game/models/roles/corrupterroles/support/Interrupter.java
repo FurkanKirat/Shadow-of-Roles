@@ -1,35 +1,28 @@
 package com.rolegame.game.models.roles.corrupterroles.support;
 
 import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.models.roles.corrupterroles.CorrupterRole;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
+import com.rolegame.game.models.roles.enums.*;
 
-public final class Interrupter extends CorrupterRole implements ActiveNightAbility {
+public final class Interrupter extends CorrupterRole {
     public Interrupter() {
-        super(RoleID.Interrupter, RolePriority.ROLE_BLOCK, RoleCategory.CORRUPTER_SUPPORT, 0, 0);
+        super(RoleID.Interrupter, AbilityType.ACTIVE_OTHERS,
+                RolePriority.ROLE_BLOCK, RoleCategory.CORRUPTER_SUPPORT, 0, 0);
     }
 
     @Override
-    public boolean performAbility() {
+    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer) {
 
-        return performAbilityForBlockImmuneRoles();
+        return performAbilityForBlockImmuneRoles(roleOwner, choosenPlayer);
 
     }
 
     @Override
-    public boolean executeAbility() {
-        sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockMessage"), getRoleOwner());
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
         choosenPlayer.getRole().setCanPerform(false);
 
-        return true;
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return true;
+        return AbilityResult.SUCCESSFUL;
     }
 
     @Override

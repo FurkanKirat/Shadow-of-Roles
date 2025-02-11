@@ -14,100 +14,114 @@ public abstract class Player {
     private boolean hasWon;
     private String causeOfDeath;
     private boolean isImmune;
+    private boolean isRevealed;
 
     public Player(int number, String name, Role role) {
         this.number = number;
         this.name = name;
         this.role = role;
         this.isAlive = true;
-        this.attack = role.getAttack();
-        this.defence = role.getDefence();
         this.role.setRoleOwner(this);
+        this.isRevealed = false;
         hasWon = false;
         causeOfDeath = null;
     }
 
+    public final void resetStates(){
+        this.getRole().setChoosenPlayer(null);
+        this.setDefence(this.getRole().getTemplate().getDefence());
+        this.setAttack(this.getRole().getTemplate().getAttack());
+        this.getRole().setCanPerform(true);
+        this.setImmune(false);
+    }
+
     @Override
-    public String toString(){
+    public final String toString(){
         return number +". " +name;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
         return number == player.number;
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hashCode(number);
     }
 
-    public int getNumber() {
+    public final int getNumber() {
         return number;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public Role getRole() {
+    public final Role getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public final void setRole(Role role) {
         this.role = role;
         this.role.setRoleOwner(this);
-        this.attack = role.getAttack();
-        this.defence = role.getDefence();
     }
 
-    public boolean isAlive() {
+    public final boolean isAlive() {
         return isAlive;
     }
 
-    public void setAlive(boolean alive) {
+    public final void setAlive(boolean alive) {
         isAlive = alive;
     }
 
-    public double getAttack() {
+    public final double getAttack() {
         return attack;
     }
 
-    public void setAttack(double attack) {
+    public final void setAttack(double attack) {
         this.attack = attack;
     }
 
-    public double getDefence() {
+    public final double getDefence() {
         return defence;
     }
 
-    public void setDefence(double defence) {
+    public final void setDefence(double defence) {
         this.defence = defence;
     }
 
-    public boolean isHasWon() {
+    public final boolean isHasWon() {
         return hasWon;
     }
 
-    public void setHasWon(boolean hasWon) {
+    public final void setHasWon(boolean hasWon) {
         this.hasWon = hasWon;
     }
 
-    public String getCauseOfDeath() {
+    public final String getCauseOfDeath() {
         return causeOfDeath;
     }
-    public void setImmune(boolean isImmune){
+    public final void setImmune(boolean isImmune){
         this.isImmune = isImmune;
     }
 
-    public boolean isImmune(){
+    public final boolean isImmune(){
         return isImmune;
     }
 
-    public void setCauseOfDeath(String causeOfDeath) {
+    public final void setCauseOfDeath(String causeOfDeath) {
         this.causeOfDeath = causeOfDeath;
+    }
+
+    public final boolean isRevealed() {
+        return isRevealed;
+    }
+
+    public final void setRevealed(boolean revealed) {
+        isRevealed = revealed;
     }
 
     public abstract boolean isAIPlayer();

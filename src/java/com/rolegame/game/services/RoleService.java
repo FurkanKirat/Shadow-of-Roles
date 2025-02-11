@@ -1,4 +1,4 @@
-package com.rolegame.game.models.roles;
+package com.rolegame.game.services;
 
 import com.rolegame.game.models.roles.corrupterroles.analyst.DarkRevealer;
 import com.rolegame.game.models.roles.corrupterroles.analyst.Darkseer;
@@ -19,13 +19,14 @@ import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.neutralroles.killing.Assassin;
 import com.rolegame.game.models.roles.enums.RoleCategory;
 import com.rolegame.game.models.roles.enums.Team;
+import com.rolegame.game.models.roles.templates.RoleTemplate;
 
 import java.util.*;
 
-public class RoleCatalog {
-    private static final HashMap<Team, List<Role>> rolesMap = new HashMap<>();
-    private static final HashMap<RoleCategory, List<Role>> categoryMap = new HashMap<>();
-    private static final List<Role> allRoles = new ArrayList<>();
+public class RoleService {
+    private static final HashMap<Team, List<RoleTemplate>> rolesMap = new HashMap<>();
+    private static final HashMap<RoleCategory, List<RoleTemplate>> categoryMap = new HashMap<>();
+    private static final List<RoleTemplate> allRoles = new ArrayList<>();
 
     // Adds all roles to the catalog
     static {
@@ -42,8 +43,8 @@ public class RoleCatalog {
      * Adds role to the catalog
      * @param roles the roles to be added to the role catalog
      */
-    private static void addRole(Role... roles){
-        for(Role role: roles){
+    private static void addRole(final RoleTemplate... roles){
+        for(RoleTemplate role: roles){
             rolesMap.computeIfAbsent(role.getTeam(), k->new ArrayList<>()).add(role);
             categoryMap.computeIfAbsent(role.getRoleCategory(), k-> new ArrayList<>()).add(role);
             allRoles.add(role);
@@ -56,7 +57,7 @@ public class RoleCatalog {
      * @param team the desired team
      * @return a list that consist of the desired team
      */
-    public static List<Role> getRolesByTeam(Team team){
+    public static List<RoleTemplate> getRolesByTeam(final Team team){
         return rolesMap.getOrDefault(team, Collections.emptyList());
     }
 
@@ -65,7 +66,7 @@ public class RoleCatalog {
      * @param roleCategory the desired category
      * @return a list that consist of the desired category
      */
-    public static List<Role> getRolesByCategory(RoleCategory roleCategory){
+    public static List<RoleTemplate> getRolesByCategory(final RoleCategory roleCategory){
         return categoryMap.getOrDefault(roleCategory, Collections.emptyList());
     }
 
@@ -73,7 +74,7 @@ public class RoleCatalog {
      *
      * @return a copy array list of all roles
      */
-    public static List<Role> getAllRoles(){
+    public static List<RoleTemplate> getAllRoles(){
         return new ArrayList<>(allRoles);
     }
 
@@ -82,8 +83,8 @@ public class RoleCatalog {
      * @param otherRole the role that is not wanted to return
      * @return a random role other than the parameter role
      */
-    public static Role getRandomRole(Role otherRole){
-        ArrayList<Role> otherRoles = new ArrayList<>(allRoles);
+    public static RoleTemplate getRandomRole(final RoleTemplate otherRole){
+        ArrayList<RoleTemplate> otherRoles = new ArrayList<>(allRoles);
         otherRoles.remove(otherRole);
         return otherRoles.get(new Random().nextInt(otherRoles.size())).copy();
     }
@@ -92,7 +93,7 @@ public class RoleCatalog {
      *
      * @return a random role in the catalog
      */
-    public static Role getRandomRole(){
+    public static RoleTemplate getRandomRole(){
         return allRoles.get(new Random().nextInt(allRoles.size())).copy();
     }
 
@@ -101,8 +102,8 @@ public class RoleCatalog {
      * @param playerCount the count of the players
      * @return an array list that is the players' roles
      */
-    public static ArrayList<Role> initializeRoles(int playerCount){
-        HashMap<Role,Integer> roles = switch (playerCount) {
+    public static ArrayList<RoleTemplate> initializeRoles(final int playerCount){
+        HashMap<RoleTemplate,Integer> roles = switch (playerCount) {
             case 5 -> configureFivePlayers();
             case 6 -> configureSixPlayers();
             case 7 -> configureSevenPlayers();
@@ -111,8 +112,8 @@ public class RoleCatalog {
             case 10 -> configureTenPlayers();
             default -> throw new IllegalStateException("Unexpected player count: " + playerCount);
         };
-        ArrayList<Role> rolesList = new ArrayList<>();
-        for(Map.Entry<Role,Integer> entry : roles.entrySet()){
+        ArrayList<RoleTemplate> rolesList = new ArrayList<>();
+        for(final Map.Entry<RoleTemplate,Integer> entry : roles.entrySet()){
 
             for(int i=0;i<entry.getValue();i++){
                 rolesList.add(entry.getKey().copy());
@@ -128,15 +129,15 @@ public class RoleCatalog {
      * @param roles the hash map of the roles that is created currently
      * @param role the role to be added to the hashmap
      */
-    private static void putRole(HashMap<Role,Integer> roles, Role role){
+    private static void putRole(HashMap<RoleTemplate,Integer> roles, RoleTemplate role){
         roles.put(role, roles.getOrDefault(role,0)+1);
     }
 
     /**
      * Configures roles for a 5-player game.
      */
-    private static HashMap<Role,Integer> configureFivePlayers(){
-        HashMap<Role,Integer> roles = new HashMap<>();
+    private static HashMap<RoleTemplate,Integer> configureFivePlayers(){
+        HashMap<RoleTemplate,Integer> roles = new HashMap<>();
         putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.FOLK_ANALYST));
         putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.FOLK_SUPPORT, RoleCategory.FOLK_PROTECTOR));
         putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
@@ -149,8 +150,8 @@ public class RoleCatalog {
     /**
      * Configures roles for a 6-player game.
      */
-    private static HashMap<Role,Integer> configureSixPlayers(){
-        HashMap<Role,Integer> roles = configureFivePlayers();
+    private static HashMap<RoleTemplate,Integer> configureSixPlayers(){
+        HashMap<RoleTemplate,Integer> roles = configureFivePlayers();
         putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
         return roles;
     }
@@ -158,8 +159,8 @@ public class RoleCatalog {
     /**
      * Configures roles for a 7-player game.
      */
-    private static HashMap<Role,Integer> configureSevenPlayers(){
-        HashMap<Role,Integer> roles = configureSixPlayers();
+    private static HashMap<RoleTemplate,Integer> configureSevenPlayers(){
+        HashMap<RoleTemplate,Integer> roles = configureSixPlayers();
         switch (new Random().nextInt(2)){
             case 0: putRole(roles, getRoleByTeamWithProbability(roles,Team.NEUTRAL));
                 break;
@@ -173,9 +174,9 @@ public class RoleCatalog {
     /**
      * Configures roles for an 8-player game.
      */
-    private static HashMap<Role,Integer> configureEightPlayers(){
+    private static HashMap<RoleTemplate,Integer> configureEightPlayers(){
 
-        HashMap<Role,Integer> roles = configureSixPlayers();
+        HashMap<RoleTemplate,Integer> roles = configureSixPlayers();
 
         switch (new Random().nextInt(3)){
             case 0:
@@ -198,8 +199,8 @@ public class RoleCatalog {
     /**
      * Configures roles for a 9-player game.
      */
-    private static HashMap<Role,Integer> configureNinePlayers(){
-        HashMap<Role,Integer> roles = configureEightPlayers();
+    private static HashMap<RoleTemplate,Integer> configureNinePlayers(){
+        HashMap<RoleTemplate,Integer> roles = configureEightPlayers();
         putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
         return roles;
     }
@@ -207,9 +208,9 @@ public class RoleCatalog {
     /**
      * Configures roles for a 10-player game.
      */
-    private static HashMap<Role,Integer> configureTenPlayers(){
+    private static HashMap<RoleTemplate,Integer> configureTenPlayers(){
 
-        HashMap<Role,Integer> roles = configureSixPlayers();
+        HashMap<RoleTemplate,Integer> roles = configureSixPlayers();
         putRole(roles, getRoleByTeamWithProbability(roles,Team.FOLK));
         putRole(roles, getRoleByCategoryWithProbability(roles,RoleCategory.CORRUPTER_SUPPORT,RoleCategory.CORRUPTER_ANALYST));
 
@@ -241,8 +242,8 @@ public class RoleCatalog {
      * @param roleCategory desired category
      * @return the role that is generated from the category list
      */
-    private static Role getRoleByCategoryWithProbability(HashMap<Role,Integer> currentRoles, RoleCategory roleCategory){
-        List<Role> roles = new ArrayList<>(getRolesByCategory(roleCategory));
+    private static RoleTemplate getRoleByCategoryWithProbability(HashMap<RoleTemplate,Integer> currentRoles, RoleCategory roleCategory){
+        List<RoleTemplate> roles = new ArrayList<>(getRolesByCategory(roleCategory));
         removeMaxCount(currentRoles,roles);
 
         return getRoleWithProbability(roles);
@@ -254,8 +255,8 @@ public class RoleCatalog {
      * @param roleCategories desired categories
      * @return the role that is generated from the categories list
      */
-    private static Role getRoleByCategoryWithProbability(HashMap<Role,Integer> currentRoles , RoleCategory... roleCategories){
-        List<Role> roles = new ArrayList<>();
+    private static RoleTemplate getRoleByCategoryWithProbability(HashMap<RoleTemplate,Integer> currentRoles , RoleCategory... roleCategories){
+        List<RoleTemplate> roles = new ArrayList<>();
         for(RoleCategory roleCategory: roleCategories){
 
             roles.addAll(getRolesByCategory(roleCategory));
@@ -270,9 +271,9 @@ public class RoleCatalog {
      * @param team desired team
      * @return the role that is generated from the team list
      */
-    private static Role getRoleByTeamWithProbability(HashMap<Role,Integer> currentRoles, Team team){
+    private static RoleTemplate getRoleByTeamWithProbability(HashMap<RoleTemplate,Integer> currentRoles, Team team){
 
-        List<Role> roles = new ArrayList<>(getRolesByTeam(team));
+        List<RoleTemplate> roles = new ArrayList<>(getRolesByTeam(team));
         removeMaxCount(currentRoles,roles);
         return getRoleWithProbability(roles);
     }
@@ -282,8 +283,8 @@ public class RoleCatalog {
      * @param currentRoles the hash map of the roles that is created currently
      * @param randomRoleList the list that consists of desired roles
      */
-    private static void removeMaxCount(HashMap<Role,Integer> currentRoles, List<Role> randomRoleList){
-        for(Map.Entry<Role,Integer> entry : currentRoles.entrySet()){
+    private static void removeMaxCount(HashMap<RoleTemplate,Integer> currentRoles, List<RoleTemplate> randomRoleList){
+        for(Map.Entry<RoleTemplate,Integer> entry : currentRoles.entrySet()){
             if(entry.getKey().getChanceProperty().maxNumber()<=entry.getValue()){
                 randomRoleList.remove(entry.getKey());
             }
@@ -294,13 +295,13 @@ public class RoleCatalog {
      * @param randomRoleList the list that consists of desired roles
      * @return a generated role from the randomRoleList with the probability of the roles
      */
-    private static Role getRoleWithProbability(List<Role> randomRoleList){
+    private static RoleTemplate getRoleWithProbability(List<RoleTemplate> randomRoleList){
 
         int sum = randomRoleList.stream().mapToInt(role -> role.getChanceProperty().chance()).sum();
         int randNum = new Random().nextInt(sum);
         int currentSum = 0;
 
-        for (Role role : randomRoleList) {
+        for (RoleTemplate role : randomRoleList) {
             currentSum += role.getChanceProperty().chance();
 
             if (currentSum >= randNum) {

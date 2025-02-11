@@ -1,23 +1,21 @@
 package com.rolegame.game.models.roles.folkroles.unique;
 
 import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.models.roles.corrupterroles.analyst.DarkRevealer;
 import com.rolegame.game.models.roles.corrupterroles.analyst.Darkseer;
 import com.rolegame.game.models.roles.corrupterroles.killing.Psycho;
+import com.rolegame.game.models.roles.enums.*;
 import com.rolegame.game.models.roles.folkroles.analyst.Detective;
 import com.rolegame.game.models.roles.folkroles.analyst.Observer;
 import com.rolegame.game.models.roles.folkroles.analyst.Stalker;
 import com.rolegame.game.models.roles.folkroles.FolkRole;
 import com.rolegame.game.models.roles.folkroles.protector.Soulbinder;
-import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
+import com.rolegame.game.models.roles.templates.RoleTemplate;
 
 import java.util.Random;
 
-public class Entrepreneur extends FolkRole implements ActiveNightAbility {
+public class Entrepreneur extends FolkRole {
 
     private static final int HEAL_PRICE = 3;
     private static final int INFO_PRICE = 2;
@@ -25,48 +23,43 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
     private int money;
     private ChosenAbility abilityState;
     public Entrepreneur() {
-        super(RoleID.Entrepreneur, RolePriority.NONE, RoleCategory.FOLK_UNIQUE, 0, 0);
+        super(RoleID.Entrepreneur, AbilityType.ACTIVE_ALL, RolePriority.NONE, RoleCategory.FOLK_UNIQUE, 0, 0);
         this.money = 3;
         this.setAbilityState(ChosenAbility.NONE);
     }
 
 
     @Override
-    public boolean executeAbility() {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
         rolePriority = RolePriority.NONE;
         switch (abilityState){
 
             case ATTACK -> {
                 if(money>= ATTACK_PRICE){
                     money -= ATTACK_PRICE;
-                    return useOtherAbility(new Psycho());
+                    return useOtherAbility(new Psycho(), roleOwner, choosenPlayer);
                 }
 
             }
             case HEAL ->{
                 if(money>= HEAL_PRICE){
                     money -= HEAL_PRICE;
-                    return useOtherAbility(new Soulbinder());
+                    return useOtherAbility(new Soulbinder(), roleOwner, choosenPlayer);
                 }
 
             }
             case INFO -> {
                 if(money>= INFO_PRICE){
                     money -= INFO_PRICE;
-                    return gatherInfo();
+                    return gatherInfo(roleOwner, choosenPlayer);
                 }
 
             }
             default -> {
-                return false;
+                return AbilityResult.NO_ABILITY_SELECTED;
             }
         }
-        return insufficientMoney();
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return false;
+        return insufficientMoney(roleOwner);
     }
 
     @Override
@@ -82,8 +75,8 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
         this.abilityState = abilityState;
     }
 
-    private boolean gatherInfo(){
-        Role role;
+    private AbilityResult gatherInfo(Player roleOwner, Player chosenPlayer){
+        RoleTemplate role;
         switch (new Random().nextInt(5)){
             case 0 -> role = new Darkseer();
             case 1 -> role = new Detective();
@@ -91,16 +84,13 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
             case 3 -> role = new Stalker();
             default -> role = new DarkRevealer();
         }
-        return useOtherAbility(role);
+        return useOtherAbility(role, roleOwner, chosenPlayer);
     }
 
-    private boolean useOtherAbility(Role role){
-        role.setChoosenPlayer(this.getChoosenPlayer());
-        role.setRoleOwner(this.getRoleOwner());
-        return role.executeAbility();
+    private AbilityResult useOtherAbility(RoleTemplate roleTemplate, Player roleOwner, Player choosenPlayer){
+        return roleTemplate.executeAbility(roleOwner,choosenPlayer);
     }
-
-    private boolean insufficientMoney(){
+    private AbilityResult insufficientMoney(Player roleOwner){
         String message = LanguageManager.getText("Entrepreneur","insufficientMoney");
 
         switch (abilityState){
@@ -109,7 +99,7 @@ public class Entrepreneur extends FolkRole implements ActiveNightAbility {
             case INFO -> message += LanguageManager.getText("Entrepreneur","info");
         }
         sendAbilityMessage(message, roleOwner);
-        return false;
+        return AbilityResult.INSUFFICIENT_MONEY;
     }
 
 

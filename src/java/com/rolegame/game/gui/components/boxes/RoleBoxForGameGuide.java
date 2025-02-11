@@ -2,6 +2,7 @@ package com.rolegame.game.gui.components.boxes;
 
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.Role;
+import com.rolegame.game.models.roles.templates.RoleTemplate;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -13,7 +14,7 @@ import javafx.scene.layout.VBox;
  */
 public class RoleBoxForGameGuide extends VBox {
 
-    public RoleBoxForGameGuide(Role role) {
+    public RoleBoxForGameGuide(RoleTemplate role) {
         // Style the container
         setPadding(new Insets(15));
         setStyle("-fx-border-color: #a084ca; -fx-border-radius: 10; -fx-background-radius: 10; " +
@@ -64,7 +65,7 @@ public class RoleBoxForGameGuide extends VBox {
      * @param role The role whose type determines the color.
      * @return A CSS-compatible color string.
      */
-    private String getBackgroundColorByRoleType(Role role) {
+    private String getBackgroundColorByRoleType(RoleTemplate role) {
         return switch (role.getTeam()) {
             case CORRUPTER -> "rgba(255, 69, 0, 0.8)";
             case FOLK -> "rgba(50, 205, 50, 0.8)";

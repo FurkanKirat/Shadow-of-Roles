@@ -1,39 +1,31 @@
 package com.rolegame.game.models.roles.corrupterroles.killing;
 
 import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.models.roles.corrupterroles.CorrupterRole;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
+import com.rolegame.game.models.roles.enums.*;
 
-public final class Psycho extends CorrupterRole implements ActiveNightAbility {
+public final class Psycho extends CorrupterRole {
 
     public Psycho() {
-        super(RoleID.Psycho, RolePriority.NONE, RoleCategory.CORRUPTER_KILLING, 1,0);
+        super(RoleID.Psycho, AbilityType.OTHER_THAN_CORRUPTER, RolePriority.NONE, RoleCategory.CORRUPTER_KILLING, 1,0);
     }
 
     @Override
-    public boolean executeAbility() {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
 
-        if(getAttack() > getChoosenPlayer().getDefence()){
-            this.getChoosenPlayer().setAlive(false);
-            this.getChoosenPlayer().setCauseOfDeath(LanguageManager.getText("CauseOfDeath","psycho"));
-            sendAbilityMessage(LanguageManager.getText("Psycho","killMessage"), getRoleOwner());
-            sendAbilityAnnouncement( LanguageManager.getText("Psycho","slainMessage").replace("{playerName}",this.getChoosenPlayer().getName()));
+        if(getAttack() > choosenPlayer.getDefence()){
+            choosenPlayer.setAlive(false);
+            choosenPlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath","psycho"));
+            sendAbilityMessage(LanguageManager.getText("Psycho","killMessage"), roleOwner);
+            sendAbilityAnnouncement( LanguageManager.getText("Psycho","slainMessage").replace("{playerName}",choosenPlayer.getName()));
 
-            return true;
+            return AbilityResult.SUCCESSFUL;
         }
         else{
-            sendAbilityMessage(LanguageManager.getText("Psycho","defenceMessage"),
-                    getRoleOwner());
-            return false;
+            sendAbilityMessage(LanguageManager.getText("Psycho","defenceMessage"), roleOwner);
+            return AbilityResult.ATTACK_INSUFFICIENT;
         }
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return false;
     }
 
     @Override

@@ -28,19 +28,19 @@ public class RoleBox extends VBox {
         content.setPadding(new Insets(10));
 
         // Add the role name
-        Label roleNameLabel = new Label("Role: " + role.getName());
+        Label roleNameLabel = new Label("Role: " + role.getTemplate().getName());
         roleNameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;");
 
         // Add abilities
-        Label abilitiesLabel = new Label("Abilities: " + role.getAbilities());
+        Label abilitiesLabel = new Label("Abilities: " + role.getTemplate().getAbilities());
         abilitiesLabel.setStyle("-fx-text-fill: #d3d3d3;");
 
         // Add attributes
-        Label attributesLabel = new Label("Attributes: " + role.getAttributes());
+        Label attributesLabel = new Label("Attributes: " + role.getTemplate().getAttributes());
         attributesLabel.setStyle("-fx-text-fill: #d3d3d3;");
 
         // Add goal
-        Label goalLabel = new Label("Goal: " + role.getGoal());
+        Label goalLabel = new Label("Goal: " + role.getTemplate().getGoal());
         goalLabel.setStyle("-fx-text-fill: #d3d3d3;");
 
         // Add components to the VBox
@@ -73,7 +73,7 @@ public class RoleBox extends VBox {
      * @return A CSS-compatible color string.
      */
     private String getBackgroundColorByRoleType(Role role) {
-        return switch (role.getTeam()) { // Assuming Role has a `getType` method
+        return switch (role.getTemplate().getTeam()) { // Assuming Role has a `getType` method
             case CORRUPTER -> "rgba(255, 69, 0, 0.8)"; // Orange-Red for corrupter roles
             case FOLK -> "rgba(50, 205, 50, 0.8)"; // Green for folk roles
             default -> "rgba(46, 13, 37, 0.8)"; // Default background color

@@ -4,37 +4,29 @@ import com.rolegame.game.gui.controllers.game.GameScreenController;
 import com.rolegame.game.models.player.Player;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.corrupterroles.CorrupterRole;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
+import com.rolegame.game.models.roles.enums.*;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public final class Blinder extends CorrupterRole implements ActiveNightAbility {
+public final class Blinder extends CorrupterRole{
     public Blinder() {
-        super(RoleID.Blinder, RolePriority.BLINDER, RoleCategory.CORRUPTER_SUPPORT, 0, 0);
+        super(RoleID.Blinder, AbilityType.OTHER_THAN_CORRUPTER, RolePriority.BLINDER, RoleCategory.CORRUPTER_SUPPORT, 0, 0);
     }
 
     @Override
-    public boolean executeAbility() {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
         String message = LanguageManager.getText("Blinder","abilityMessage");
-        sendAbilityMessage(message,getRoleOwner());
+        sendAbilityMessage(message,roleOwner);
         ArrayList<Player> players = new ArrayList<>(GameScreenController.getGameService().getAlivePlayers());
 
-        players.remove(getChoosenPlayer());
+        players.remove(choosenPlayer);
 
-        this.getChoosenPlayer().getRole().setChoosenPlayer(players.get(new Random().nextInt(players.size())));
+        choosenPlayer.getRole().setChoosenPlayer(players.get(new Random().nextInt(players.size())));
 
-        sendAbilityMessage(LanguageManager.getText("Blinder","blindMessage"),getChoosenPlayer() );
+        sendAbilityMessage(LanguageManager.getText("Blinder","blindMessage"), choosenPlayer);
 
-        return true;
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return false;
+        return AbilityResult.SUCCESSFUL;
     }
 
     @Override

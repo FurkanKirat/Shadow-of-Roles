@@ -80,6 +80,12 @@
     "RBimmuneMessage": "Biri sizi engellemeye çalıştı ama bağışıklığınız var",
     "roleBlockMessage": "Hedefinizin rolünü engellediniz"
   },
+  "Ability": {
+    "noUseLeft": "Yeteneğinizin maksimum kullanım sırasına eriştiğiniz için yeteneğiniz kullanılamadı",
+    "defence": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi",
+    "noRoleSelected": "Hiçbir rol seçmediğiniz için rolünüz kullanılamadı",
+    "noAbilityExists": "Rolünüzün yeteneği olmadığı için yetenek kullanılamadı"
+  },
   "SealMaster": {
     "attributes": "Yok",
     "abilities": "Gece birini engelleyebilirsiniz"
@@ -97,16 +103,14 @@
     "attributes": "Yok",
     "abilities": "Her gece bir kişiyi öldürün",
     "killMessage": "Hedefinizi başarıyla öldürdünüz",
-    "slainMessage": "{playerName} psikopat tarafından öldürüldü",
-    "defenceMessage": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi"
+    "slainMessage": "{playerName} psikopat tarafından öldürüldü"
   },
   "Assassin": {
     "attributes": "Temel savunma ve saldırıya sahipsiniz, engellemeye karşı bağışıksınız",
     "abilities": "Her gece bir kişiyi öldürün",
     "goal": "Tüm halk ve bozguncu üyelerini öldürün",
     "killMessage": "Hedefinizi başarıyla öldürdünüz",
-    "slainMessage": "{playerName} suikastçi tarafından öldürüldü",
-    "defenceMessage": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi"
+    "slainMessage": "{playerName} suikastçi tarafından öldürüldü"
   },
   "Detective": {
     "attributes": "Yok",
@@ -257,6 +261,6 @@
     "RoleAbilities": "Yetenekler: {abilities}"
   },
   "Credits": {
-    "creditText": "\"Geliştiren: Furkan Kırat\\nGrafikler: Tikky\\nPowered by: JavaFX, Java 23\\nOynadığınız için teşekkürler\""
+    "creditText": "\n*Oyunun Geliştirici Ekibi:*\n- *Baş Geliştirici:* Furkan Kırat  \n- *Oyun Tasarımı:* Furkan Kırat ve Efekan Kul \n- *Kodlama ve Programlama:* Furkan Kırat ve Efekan Kul  \n- *Grafik Tasarım:* Furkan Kırat ve Efekan Kul   \n- *Test ve QA:* Furkan Kırat, Efekan Kul, Halil Efe Çelik, Enis Taşkın, Ege Eren Ceylan, Fatih Kınacı\n\n*Özel Teşekkürler:*\nHalil Efe Çelik, Enis Taşkın, Ege Eren Ceylan, Fatih Kınacı\n\n*Geliştirme Araçları ve Kaynaklar:*\n- Java - Yazılım dili\n- JavaFX - UI kütüphanesi\n- GitHub - Versiyon kontrolü  \n\n*Özel Teşekkürler:*  \nBu oyunun geliştirilmesinde yardımcı olan, geri bildirim gönderen oyunculara ve projeye katkıda bulunan herkese teşekkür ederiz."
   }
 }

@@ -8,15 +8,17 @@ import com.rolegame.game.models.player.AIPlayer;
 import com.rolegame.game.models.player.HumanPlayer;
 import com.rolegame.game.models.roles.corrupterroles.support.Interrupter;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
+import com.rolegame.game.models.roles.enums.AbilityType;
+import com.rolegame.game.models.roles.enums.RolePriority;
 import com.rolegame.game.models.roles.folkroles.support.SealMaster;
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
 import com.rolegame.game.models.roles.neutralroles.chaos.Clown;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
 import com.rolegame.game.models.roles.enums.Team;
 import com.rolegame.game.models.player.Player;
+import com.rolegame.game.models.roles.templates.RoleTemplate;
 
 import java.util.*;
 
@@ -32,7 +34,7 @@ public class GameService {
 
     private Team winnerTeam;
 
-    public GameService(ArrayList<PlayerNamesController.NameAndIsAI> info, ArrayList<Role> roles){
+    public GameService(ArrayList<PlayerNamesController.NameAndIsAI> info, ArrayList<RoleTemplate> roles){
         initializePlayers(info, roles);
         timeService = new TimeService();
         votingService = new VotingService();
@@ -43,15 +45,16 @@ public class GameService {
      * Initializes the players and distributes their roles
      * @param info players' information list
      */
-    private void initializePlayers(ArrayList<PlayerNamesController.NameAndIsAI> info, ArrayList<Role> roles){
+    private void initializePlayers(ArrayList<PlayerNamesController.NameAndIsAI> info, ArrayList<RoleTemplate> roles){
 
         playerCount = info.size();
 
         for(int i=0;i<playerCount;i++){
+            System.out.println(roles.get(i).getName());
             if(info.get(i).isAI()){
-                allPlayers.add(new AIPlayer(i+1,info.get(i).name(), roles.get(i)));
+                allPlayers.add(new AIPlayer(i+1,info.get(i).name(), new Role(roles.get(i))));
             }else{
-                allPlayers.add(new HumanPlayer(i+1,info.get(i).name(), roles.get(i)));
+                allPlayers.add(new HumanPlayer(i+1,info.get(i).name(), new Role(roles.get(i))));
             }
 
         }
@@ -81,25 +84,26 @@ public class GameService {
      *  Performs all abilities according to role priorities
      */
     public void performAllAbilities(){
-        ArrayList<Role> roles = new ArrayList<>(new ArrayList<>(alivePlayers).stream().map(Player::getRole).toList());
+        ArrayList<Player> players = new ArrayList<>(new ArrayList<>(alivePlayers));
 
-        chooseRandomPlayersForAI(roles);
+        chooseRandomPlayersForAI(players);
 
-        roles.sort(Comparator.comparing((Role role) -> role.getRolePriority().getPriority()).reversed());
+        players.sort(Comparator.comparing((Player player) -> player.getRole().getTemplate().getRolePriority().getPriority()).reversed());
 
-        for(Role role: roles){
-            role.performAbility();
+        for(Player player: players){
+            player.getRole().getTemplate().performAbility(player, player.getRole().getChoosenPlayer());
         }
 
         for(Player alivePlayer: alivePlayers){
-            alivePlayer.getRole().setChoosenPlayer(null);
-            alivePlayer.setDefence(alivePlayer.getRole().getDefence());
-            alivePlayer.getRole().setCanPerform(true);
-            alivePlayer.setImmune(false);
 
+           MessageService.sendSpecificRoleMessages(alivePlayer);
+
+            alivePlayer.resetStates();
         }
         updateAlivePlayers();
     }
+
+
 
     /**
      * After the day voting, executes the max voted player if they get more than half of the votes
@@ -129,7 +133,7 @@ public class GameService {
             if(votingService.getMaxVoted()!=null){
                 MessageService.sendMessage(LanguageManager.getText("Message","voteExecute")
                                 .replace("{playerName}", votingService.getMaxVoted().getName())
-                                .replace("{roleName}", votingService.getMaxVoted().getRole().getName()),
+                                .replace("{roleName}", votingService.getMaxVoted().getRole().getTemplate().getName()),
                         null, true, true);
             }
 
@@ -147,7 +151,7 @@ public class GameService {
      */
     public void sendVoteMessages(){
 
-        Player chosenPlayer = currentPlayer.getRole().getChoosenPlayer();
+        final Player chosenPlayer = currentPlayer.getRole().getChoosenPlayer();
 
         if(timeService.getTime() == Time.VOTING){
             votingService.vote(currentPlayer,chosenPlayer);
@@ -162,7 +166,8 @@ public class GameService {
 
         }
         else if(timeService.getTime() == Time.NIGHT){
-            if(currentPlayer.getRole() instanceof ActiveNightAbility){
+            AbilityType abilityType = currentPlayer.getRole().getTemplate().getAbilityType();
+            if(!(abilityType == AbilityType.PASSIVE || abilityType == AbilityType.NO_ABILITY)){
                 if(chosenPlayer!=null){
                     MessageService.sendMessage(LanguageManager.getText("Message","ability")
                                     .replace("{playerName}", chosenPlayer.getName())
@@ -191,7 +196,7 @@ public class GameService {
 
                 /* If players role is last joke, player is dead and player has not used ability
                  * yet adds the player to the alive players to use their ability */
-                if(player.getRole() instanceof LastJoke lastJoker && !lastJoker.isDidUsedAbility() &&
+                if(player.getRole().getTemplate() instanceof LastJoke lastJoker && !lastJoker.isDidUsedAbility() &&
                         timeService.getTime() == Time.NIGHT){
                     alivePlayers.add(player);
                 }
@@ -227,7 +232,7 @@ public class GameService {
 
         // Finishes the game if only 1 player is alive
         if(alivePlayers.size()==1){
-            winnerTeam = alivePlayers.getFirst().getRole().getTeam();
+            winnerTeam = alivePlayers.getFirst().getRole().getTemplate().getTeam();
             return true;
         }
 
@@ -244,34 +249,34 @@ public class GameService {
             Player player2 = alivePlayers.get(1);
 
             Optional<Player> player = alivePlayers.stream()
-                    .filter(p -> p.getRole() instanceof NeutralRole neutralRole && neutralRole.canWinWithOtherTeams())
+                    .filter(p -> p.getRole().getTemplate() instanceof NeutralRole neutralRole && neutralRole.canWinWithOtherTeams())
                     .findFirst();
 
             // If one of the players' role is neutral role and the role can win with other teams finishes the game
             if(player.isPresent()){
-                winnerTeam = player1.getRole().getTeam() == Team.NEUTRAL ? player2.getRole().getTeam() : player1.getRole().getTeam();
+                winnerTeam = player1.getRole().getTemplate().getTeam() == Team.NEUTRAL ? player2.getRole().getTemplate().getTeam() : player1.getRole().getTemplate().getTeam();
                 return true;
             }
 
             // Finishes the game if the last two players cannot kill each other
-            if(player1.getRole().getTeam()!=player2.getRole().getTeam()
-                    &&player2.getRole().getAttack()<=player1.getRole().getDefence()
-                    &&player1.getRole().getAttack()<=player2.getDefence()) {
+            if(player1.getRole().getTemplate().getTeam()!=player2.getRole().getTemplate().getTeam()
+                    &&player2.getAttack()<=player1.getRole().getTemplate().getDefence()
+                    &&player1.getAttack()<=player2.getDefence()) {
                 winnerTeam = Team.NONE;
                 return true;
             }
 
             // Finishes the game if one of the last two players can role block and the other is not immune to role block
             Optional<Player> roleBlockerPlayer = alivePlayers.stream()
-                    .filter(p -> p.getRole() instanceof Interrupter || p.getRole() instanceof SealMaster)
+                    .filter(p -> p.getRole().getTemplate() instanceof Interrupter || p.getRole().getTemplate() instanceof SealMaster)
                     .findFirst();
 
             Optional<Player> roleBlockablePlayer = alivePlayers.stream()
-                    .filter(p -> !p.getRole().isRoleBlockImmune())
+                    .filter(p -> !p.getRole().getTemplate().isRoleBlockImmune())
                     .findFirst();
 
             if(roleBlockerPlayer.isPresent() && roleBlockablePlayer.isPresent() &&
-                    player1.getRole().getTeam() != player2.getRole().getTeam()){
+                    player1.getRole().getTemplate().getTeam() != player2.getRole().getTemplate().getTeam()){
                 winnerTeam = Team.NONE;
                 return true;
             }
@@ -280,15 +285,15 @@ public class GameService {
 
         // Continues the game if all players have the same team
         for(int i=0;i<alivePlayers.size()-1;i++){
-            if(!alivePlayers.get(i).getRole().getTeam().equals(alivePlayers.get(i+1).getRole().getTeam())){
+            if(!alivePlayers.get(i).getRole().getTemplate().getTeam().equals(alivePlayers.get(i+1).getRole().getTemplate().getTeam())){
                 return false;
             }
         }
 
         // Checks if the living players are neutral if so game continues because they are independent
-        if(alivePlayers.getFirst().getRole().getTeam()!=Team.NEUTRAL){
+        if(alivePlayers.getFirst().getRole().getTemplate().getTeam()!=Team.NEUTRAL){
             for(Player alivePlayer : alivePlayers){
-                winnerTeam = alivePlayer.getRole().getTeam();
+                winnerTeam = alivePlayer.getRole().getTemplate().getTeam();
             }
             return true;
         }
@@ -304,7 +309,7 @@ public class GameService {
 
         if(winnerTeam!=Team.NONE &&winnerTeam!=Team.NEUTRAL){
             for(Player player : allPlayers){
-                if(player.getRole().getTeam()==winnerTeam){
+                if(player.getRole().getTemplate().getTeam()==winnerTeam){
                     player.setHasWon(true);
                 }
             }
@@ -317,7 +322,7 @@ public class GameService {
         boolean chillGuyExist = false;
         for(Player player: allPlayers){
 
-            switch (player.getRole()){
+            switch (player.getRole().getTemplate()){
                 case ChillGuy _ -> {
                     chillGuyExist = true;
                 }
@@ -414,7 +419,7 @@ public class GameService {
     }
 
     private boolean doesHumanPlayerExist(){
-        for (Player alivePlayer : alivePlayers) {
+        for (final Player alivePlayer : alivePlayers) {
             if (!alivePlayer.isAIPlayer()) {
                 return true;
             }
@@ -423,9 +428,9 @@ public class GameService {
 
     }
 
-    private void chooseRandomPlayersForAI(List<Role> roles){
-        for(Role role: roles){
-            if(role.getRoleOwner() instanceof AIPlayer aiPlayer){
+    private void chooseRandomPlayersForAI(List<Player> players){
+        for(Player player: players){
+            if(player instanceof AIPlayer aiPlayer){
                 aiPlayer.chooseRandomPlayerNight(alivePlayers);
             }
         }

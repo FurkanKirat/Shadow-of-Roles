@@ -80,6 +80,12 @@
     "RBimmuneMessage": "Someone tried to role block you but you are immune",
     "roleBlockMessage": "You have role blocked your target"
   },
+  "Ability": {
+    "noUseLeft": "Your ability could not be used because you have reached your ability's maximum usage queue",
+    "defence": "You could not slain your target because your attack was not powerful enough",
+    "noRoleSelected": "Your role could not be used because you did not select any role",
+    "noAbilityExists": "Your ability could not be used because your role does not have the ability"
+  },
   "SealMaster": {
     "attributes": "None",
     "abilities": "You can role block someone in the night"
@@ -97,16 +103,15 @@
     "attributes": "None",
     "abilities": "Kill one person each night",
     "killMessage": "You have slain your target successfully",
-    "slainMessage": "{playerName} has been slain by a Psycho",
-    "defenceMessage": "You could not slain your target because your attack was not powerful enough"
+    "slainMessage": "{playerName} has been slain by a Psycho"
   },
   "Assassin": {
     "attributes": "You have basic defence and attack, you are immune to role blocking",
     "abilities": "Kill one person each night",
     "goal": "Kill every folk and corrupter member",
     "killMessage": "You have slain your target successfully",
-    "slainMessage": "{playerName} has been slain by an Assassin",
-    "defenceMessage": "You could not slain your target because your attack was not powerful enough"
+    "slainMessage": "{playerName} has been slain by an Assassin"
+
   },
   "Detective": {
     "attributes": "None",

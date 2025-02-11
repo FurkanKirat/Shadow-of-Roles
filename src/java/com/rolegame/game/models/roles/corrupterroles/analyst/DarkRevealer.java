@@ -1,29 +1,23 @@
 package com.rolegame.game.models.roles.corrupterroles.analyst;
 
 import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.player.Player;
 import com.rolegame.game.models.roles.corrupterroles.CorrupterRole;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
+import com.rolegame.game.models.roles.enums.*;
 
-public final class DarkRevealer extends CorrupterRole implements ActiveNightAbility {
+public final class DarkRevealer extends CorrupterRole{
     public DarkRevealer() {
-        super(RoleID.DarkRevealer, RolePriority.NONE, RoleCategory.CORRUPTER_ANALYST, 0, 0);
+        super(RoleID.DarkRevealer,  AbilityType.OTHER_THAN_CORRUPTER
+                ,RolePriority.NONE, RoleCategory.CORRUPTER_ANALYST, 0, 0);
     }
 
     @Override
-    public boolean executeAbility() {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
 
-        String message = LanguageManager.getText("DarkRevealer","abilityMessage").replace("{roleName}",choosenPlayer.getRole().getName());
-        sendAbilityMessage(message,getRoleOwner());
+        String message = LanguageManager.getText("DarkRevealer","abilityMessage").replace("{roleName}",choosenPlayer.getRole().getTemplate().getName());
+        sendAbilityMessage(message,roleOwner);
 
-        return true;
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return false;
+        return AbilityResult.SUCCESSFUL;
     }
 
     @Override

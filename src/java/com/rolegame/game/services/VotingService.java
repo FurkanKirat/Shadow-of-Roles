@@ -15,7 +15,7 @@ public class VotingService {
      * @param voter voter player
      * @param voted voted player
      */
-    public void vote(Player voter, Player voted){
+    public void vote(final Player voter, final Player voted){
         votes.put(voter,voted);
     }
 
@@ -24,7 +24,7 @@ public class VotingService {
      * @param player the desired player
      * @return player's vote count
      */
-    public int getVoteCount(Player player){
+    public int getVoteCount(final Player player){
         int count = 0;
         for(Player votedPlayer: votes.values()){
             if(votedPlayer.getNumber()==player.getNumber()){
@@ -39,13 +39,13 @@ public class VotingService {
      */
     public void updateMaxVoted(){
 
-        HashMap<Player,Integer> voteCounts = new HashMap<>();
+        final HashMap<Player,Integer> voteCounts = new HashMap<>();
 
-        for(Player votedPlayer: votes.values()){
+        for(final Player votedPlayer: votes.values()){
             if(votedPlayer!=null) voteCounts.put(votedPlayer, voteCounts.getOrDefault(votedPlayer,0)+1);
         }
 
-        for(Map.Entry<Player, Integer> entry : voteCounts.entrySet()){
+        for(final Map.Entry<Player, Integer> entry : voteCounts.entrySet()){
             if(entry.getValue()>maxVote){
                 maxVoted = entry.getKey();
                 maxVote = entry.getValue();

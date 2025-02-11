@@ -1,39 +1,30 @@
 package com.rolegame.game.models.roles.folkroles.support;
 
-import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.player.Player;
+import com.rolegame.game.models.roles.enums.*;
 import com.rolegame.game.models.roles.folkroles.FolkRole;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
 
-public final class SealMaster extends FolkRole implements ActiveNightAbility {
+public final class SealMaster extends FolkRole{
     public SealMaster() {
-        super(RoleID.SealMaster, RolePriority.ROLE_BLOCK, RoleCategory.FOLK_SUPPORT, 0,0);
+        super(RoleID.SealMaster, AbilityType.ACTIVE_OTHERS, RolePriority.ROLE_BLOCK, RoleCategory.FOLK_SUPPORT, 0,0);
     }
 
     @Override
-    public boolean performAbility() {
+    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer) {
 
-        return performAbilityForBlockImmuneRoles();
+        return performAbilityForBlockImmuneRoles(roleOwner, choosenPlayer);
     }
 
     @Override
-    public boolean executeAbility() {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
 
-        sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockMessage"), roleOwner);
         choosenPlayer.getRole().setCanPerform(false);
 
-        return false;
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return true;
+        return AbilityResult.SUCCESSFUL;
     }
 
     @Override
     public ChanceProperty getChanceProperty() {
-        return new ChanceProperty(30,10);
+        return new ChanceProperty(25,10);
     }
 }

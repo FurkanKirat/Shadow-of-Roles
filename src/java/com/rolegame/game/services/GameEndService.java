@@ -19,9 +19,9 @@ public class GameEndService {
         }
 
         for (Player player : GameScreenController.getGameService().getAllPlayers()) {
-            if (player.getRole() instanceof FolkHero folkHero && folkHero.getAbilityUseCount() == 0 && player.isHasWon()) {
+            if (player.getRole().getTemplate() instanceof FolkHero folkHero && folkHero.getAbilityUseCount() == 0 && player.isHasWon()) {
                 AchievementManager.completeAchievement(Achievement.AchievementID.LAZY_HERO);
-            } else if (player.getRole() instanceof ChillGuy && !player.isHasWon()) {
+            } else if (player.getRole().getTemplate() instanceof ChillGuy && !player.isHasWon()) {
                 AchievementManager.completeAchievement(Achievement.AchievementID.WIN_SACRIFICE);
             }
         }

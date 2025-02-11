@@ -1,29 +1,22 @@
 package com.rolegame.game.models.roles.neutralroles.chaos;
 
+import com.rolegame.game.models.player.Player;
+import com.rolegame.game.models.roles.enums.*;
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
-import com.rolegame.game.models.roles.interfaces.NoNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
 
-public final class Clown extends NeutralRole implements NoNightAbility {
+public final class Clown extends NeutralRole{
     public Clown() {
-        super(RoleID.Clown, RolePriority.NONE, RoleCategory.NEUTRAL_CHAOS, 0, 0);
+        super(RoleID.Clown, AbilityType.NO_ABILITY, RolePriority.NONE, RoleCategory.NEUTRAL_CHAOS, 0, 0);
     }
 
     @Override
-    public boolean performAbility() {
-        return false;
+    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer) {
+        return AbilityResult.NO_ABILITY_EXIST;
     }
 
     @Override
-    public boolean executeAbility() {
-        return false;
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return false;
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
+        return AbilityResult.NO_ABILITY_EXIST;
     }
 
     @Override

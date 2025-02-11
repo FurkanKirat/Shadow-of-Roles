@@ -6,9 +6,9 @@ import com.rolegame.game.gui.components.boxes.PlayerSelectionBox;
 import com.rolegame.game.gui.components.boxes.RoleBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.EntrepreneurBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.LorekeeperBox;
-import com.rolegame.game.models.player.AIPlayer;
+import com.rolegame.game.models.roles.enums.AbilityType;
 import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
+import com.rolegame.game.models.roles.templates.RoleTemplate;
 import com.rolegame.game.services.*;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
@@ -124,8 +124,10 @@ public class GameScreenController {
 
         if(gameService.getCurrentPlayer().getRole().getChoosenPlayer()==null){
 
+            AbilityType abilityType = gameService.getCurrentPlayer().getRole().getTemplate().getAbilityType();
             if(gameService.getTimeService().getTime() == Time.VOTING||
-                    (gameService.getTimeService().getTime() == Time.NIGHT && gameService.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
+                    (gameService.getTimeService().getTime() == Time.NIGHT &&
+                            !(abilityType == AbilityType.NO_ABILITY|| abilityType == AbilityType.PASSIVE))){
                 Alert alert = SceneManager.createAlert(Alert.AlertType.CONFIRMATION,LanguageManager.getText("Menu","passAlertTitle"),
                         LanguageManager.getText("Menu","passAlertHead"), LanguageManager.getText("Menu","passAlertMessage"));
 
@@ -243,7 +245,7 @@ public class GameScreenController {
      */
     private void addRoleCategories(TreeItem<Object> parent, RoleCategory category, String languageKey) {
         TreeItem<Object> categoryItem = new TreeItem<>(LanguageManager.getText("Role", languageKey));
-        for (Role role : RoleCatalog.getRolesByCategory(category)) {
+        for (RoleTemplate role : RoleService.getRolesByCategory(category)) {
             categoryItem.getChildren().add(new TreeItem<>(role));
         }
         parent.getChildren().add(categoryItem);
@@ -252,10 +254,10 @@ public class GameScreenController {
     private void changePlayerUI(){
         nameLabel.setText(gameService.getCurrentPlayer().getName());
         numberLabel.setText(LanguageManager.getText("Menu","number")+": "+ gameService.getCurrentPlayer().getNumber());
-        abilitiesTextField.setText(gameService.getCurrentPlayer().getRole().getAbilities());
-        attributesTextField.setText(gameService.getCurrentPlayer().getRole().getAttributes());
-        goalTextField.setText(gameService.getCurrentPlayer().getRole().getGoal());
-        roleLabel.setText(gameService.getCurrentPlayer().getRole().getName());
+        abilitiesTextField.setText(gameService.getCurrentPlayer().getRole().getTemplate().getAbilities());
+        attributesTextField.setText(gameService.getCurrentPlayer().getRole().getTemplate().getAttributes());
+        goalTextField.setText(gameService.getCurrentPlayer().getRole().getTemplate().getGoal());
+        roleLabel.setText(gameService.getCurrentPlayer().getRole().getTemplate().getName());
 
         List<PlayerSelectionBox> boxes = gameService.getAlivePlayers().stream()
                 .filter(Player::isAlive)
@@ -272,14 +274,14 @@ public class GameScreenController {
         extraPropertiesVbox.getChildren().clear();
 
         if(gameService.getTimeService().getTime() == Time.NIGHT){
-
-            if(!(gameService.getCurrentPlayer().getRole() instanceof ActiveNightAbility)){
+            AbilityType abilityType = gameService.getCurrentPlayer().getRole().getTemplate().getAbilityType();
+            if(abilityType == AbilityType.NO_ABILITY || abilityType == AbilityType.PASSIVE){
                 useAbilityButton.setText(LanguageManager.getText("Menu","pass"));
             }else{
                 useAbilityButton.setText(LanguageManager.getText("Menu","useAbility"));
             }
 
-            switch (gameService.getCurrentPlayer().getRole()){
+            switch (gameService.getCurrentPlayer().getRole().getTemplate()){
                 case Entrepreneur entrepreneur -> {
 
                     entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.NONE);
@@ -331,7 +333,7 @@ public class GameScreenController {
         graveListView.getItems().clear();
 
         for(Player deadPlayer: gameService.getDeadPlayers()){
-            graveListView.getItems().add(deadPlayer.toString()+" ("+deadPlayer.getRole().getName()+")");
+            graveListView.getItems().add(deadPlayer.toString()+" ("+deadPlayer.getRole().getTemplate().getName()+")");
         }
         dayLabel.setText((gameService.getTimeService().getTime()!=Time.NIGHT ? LanguageManager.getText("Menu","day") : LanguageManager.getText("Menu","night")) + ": " + gameService.getTimeService().getDayCount());
 

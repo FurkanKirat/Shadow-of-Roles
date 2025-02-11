@@ -1,10 +1,9 @@
 package com.rolegame.game.models.player;
 
 import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.RoleCatalog;
+import com.rolegame.game.services.RoleService;
 import com.rolegame.game.models.roles.enums.Team;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 
 import java.util.ArrayList;
@@ -20,12 +19,12 @@ public class AIPlayer extends Player {
         return true;
     }
 
-    public void chooseRandomPlayerVoting(ArrayList<Player> players){
+    public void chooseRandomPlayerVoting(final ArrayList<Player> players){
         ArrayList<Player> choosablePlayers = new ArrayList<>(players);
         choosablePlayers.remove(this);
-        if(getRole().getTeam() == Team.CORRUPTER){
+        if(getRole().getTemplate().getTeam() == Team.CORRUPTER){
             for(Player player : players){
-                if(player.getRole().getTeam() == Team.CORRUPTER){
+                if(player.getRole().getTemplate().getTeam() == Team.CORRUPTER){
                     choosablePlayers.remove(player);
                 }
             }
@@ -34,29 +33,36 @@ public class AIPlayer extends Player {
         getRole().setChoosenPlayer(choosablePlayers.get(randNum));
     }
 
-    public void chooseRandomPlayerNight(ArrayList<Player> players){
-
-        if(!(getRole() instanceof ActiveNightAbility)){
-            return;
-        }
-
+    public void chooseRandomPlayerNight(final ArrayList<Player> players){
         ArrayList<Player> choosablePlayers = new ArrayList<>(players);
-        choosablePlayers.remove(this);
-        if(getRole().getTeam() == Team.CORRUPTER){
-            for(Player player : players){
-                if(player.getRole().getTeam() == Team.CORRUPTER){
-                    choosablePlayers.remove(player);
+        switch (getRole().getTemplate().getAbilityType()){
+            case NO_ABILITY, PASSIVE -> {
+                return;
+            }
+            case ACTIVE_SELF -> {
+                getRole().setChoosenPlayer(this);
+                return;
+            }
+
+            case OTHER_THAN_CORRUPTER -> {
+                for(Player player : players){
+                    if(player.getRole().getTemplate().getTeam() == Team.CORRUPTER){
+                        choosablePlayers.remove(player);
+                    }
                 }
             }
+
+            case ACTIVE_OTHERS -> choosablePlayers.remove(this);
         }
+
         chooseRoleSpecificValues(choosablePlayers);
         int randNum = new Random().nextInt(choosablePlayers.size());
         getRole().setChoosenPlayer(choosablePlayers.get(randNum));
 
     }
 
-    private void chooseRoleSpecificValues(ArrayList<Player> choosablePlayers){
-        switch (getRole()){
+    private void chooseRoleSpecificValues(final ArrayList<Player> choosablePlayers){
+        switch (getRole().getTemplate()){
 
             case Entrepreneur entrepreneur -> {
                 entrepreneur.setMoney(entrepreneur.getMoney()+2);
@@ -65,7 +71,7 @@ public class AIPlayer extends Player {
 
             }
             case Lorekeeper lorekeeper -> {
-                lorekeeper.setGuessedRole(RoleCatalog.getRandomRole());
+                lorekeeper.setGuessedRole(RoleService.getRandomRole());
                 choosablePlayers.removeAll(lorekeeper.getAlreadyChosenPlayers());
 
             }

@@ -1,44 +1,36 @@
 package com.rolegame.game.models.roles.neutralroles.killing;
 
 import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.player.Player;
+import com.rolegame.game.models.roles.enums.*;
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
 
-public final class Assassin extends NeutralRole implements ActiveNightAbility {
+public final class Assassin extends NeutralRole {
     public Assassin() {
-        super(RoleID.Assassin, RolePriority.NONE, RoleCategory.NEUTRAL_KILLING, 1, 1);
+        super(RoleID.Assassin, AbilityType.ACTIVE_OTHERS, RolePriority.NONE, RoleCategory.NEUTRAL_KILLING, 1, 1);
     }
 
     @Override
-    public boolean performAbility() {
+    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer) {
 
-       return performAbilityForBlockImmuneRoles();
+       return performAbilityForBlockImmuneRoles(roleOwner, choosenPlayer);
 
     }
 
     @Override
-    public boolean executeAbility() {
-        if(getAttack() > getChoosenPlayer().getDefence()){
-            this.getChoosenPlayer().setAlive(false);
-            this.getChoosenPlayer().setCauseOfDeath(LanguageManager.getText("CauseOfDeath","assassin"));
-            sendAbilityMessage(LanguageManager.getText("Assassin","killMessage"), getRoleOwner());
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
+        if(getAttack() > choosenPlayer.getDefence()){
+            choosenPlayer.setAlive(false);
+            choosenPlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath","assassin"));
+            sendAbilityMessage(LanguageManager.getText("Assassin","killMessage"), roleOwner);
             sendAbilityAnnouncement(LanguageManager.getText("Assassin","slainMessage")
-                    .replace("{playerName}",this.getChoosenPlayer().getName()));
-            return true;
+                    .replace("{playerName}",choosenPlayer.getName()));
+            return AbilityResult.SUCCESSFUL;
         }
         else{
-            sendAbilityMessage(LanguageManager.getText("Assassin","defenceMessage"),
-                    getRoleOwner());
-            return false;
+            sendAbilityMessage(LanguageManager.getText("Assassin","defenceMessage"), roleOwner);
+            return AbilityResult.ATTACK_INSUFFICIENT;
         }
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return true;
     }
 
     @Override

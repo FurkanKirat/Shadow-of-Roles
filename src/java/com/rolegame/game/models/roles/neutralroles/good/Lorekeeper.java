@@ -2,70 +2,63 @@ package com.rolegame.game.models.roles.neutralroles.good;
 
 import com.rolegame.game.models.player.Player;
 import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.models.roles.enums.*;
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
-import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.interfaces.ActiveNightAbility;
-import com.rolegame.game.models.roles.enums.RoleCategory;
-import com.rolegame.game.models.roles.enums.RoleID;
-import com.rolegame.game.models.roles.enums.RolePriority;
+import com.rolegame.game.models.roles.templates.RoleTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Lorekeeper extends NeutralRole implements ActiveNightAbility {
+public final class Lorekeeper extends NeutralRole {
     private final List<Player> alreadyChosenPlayers;
-    private Role guessedRole;
+    private RoleTemplate guessedRole;
     private int trueGuessCount;
     public Lorekeeper() {
-        super(RoleID.Lorekeeper, RolePriority.LORE_KEEPER, RoleCategory.NEUTRAL_GOOD, 0, 0);
+        super(RoleID.Lorekeeper, AbilityType.ACTIVE_OTHERS, RolePriority.LORE_KEEPER, RoleCategory.NEUTRAL_GOOD, 0, 0);
         trueGuessCount = 0;
         alreadyChosenPlayers = new ArrayList<>();
     }
 
     @Override
-    public boolean performAbility() {
+    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer) {
         if(choosenPlayer == null){
-            return false;
+            return AbilityResult.NO_ONE_SELECTED;
         }
 
         if(guessedRole == null){
-            return false;
+            return AbilityResult.NO_ROLE_SELECTED;
         }
-        return executeAbility();
+        return executeAbility(roleOwner, choosenPlayer);
     }
 
     @Override
-    public boolean executeAbility() {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
         alreadyChosenPlayers.add(choosenPlayer);
 
-        if(choosenPlayer.getRole().getId() == guessedRole.getId()){
+        if(choosenPlayer.getRole().getTemplate().getId() == guessedRole.getId()){
             trueGuessCount++;
 
             String messageTemplate = LanguageManager.getText("Lorekeeper","abilityMessage");
 
             String message = messageTemplate
                     .replace("{playerName}", choosenPlayer.getName())
-                    .replace("{roleName}", choosenPlayer.getRole().getName());
+                    .replace("{roleName}", choosenPlayer.getRole().getTemplate().getName());
             sendAbilityAnnouncement(message);
+            choosenPlayer.setRevealed(true);
         }
-        return false;
-    }
-
-    @Override
-    public boolean isRoleBlockImmune() {
-        return true;
+        return AbilityResult.SUCCESSFUL;
     }
 
     @Override
     public ChanceProperty getChanceProperty() {
-        return new ChanceProperty(20,1);
+        return new ChanceProperty(120,1);
     }
 
-    public Role getGuessedRole() {
+    public RoleTemplate getGuessedRole() {
         return guessedRole;
     }
 
-    public void setGuessedRole(Role guessedRole) {
+    public void setGuessedRole(RoleTemplate guessedRole) {
         this.guessedRole = guessedRole;
     }
 
