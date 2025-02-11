@@ -29,6 +29,9 @@ public class AIPlayer extends Player {
                 }
             }
         }
+        if(choosablePlayers.isEmpty()){
+            return;
+        }
         int randNum = new Random().nextInt(choosablePlayers.size());
         getRole().setChoosenPlayer(choosablePlayers.get(randNum));
     }
@@ -56,6 +59,9 @@ public class AIPlayer extends Player {
         }
 
         chooseRoleSpecificValues(choosablePlayers);
+        if(choosablePlayers.isEmpty()){
+            return;
+        }
         int randNum = new Random().nextInt(choosablePlayers.size());
         getRole().setChoosenPlayer(choosablePlayers.get(randNum));
 

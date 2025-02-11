@@ -136,7 +136,9 @@
   "ChillGuy": {
     "attributes": "Rolünü açıklarsan kaybedersin",
     "abilities": "Dümdüz insan. Hiçbir şey yapmazsın",
-    "goal": "Eğlenmek"
+    "goal": "Eğlenmek",
+    "ChillGuyAlert": "Düz Adam Alarmı",
+    "ChillGuyReveal": "Düz Adam Rolünü Açıkladı mı?"
   },
   "LastJoke": {
     "attributes": "Yok",
@@ -235,7 +237,9 @@
     "changeTheme": "Temayı Değiştir"
   },
   "GeneralMenu": {
-    "back": "Geri Dön"
+    "back": "Geri Dön",
+    "yes": "Evet",
+    "no": "Hayır"
   },
   "Achievements": {
     "achievements": "Başarımlar",
