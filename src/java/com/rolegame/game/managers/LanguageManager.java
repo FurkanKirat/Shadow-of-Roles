@@ -40,7 +40,7 @@ public class LanguageManager {
             loadAchievements(currentLang);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
     }
 
@@ -59,7 +59,7 @@ public class LanguageManager {
             saveLanguage(currentLang,currentTheme);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
     }
 
@@ -78,7 +78,7 @@ public class LanguageManager {
                 saveLanguage(currentLang, currentTheme);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
             // Fallback to defaults in case of error
             currentLang = "en_us";
             currentTheme = "normal";
@@ -98,7 +98,7 @@ public class LanguageManager {
             }
             achievements = mapper.readValue(inputStream, new TypeReference<>() {});
         } catch (Exception e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
             achievements = null;
         }
     }
@@ -135,7 +135,7 @@ public class LanguageManager {
             LanguageThemeData data = new LanguageThemeData(language, theme);
             mapper.writeValue(file, data);
         } catch (IOException e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
     }
 

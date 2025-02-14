@@ -116,7 +116,7 @@ public class SceneManager {
     }
 
     public static void onClose(){
-        Alert alert = createAlert(Alert.AlertType.CONFIRMATION,"Are You sure to exit?","Exiting","Exit");
+        Alert alert = createAlert(Alert.AlertType.CONFIRMATION,"Are you sure you want to exit?","Exiting","Exit");
 
         alert.showAndWait().ifPresent(response -> {
             if(ButtonType.OK == response){

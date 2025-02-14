@@ -9,7 +9,7 @@ import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
 
 import java.util.Map;
 
-public class GameEndService {
+public final class GameEndService {
 
     public static void progressAchievements() {
         for (Map.Entry<Achievement.AchievementID, Achievement> achievementEntry : AchievementManager.loadAchievements().entrySet()) {

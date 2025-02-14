@@ -84,7 +84,8 @@
     "noUseLeft": "Your ability could not be used because you have reached your ability's maximum usage queue",
     "defence": "You could not slain your target because your attack was not powerful enough",
     "noRoleSelected": "Your role could not be used because you did not select any role",
-    "noAbilityExists": "Your ability could not be used because your role does not have the ability"
+    "noAbilityExists": "Your ability could not be used because your role does not have the ability",
+    "heal": "You have successfully protected your target"
   },
   "SealMaster": {
     "attributes": "None",
@@ -131,8 +132,7 @@
   },
   "Soulbinder": {
     "attributes": "None",
-    "abilities": "You choose someone at night and if they get attacked, you prevent them from dying",
-    "abilityMessage": "You have successfully protected your target"
+    "abilities": "You choose someone at night and if they get attacked, you prevent them from dying"
   },
   "ChillGuy": {
     "attributes": "If you reveal your role you will lose the game",
@@ -184,7 +184,9 @@
     "pass": "Pass Ability",
     "selected": "Selected: {abilityType}",
     "none": "None",
-    "money": "Your money: {money}"
+    "money": "Your money: {money}",
+    "killMessage": "You have slain your target successfully",
+    "slainMessage": "{playerName} has been slain by an Entrepreneur"
   },
   "Lorekeeper": {
     "attributes": "You need to correctly guess 2 roles out of 5,6,7 people. You need to correctly guess 3 roles in 8,9,10 people.",
@@ -197,7 +199,8 @@
     "assassin": "Assassin",
     "psycho": "Psycho",
     "hanging": "Hanged",
-    "lastJoke": "Last Joke"
+    "lastJoke": "Last Joke",
+    "entrepreneur": "Entrepreneur"
   },
   "StartMenu": {
     "startGame": "Start Game",

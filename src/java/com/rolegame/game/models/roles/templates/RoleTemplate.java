@@ -1,15 +1,15 @@
 package com.rolegame.game.models.roles.templates;
 
 import com.rolegame.game.managers.LanguageManager;
-import com.rolegame.game.models.Message;
 import com.rolegame.game.models.player.Player;
+import com.rolegame.game.models.roles.abilities.PerformAbility;
 import com.rolegame.game.models.roles.enums.*;
+import com.rolegame.game.services.GameService;
 import com.rolegame.game.services.MessageService;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class RoleTemplate {
+public abstract class RoleTemplate implements PerformAbility {
 
     protected final RoleID id;
     protected final RoleCategory roleCategory;
@@ -21,7 +21,7 @@ public abstract class RoleTemplate {
     protected AbilityType abilityType;
 
     public RoleTemplate(RoleID id, AbilityType abilityType, RolePriority rolePriority, RoleCategory roleCategory,
-                        Team team, double attack ,double defence) {
+                        Team team, double attack ,double defence, boolean isRoleBlockImmune) {
         // IMPORTANT! When adding a new role template, the role id and role name in the lang json files must be the same!
         this.id = id;
         this.abilityType = abilityType;
@@ -30,6 +30,7 @@ public abstract class RoleTemplate {
         this.team = team;
         this.attack = attack;
         this.defence = defence;
+        this.isRoleBlockImmune = isRoleBlockImmune;
     }
 
     @Override
@@ -56,50 +57,17 @@ public abstract class RoleTemplate {
         }
     }
 
-    public abstract AbilityResult executeAbility(Player roleOwner, Player choosenPlayer);
-    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer){
-        if(!roleOwner.getRole().isCanPerform()&&!roleOwner.isImmune()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),roleOwner);
-            return AbilityResult.ROLE_BLOCKED;
-        }
-
-        if(choosenPlayer==null){
-            return AbilityResult.NO_ONE_SELECTED;
-        }
-
-        if(choosenPlayer.isImmune()){
-            return AbilityResult.TARGET_IMMUNE;
-        }
-
-        return executeAbility(roleOwner, choosenPlayer);
+    public abstract AbilityResult executeAbility(Player roleOwner, Player choosenPlayer, GameService gameService);
+    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer, GameService gameService){
+        return defaultPerformAbility(roleOwner,choosenPlayer,gameService);
     }
 
-    protected final AbilityResult performAbilityForPassiveRoles(Player roleOwner){
-        if(!roleOwner.getRole().isCanPerform()&&!roleOwner.isImmune()){
-            sendAbilityMessage(LanguageManager.getText("RoleBlock","roleBlockedMessage"),roleOwner);
-            return AbilityResult.ROLE_BLOCKED;
-        }
-        return executeAbility(roleOwner, null);
+    protected final void sendAbilityMessage(String message, Player receiver, MessageService messageService){
+        messageService.sendAbilityMessage(message, receiver);
     }
 
-    protected final AbilityResult performAbilityForBlockImmuneRoles(Player roleOwner, Player choosenPlayer){
-
-        if(roleOwner.getRole().getChoosenPlayer()==null){
-            return AbilityResult.NO_ONE_SELECTED;
-        }
-
-        if(choosenPlayer.isImmune()){
-            return AbilityResult.TARGET_IMMUNE;
-        }
-        return executeAbility(roleOwner, choosenPlayer);
-    }
-
-    protected final void sendAbilityMessage(String message, Player receiver){
-        MessageService.createNightMessage(message, receiver, false, false);
-    }
-
-    protected final void sendAbilityAnnouncement(String message){
-        MessageService.createNightMessage(message, null, true, false);
+    protected final void sendAbilityAnnouncement(String message, MessageService messageService){
+        messageService.sendAbilityAnnouncement(message);
     }
 
     public final RoleID getId() {

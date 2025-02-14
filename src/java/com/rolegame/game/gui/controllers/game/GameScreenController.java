@@ -1,6 +1,7 @@
 package com.rolegame.game.gui.controllers.game;
 
 import com.rolegame.game.gamestate.Time;
+import com.rolegame.game.gui.components.boxes.DeadPlayerBox;
 import com.rolegame.game.gui.components.boxes.MessageBox;
 import com.rolegame.game.gui.components.boxes.PlayerSelectionBox;
 import com.rolegame.game.gui.components.boxes.RoleBox;
@@ -8,11 +9,11 @@ import com.rolegame.game.gui.components.boxes.rolespecificboxes.EntrepreneurBox;
 import com.rolegame.game.gui.components.boxes.rolespecificboxes.LorekeeperBox;
 import com.rolegame.game.models.roles.enums.AbilityType;
 import com.rolegame.game.models.roles.enums.RoleCategory;
+import com.rolegame.game.models.roles.enums.Team;
 import com.rolegame.game.models.roles.templates.RoleTemplate;
 import com.rolegame.game.services.*;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
-import com.rolegame.game.models.roles.*;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
 import com.rolegame.game.models.Message;
@@ -21,15 +22,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 public class GameScreenController {
 
@@ -52,7 +52,7 @@ public class GameScreenController {
     private TextField goalTextField;
 
     @FXML
-    private ListView<String> graveListView;
+    private ListView<DeadPlayerBox> graveListView;
 
     @FXML
     private Label roleLabel;
@@ -205,9 +205,9 @@ public class GameScreenController {
     @FXML
     void selectRole(MouseEvent event) {
         TreeItem<Object> selectedRole = rolesTreeView.getSelectionModel().getSelectedItem();
-        if(selectedRole!=null&&selectedRole.getValue() instanceof Role){
+        if(selectedRole!=null&&selectedRole.getValue() instanceof RoleTemplate roleTemplate){
             midBox.getChildren().clear();
-            midBox.getChildren().add(new RoleBox((Role) selectedRole.getValue()));
+            midBox.getChildren().add(new RoleBox(roleTemplate));
         }
     }
 
@@ -233,7 +233,7 @@ public class GameScreenController {
         addRoleCategories(neutral, RoleCategory.NEUTRAL_GOOD, "neutralGood");
 
         roles.getChildren().addAll(folk, corrupter, neutral);
-
+        roles.setExpanded(true);
         rolesTreeView.setRoot(roles);
     }
 
@@ -245,10 +245,29 @@ public class GameScreenController {
      */
     private void addRoleCategories(TreeItem<Object> parent, RoleCategory category, String languageKey) {
         TreeItem<Object> categoryItem = new TreeItem<>(LanguageManager.getText("Role", languageKey));
+
         for (RoleTemplate role : RoleService.getRolesByCategory(category)) {
-            categoryItem.getChildren().add(new TreeItem<>(role));
+            String imageLocation = getImageLocation(category, role);
+            Image image = loadImage(imageLocation);
+
+            categoryItem.getChildren().add(new TreeItem<>(role, new ImageView(image)));
         }
+
         parent.getChildren().add(categoryItem);
+    }
+
+    private String getImageLocation(RoleCategory category, RoleTemplate role) {
+        String key = (category.getTeam() == Team.NEUTRAL)
+                ? LanguageManager.enumToJsonKey(role.getId().name()).toLowerCase()
+                : LanguageManager.enumToJsonKey(category.getTeam().name());
+
+        return key.replaceAll("[\\p{Zs}\\s]+", "").trim();
+    }
+
+
+
+    private Image loadImage(String imageLocation) {
+        return new Image(getClass().getResourceAsStream("/com/rolegame/game/images/roles/" + imageLocation + ".jpg"));
     }
 
     private void changePlayerUI(){
@@ -333,10 +352,14 @@ public class GameScreenController {
         graveListView.getItems().clear();
 
         for(Player deadPlayer: gameService.getDeadPlayers()){
-            graveListView.getItems().add(deadPlayer.toString()+" ("+deadPlayer.getRole().getTemplate().getName()+")");
+            DeadPlayerBox deadPlayerBox = new DeadPlayerBox(
+                    deadPlayer.getNameAndRole(), deadPlayer.getCausesOfDeathAsString(), graveListView);
+            graveListView.getItems().add(deadPlayerBox);
         }
-        dayLabel.setText((gameService.getTimeService().getTime()!=Time.NIGHT ? LanguageManager.getText("Menu","day") : LanguageManager.getText("Menu","night")) + ": " + gameService.getTimeService().getDayCount());
 
+        dayLabel.setText((gameService.getTimeService().getTime()!=Time.NIGHT ?
+                LanguageManager.getText("Menu","day") :
+                LanguageManager.getText("Menu","night")) + ": " + gameService.getTimeService().getDayCount());
         initializeMessages();
 
     }
@@ -346,7 +369,7 @@ public class GameScreenController {
      */
     private void initializeMessages(){
         announcementsView.getItems().clear();
-        for(Message message: MessageService.getMessages()){
+        for(Message message: gameService.getMessageService().getMessages()){
             if(message.isPublic() || message.receiver().getNumber() == gameService.getCurrentPlayer().getNumber()){
                 announcementsView.getItems().add(new MessageBox(message,announcementsView));
             }
@@ -359,7 +382,7 @@ public class GameScreenController {
      */
     private void displayAnnouncements(){
         announcementsListView.getItems().clear();
-        for(Message message: MessageService.getMessages()){
+        for(Message message: gameService.getMessageService().getMessages()){
 
             if(message.isPublic()){
 

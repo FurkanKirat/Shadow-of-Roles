@@ -5,7 +5,7 @@ import com.rolegame.game.models.player.Player;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VotingService {
+public final class VotingService {
     private HashMap<Player,Player> votes = new HashMap<>();
     private Player maxVoted;
     private int maxVote;

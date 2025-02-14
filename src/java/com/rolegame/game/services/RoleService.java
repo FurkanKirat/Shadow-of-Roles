@@ -23,7 +23,7 @@ import com.rolegame.game.models.roles.templates.RoleTemplate;
 
 import java.util.*;
 
-public class RoleService {
+public final class RoleService {
     private static final HashMap<Team, List<RoleTemplate>> rolesMap = new HashMap<>();
     private static final HashMap<RoleCategory, List<RoleTemplate>> categoryMap = new HashMap<>();
     private static final List<RoleTemplate> allRoles = new ArrayList<>();

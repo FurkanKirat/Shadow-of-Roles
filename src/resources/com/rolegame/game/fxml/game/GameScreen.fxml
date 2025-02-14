@@ -28,7 +28,7 @@
                                  <effect>
                                     <DropShadow />
                                  </effect></Label>
-                              <ListView fx:id="graveListView" focusTraversable="false" mouseTransparent="true" prefHeight="358.0" prefWidth="197.0" styleClass="game-list-view" VBox.vgrow="ALWAYS">
+                              <ListView fx:id="graveListView" focusTraversable="false" prefHeight="358.0" prefWidth="197.0" styleClass="game-list-view" VBox.vgrow="ALWAYS">
                                  <effect>
                                     <DropShadow />
                                  </effect></ListView>

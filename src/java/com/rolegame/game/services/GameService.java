@@ -1,16 +1,15 @@
 package com.rolegame.game.services;
 
+import com.rolegame.game.gamestate.CauseOfDeath;
 import com.rolegame.game.gamestate.Time;
 import com.rolegame.game.gui.controllers.game.PlayerNamesController;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.player.AIPlayer;
 import com.rolegame.game.models.player.HumanPlayer;
-import com.rolegame.game.models.roles.corrupterroles.support.Interrupter;
+import com.rolegame.game.models.roles.abilities.RoleBlockAbility;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
 import com.rolegame.game.models.roles.enums.AbilityType;
-import com.rolegame.game.models.roles.enums.RolePriority;
-import com.rolegame.game.models.roles.folkroles.support.SealMaster;
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
 import com.rolegame.game.models.roles.neutralroles.chaos.Clown;
 import com.rolegame.game.models.roles.neutralroles.chaos.ChillGuy;
@@ -22,12 +21,15 @@ import com.rolegame.game.models.roles.templates.RoleTemplate;
 
 import java.util.*;
 
-public class GameService {
+public final class GameService {
     private final ArrayList<Player> allPlayers = new ArrayList<>();
     private final ArrayList<Player> alivePlayers = new ArrayList<>();
     private final ArrayList<Player> deadPlayers = new ArrayList<>();
+
     private final VotingService votingService;
     private final TimeService timeService;
+    private final MessageService messageService;
+
     private Player currentPlayer;
     private int currentPlayerIndex;
     private int playerCount;
@@ -38,6 +40,7 @@ public class GameService {
         initializePlayers(info, roles);
         timeService = new TimeService();
         votingService = new VotingService();
+        messageService = new MessageService(this);
     }
 
 
@@ -74,7 +77,6 @@ public class GameService {
             }
         }
 
-
         if(checkGameFinished()){
             finishGame();
         }
@@ -88,17 +90,19 @@ public class GameService {
 
         chooseRandomPlayersForAI(players);
 
-        players.sort(Comparator.comparing((Player player) -> player.getRole().getTemplate().getRolePriority().getPriority()).reversed());
+        players.sort(Comparator.comparing((Player player) -> player.getRole().getTemplate().getRolePriority().getPriority()).reversed()
+                .thenComparing((Player player) -> player.getRole().getTemplate().getId()));
 
         for(Player player: players){
-            player.getRole().getTemplate().performAbility(player, player.getRole().getChoosenPlayer());
+            player.getRole().getTemplate().performAbility(player, player.getRole().getChoosenPlayer(), this);
         }
 
-        for(Player alivePlayer: alivePlayers){
+        for(Player player: players){
+            messageService.sendSpecificRoleMessages(player);
+        }
 
-           MessageService.sendSpecificRoleMessages(alivePlayer);
-
-            alivePlayer.resetStates();
+        for(Player player: alivePlayers){
+           player.resetStates();
         }
         updateAlivePlayers();
     }
@@ -124,14 +128,14 @@ public class GameService {
             for(Player alivePlayer : alivePlayers){
                 if(alivePlayer.getNumber() == votingService.getMaxVoted().getNumber()){
                     alivePlayer.setAlive(false);
-                    alivePlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath","hanging"));
+                    alivePlayer.getCausesOfDeath().add(CauseOfDeath.HANGING);
                     break;
                 }
             }
             updateAlivePlayers();
 
             if(votingService.getMaxVoted()!=null){
-                MessageService.sendMessage(LanguageManager.getText("Message","voteExecute")
+                messageService.sendMessage(LanguageManager.getText("Message","voteExecute")
                                 .replace("{playerName}", votingService.getMaxVoted().getName())
                                 .replace("{roleName}", votingService.getMaxVoted().getRole().getTemplate().getName()),
                         null, true, true);
@@ -157,11 +161,11 @@ public class GameService {
             votingService.vote(currentPlayer,chosenPlayer);
 
             if(chosenPlayer!=null){
-                MessageService.sendMessage(LanguageManager.getText("Message","vote")
+                messageService.sendMessage(LanguageManager.getText("Message","vote")
                                 .replace("{playerName}", chosenPlayer.getName())
                         ,currentPlayer,false, true);
             }else{
-                MessageService.sendMessage(LanguageManager.getText("Message","noVote"), currentPlayer, false, true);
+                messageService.sendMessage(LanguageManager.getText("Message","noVote"), currentPlayer, false, true);
             }
 
         }
@@ -169,12 +173,12 @@ public class GameService {
             AbilityType abilityType = currentPlayer.getRole().getTemplate().getAbilityType();
             if(!(abilityType == AbilityType.PASSIVE || abilityType == AbilityType.NO_ABILITY)){
                 if(chosenPlayer!=null){
-                    MessageService.sendMessage(LanguageManager.getText("Message","ability")
+                    messageService.sendMessage(LanguageManager.getText("Message","ability")
                                     .replace("{playerName}", chosenPlayer.getName())
                             ,currentPlayer,false, false);
                 }
                 else{
-                    MessageService.sendMessage(LanguageManager.getText("Message","noAbilityUsed"), currentPlayer, false,false);
+                    messageService.sendMessage(LanguageManager.getText("Message","noAbilityUsed"), currentPlayer, false,false);
                 }
             }
         }
@@ -268,7 +272,7 @@ public class GameService {
 
             // Finishes the game if one of the last two players can role block and the other is not immune to role block
             Optional<Player> roleBlockerPlayer = alivePlayers.stream()
-                    .filter(p -> p.getRole().getTemplate() instanceof Interrupter || p.getRole().getTemplate() instanceof SealMaster)
+                    .filter(p -> p.getRole().getTemplate() instanceof RoleBlockAbility)
                     .findFirst();
 
             Optional<Player> roleBlockablePlayer = alivePlayers.stream()
@@ -327,7 +331,7 @@ public class GameService {
                     chillGuyExist = true;
                 }
                 case Clown _ -> {
-                    if(!player.isAlive() && !player.getCauseOfDeath().equals(LanguageManager.getText("CauseOfDeath","hanging"))){
+                    if(!player.isAlive() && !player.getCausesOfDeath().contains(CauseOfDeath.HANGING)){
                         player.setHasWon(true);
                     }
                 }
@@ -359,7 +363,7 @@ public class GameService {
             SceneManager.switchScene("/com/rolegame/game/fxml/game/EndGame.fxml", SceneManager.SceneType.END_GAME, false);
         }
 
-        MessageService.resetMessages();
+        messageService.resetMessages();
         votingService.nullifyVotes();
 
 
@@ -459,5 +463,9 @@ public class GameService {
 
     public TimeService getTimeService() {
         return timeService;
+    }
+
+    public MessageService getMessageService() {
+        return messageService;
     }
 }

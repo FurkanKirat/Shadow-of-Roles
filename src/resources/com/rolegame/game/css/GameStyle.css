@@ -490,5 +490,49 @@
     -fx-font-weight: bold;
 }
 
+/* ComboBox Styling */
+.combo-box {
+    -fx-background-color: linear-gradient(to bottom, #d6ecff, #a8d8ff); /* Soft blue gradient */
+    -fx-border-color: #004c99; /* Dark blue border */
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5px 10px;
+}
+
+/* ComboBox popup styling */
+.combo-box .popup {
+    -fx-background-color: #383736; /* Darker background for popup */
+    -fx-border-radius: 5px;
+    -fx-border-color: #004c99;
+    -fx-border-width: 2px;
+}
+
+/* ComboBox items styling */
+.combo-box .list-view {
+    -fx-background-color: rgba(46, 13, 37, 0.5); /* Transparent dark background */
+    -fx-border-color: transparent;
+}
+
+.combo-box .list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+
+/* Hover effect on items */
+.combo-box .list-view .list-cell:hover {
+    -fx-background-color: rgba(100, 50, 100, 0.7); /* Hover item background */
+    -fx-text-fill: yellow; /* Hover text color */
+}
+
+/* Selected item styling */
+.combo-box .list-view .list-cell:selected {
+    -fx-background-color: rgba(138, 54, 69, 0.7); /* Selected item background */
+    -fx-text-fill: yellow; /* Selected item text color */
+}
+
 
 

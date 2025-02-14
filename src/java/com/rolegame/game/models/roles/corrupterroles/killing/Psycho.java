@@ -1,31 +1,23 @@
 package com.rolegame.game.models.roles.corrupterroles.killing;
 
-import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.gamestate.CauseOfDeath;
 import com.rolegame.game.models.player.Player;
 import com.rolegame.game.models.roles.corrupterroles.CorrupterRole;
+import com.rolegame.game.models.roles.abilities.AttackAbility;
 import com.rolegame.game.models.roles.enums.*;
+import com.rolegame.game.services.GameService;
 
-public final class Psycho extends CorrupterRole {
+public final class Psycho extends CorrupterRole implements AttackAbility {
 
     public Psycho() {
-        super(RoleID.Psycho, AbilityType.OTHER_THAN_CORRUPTER, RolePriority.NONE, RoleCategory.CORRUPTER_KILLING, 1,0);
+        super(RoleID.Psycho, AbilityType.OTHER_THAN_CORRUPTER, RolePriority.NONE,
+                RoleCategory.CORRUPTER_KILLING, 1,0, false);
     }
 
     @Override
-    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer, GameService gameService) {
 
-        if(getAttack() > choosenPlayer.getDefence()){
-            choosenPlayer.setAlive(false);
-            choosenPlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath","psycho"));
-            sendAbilityMessage(LanguageManager.getText("Psycho","killMessage"), roleOwner);
-            sendAbilityAnnouncement( LanguageManager.getText("Psycho","slainMessage").replace("{playerName}",choosenPlayer.getName()));
-
-            return AbilityResult.SUCCESSFUL;
-        }
-        else{
-            sendAbilityMessage(LanguageManager.getText("Psycho","defenceMessage"), roleOwner);
-            return AbilityResult.ATTACK_INSUFFICIENT;
-        }
+       return attack(roleOwner,choosenPlayer, gameService, CauseOfDeath.PSYCHO);
     }
 
     @Override

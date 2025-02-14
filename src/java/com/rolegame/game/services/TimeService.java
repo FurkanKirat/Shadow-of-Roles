@@ -2,7 +2,7 @@ package com.rolegame.game.services;
 
 import com.rolegame.game.gamestate.Time;
 
-public class TimeService {
+public final class TimeService {
     private int dayCount = 1;
     private Time time = Time.NIGHT;
 

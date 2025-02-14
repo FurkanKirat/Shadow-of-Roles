@@ -1,21 +1,18 @@
 package com.rolegame.game.models.roles.folkroles.unique;
 
+import com.rolegame.game.gamestate.CauseOfDeath;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.player.Player;
-import com.rolegame.game.models.roles.corrupterroles.analyst.DarkRevealer;
-import com.rolegame.game.models.roles.corrupterroles.analyst.Darkseer;
-import com.rolegame.game.models.roles.corrupterroles.killing.Psycho;
+import com.rolegame.game.models.roles.abilities.AttackAbility;
+import com.rolegame.game.models.roles.abilities.ProtectiveAbility;
+import com.rolegame.game.models.roles.abilities.InvestigativeAbility;
 import com.rolegame.game.models.roles.enums.*;
-import com.rolegame.game.models.roles.folkroles.analyst.Detective;
-import com.rolegame.game.models.roles.folkroles.analyst.Observer;
-import com.rolegame.game.models.roles.folkroles.analyst.Stalker;
 import com.rolegame.game.models.roles.folkroles.FolkRole;
-import com.rolegame.game.models.roles.folkroles.protector.Soulbinder;
-import com.rolegame.game.models.roles.templates.RoleTemplate;
+import com.rolegame.game.services.GameService;
 
 import java.util.Random;
 
-public class Entrepreneur extends FolkRole {
+public class Entrepreneur extends FolkRole implements ProtectiveAbility, AttackAbility, InvestigativeAbility {
 
     private static final int HEAL_PRICE = 3;
     private static final int INFO_PRICE = 2;
@@ -23,35 +20,36 @@ public class Entrepreneur extends FolkRole {
     private int money;
     private ChosenAbility abilityState;
     public Entrepreneur() {
-        super(RoleID.Entrepreneur, AbilityType.ACTIVE_ALL, RolePriority.NONE, RoleCategory.FOLK_UNIQUE, 0, 0);
+        super(RoleID.Entrepreneur, AbilityType.ACTIVE_ALL, RolePriority.NONE,
+                RoleCategory.FOLK_UNIQUE, 1, 0, false);
         this.money = 3;
         this.setAbilityState(ChosenAbility.NONE);
     }
 
 
     @Override
-    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer, GameService gameService) {
         rolePriority = RolePriority.NONE;
         switch (abilityState){
 
             case ATTACK -> {
                 if(money>= ATTACK_PRICE){
                     money -= ATTACK_PRICE;
-                    return useOtherAbility(new Psycho(), roleOwner, choosenPlayer);
+                    return attack(roleOwner, choosenPlayer, gameService, CauseOfDeath.ENTREPRENEUR);
                 }
 
             }
             case HEAL ->{
                 if(money>= HEAL_PRICE){
                     money -= HEAL_PRICE;
-                    return useOtherAbility(new Soulbinder(), roleOwner, choosenPlayer);
+                    return heal(roleOwner, choosenPlayer, gameService);
                 }
 
             }
             case INFO -> {
                 if(money>= INFO_PRICE){
                     money -= INFO_PRICE;
-                    return gatherInfo(roleOwner, choosenPlayer);
+                    return gatherInfo(roleOwner, choosenPlayer, gameService);
                 }
 
             }
@@ -59,7 +57,7 @@ public class Entrepreneur extends FolkRole {
                 return AbilityResult.NO_ABILITY_SELECTED;
             }
         }
-        return insufficientMoney(roleOwner);
+        return insufficientMoney(roleOwner, gameService);
     }
 
     @Override
@@ -75,22 +73,27 @@ public class Entrepreneur extends FolkRole {
         this.abilityState = abilityState;
     }
 
-    private AbilityResult gatherInfo(Player roleOwner, Player chosenPlayer){
-        RoleTemplate role;
+    private AbilityResult gatherInfo(Player roleOwner, Player chosenPlayer, GameService gameService){
         switch (new Random().nextInt(5)){
-            case 0 -> role = new Darkseer();
-            case 1 -> role = new Detective();
-            case 2 -> role = new Observer();
-            case 3 -> role = new Stalker();
-            default -> role = new DarkRevealer();
+            case 0 -> {
+                return darkSeerAbility(roleOwner, gameService);
+            }
+            case 1 -> {
+                return detectiveAbility(roleOwner, chosenPlayer, gameService);
+            }
+            case 2 -> {
+                return observerAbility(roleOwner, chosenPlayer, gameService);
+            }
+            case 3 -> {
+                return stalkerAbility(roleOwner, chosenPlayer, gameService);
+            }
+            default -> {
+                return darkRevealerAbility(roleOwner, chosenPlayer, gameService);
+            }
         }
-        return useOtherAbility(role, roleOwner, chosenPlayer);
     }
 
-    private AbilityResult useOtherAbility(RoleTemplate roleTemplate, Player roleOwner, Player choosenPlayer){
-        return roleTemplate.executeAbility(roleOwner,choosenPlayer);
-    }
-    private AbilityResult insufficientMoney(Player roleOwner){
+    private AbilityResult insufficientMoney(Player roleOwner, GameService gameService){
         String message = LanguageManager.getText("Entrepreneur","insufficientMoney");
 
         switch (abilityState){
@@ -98,7 +101,7 @@ public class Entrepreneur extends FolkRole {
             case HEAL -> message += LanguageManager.getText("Entrepreneur", "heal");
             case INFO -> message += LanguageManager.getText("Entrepreneur","info");
         }
-        sendAbilityMessage(message, roleOwner);
+        sendAbilityMessage(message, roleOwner, gameService.getMessageService());
         return AbilityResult.INSUFFICIENT_MONEY;
     }
 

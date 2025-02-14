@@ -1,8 +1,12 @@
 package com.rolegame.game.models.player;
 
+import com.rolegame.game.gamestate.CauseOfDeath;
+import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.Role;
 
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public abstract class Player {
     private final int number;
@@ -12,7 +16,7 @@ public abstract class Player {
     private double attack;
     private double defence;
     private boolean hasWon;
-    private String causeOfDeath;
+    private final LinkedList<CauseOfDeath> causesOfDeath;
     private boolean isImmune;
     private boolean isRevealed;
 
@@ -24,7 +28,8 @@ public abstract class Player {
         this.role.setRoleOwner(this);
         this.isRevealed = false;
         hasWon = false;
-        causeOfDeath = null;
+        causesOfDeath = new LinkedList<>();
+        resetStates();
     }
 
     public final void resetStates(){
@@ -33,6 +38,12 @@ public abstract class Player {
         this.setAttack(this.getRole().getTemplate().getAttack());
         this.getRole().setCanPerform(true);
         this.setImmune(false);
+    }
+
+    public final String getCausesOfDeathAsString(){
+        return causesOfDeath.stream()
+                .map( causeOfDeath->LanguageManager.getText("CauseOfDeath", LanguageManager.enumToJsonKey(causeOfDeath.name())))
+                .collect(Collectors.joining(", "));
     }
 
     @Override
@@ -69,6 +80,10 @@ public abstract class Player {
         this.role.setRoleOwner(this);
     }
 
+    public final String getNameAndRole(){
+        return name+" ("+role.getTemplate().getName()+")";
+    }
+
     public final boolean isAlive() {
         return isAlive;
     }
@@ -101,8 +116,8 @@ public abstract class Player {
         this.hasWon = hasWon;
     }
 
-    public final String getCauseOfDeath() {
-        return causeOfDeath;
+    public final LinkedList<CauseOfDeath> getCausesOfDeath() {
+        return causesOfDeath;
     }
     public final void setImmune(boolean isImmune){
         this.isImmune = isImmune;
@@ -112,8 +127,8 @@ public abstract class Player {
         return isImmune;
     }
 
-    public final void setCauseOfDeath(String causeOfDeath) {
-        this.causeOfDeath = causeOfDeath;
+    public final void addCauseOfDeath(CauseOfDeath causeOfDeath) {
+        causesOfDeath.add(causeOfDeath);
     }
 
     public final boolean isRevealed() {

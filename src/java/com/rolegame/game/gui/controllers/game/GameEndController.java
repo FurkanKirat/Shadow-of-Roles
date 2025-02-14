@@ -1,6 +1,8 @@
 package com.rolegame.game.gui.controllers.game;
 
+import com.rolegame.game.gamestate.CauseOfDeath;
 import com.rolegame.game.models.achievement.Achievement;
+import com.rolegame.game.models.roles.templates.RoleTemplate;
 import com.rolegame.game.services.GameEndService;
 import com.rolegame.game.services.GameService;
 import com.rolegame.game.models.player.Player;
@@ -23,6 +25,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -47,7 +51,7 @@ public class GameEndController implements Initializable {
     private TableColumn<Player, String> playerColumn;
 
     @FXML
-    private TableColumn<Player, Role> roleColumn;
+    private TableColumn<Player, String> roleColumn;
 
     @FXML
     private TableColumn<Player, String> teamColumn;
@@ -78,8 +82,6 @@ public class GameEndController implements Initializable {
         startGamebutton.setText(LanguageManager.getText("EndMenu","startGameButton"));
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         playerColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
-        deathCauseColumn.setCellValueFactory(new PropertyValueFactory<>("causeOfDeath"));
         setupTableView();
         gameEndTV.getItems().addAll(gameService.getAllPlayers());
 
@@ -122,9 +124,9 @@ public class GameEndController implements Initializable {
 
     private void setupTableView(){
         teamColumn.setCellValueFactory(cellData -> {
-            Role role = cellData.getValue().getRole();
-            if (role != null && role.getTemplate().getTeam() != null) {
-                return new SimpleStringProperty(LanguageManager.getText("Role",role.getTemplate().getTeam().toString()));
+            RoleTemplate role = cellData.getValue().getRole().getTemplate();
+            if (role != null && role.getTeam() != null) {
+                return new SimpleStringProperty(LanguageManager.getText("Role",role.getTeam().toString()));
             } else {
                 return new SimpleStringProperty("-");
             }
@@ -141,25 +143,15 @@ public class GameEndController implements Initializable {
             return new SimpleStringProperty(isAlive ? LanguageManager.getText("EndMenu","alive"): LanguageManager.getText("EndMenu","dead"));
 
         });
+
+        roleColumn.setCellValueFactory(cellData -> {
+            RoleTemplate roleTemplate = cellData.getValue().getRole().getTemplate();
+            return new SimpleStringProperty(roleTemplate.getName());
+        });
+
+        deathCauseColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCausesOfDeathAsString()));
     }
 
-    private void progressAchievements(){
-        for(Map.Entry<Achievement.AchievementID, Achievement> achievementEntry : AchievementManager.loadAchievements().entrySet()){
-            if(achievementEntry.getValue().getCategory() == Achievement.AchievementCategory.PLAY_GAME){
-                AchievementManager.addProgressToAchievement(achievementEntry.getKey(), 1);
-            }
 
-        }
-
-        for (Player player: GameScreenController.getGameService().getAllPlayers()){
-            if(player.getRole().getTemplate() instanceof FolkHero folkHero && folkHero.getAbilityUseCount() == 0 &&
-                    player.isHasWon()){
-                AchievementManager.completeAchievement(Achievement.AchievementID.LAZY_HERO);
-            }
-            else if(player.getRole().getTemplate() instanceof ChillGuy && !player.isHasWon()){
-                AchievementManager.completeAchievement(Achievement.AchievementID.WIN_SACRIFICE);
-            }
-        }
-
-    }
 }

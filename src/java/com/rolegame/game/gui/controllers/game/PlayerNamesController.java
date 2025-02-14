@@ -30,6 +30,7 @@ public class PlayerNamesController extends VBox {
         textFieldsBox = new VBox();
         textFieldsBox.setAlignment(Pos.CENTER);
         textFieldsBox.getStyleClass().add("backgroundtransparant");
+        textFieldsBox.setMaxWidth(500);
 
         playerCountComboBox = new ComboBox<>();
         playerCountComboBox.getItems().addAll(5, 6, 7, 8, 9, 10);
@@ -47,6 +48,7 @@ public class PlayerNamesController extends VBox {
         comboBoxContainer.getStyleClass().add("backgroundtransparant");
         comboBoxContainer.setAlignment(Pos.CENTER);
         comboBoxContainer.setSpacing(10);
+        comboBoxContainer.setMaxWidth(500);
 
         this.getChildren().add(comboBoxContainer);
         this.getChildren().add(textFieldsBox);

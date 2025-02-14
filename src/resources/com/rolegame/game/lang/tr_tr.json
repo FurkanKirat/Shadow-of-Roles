@@ -84,7 +84,8 @@
     "noUseLeft": "Yeteneğinizin maksimum kullanım sırasına eriştiğiniz için yeteneğiniz kullanılamadı",
     "defence": "Hedefinizi öldüremediniz çünkü saldırınız yeterince güçlü değildi",
     "noRoleSelected": "Hiçbir rol seçmediğiniz için rolünüz kullanılamadı",
-    "noAbilityExists": "Rolünüzün yeteneği olmadığı için yetenek kullanılamadı"
+    "noAbilityExists": "Rolünüzün yeteneği olmadığı için yetenek kullanılamadı",
+    "heal":"You have successfully protected your target"
   },
   "SealMaster": {
     "attributes": "Yok",
@@ -130,8 +131,8 @@
   },
   "Soulbinder": {
     "attributes": "Yok",
-    "abilities": "Gece birini seçin ve eğer saldırıya uğrarlarsa ölmelerini engelleyin",
-    "abilityMessage": "You have successfully protected your target"
+    "abilities": "Gece birini seçin ve eğer saldırıya uğrarlarsa ölmelerini engelleyin"
+
   },
   "ChillGuy": {
     "attributes": "Rolünü açıklarsan kaybedersin",
@@ -182,7 +183,9 @@
     "pass": "Pas geç",
     "selected": "Seçildi: {abilityType}",
     "none": "Yok",
-    "money": "Paran: {money}"
+    "money": "Paran: {money}",
+    "killMessage": "Hedefinizi başarıyla öldürdünüz",
+    "slainMessage": "{playerName} yatırımcı tarafından öldürüldü"
   },
   "Lorekeeper": {
     "attributes": "5,6,7 kişide 2 rolü doğru tahmin etmen gerek. 8,9,10 Kişide 3 rolü doğru tahmin etmen gerek.",
@@ -195,7 +198,8 @@
     "assassin": "Suikastçi",
     "psycho": "Psikopat",
     "hanging": "Asılarak",
-    "lastJoke": "Last Joke"
+    "lastJoke": "Ölümün Mizahı",
+    "entrepreneur": "Yatırımcı"
   },
   "StartMenu": {
     "startGame": "Oyuna Başla",

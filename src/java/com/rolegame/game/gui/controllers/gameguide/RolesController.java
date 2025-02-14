@@ -2,8 +2,6 @@ package com.rolegame.game.gui.controllers.gameguide;
 
 import com.rolegame.game.gui.components.boxes.RoleBoxForGameGuide;
 import com.rolegame.game.managers.LanguageManager;
-import com.rolegame.game.models.roles.Role;
-import com.rolegame.game.models.roles.enums.RoleCategory;
 import com.rolegame.game.models.roles.templates.RoleTemplate;
 import com.rolegame.game.services.RoleService;
 import com.rolegame.game.models.roles.enums.Team;
@@ -64,7 +62,7 @@ public class RolesController {
     }
     private ArrayList<RoleTemplate> filterRolesByCategory(Team team){
         ArrayList<RoleTemplate> roles = new ArrayList<>(RoleService.getRolesByTeam(team));
-        roles.sort(Comparator.comparing(roleTemplate -> roleTemplate.getRoleCategory().getCategory()));
+        roles.sort(Comparator.comparing(roleTemplate -> roleTemplate.getRoleCategory().getId()));
         return roles;
 
     }

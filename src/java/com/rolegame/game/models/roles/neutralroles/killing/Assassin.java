@@ -1,36 +1,27 @@
 package com.rolegame.game.models.roles.neutralroles.killing;
 
-import com.rolegame.game.managers.LanguageManager;
+import com.rolegame.game.gamestate.CauseOfDeath;
 import com.rolegame.game.models.player.Player;
+import com.rolegame.game.models.roles.abilities.AttackAbility;
 import com.rolegame.game.models.roles.enums.*;
 import com.rolegame.game.models.roles.neutralroles.NeutralRole;
+import com.rolegame.game.services.GameService;
 
-public final class Assassin extends NeutralRole {
+public final class Assassin extends NeutralRole implements AttackAbility {
     public Assassin() {
-        super(RoleID.Assassin, AbilityType.ACTIVE_OTHERS, RolePriority.NONE, RoleCategory.NEUTRAL_KILLING, 1, 1);
+        super(RoleID.Assassin, AbilityType.ACTIVE_OTHERS, RolePriority.NONE, RoleCategory.NEUTRAL_KILLING, 1, 1, true);
     }
 
     @Override
-    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer) {
+    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer, GameService gameService) {
 
-       return performAbilityForBlockImmuneRoles(roleOwner, choosenPlayer);
+       return performAbilityForBlockImmuneRoles(roleOwner, choosenPlayer, gameService);
 
     }
 
     @Override
-    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer) {
-        if(getAttack() > choosenPlayer.getDefence()){
-            choosenPlayer.setAlive(false);
-            choosenPlayer.setCauseOfDeath(LanguageManager.getText("CauseOfDeath","assassin"));
-            sendAbilityMessage(LanguageManager.getText("Assassin","killMessage"), roleOwner);
-            sendAbilityAnnouncement(LanguageManager.getText("Assassin","slainMessage")
-                    .replace("{playerName}",choosenPlayer.getName()));
-            return AbilityResult.SUCCESSFUL;
-        }
-        else{
-            sendAbilityMessage(LanguageManager.getText("Assassin","defenceMessage"), roleOwner);
-            return AbilityResult.ATTACK_INSUFFICIENT;
-        }
+    public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer, GameService gameService) {
+        return attack(roleOwner,choosenPlayer, gameService, CauseOfDeath.ASSASSIN);
     }
 
     @Override
