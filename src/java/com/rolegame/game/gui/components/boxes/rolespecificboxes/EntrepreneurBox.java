@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 public class EntrepreneurBox extends VBox {
 
     public EntrepreneurBox(Entrepreneur entrepreneur){
-        entrepreneur.setMoney(entrepreneur.getMoney()+2);
         Button attackButton = new Button(LanguageManager.getText("Entrepreneur","attack"));
         Button healButton = new Button(LanguageManager.getText("Entrepreneur","heal"));
         Button infoButton = new Button(LanguageManager.getText("Entrepreneur","info"));

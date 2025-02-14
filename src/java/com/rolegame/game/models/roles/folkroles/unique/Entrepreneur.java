@@ -26,6 +26,11 @@ public class Entrepreneur extends FolkRole implements ProtectiveAbility, AttackA
         this.setAbilityState(ChosenAbility.NONE);
     }
 
+    @Override
+    public AbilityResult performAbility(Player roleOwner, Player choosenPlayer, GameService gameService) {
+        money += 2; //Passive income
+        return super.performAbility(roleOwner, choosenPlayer, gameService);
+    }
 
     @Override
     public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer, GameService gameService) {
