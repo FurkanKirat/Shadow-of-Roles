@@ -23,13 +23,17 @@ public class Entrepreneur extends FolkRole implements ProtectiveAbility, AttackA
     public Entrepreneur() {
         super(RoleID.Entrepreneur, AbilityType.ACTIVE_ALL, RolePriority.NONE,
                 RoleCategory.FOLK_UNIQUE, 1, 0, false);
-        this.money = 3;
+        this.money = 5;
         this.setAbilityState(ChosenAbility.NONE);
     }
 
     @Override
     public AbilityResult performAbility(Player roleOwner, Player choosenPlayer, GameService gameService) {
-        money += 2; //Passive income
+
+        if(gameService.getTimeService().getDayCount()>1){
+            money += 2; //Passive income
+        }
+
         return super.performAbility(roleOwner, choosenPlayer, gameService);
     }
 
@@ -112,18 +116,22 @@ public class Entrepreneur extends FolkRole implements ProtectiveAbility, AttackA
 
     @Override
     public void changePriority() {
-        switch (abilityState){
-            case ATTACK,INFO,NONE -> rolePriority = RolePriority.NONE;
-            case HEAL -> rolePriority = RolePriority.HEAL;
-        }
+        rolePriority = abilityState.rolePriority;
     }
 
 
     public enum ChosenAbility{
-        ATTACK,
-        HEAL,
-        INFO,
-        NONE
+        ATTACK(RolePriority.NONE),
+        HEAL(RolePriority.HEAL),
+        INFO(RolePriority.NONE),
+        NONE(RolePriority.NONE);
+
+        final RolePriority rolePriority;
+
+        ChosenAbility(RolePriority rolePriority){
+            this.rolePriority = rolePriority;
+        }
+
     }
 
     public int getMoney() {

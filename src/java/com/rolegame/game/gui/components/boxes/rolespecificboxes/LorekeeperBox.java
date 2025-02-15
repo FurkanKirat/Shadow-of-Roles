@@ -2,7 +2,6 @@ package com.rolegame.game.gui.components.boxes.rolespecificboxes;
 
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.neutralroles.good.Lorekeeper;
-import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.templates.RoleTemplate;
 import com.rolegame.game.services.RoleService;
 import javafx.geometry.Pos;

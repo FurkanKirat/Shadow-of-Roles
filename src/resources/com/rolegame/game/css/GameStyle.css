@@ -452,42 +452,6 @@
     -fx-font-weight: bold;
 }
 
-.playerCircle {
-    -fx-fill: #4b9cd3; /* Soğuk mavi tonları */
-}
-
-/* Player Label */
-.playerLabel {
-    -fx-font-size: 14px;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-padding: 0 10px;
-}
-
-/* Player Selection Box (Background and Padding) */
-.player-selection-box {
-    -fx-background-color: linear-gradient(to bottom, rgba(95, 146, 180,0.5), rgba(60, 110, 143,0.5)); /* Soğuk mavi tonları */
-    -fx-padding: 10px;
-    -fx-spacing: 10px;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-    -fx-alignment: center;
-}
-
-/* Corrupter Role Color */
-.corrupt-role-label {
-    -fx-text-fill: rgb(219, 57, 62); /* Corrupt Role Color */
-    -fx-font-size: 12px;
-    -fx-font-style: italic;
-}
-
-/* "You" Label */
-.you-label {
-    -fx-text-fill: snow;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-}
-
 /* ComboBox Styling */
 .combo-box {
     -fx-background-color: linear-gradient(to bottom, #d6ecff, #a8d8ff); /* Soft blue gradient */

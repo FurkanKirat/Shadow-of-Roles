@@ -144,7 +144,7 @@ public final class GameService {
                     break;
                 }
             }
-            updateAlivePlayers();
+
 
             if(votingService.getMaxVoted()!=null){
                 messageService.sendMessage(LanguageManager.getText("Message","voteExecute")
@@ -154,6 +154,7 @@ public final class GameService {
             }
 
         }
+        updateAlivePlayers();
 
         for(Player player: alivePlayers){
             player.getRole().setChoosenPlayer(null);
