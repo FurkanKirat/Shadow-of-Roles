@@ -4,6 +4,7 @@ import com.rolegame.game.gamestate.CauseOfDeath;
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.player.Player;
 import com.rolegame.game.models.roles.abilities.AttackAbility;
+import com.rolegame.game.models.roles.abilities.PriorityChangingRole;
 import com.rolegame.game.models.roles.abilities.ProtectiveAbility;
 import com.rolegame.game.models.roles.abilities.InvestigativeAbility;
 import com.rolegame.game.models.roles.enums.*;
@@ -12,7 +13,7 @@ import com.rolegame.game.services.GameService;
 
 import java.util.Random;
 
-public class Entrepreneur extends FolkRole implements ProtectiveAbility, AttackAbility, InvestigativeAbility {
+public class Entrepreneur extends FolkRole implements ProtectiveAbility, AttackAbility, InvestigativeAbility, PriorityChangingRole {
 
     private static final int HEAL_PRICE = 3;
     private static final int INFO_PRICE = 2;
@@ -34,7 +35,6 @@ public class Entrepreneur extends FolkRole implements ProtectiveAbility, AttackA
 
     @Override
     public AbilityResult executeAbility(Player roleOwner, Player choosenPlayer, GameService gameService) {
-        rolePriority = RolePriority.NONE;
         switch (abilityState){
 
             case ATTACK -> {
@@ -108,6 +108,14 @@ public class Entrepreneur extends FolkRole implements ProtectiveAbility, AttackA
         }
         sendAbilityMessage(message, roleOwner, gameService.getMessageService());
         return AbilityResult.INSUFFICIENT_MONEY;
+    }
+
+    @Override
+    public void changePriority() {
+        switch (abilityState){
+            case ATTACK,INFO,NONE -> rolePriority = RolePriority.NONE;
+            case HEAL -> rolePriority = RolePriority.HEAL;
+        }
     }
 
 

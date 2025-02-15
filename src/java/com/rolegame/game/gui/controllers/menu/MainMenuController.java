@@ -64,7 +64,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void startGame(MouseEvent event) {
-        SceneManager.switchScene(new PlayerNamesController(), SceneManager.SceneType.WRITE_NAMES, true);
+        SceneManager.switchScene(new PlayerNamesController(), SceneManager.SceneType.WRITE_NAMES, false);
     }
 
 

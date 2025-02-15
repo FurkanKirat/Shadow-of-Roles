@@ -3,8 +3,8 @@ package com.rolegame.game.models.roles.enums;
 public enum RolePriority {
 
     NONE(0),
-    SOULBINDER(1),
-    FOLK_HERO(2),
+    HEAL(1),
+    IMMUNE(2),
     BLINDER(3),
     ROLE_BLOCK(4),
     LORE_KEEPER(5),

@@ -2,7 +2,6 @@ package com.rolegame.game.gui.components.boxes.rolespecificboxes;
 
 import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.models.roles.folkroles.unique.Entrepreneur;
-import com.rolegame.game.models.roles.enums.RolePriority;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,7 +24,6 @@ public class EntrepreneurBox extends VBox {
         attackButton.setOnAction((_) ->
         {
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.ATTACK);
-            entrepreneur.setRolePriority(RolePriority.NONE);
             selectedLabel.setText(LanguageManager.getText("Entrepreneur","selected")
                     .replace("{abilityType}",LanguageManager.getText("Entrepreneur","attack")));
         });
@@ -33,21 +31,18 @@ public class EntrepreneurBox extends VBox {
         healButton.setOnAction((_) ->
         {
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.HEAL);
-            entrepreneur.setRolePriority(RolePriority.SOULBINDER);
             selectedLabel.setText(LanguageManager.getText("Entrepreneur","selected")
                     .replace("{abilityType}", LanguageManager.getText("Entrepreneur","heal")));
         });
         infoButton.setOnAction((_) ->
         {
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.INFO);
-            entrepreneur.setRolePriority(RolePriority.NONE);
             selectedLabel.setText(LanguageManager.getText("Entrepreneur","selected")
                     .replace("{abilityType}",LanguageManager.getText("Entrepreneur","info")));
         });
         passAbilityButton.setOnAction((_)->
         {
             entrepreneur.setAbilityState(Entrepreneur.ChosenAbility.NONE);
-            entrepreneur.setRolePriority(RolePriority.NONE);
             selectedLabel.setText(LanguageManager.getText("Entrepreneur","selected")
                     .replace("{abilityType}",LanguageManager.getText("Entrepreneur","none")));
         });

@@ -1,7 +1,6 @@
 package com.rolegame.game.models.roles.neutralroles;
 
 import com.rolegame.game.managers.LanguageManager;
-import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.enums.*;
 import com.rolegame.game.models.roles.templates.RoleTemplate;
 

@@ -7,6 +7,7 @@ import com.rolegame.game.managers.LanguageManager;
 import com.rolegame.game.managers.SceneManager;
 import com.rolegame.game.models.player.AIPlayer;
 import com.rolegame.game.models.player.HumanPlayer;
+import com.rolegame.game.models.roles.abilities.PriorityChangingRole;
 import com.rolegame.game.models.roles.abilities.RoleBlockAbility;
 import com.rolegame.game.models.roles.corrupterroles.support.LastJoke;
 import com.rolegame.game.models.roles.enums.AbilityType;
@@ -86,21 +87,32 @@ public final class GameService {
      *  Performs all abilities according to role priorities
      */
     public void performAllAbilities(){
-        ArrayList<Player> players = new ArrayList<>(new ArrayList<>(alivePlayers));
+        ArrayList<Player> players = new ArrayList<>(alivePlayers);
 
         chooseRandomPlayersForAI(players);
 
+        // If the roles priority changes in each turn changes the priority
+        for(Player player: players){
+            if(player.getRole().getTemplate() instanceof PriorityChangingRole priorityChangingRole){
+                priorityChangingRole.changePriority();
+            }
+        }
+
+        // Sorts the roles according to priority and if priorities are same sorts
         players.sort(Comparator.comparing((Player player) -> player.getRole().getTemplate().getRolePriority().getPriority()).reversed()
                 .thenComparing((Player player) -> player.getRole().getTemplate().getId()));
 
+        // Performs the abilities in the sorted list
         for(Player player: players){
             player.getRole().getTemplate().performAbility(player, player.getRole().getChoosenPlayer(), this);
         }
 
+        // Send some messages to some roles
         for(Player player: players){
             messageService.sendSpecificRoleMessages(player);
         }
 
+        // Resets the players' attributes according to their role
         for(Player player: alivePlayers){
            player.resetStates();
         }
@@ -440,11 +452,7 @@ public final class GameService {
         }
     }
 
-    // Getters and Setters
-    public int getCurrentPlayerIndex() {
-        return currentPlayerIndex;
-    }
-
+    // Getters
     public Player getCurrentPlayer(){
         return currentPlayer;
     }

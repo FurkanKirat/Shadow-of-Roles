@@ -8,7 +8,7 @@ import com.rolegame.game.services.GameService;
 
 public final class Soulbinder extends FolkRole implements ProtectiveAbility {
     public Soulbinder() {
-        super(RoleID.Soulbinder, AbilityType.ACTIVE_OTHERS, RolePriority.SOULBINDER,
+        super(RoleID.Soulbinder, AbilityType.ACTIVE_OTHERS, RolePriority.HEAL,
                 RoleCategory.FOLK_PROTECTOR, 0,0, false);
     }
 

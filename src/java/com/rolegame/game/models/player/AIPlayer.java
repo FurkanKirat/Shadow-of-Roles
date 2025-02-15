@@ -71,7 +71,6 @@ public class AIPlayer extends Player {
         switch (getRole().getTemplate()){
 
             case Entrepreneur entrepreneur -> {
-                entrepreneur.setMoney(entrepreneur.getMoney()+2);
                 boolean randBool= new Random().nextBoolean();
                 entrepreneur.setAbilityState(randBool ? Entrepreneur.ChosenAbility.HEAL : Entrepreneur.ChosenAbility.ATTACK);
 

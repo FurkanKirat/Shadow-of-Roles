@@ -1,7 +1,6 @@
 package com.rolegame.game.gui.components.boxes;
 
 import com.rolegame.game.managers.LanguageManager;
-import com.rolegame.game.models.roles.Role;
 import com.rolegame.game.models.roles.templates.RoleTemplate;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;

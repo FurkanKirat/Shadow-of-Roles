@@ -11,7 +11,7 @@ public final class FolkHero extends FolkRole {
     private int abilityUseCount;
 
     public FolkHero() {
-        super(RoleID.FolkHero, AbilityType.ACTIVE_ALL, RolePriority.FOLK_HERO,
+        super(RoleID.FolkHero, AbilityType.ACTIVE_ALL, RolePriority.IMMUNE,
                 RoleCategory.FOLK_PROTECTOR, 0, 0, false);
         abilityUseCount = 0;
     }

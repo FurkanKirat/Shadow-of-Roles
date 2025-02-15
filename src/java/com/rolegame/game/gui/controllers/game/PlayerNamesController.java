@@ -22,7 +22,6 @@ public class PlayerNamesController extends VBox {
     public PlayerNamesController() {
         this.writeNamesService = new PlayerNamesService();
         this.getStylesheets().add("/com/rolegame/game/css/GameStyle.css");
-        this.getStyleClass().add("startRoot");
         this.setPrefWidth(1366);
         this.setPrefHeight(768);
         this.setAlignment(Pos.CENTER);
@@ -39,6 +38,7 @@ public class PlayerNamesController extends VBox {
         playerCountComboBox.setOnAction(event -> {
             int selectedPlayerCount = playerCountComboBox.getValue();
             updateTextFields(selectedPlayerCount);
+            initializeBackgroundImage(selectedPlayerCount);
         });
 
         Label comboBoxLabel = new Label(LanguageManager.getText("WriteNames","playerCount"));
@@ -50,9 +50,10 @@ public class PlayerNamesController extends VBox {
         comboBoxContainer.setSpacing(10);
         comboBoxContainer.setMaxWidth(500);
 
+        this.initializeBackgroundImage(playerCountComboBox.getValue());
         this.getChildren().add(comboBoxContainer);
         this.getChildren().add(textFieldsBox);
-        this.getStyleClass().add("backgroundtransparant");
+        this.getStyleClass().add("backgroundimage");
         updateTextFields(playerCountComboBox.getValue());
     }
 
@@ -68,7 +69,7 @@ public class PlayerNamesController extends VBox {
             textField.setPrefWidth(200);
             textField.setMinWidth(150);
             textField.setMaxWidth(250);
-            textField.getStyleClass().add("gameStartLabel");
+            //textField.getStyleClass().add("gameStartLabel");
 
             Label nameLabel = new Label(LanguageManager.getText("Menu", "player") + " " + (i + 1) + ": ");
             nameLabel.getStyleClass().add("startLabel");
@@ -86,6 +87,7 @@ public class PlayerNamesController extends VBox {
             hBox.setSpacing(10);
             hBox.setPrefWidth(textFieldsBox.getWidth());
             hBox.setMaxWidth(Double.MAX_VALUE);
+            hBox.getStyleClass().add("startBox");
 
             textFields[i] = textField;
             checkBoxes[i] = isAICheckBox;
@@ -126,6 +128,10 @@ public class PlayerNamesController extends VBox {
         } catch (IllegalArgumentException e) {
             showAlert("Error", e.getMessage());
         }
+    }
+
+    private void initializeBackgroundImage(int playerCount){
+        this.styleProperty().set("-fx-background-image:url(/com/rolegame/game/images/gamestart/"+playerCount+".jpg);");
     }
 
     private void showAlert(String title, String message) {
